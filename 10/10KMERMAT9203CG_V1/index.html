@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Mengajar - Barisan dan Deret</title>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-text: #333333;
+            --secondary-text: #555555;
+            --border-color: #dddddd;
+            --header-top-bg: #E0F7FA;
+            --header-bottom-bg: #f0f0f0;
+            --header-title-color: #00838F;
+            --table-header-bg: #e9e9e9;
+        }
+        
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9pt;
+            line-height: 1.6;
+            color: var(--primary-text);
+            background-color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page-container {
+             counter-reset: page;
+        }
+
+        .page {
+            background: white;
+            width: 21cm;
+            min-height: 29.7cm;
+            padding: 1.8cm 2.5cm 1.5cm 2.5cm;
+            margin: 1cm auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .page::after {
+            counter-increment: page;
+            content: counter(page);
+            position: absolute;
+            bottom: 1cm;
+            right: 2.5cm;
+            font-size: 8.5pt;
+            color: #888;
+        }
+
+        .page-header {
+            margin: -1.8cm -2.5cm 20px -2.5cm;
+            width: 21cm;
+        }
+        .page-header.no-bottom {
+             margin-bottom: 10px;
+        }
+
+        .header-top-box {
+            background-color: var(--header-top-bg);
+            padding: 10px 2.5cm;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2px;
+        }
+        
+        .header-title-main {
+            font-size: 18pt;
+            font-weight: 700;
+            color: var(--header-title-color);
+            line-height: 1.2;
+        }
+
+        .header-title-sub {
+            font-size: 12pt;
+            font-weight: 400;
+            color: var(--primary-text);
+        }
+
+        .header-bottom-box {
+            padding: 8px 2.5cm;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .header-bottom-text {
+             background-color: var(--header-bottom-bg);
+             padding: 8px 15px;
+             font-weight: 700;
+             font-size: 8.5pt;
+             color: var(--secondary-text);
+             display: inline-block;
+             border-radius: 4px;
+             white-space: nowrap;
+        }
+
+        .header-logo {
+            max-height: 60px;
+        }
+        
+        .content-wrapper { 
+            position: relative; 
+            z-index: 1; 
+            width: 100%; 
+            flex-grow: 1;
+        }
+
+        .section-title {
+            font-size: 14pt;
+            font-weight: 700;
+            color: var(--header-title-color);
+            border-bottom: 2px solid var(--header-top-bg);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            margin-top: 10px;
+        }
+        
+        ol.guide-list, ul.guide-list {
+            padding-left: 20px;
+        }
+        
+        ol.guide-list li, ul.guide-list li {
+            margin-bottom: 8px;
+        }
+        
+        .pembahasan-box {
+            margin-bottom: 20px;
+            break-inside: avoid;
+        }
+
+        .soal-card {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            border: 1px solid var(--border-color);
+        }
+        .soal-card td {
+            border: 1px solid var(--border-color);
+            padding: 6px 10px;
+            font-size: 8.5pt;
+        }
+        .soal-card td:first-child {
+            font-weight: 700;
+            background-color: var(--table-header-bg);
+            width: 120px;
+        }
+        
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+        .summary-table td {
+            border: 1px solid var(--border-color);
+            padding: 8px 12px;
+        }
+        .summary-table .summary-table-header td {
+            background-color: var(--table-header-bg);
+            font-weight: 700;
+            font-size: 10pt;
+        }
+        .summary-table .summary-table-content ul {
+            padding-left: 20px;
+            margin: 5px 0 0 0;
+        }
+        .summary-table .star-row td {
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .soal-pembahasan {
+            margin-top: 10px;
+        }
+        .soal-pembahasan ol {
+            list-style-type: none;
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+         .soal-pembahasan ol li {
+            margin-bottom: 8px;
+         }
+        .soal-pembahasan ol li::before {
+            content: attr(data-option) ". ";
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .pembahasan-detail {
+            margin-top: 10px;
+            background-color: #f9f9f9;
+            border-left: 4px solid var(--header-title-color);
+            padding: 10px 15px;
+            border-radius: 0 4px 4px 0;
+        }
+        .pembahasan-detail ul {
+             padding-left: 20px;
+        }
+
+        .page-footer {
+            text-align: left;
+            font-size: 8pt;
+            color: var(--secondary-text);
+            padding-top: 15px;
+            margin-top: auto;
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media print {
+            body { 
+                background: none; 
+            }
+            .page { 
+                width: 100%; 
+                min-height: 29.7cm;
+                height: 100%;
+                margin: 0; 
+                padding: 1.8cm 2.5cm 3cm 2.5cm; 
+                box-shadow: none; 
+                page-break-after: always;
+            }
+            .page:last-child {
+                page-break-after: avoid;
+            }
+            .header-top-box, .header-bottom-text, .soal-card td:first-child, .summary-table .summary-table-header td {
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact;
+            }
+            .page-footer {
+                position: fixed;
+                bottom: 1.5cm;
+                left: 2.5cm;
+                right: 2.5cm;
+                width: auto;
+                margin-top: 0; 
+                padding-top: 5px;
+                font-size: 7.5pt;
+                border-top: 1px solid var(--border-color);
+                background: white;
+            }
+            .page::after {
+                bottom: 1cm;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-container">
+
+    <!-- HALAMAN 1: TUJUAN, ALUR & TEORI -->
+    <section class="page">
+        <header class="page-header">
+            <div class="header-top-box">
+                <div>
+                    <div class="header-title-main">Panduan Mengajar</div>
+                    <div class="header-title-sub">Matematika</div>
+                </div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+            </div>
+            <div class="header-bottom-box">
+                <div class="header-bottom-text">
+                    X SMA | Kurikulum Merdeka | Drill Soal | Subtopik: Review Barisan dan Deret Aritmetika Geometri | Pertemuan 09
+                </div>
+            </div>
+        </header>
+
+        <div class="content-wrapper">
+            <table class="summary-table">
+                <tr class="summary-table-header">
+                    <td>Belajar Apa Hari Ini</td>
+                </tr>
+                <tr class="summary-table-content">
+                    <td>
+                        Review / Bahas soal dari beberapa topik meliputi:
+                        <ul>
+                            <li>Identifikasi barisan aritmetika dan geometri.</li>
+                            <li>Menentukan rumus suku ke-n dan nilai suku tertentu.</li>
+                            <li>Menghitung jumlah n suku pertama (deret).</li>
+                            <li>Menyelesaikan soal cerita yang berkaitan dengan barisan dan deret.</li>
+                            <li>Menghitung jumlah deret geometri tak hingga dan aplikasinya.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="summary-table-header">
+                    <td>LO: Review Barisan dan Deret Aritmetika Geometri</td>
+                </tr>
+                <tr class="summary-table-content">
+                    <td>
+                        <ul>
+                            <li>Siswa bisa mendefinisikan barisan aritmetika dan geometri.</li>
+                            <li>Siswa bisa menyimpulkan rumus suku ke-n dari suatu barisan.</li>
+                            <li>Siswa bisa menyimpulkan rumus jumlah n suku pertama (deret).</li>
+                            <li>Siswa bisa menerapkan konsep barisan dan deret untuk menyelesaikan soal cerita.</li>
+                            <li>Siswa bisa menyimpulkan rumus deret geometri tak hingga dan menerapkannya.</li>
+                        </ul>
+                    </td>
+                </tr>
+                 <tr class="star-row">
+                    <td>
+                        Soal nomor 1 - 15 ⭐85⭐ (masing-masing 7 ⭐)
+                    </td>
+                </tr>
+            </table>
+
+            <h2 class="section-title">1. Alur Penjelasan</h2>
+            <ol class="guide-list">
+                <li><b>Pembukaan:</b> Mulai dengan pertanyaan pemantik, "Apa beda utama barisan aritmetika dan geometri? Coba kasih contoh di kehidupan sehari-hari!".</li>
+                <li><b>Konsep Inti:</b> Tekankan perbedaan antara 'beda' (selisih) di aritmetika dan 'rasio' (perbandingan) di geometri. Gunakan soal-soal awal untuk mengidentifikasi keduanya.</li>
+                <li><b>Rumus & Aplikasi:</b> Bahas rumus suku ke-n ($U_n$) dan jumlah n suku ($S_n$) untuk keduanya. Tunjukkan bagaimana rumus ini dipakai untuk menyelesaikan soal cerita (gaji, tali, amoeba).</li>
+                <li><b>Deret Tak Hingga:</b> Jelaskan konsep deret konvergen (punya jumlah) dan divergen (tidak punya jumlah). Kaitkan dengan soal bola memantul.</li>
+                <li><b>Penutup:</b> Rangkum kembali kapan harus memakai rumus aritmetika dan kapan memakai rumus geometri.</li>
+            </ol>
+            
+            <h2 class="section-title">2. Teknik Elicit (Pertanyaan Pemantik)</h2>
+            <ul class="guide-list">
+                <li>"Di soal gaji (No. 5), kenapa kita pakai rumus deret aritmetika, bukan geometri?"</li>
+                <li>"Di soal tali (No. 9), bagaimana cara cepat menemukan rasionya kalau hanya tahu suku pertama dan terakhir?"</li>
+                <li>"Untuk soal bola memantul (No. 11), kenapa lintasannya bisa dihitung padahal bola memantul 'tak hingga' kali? Apa syaratnya?"</li>
+            </ul>
+        </div>
+
+        <footer class="page-footer">
+            <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.
+        </footer>
+    </section>
+    
+    <!-- HALAMAN 2: PEMBAHASAN SOAL 1-4 -->
+    <section class="page">
+         <header class="page-header no-bottom">
+            <div class="header-top-box">
+                <div>
+                    <div class="header-title-main">Panduan Mengajar</div>
+                    <div class="header-title-sub">Matematika</div>
+                </div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+            </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">3. Kunci Jawaban dan Pembahasan</h2>
+            
+            <div class="pembahasan-box">
+                 <table class="soal-card">
+                    <tr><td>Topik</td><td>Barisan dan Deret Aritmetika Geometri</td></tr>
+                    <tr><td>Sub Topik</td><td>Barisan Aritmetika dan Geometri</td></tr>
+                    <tr><td>Level Kognitif</td><td>LOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <b>1.</b> Tiga suku berikutnya dari barisan bilangan 5, 9, 13, 17, ... adalah...
+                    <ol>
+                        <li data-option="A">20, 23, 26</li>
+                        <li data-option="B">21, 25, 29</li>
+                        <li data-option="C">21, 26, 31</li>
+                        <li data-option="D">22, 27, 32</li>
+                        <li data-option="E">22, 26, 30</li>
+                    </ol>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: B. 21, 25, 29</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        Ini adalah barisan aritmetika karena selisih antar sukunya tetap.
+                        <ul>
+                            <li>Beda ($b$) = $9 - 5 = 4$.</li>
+                            <li>Suku setelah 17 adalah $17 + 4 = 21$.</li>
+                            <li>Suku berikutnya adalah $21 + 4 = 25$.</li>
+                            <li>Suku berikutnya lagi adalah $25 + 4 = 29$.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pembahasan-box">
+                 <table class="soal-card">
+                    <tr><td>Topik</td><td>Barisan dan Deret Aritmetika Geometri</td></tr>
+                    <tr><td>Sub Topik</td><td>Barisan Aritmetika dan Geometri</td></tr>
+                    <tr><td>Level Kognitif</td><td>LOTS</td></tr>
+                </table>
+                 <div class="soal-pembahasan">
+                    <b>2.</b> Manakah di antara barisan berikut yang merupakan barisan geometri?
+                    <ol>
+                        <li data-option="A">3, 6, 9, 12, ...</li>
+                        <li data-option="B">80, 40, 20, 10, ...</li>
+                        <li data-option="C">1, 4, 9, 16, ...</li>
+                        <li data-option="D">2, 3, 5, 8, ...</li>
+                        <li data-option="E">1, 1, 2, 3, 5, ...</li>
+                    </ol>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: B. 80, 40, 20, 10, ...</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        Barisan geometri memiliki rasio (perbandingan) yang tetap antar sukunya.
+                        <ul>
+                            <li>A: Selisihnya tetap (+3), ini aritmetika.</li>
+                            <li>B: Rasionya $40/80 = 1/2$, $20/40 = 1/2$. Rasionya tetap. Ini geometri.</li>
+                            <li>C: Bukan keduanya. Ini barisan kuadrat.</li>
+                            <li>D dan E: Bukan aritmetika maupun geometri.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Barisan dan Deret Aritmetika Geometri</td></tr>
+                    <tr><td>Sub Topik</td><td>Barisan Aritmetika dan Geometri</td></tr>
+                    <tr><td>Level Kognitif</td><td>LOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <b>3.</b> Suku pertama dari suatu barisan aritmetika adalah 16 dan bedanya adalah -3. Suku ke-10 dari barisan tersebut adalah...
+                    <ol>
+                        <li data-option="A">-14</li>
+                        <li data-option="B">-11</li>
+                        <li data-option="C">43</li>
+                        <li data-option="D">46</li>
+                        <li data-option="E">49</li>
+                    </ol>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: B. -11</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        Gunakan rumus suku ke-n barisan aritmetika: $U_n = a + (n-1)b$.
+                        <ul>
+                            <li>$a = 16$, $b = -3$, $n = 10$.</li>
+                            <li>$U_{10} = 16 + (10-1)(-3) = 16 + 9(-3) = 16 - 27 = -11$.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Barisan dan Deret Aritmetika Geometri</td></tr>
+                    <tr><td>Sub Topik</td><td>Barisan Aritmetika dan Geometri</td></tr>
+                    <tr><td>Level Kognitif</td><td>MOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <b>4.</b> Rumus suku ke-n dari barisan aritmetika 2, 7, 12, 17, ... adalah...
+                    <ol>
+                        <li data-option="A">$U_n = 5n - 3$</li>
+                        <li data-option="B">$U_n = 2n + 3$</li>
+                        <li data-option="C">$U_n = 5n + 3$</li>
+                        <li data-option="D">$U_n = 2n - 5$</li>
+                        <li data-option="E">$U_n = 3n + 2$</li>
+                    </ol>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: A. $U_n = 5n - 3$</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        Suku pertama ($a$) = 2. Beda ($b$) = $7-2=5$.
+                        <ul>
+                            <li>$U_n = a + (n-1)b$</li>
+                            <li>$U_n = 2 + (n-1)5$</li>
+                            <li>$U_n = 2 + 5n - 5 = 5n - 3$.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.
+        </footer>
+    </section>
+    
+    <!-- HALAMAN 3: PEMBAHASAN SOAL 5-8 -->
+    <section class="page">
+        <header class="page-header no-bottom">
+            <div class="header-top-box">
+                <div>
+                    <div class="header-title-main">Panduan Mengajar</div>
+                    <div class="header-title-sub">Matematika</div>
+                </div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+            </div>
+        </header>
+        <div class="content-wrapper">
+             <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Barisan dan Deret Aritmetika Geometri</td></tr>
+                    <tr><td>Sub Topik</td><td>Deret Aritmetika dan Geometri</td></tr>
+                    <tr><td>Level Kognitif</td><td>MOTS</td></tr>
+                </table>
+                 <div class="soal-pembahasan">
+                    <b>5.</b> Seorang karyawan menerima gaji pertama sebesar Rp3.000.000,00. Setiap bulan gajinya naik sebesar Rp100.000,00. Jumlah gaji yang diterima karyawan tersebut selama satu tahun pertama adalah...
+                    <ol>
+                        <li data-option="A">Rp39.600.000,00</li>
+                        <li data-option="B">Rp42.600.000,00</li>
+                        <li data-option="C">Rp43.800.000,00</li>
+                        <li data-option="D">Rp45.000.000,00</li>
+                        <li data-option="E">Rp43.200.000,00</li>
+                    </ol>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: B. Rp42.600.000,00</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        Ini adalah deret aritmetika dengan $a=3.000.000$, $b=100.000$, $n=12$.
+                        Gunakan rumus jumlah deret aritmetika $S_n = \frac{n}{2}(2a + (n-1)b)$.
+                        <ul>
+                            <li>$S_{12} = \frac{12}{2}(2(3.000.000) + (12-1)100.000)$</li>
+                            <li>$S_{12} = 6(6.000.000 + 11 \cdot 100.000)$</li>
+                            <li>$S_{12} = 6(6.000.000 + 1.100.000) = 6(7.100.000) = 42.600.000$.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Barisan dan Deret Aritmetika Geometri</td></tr>
+                    <tr><td>Sub Topik</td><td>Deret Aritmetika dan Geometri</td></tr>
+                    <tr><td>Level Kognitif</td><td>MOTS</td></tr>
+                </table>
+                 <div class="soal-pembahasan">
+                     <b>6.</b> Suku ke-3 dan suku ke-7 dari suatu barisan aritmetika berturut-turut adalah 10 dan 22. Jumlah 20 suku pertama deret tersebut adalah...
+                    <ol>
+                        <li data-option="A">590</li>
+                        <li data-option="B">620</li>
+                        <li data-option="C">650</li>
+                        <li data-option="D">680</li>
+                        <li data-option="E">710</li>
+                    </ol>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: C. 650</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        Cari $a$ dan $b$ dulu:
+                        <ul>
+                            <li>$U_7 = a + 6b = 22$</li>
+                            <li>$U_3 = a + 2b = 10$</li>
+                            <li>Kurangkan keduanya: $4b=12 \implies b=3$.</li>
+                            <li>Substitusi: $a + 2(3) = 10 \implies a = 4$.</li>
+                        </ul>
+                        Hitung $S_{20}$:
+                        <ul>
+                            <li>$S_{20} = \frac{20}{2}(2(4) + (20-1)3) = 10(8 + 19 \cdot 3) = 10(8+57) = 10(65) = 650$.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Barisan dan Deret Aritmetika Geometri</td></tr>
+                    <tr><td>Sub Topik</td><td>Barisan Aritmetika dan Geometri</td></tr>
+                    <tr><td>Level Kognitif</td><td>MOTS</td></tr>
+                </table>
+                 <div class="soal-pembahasan">
+                    <b>7.</b> Diketahui suatu barisan geometri dengan suku ke-2 adalah 12 dan suku ke-5 adalah 324. Rasio dari barisan tersebut adalah...
+                    <ol>
+                        <li data-option="A">2</li>
+                        <li data-option="B">3</li>
+                        <li data-option="C">4</li>
+                        <li data-option="D">5</li>
+                        <li data-option="E">6</li>
+                    </ol>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: B. 3</b><br>
+                        <b>Pembahasan Detail:</b>
+                        <ul>
+                            <li>$U_5 = ar^4 = 324$</li>
+                            <li>$U_2 = ar = 12$</li>
+                            <li>Bagi keduanya: $\frac{ar^4}{ar} = \frac{324}{12} \implies r^3 = 27 \implies r=3$.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Barisan dan Deret Aritmetika Geometri</td></tr>
+                    <tr><td>Sub Topik</td><td>Barisan Aritmetika dan Geometri</td></tr>
+                    <tr><td>Level Kognitif</td><td>HOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <b>8.</b> Tiga bilangan membentuk barisan aritmetika. Jika suku ketiga ditambah 2 dan suku kedua dikurangi 2, diperoleh barisan geometri. Jika suku ketiga barisan aritmetika ditambah 2, maka hasilnya menjadi 4 kali suku pertama. Suku pertama deret aritmetika tersebut adalah...
+                    <ol>
+                        <li data-option="A">2</li>
+                        <li data-option="B">4</li>
+                        <li data-option="C">6</li>
+                        <li data-option="D">8</li>
+                        <li data-option="E">10</li>
+                    </ol>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: C. 6</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        Misal barisan aritmetika: $a, a+b, a+2b$.
+                        <ul>
+                            <li>Kondisi 1: $(a+2b)+2 = 4a \implies 2b = 3a-2$.</li>
+                            <li>Barisan geometri: $a, (a+b)-2, (a+2b)+2$.</li>
+                            <li>Syarat geometri: $((a+b)-2)^2 = a \cdot ((a+2b)+2)$.</li>
+                            <li>Substitusi dari kondisi 1: $(a+b-2)^2 = a \cdot (4a) = 4a^2$.</li>
+                            <li>Ambil akar kuadrat kedua sisi: $a+b-2 = 2a \implies b = a+2$.</li>
+                            <li>Substitusikan $b=a+2$ ke kondisi 1: $2(a+2) = 3a-2 \implies 2a+4 = 3a-2 \implies a=6$.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.
+        </footer>
+    </section>
+
+    <!-- HALAMAN 4: PEMBAHASAN SOAL 9-12 -->
+    <section class="page">
+        <header class="page-header no-bottom">
+            <div class="header-top-box">
+                <div>
+                    <div class="header-title-main">Panduan Mengajar</div>
+                    <div class="header-title-sub">Matematika</div>
+                </div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+            </div>
+        </header>
+        <div class="content-wrapper">
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Barisan dan Deret Aritmetika Geometri</td></tr>
+                    <tr><td>Sub Topik</td><td>Deret Aritmetika dan Geometri</td></tr>
+                    <tr><td>Level Kognitif</td><td>HOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <b>9.</b> Seutas tali dipotong menjadi 6 bagian sehingga panjang potongan-potongan tersebut membentuk barisan geometri. Jika panjang potongan terpendek 4 cm dan potongan terpanjang 972 cm, maka panjang tali semula adalah...
+                    <ol>
+                        <li data-option="A">1456 cm</li>
+                        <li data-option="B">1458 cm</li>
+                        <li data-option="C">1460 cm</li>
+                        <li data-option="D">1462 cm</li>
+                        <li data-option="E">1464 cm</li>
+                    </ol>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: A. 1456 cm</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        $n=6, a=4, U_6=972$.
+                        <ul>
+                            <li>$U_6 = ar^5 \implies 972 = 4 \cdot r^5 \implies r^5 = 243 \implies r=3$.</li>
+                            <li>Panjang tali semula adalah jumlah deret: $S_6 = \frac{a(r^n - 1)}{r-1}$.</li>
+                            <li>$S_6 = \frac{4(3^6 - 1)}{3-1} = \frac{4(729 - 1)}{2} = 2(728) = 1456$.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+             <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Barisan dan Deret Aritmetika Geometri</td></tr>
+                    <tr><td>Sub Topik</td><td>Deret Aritmetika dan Geometri</td></tr>
+                    <tr><td>Level Kognitif</td><td>HOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <b>10.</b> Jumlah tak hingga dari deret geometri $54 + 18 + 6 + 2 + \dots$ adalah...
+                    <ol>
+                        <li data-option="A">72</li>
+                        <li data-option="B">81</li>
+                        <li data-option="C">90</li>
+                        <li data-option="D">108</li>
+                        <li data-option="E">162</li>
+                    </ol>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: B. 81</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        $a=54$, rasio $r = 18/54 = 1/3$.
+                        Karena $-1 < r < 1$, deret ini konvergen.
+                        <ul>
+                            <li>$S_\infty = \frac{a}{1-r} = \frac{54}{1 - 1/3} = \frac{54}{2/3} = 54 \cdot \frac{3}{2} = 81$.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+             <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Barisan dan Deret Aritmetika Geometri</td></tr>
+                    <tr><td>Sub Topik</td><td>Deret Aritmetika dan Geometri</td></tr>
+                    <tr><td>Level Kognitif</td><td>HOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <b>11.</b> Sebuah bola dijatuhkan dari ketinggian 15 meter. Setiap kali memantul, bola mencapai ketinggian $\frac{2}{3}$ dari ketinggian sebelumnya. Panjang lintasan bola sampai berhenti adalah...
+                    <ol>
+                        <li data-option="A">45 meter</li>
+                        <li data-option="B">60 meter</li>
+                        <li data-option="C">75 meter</li>
+                        <li data-option="D">90 meter</li>
+                        <li data-option="E">105 meter</li>
+                    </ol>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: C. 75 meter</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        Total lintasan = Lintasan turun + Lintasan naik.
+                        <ul>
+                            <li>Lintasan turun (deret tak hingga): $a=15, r=2/3$. $S_{turun} = \frac{15}{1-2/3} = \frac{15}{1/3} = 45$.</li>
+                            <li>Lintasan naik (deret tak hingga): $a = 15 \cdot \frac{2}{3} = 10, r=2/3$. $S_{naik} = \frac{10}{1-2/3} = \frac{10}{1/3} = 30$.</li>
+                            <li>Total = $45 + 30 = 75$ meter.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Barisan dan Deret Aritmetika Geometri</td></tr>
+                    <tr><td>Sub Topik</td><td>Deret Aritmetika dan Geometri</td></tr>
+                    <tr><td>Level Kognitif</td><td>HOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <b>12.</b> Di antara bilangan 4 dan 28 disisipkan 5 bilangan sehingga membentuk barisan aritmetika. Jumlah deret aritmetika yang terbentuk adalah...
+                    <ol>
+                        <li data-option="A">96</li>
+                        <li data-option="B">104</li>
+                        <li data-option="C">112</li>
+                        <li data-option="D">120</li>
+                        <li data-option="E">128</li>
+                    </ol>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: C. 112</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        Total suku $n=5+2=7$. Suku pertama $a=4$, suku terakhir $U_7=28$.
+                        <ul>
+                            <li>Jumlah deret: $S_n = \frac{n}{2}(a+U_n)$.</li>
+                            <li>$S_7 = \frac{7}{2}(4+28) = \frac{7}{2}(32) = 7 \cdot 16 = 112$.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.
+        </footer>
+    </section>
+
+    <!-- HALAMAN 5: PEMBAHASAN SOAL 13-15 -->
+    <section class="page">
+        <header class="page-header no-bottom">
+            <div class="header-top-box">
+                <div>
+                    <div class="header-title-main">Panduan Mengajar</div>
+                    <div class="header-title-sub">Matematika</div>
+                </div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+            </div>
+        </header>
+        <div class="content-wrapper">
+             <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Barisan dan Deret Aritmetika Geometri</td></tr>
+                    <tr><td>Sub Topik</td><td>Barisan Aritmetika dan Geometri</td></tr>
+                    <tr><td>Level Kognitif</td><td>HOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <b>13.</b> Sebuah amoeba membelah diri menjadi dua setiap 20 menit. Jika pada awalnya terdapat 15 amoeba, maka jumlah amoeba setelah 2 jam adalah...
+                    <ol>
+                        <li data-option="A">480</li>
+                        <li data-option="B">960</li>
+                        <li data-option="C">1920</li>
+                        <li data-option="D">3840</li>
+                        <li data-option="E">7680</li>
+                    </ol>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: B. 960</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        Ini barisan geometri. Suku awal $a=15$, rasio $r=2$.
+                        Durasi = 2 jam = 120 menit.
+                        Banyak periode pembelahan = $120 / 20 = 6$.
+                        Jumlah setelah 6 periode adalah suku ke-7 ($U_{6+1}$).
+                        <ul>
+                            <li>$U_n = ar^{n-1}$</li>
+                            <li>$U_7 = 15 \cdot 2^{7-1} = 15 \cdot 2^6 = 15 \cdot 64 = 960$.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Barisan dan Deret Aritmetika Geometri</td></tr>
+                    <tr><td>Sub Topik</td><td>Deret Aritmetika dan Geometri</td></tr>
+                    <tr><td>Level Kognitif</td><td>HOTS</td></tr>
+                </table>
+                 <div class="soal-pembahasan">
+                    <b>14.</b> Jumlah n suku pertama suatu deret aritmetika dinyatakan dengan $S_n = n^2 + 3n$. Suku ke-5 deret tersebut adalah...
+                    <ol>
+                        <li data-option="A">10</li>
+                        <li data-option="B">12</li>
+                        <li data-option="C">14</li>
+                        <li data-option="D">16</li>
+                        <li data-option="E">18</li>
+                    </ol>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: B. 12</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        Suku ke-n dapat dicari dengan $U_n = S_n - S_{n-1}$.
+                        <ul>
+                            <li>$S_5 = 5^2 + 3(5) = 25 + 15 = 40$.</li>
+                            <li>$S_4 = 4^2 + 3(4) = 16 + 12 = 28$.</li>
+                            <li>$U_5 = S_5 - S_4 = 40 - 28 = 12$.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Barisan dan Deret Aritmetika Geometri</td></tr>
+                    <tr><td>Sub Topik</td><td>Deret Aritmetika dan Geometri</td></tr>
+                    <tr><td>Level Kognitif</td><td>HOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                     <b>15.</b> Deret geometri tak hingga mempunyai jumlah 20 dan suku pertama 10. Rasio deret tersebut adalah...
+                    <ol>
+                        <li data-option="A">$-\frac{1}{2}$</li>
+                        <li data-option="B">$\frac{1}{4}$</li>
+                        <li data-option="C">$\frac{1}{2}$</li>
+                        <li data-option="D">2</li>
+                        <li data-option="E">4</li>
+                    </ol>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: C. $\frac{1}{2}$</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                         Gunakan rumus jumlah deret tak hingga $S_\infty = \frac{a}{1-r}$.
+                         <ul>
+                             <li>$20 = \frac{10}{1-r}$</li>
+                             <li>$1-r = \frac{10}{20} = \frac{1}{2}$</li>
+                             <li>$r = 1 - \frac{1}{2} = \frac{1}{2}$.</li>
+                         </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.
+        </footer>
+    </section>
+
+</div>
+
+</body>
+</html>
+
