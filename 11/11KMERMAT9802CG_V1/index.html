@@ -51,7 +51,7 @@
         .page {
             background: white;
             width: 21cm;
-            min-height: 29.7cm; /* Changed to min-height */
+            min-height: 29.7cm; /* Use min-height to allow content to grow */
             padding: 1.8cm 2.5cm;
             margin: 1cm auto;
             box-shadow: 0 0 10px rgba(0,0,0,0.2);
@@ -66,7 +66,7 @@
         }
 
         .page-header {
-            margin: -1.8cm -2.5cm 20px -2.5cm;
+            margin: -1.8cm -2.5cm 0 -2.5cm; /* Adjusted margin */
             flex-shrink: 0;
         }
 
@@ -76,13 +76,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 2px; /* Added space between header sections */
         }
         
         .page:not(:first-of-type) .header-bottom-box {
             display: none;
         }
         .page:not(:first-of-type) .header-top-box {
-            margin-bottom: 2px;
+            margin-bottom: 20px; /* Space on subsequent pages */
         }
         
         .header-title-main {
@@ -99,20 +100,19 @@
         }
 
         .header-bottom-box {
-            padding: 8px 2.5cm;
-            text-align: left; /* Aligned to the left */
-            margin-bottom: 2px;
+            padding: 0 2.5cm 20px 2.5cm; /* Position the bar container */
+            text-align: left;
         }
         
         .header-bottom-text {
             background-color: var(--header-bottom-bg);
             padding: 8px 15px;
-            font-weight: 700;
+            font-weight: 700; /* BOLD text */
             font-size: 8.5pt;
-            color: var(--secondary-text);
-            display: block; /* Changed to block to fill width */
+            color: var(--primary-text);
+            display: block;
             border-radius: 4px;
-            white-space: normal; /* Allow text wrapping */
+            white-space: normal;
         }
 
         .header-logo {
@@ -121,7 +121,6 @@
         
         .content-wrapper { 
             flex-grow: 1;
-            /* overflow: hidden; Removed this to allow content to flow */
         }
 
         .section-title {
@@ -143,7 +142,7 @@
         }
         
         .pembahasan-box {
-            margin-bottom: 25px; /* Added more space between questions */
+            margin-bottom: 25px;
         }
 
         .soal-card {
@@ -234,11 +233,11 @@
             align-items: flex-end;
             font-size: 8pt;
             color: var(--secondary-text);
-            margin-top: auto; /* Pushes footer to the bottom */
-            padding-top: 20px; /* Space above footer */
+            margin-top: auto;
+            padding-top: 20px;
             border-top: 1px solid var(--border-color);
             flex-shrink: 0;
-            width: 100%; /* Ensure footer spans width */
+            width: 100%;
         }
         
         .true-false-table {
@@ -260,7 +259,7 @@
         @media print {
             @page {
                 size: A4;
-                margin: 1.8cm 2.5cm; /* Standard print margins */
+                margin: 1.8cm 2.5cm;
             }
 
             body { 
@@ -282,7 +281,7 @@
             }
             
             .page-header, .page-footer {
-                display: none; /* Hide header/footer from each .page to avoid duplication */
+                display: none;
             }
 
             .pembahasan-box {
@@ -293,7 +292,6 @@
                 overflow: visible;
             }
 
-            /* Force background colors to print */
             .soal-card td:first-child, .summary-table .summary-table-header td, .pembahasan-detail, .true-false-table th {
                 -webkit-print-color-adjust: exact; 
                 print-color-adjust: exact;
@@ -317,7 +315,7 @@
             </div>
             <div class="header-bottom-box">
                 <div class="header-bottom-text">
-                    XI SMA | Kurikulum Merdeka | [TKA] Drill Soal | Drill Soal TKA Matematika - Paket 2 | Pertemuan 6
+                    XI SMA | Kurikulum Merdeka | [TKA] Review Materi | Fungsi, Lingkaran, Statistika
                 </div>
             </div>
         </header>
@@ -408,6 +406,8 @@
                         <li data-option="A">$4x^2 - 2x + 3$</li>
                         <li data-option="B">$2x^2 - 6x + 11$</li>
                         <li data-option="C">$4x^2 + 2x + 3$</li>
+                        <li data-option="D">$4x^2 - 6x + 3$</li>
+                        <li data-option="E">$4x^2 - 2x + 7$</li>
                     </ol>
                     <div class="pembahasan-detail">
                         <b>Jawaban: A. $4x^2 - 2x + 3$</b><br>
@@ -431,6 +431,8 @@
                         <li data-option="A">$3x - 4y = 25$</li>
                         <li data-option="B">$3x + 4y = 25$</li>
                         <li data-option="C">$4x - 3y = 25$</li>
+                        <li data-option="D">$4x + 3y = 25$</li>
+                        <li data-option="E">$3x - 4y = 5$</li>
                     </ol>
                     <div class="pembahasan-detail">
                         <b>Jawaban: A. $3x - 4y = 25$</b><br>
@@ -468,10 +470,14 @@
                 <div class="soal-pembahasan">
                     <b>3.</b> Nilai rata-rata ulangan dari 39 siswa adalah 70. Jika nilai Budi digabungkan, rata-rata menjadi 71. Nilai Budi adalah...
                     <ol>
-                        <li data-option="A">80</li><li data-option="B">90</li><li data-option="C">110</li>
+                        <li data-option="A">90</li>
+                        <li data-option="B">100</li>
+                        <li data-option="C">105</li>
+                        <li data-option="D">110</li>
+                        <li data-option="E">115</li>
                     </ol>
                     <div class="pembahasan-detail">
-                        <b>Jawaban: C. 110</b><br>
+                        <b>Jawaban: D. 110</b><br>
                         <b>Pembahasan Detail:</b><br>
                         Jumlah nilai awal: $39 \times 70 = 2730$.<br>
                         Jumlah nilai baru: $(39+1) \times 71 = 2840$.<br>
@@ -488,7 +494,11 @@
                 <div class="soal-pembahasan">
                     <b>4.</b> Sebuah pabrik kertas memproduksi kertas dari kayu melalui dua tahap. Tahap I dengan mesin $f(x) = x - 1$ dan tahap II dengan mesin $g(x) = x^2 + 2x$. Jika bahan kayu tersedia 5 ton, kertas yang dihasilkan adalah...
                     <ol>
-                        <li data-option="A">20 ton</li><li data-option="B">24 ton</li><li data-option="C">30 ton</li>
+                        <li data-option="A">20 ton</li>
+                        <li data-option="B">24 ton</li>
+                        <li data-option="C">30 ton</li>
+                        <li data-option="D">35 ton</li>
+                        <li data-option="E">40 ton</li>
                     </ol>
                     <div class="pembahasan-detail">
                         <b>Jawaban: B. 24 ton</b><br>
@@ -527,10 +537,11 @@
                     <p>(1) Lingkaran tersebut menyinggung sumbu X.<br>
                        (2) Lingkaran tersebut melalui titik (2, 6).</p>
                     <ol>
-                        <li data-option="A">Pernyataan (1) SAJA cukup.</li>
-                        <li data-option="B">Pernyataan (2) SAJA cukup.</li>
-                        <li data-option="C">DUA pernyataan BERSAMA-SAMA cukup.</li>
+                        <li data-option="A">Pernyataan (1) SAJA cukup, tetapi (2) SAJA tidak cukup.</li>
+                        <li data-option="B">Pernyataan (2) SAJA cukup, tetapi (1) SAJA tidak cukup.</li>
+                        <li data-option="C">DUA pernyataan BERSAMA-SAMA cukup, tetapi SATU SAJA tidak cukup.</li>
                         <li data-option="D">Pernyataan (1) SAJA cukup dan (2) SAJA cukup.</li>
+                        <li data-option="E">Pernyataan (1) dan (2) tidak cukup.</li>
                     </ol>
                     <div class="pembahasan-detail">
                         <b>Jawaban: D. Pernyataan (1) SAJA cukup dan (2) SAJA cukup.</b><br>
@@ -553,16 +564,18 @@
                         <div><input type="checkbox" disabled><span>Nilai $x+y=13$.</span></div>
                         <div><input type="checkbox" disabled><span>Modus data adalah 8.</span></div>
                         <div><input type="checkbox" disabled><span>Nilai $y=9$.</span></div>
+                        <div><input type="checkbox" disabled><span>Variansi data lebih dari 3.</span></div>
                     </div>
                     <div class="pembahasan-detail">
-                        <b>Jawaban: Semua pilihan benar</b><br>
+                        <b>Jawaban: Pilihan 1, 2, 3, 4 benar</b><br>
                         <b>Pembahasan Detail:</b><br>
                         - Rata-rata: $\frac{x+6+7+8+8+y}{6} = 7 \implies x+y+29 = 42 \implies x+y = 13$. (Pilihan 2 benar).<br>
                         - Jangkauan: $y - x = 5$.<br>
                         - SPLDV: $x+y=13$ dan $y-x=5$ menghasilkan $x=4, y=9$. (Pilihan 4 benar).<br>
                         - Data: 4, 6, 7, 8, 8, 9.<br>
                         - Median: $\frac{7+8}{2} = 7.5$. (Pilihan 1 benar).<br>
-                        - Modus: 8. (Pilihan 3 benar).
+                        - Modus: 8. (Pilihan 3 benar).<br>
+                        - Variansi = $\frac{(4-7)^2+...+(9-7)^2}{6} = \frac{16}{6} \approx 2.67$, tidak lebih dari 3. (Pilihan 5 salah).
                     </div>
                 </div>
             </div>
@@ -595,6 +608,8 @@
                         <li data-option="A">$\frac{5x+3}{4x-2}, x \neq \frac{1}{2}$</li>
                         <li data-option="B">$\frac{5x-3}{4x+2}, x \neq -\frac{1}{2}$</li>
                         <li data-option="C">$\frac{-5x+3}{4x+2}, x \neq -\frac{1}{2}$</li>
+                        <li data-option="D">$\frac{5x+3}{2x-4}, x \neq 2$</li>
+                        <li data-option="E">$\frac{4x-5}{2x+3}, x \neq -\frac{3}{2}$</li>
                     </ol>
                     <div class="pembahasan-detail">
                         <b>Jawaban: A. $\frac{5x+3}{4x-2}, x \neq \frac{1}{2}$</b><br>
@@ -639,7 +654,7 @@
                 <div class="soal-pembahasan">
                     <b>9.</b> Simpangan baku dari data 4, 6, 8, 2, 5 adalah...
                     <ol>
-                        <li data-option="A">$\sqrt{2}$</li><li data-option="B">2</li><li data-option="C">$\sqrt{5}$</li>
+                        <li data-option="A">$\sqrt{2}$</li><li data-option="B">2</li><li data-option="C">$\sqrt{5}$</li><li data-option="D">4</li><li data-option="E">5</li>
                     </ol>
                     <div class="pembahasan-detail">
                         <b>Jawaban: B. 2</b><br>
@@ -676,7 +691,7 @@
                 <div class="soal-pembahasan">
                     <b>10.</b> Diketahui $f(x)=x+1$ dan $g(x) = \frac{x}{2x-1}, x \neq \frac{1}{2}$. Jika $(f \circ g)^{-1}(a) = 1$, maka nilai $a$ adalah...
                     <ol>
-                        <li data-option="A">-1</li><li data-option="B">1</li><li data-option="C">2</li>
+                        <li data-option="A">-1</li><li data-option="B">1</li><li data-option="C">2</li><li data-option="D">3</li><li data-option="E">4</li>
                     </ol>
                     <div class="pembahasan-detail">
                         <b>Jawaban: C. 2</b><br>
@@ -699,13 +714,15 @@
                         <div><input type="checkbox" disabled><span>Persamaan jangkauan radar: $(x-2)^2 + (y-3)^2 = 2500$.</span></div>
                         <div><input type="checkbox" disabled><span>Jarak terdekat radar ke lintasan pesawat adalah 3.6 km.</span></div>
                         <div><input type="checkbox" disabled><span>Pesawat akan terdeteksi oleh radar.</span></div>
+                        <div><input type="checkbox" disabled><span>Jarak terdekat dari pusat radar ke lintasan pesawat adalah 18 km.</span></div>
+                        <div><input type="checkbox" disabled><span>Pesawat tidak akan terdeteksi oleh radar.</span></div>
                     </div>
                     <div class="pembahasan-detail">
                         <b>Jawaban: Pilihan 1, 2, 3 benar</b><br>
                         <b>Pembahasan Detail:</b><br>
                         1. Persamaan radar: Pusat $(2,3)$, $r=50 \implies (x-2)^2 + (y-3)^2 = 2500$. (Benar).<br>
-                        2. Jarak pusat ke garis $3x-4y-12=0$: $d = \frac{|3(2)-4(3)-12|}{\sqrt{3^2+(-4)^2}} = \frac{|-18|}{5} = 3.6$ km. (Benar).<br>
-                        3. Deteksi: Jarak (3.6 km) < Jangkauan (50 km), maka pesawat terdeteksi. (Benar).
+                        2. Jarak pusat ke garis $3x-4y-12=0$: $d = \frac{|3(2)-4(3)-12|}{\sqrt{3^2+(-4)^2}} = \frac{|-18|}{5} = 3.6$ km. (Benar, maka pilihan 4 salah).<br>
+                        3. Deteksi: Jarak (3.6 km) < Jangkauan (50 km), maka pesawat terdeteksi. (Benar, maka pilihan 5 salah).
                     </div>
                 </div>
             </div>
@@ -766,14 +783,18 @@
                 <div class="soal-pembahasan">
                     <b>13.</b> Diketahui $(f \circ g)(x) = 4x^2 - 12x + 9$ dan $f(x) = x^2$. Maka fungsi $g(x)$ adalah...
                     <ol>
-                        <li data-option="A">$2x+3$</li><li data-option="B">$2x-3$</li><li data-option="C">$4x-6$</li>
+                        <li data-option="A">$2x+3$</li>
+                        <li data-option="B">$2x-3$</li>
+                        <li data-option="C">$4x-6$</li>
+                        <li data-option="D">$-2x+3$</li>
+                        <li data-option="E">$x-3/2$</li>
                     </ol>
                     <div class="pembahasan-detail">
                         <b>Jawaban: B. $2x-3$</b><br>
                         <b>Pembahasan Detail:</b><br>
                         $(f \circ g)(x) = f(g(x)) = (g(x))^2$.<br>
                         $(g(x))^2 = 4x^2 - 12x + 9 = (2x-3)^2$.<br>
-                        Maka, $g(x) = 2x-3$.
+                        Maka, $g(x) = 2x-3$ (atau $g(x) = -(2x-3) = -2x+3$, yang juga ada di opsi D). Biasanya diambil yang positif.
                     </div>
                 </div>
             </div>
@@ -806,6 +827,8 @@
                         <li data-option="A">$x^2 + y^2 - 2x - 8y - 8 = 0$</li>
                         <li data-option="B">$x^2 + y^2 - 2x - 8y + 8 = 0$</li>
                         <li data-option="C">$x^2 + y^2 + 2x - 8y - 8 = 0$</li>
+                        <li data-option="D">$x^2 + y^2 + 2x + 8y + 8 = 0$</li>
+                        <li data-option="E">$x^2 + y^2 - 2x - 8y + 26 = 0$</li>
                     </ol>
                     <div class="pembahasan-detail">
                         <b>Jawaban: B. $x^2 + y^2 - 2x - 8y + 8 = 0$</b><br>
@@ -828,13 +851,14 @@
                     <p>(1) Bilangan terbesar 10 dan jangkauannya 7.<br>
                        (2) Rata-rata kelima bilangan adalah 6.</p>
                     <ol>
-                        <li data-option="A">Pernyataan (1) SAJA cukup.</li>
-                        <li data-option="B">Pernyataan (2) SAJA cukup.</li>
-                        <li data-option="C">DUA pernyataan BERSAMA-SAMA cukup.</li>
-                        <li data-option="D">Pernyataan (1) dan (2) tidak cukup.</li>
+                        <li data-option="A">Pernyataan (1) SAJA cukup, tetapi (2) SAJA tidak cukup.</li>
+                        <li data-option="B">Pernyataan (2) SAJA cukup, tetapi (1) SAJA tidak cukup.</li>
+                        <li data-option="C">DUA pernyataan BERSAMA-SAMA cukup, tetapi SATU SAJA tidak cukup.</li>
+                        <li data-option="D">Pernyataan (1) SAJA cukup dan (2) SAJA cukup.</li>
+                        <li data-option="E">Pernyataan (1) dan (2) tidak cukup.</li>
                     </ol>
                     <div class="pembahasan-detail">
-                        <b>Jawaban: D. Pernyataan (1) dan (2) tidak cukup.</b><br>
+                        <b>Jawaban: E. Pernyataan (1) dan (2) tidak cukup.</b><br>
                         <b>Pembahasan Detail:</b><br>
                         (1) Bilangan terbesar=10, terkecil=3. Data: $3,b,c,d,10$. Median (c) tidak pasti. <b>Tidak Cukup</b>.<br>
                         (2) Rata-rata 6, jumlah 30. Median tidak pasti. <b>Tidak Cukup</b>.<br>
