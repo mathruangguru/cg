@@ -17,7 +17,7 @@
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -200,7 +200,7 @@
             margin-top: 10px;
         }
          .soal-pembahasan ol li {
-            margin-bottom: 8px;
+           margin-bottom: 8px;
          }
         .soal-pembahasan ol li::before {
             content: attr(data-option) ". ";
@@ -217,6 +217,11 @@
         .pembahasan-detail ul {
              padding-left: 20px;
         }
+        
+        table.soal-kategori { width:100%; border-collapse: collapse; text-align: left; margin-top: 10px; }
+        table.soal-kategori th, table.soal-kategori td { padding: 8px; border: 1px solid #ccc; vertical-align: middle; }
+        table.soal-kategori th:not(:first-child) { text-align: center; width: 60px;}
+        table.soal-kategori td:not(:first-child) { text-align: center; }
 
         .page-footer {
             text-align: left;
@@ -298,6 +303,7 @@
                             <li>Definisi dan identifikasi relasi, fungsi, domain, kodomain, dan range.</li>
                             <li>Menghitung nilai fungsi dari domain yang diberikan.</li>
                             <li>Aplikasi fungsi dalam masalah kontekstual (sehari-hari).</li>
+                            <li>Analisis fungsi kuadrat sederhana dan transformasi grafik.</li>
                         </ul>
                     </td>
                 </tr>
@@ -317,24 +323,25 @@
                 </tr>
                  <tr class="star-row">
                     <td>
-                        Soal nomor 1 - 15 ⭐85⭐ (masing-masing 7 ⭐)
+                        Soal nomor 1 - 15 ⭐105⭐ (masing-masing 7 ⭐)
                     </td>
                 </tr>
             </table>
 
             <h2 class="section-title">1. Alur Penjelasan</h2>
             <ol class="guide-list">
-                <li><b>Pembukaan:</b> Mulai dengan pertanyaan pemantik untuk menghubungkan konsep relasi dengan kehidupan sehari-hari (misal: hubungan siswa dengan ukuran sepatunya).</li>
-                <li><b>Konsep Relasi & Fungsi:</b> Jelaskan definisi relasi, domain, kodomain, range, dan bedanya dengan fungsi (setiap domain punya <b>tepat satu</b> pasangan). Gunakan analogi "mesin fungsi".</li>
-                <li><b>Notasi dan Aplikasi:</b> Ajarkan cara substitusi nilai ke dalam $f(x)$ dan aplikasikan pada soal cerita untuk membahas domain kontekstual.</li>
-                <li><b>Penutup:</b> Rangkum perbedaan utama relasi dan fungsi.</li>
+                <li><b>Pembukaan:</b> Mulai dengan pertanyaan pemantik untuk menghubungkan konsep relasi dengan kehidupan sehari-hari (misal: hubungan siswa dengan ukuran sepatunya, atau makanan khas daerah).</li>
+                <li><b>Konsep Relasi & Fungsi:</b> Jelaskan definisi relasi, domain, kodomain, range, dan bedanya dengan fungsi (setiap domain punya <b>tepat satu</b> pasangan). Gunakan analogi "mesin fungsi" atau "aturan perjodohan".</li>
+                <li><b>Notasi dan Aplikasi:</b> Ajarkan cara substitusi nilai ke dalam $f(x)$ dan aplikasikan pada soal cerita (seperti tarif kurir atau paket data) untuk membahas domain kontekstual.</li>
+                <li><b>Penutup:</b> Rangkum perbedaan utama relasi dan fungsi serta berbagai cara penyajiannya.</li>
             </ol>
             
             <h2 class="section-title">2. Teknik Elicit (Pertanyaan Pemantik)</h2>
             <ul class="guide-list">
-                <li>"Apakah hubungan siswa dengan tanggal lahirnya itu fungsi? Kenapa? Kalau dibalik, apakah itu fungsi?"</li>
-                <li>"Di soal parkir, kenapa rumusnya ada $(t-1)$? Apa artinya angka 2.000 di depan?"</li>
-                <li>"Di soal persegi panjang, kenapa panjangnya tidak boleh 15? Apa yang terjadi pada lebarnya?"</li>
+                <li>"Apakah hubungan antara makanan khas dengan daerah asalnya selalu merupakan fungsi? Kenapa? (Contoh: Rawon dari Surabaya dan Malang di soal 10)"</li>
+                <li>"Di soal tarif kurir (soal 4), kenapa biaya untuk berat 3,1 kg dan 3,9 kg itu sama? Apa sebutan untuk fungsi semacam ini?"</li>
+                <li>"Di soal persegi panjang (soal 8), kenapa panjangnya tidak boleh 15 cm? Apa yang akan terjadi pada lebarnya jika p=15?"</li>
+                <li>"Melihat soal transformasi (soal 15), apa bedanya menggeser grafik ke kanan dan ke kiri jika dilihat dari rumusnya ($f(x-c)$ vs $f(x+c)$)?"</li>
             </ul>
         </div>
 
@@ -373,11 +380,11 @@
                     <div class="pembahasan-detail">
                         <b>Jawaban: B. $\{a, b, c\}$</b><br>
                         <b>Pembahasan Detail:</b><br>
-                        Sebuah "pasangan berurutan" ditulis dalam format $(x, y)$. Elemen pertama ($x$) adalah anggota domain (daerah asal), dan elemen kedua ($y$) adalah anggota kodomain (daerah kawan).
-                        <b>Range</b> atau daerah hasil adalah kumpulan semua anggota kodomain ($y$) yang benar-benar memiliki pasangan.
-                        <ol>
+                        Dalam pasangan berurutan $(x, y)$, elemen pertama ($x$) adalah anggota domain (daerah asal) dan elemen kedua ($y$) adalah anggota kodomain (daerah kawan).
+                        <b>Range</b> (daerah hasil) adalah himpunan semua anggota kodomain ($y$) yang benar-benar memiliki pasangan.
+                        <ol style="list-style-type: decimal; padding-left: 20px;">
                             <li>Kita daftar semua elemen kedua dari setiap pasangan: $a, b, a, c$.</li>
-                            <li>Dalam aturan penulisan himpunan, setiap anggota yang unik hanya ditulis satu kali. Meskipun 'a' muncul dua kali, kita hanya menuliskannya sekali.</li>
+                            <li>Dalam penulisan himpunan, setiap anggota yang unik hanya ditulis satu kali. Meskipun 'a' muncul dua kali, kita hanya menuliskannya sekali.</li>
                             <li>Jadi, himpunan range-nya adalah $\{a, b, c\}$.</li>
                         </ol>
                     </div>
@@ -401,11 +408,11 @@
                     <div class="pembahasan-detail">
                         <b>Jawaban: C. $\{(x, 5), (y, 5), (z, 5), (w, 5)\}$</b><br>
                         <b>Pembahasan Detail:</b><br>
-                        Syarat utama sebuah relasi disebut <b>fungsi</b> adalah: setiap anggota domain (elemen pertama) harus memiliki <b>tepat satu</b> pasangan di kodomain (elemen kedua). Mari kita periksa setiap pilihan:
+                        Syarat utama sebuah relasi disebut <b>fungsi</b> adalah: setiap anggota domain (elemen pertama) harus dipasangkan dengan <b>tepat satu</b> anggota kodomain (elemen kedua).
                         <ul>
-                            <li>A: Anggota domain 'a' memiliki dua pasangan, yaitu 1 dan 4. Ini melanggar aturan. Bukan fungsi.</li>
+                            <li>A: Anggota domain 'a' memiliki dua pasangan, yaitu 1 dan 4. Bukan fungsi.</li>
                             <li>B: Domain '1' punya dua pasangan (p dan r). Domain '2' juga punya dua pasangan (q dan s). Bukan fungsi.</li>
-                            <li>C: Domainnya adalah {x, y, z, w}. Setiap anggota domain ini hanya muncul satu kali. Ini adalah <b>fungsi</b>. Tidak masalah jika semua hasilnya sama.</li>
+                            <li>C: Domainnya adalah {x, y, z, w}. Setiap anggota domain ini hanya muncul satu kali sebagai elemen pertama. Ini adalah <b>fungsi</b>. Tidak masalah jika semua hasilnya (elemen kedua) sama.</li>
                             <li>D: Domain '9' punya dua pasangan (3 dan -3). Domain '4' juga punya dua pasangan (2 dan -2). Bukan fungsi.</li>
                         </ul>
                     </div>
@@ -416,10 +423,10 @@
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Bentuk Aljabar dan Fungsi</td></tr>
                     <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Menghitung Nilai Fungsi)</td></tr>
-                    <tr><td>Level Kognitif</td><td>MOTS</td></tr>
+                    <tr><td>Level Kognitif</td><td>LOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
-                    <b>3.</b> Sebuah fungsi didefinisikan dengan rumus $f(x) = 3x - 5$. Jika domain $D = \{ -2, -1, 0, 1, 2 \}$, maka range-nya adalah...
+                    <b>3.</b> Sebuah fungsi didefinisikan dengan rumus $f(x) = 3x - 5$. Jika domain fungsi tersebut adalah $D = \{ -2, -1, 0, 1, 2 \}$, maka daerah hasilnya (range) adalah...
                      <ol>
                         <li data-option="A">$\{ -11, -8, -5, -2, 1 \}$</li>
                         <li data-option="B">$\{ 11, 8, 5, 2, -1 \}$</li>
@@ -429,7 +436,7 @@
                     <div class="pembahasan-detail">
                         <b>Jawaban: A. $\{ -11, -8, -5, -2, 1 \}$</b><br>
                         <b>Pembahasan Detail:</b><br>
-                        Untuk menemukan range (daerah hasil), kita perlu memasukkan setiap anggota domain (nilai $x$) ke dalam rumus fungsi $f(x) = 3x - 5$ satu per satu:
+                        Untuk menemukan range, kita substitusikan setiap anggota domain ke dalam rumus fungsi $f(x) = 3x - 5$:
                         <ul>
                             <li>Untuk $x = -2$: $f(-2) = 3(-2) - 5 = -6 - 5 = -11$</li>
                             <li>Untuk $x = -1$: $f(-1) = 3(-1) - 5 = -3 - 5 = -8$</li>
@@ -461,41 +468,52 @@
              <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Bentuk Aljabar dan Fungsi</td></tr>
-                    <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Aplikasi Kontekstual)</td></tr>
-                    <tr><td>Level Kognitif</td><td>MOTS</td></tr>
+                    <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Aplikasi)</td></tr>
+                    <tr><td>Level Kognitif</td><td>HOTS</td></tr>
                 </table>
-                 <div class="soal-pembahasan">
-                    <b>4.</b> Biaya parkir motor di sebuah mal ditentukan oleh fungsi $B(t) = 2.000 + 1.000(t-1)$, dengan $B(t)$ adalah total biaya dalam Rupiah dan $t$ adalah lama parkir dalam jam (untuk $t \ge 1$). Jika Andi parkir selama 5 jam, biaya yang harus ia bayar adalah...
-                    <ol>
-                        <li data-option="A">Rp5.000,-</li>
-                        <li data-option="B">Rp6.000,-</li>
-                        <li data-option="C">Rp7.000,-</li>
-                        <li data-option="D">Rp8.000,-</li>
-                    </ol>
+                <div class="soal-pembahasan">
+                    <b>4.</b> Sebuah jasa kurir menetapkan tarif pengiriman paket berdasarkan berat. Tarifnya adalah Rp10.000 untuk 1 kg pertama, dan ditambah Rp3.000 untuk setiap kg (atau bagiannya) berikutnya. Jika $w$ adalah berat paket dalam kg dan $B(w)$ adalah biaya pengiriman, tentukan kebenaran dari setiap pernyataan berikut.
+                    <table class="soal-kategori">
+                        <thead><tr><th>Pernyataan</th><th>Benar</th><th>Salah</th></tr></thead>
+                        <tbody>
+                            <tr><td>Mengirim paket seberat 0,8 kg biayanya Rp10.000.</td><td>✓</td><td></td></tr>
+                            <tr><td>Biaya pengiriman paket seberat 3,5 kg adalah Rp19.000.</td><td>✓</td><td></td></tr>
+                            <tr><td>Jika seseorang membayar Rp22.000, berat paketnya pasti tepat 5 kg.</td><td></td><td>✓</td></tr>
+                            <tr><td>Fungsi $B(w)$ merupakan contoh fungsi linear.</td><td></td><td>✓</td></tr>
+                        </tbody>
+                    </table>
                     <div class="pembahasan-detail">
-                        <b>Jawaban: B. Rp6.000,-</b><br>
+                        <b>Jawaban: Benar, Benar, Salah, Salah</b><br>
                         <b>Pembahasan Detail:</b><br>
-                        Fungsi ini memberitahu kita cara menghitung biaya parkir. $t$ adalah lama parkir.
-                        <ol>
-                            <li>Diketahui Andi parkir selama 5 jam, jadi $t=5$.</li>
-                            <li>Masukkan nilai $t=5$ ke dalam fungsi: $B(5) = 2.000 + 1.000(5-1)$.</li>
-                            <li>Kerjakan yang di dalam kurung dulu: $5-1=4$.</li>
-                            <li>Fungsinya menjadi: $B(5) = 2.000 + 1.000(4)$.</li>
-                            <li>Lakukan perkalian: $1.000 \times 4 = 4.000$.</li>
-                            <li>Terakhir, lakukan penjumlahan: $B(5) = 2.000 + 4.000 = 6.000$.</li>
-                        </ol>
-                        Jadi, biayanya adalah Rp6.000,-.
+                        Mari kita analisis setiap pernyataan:
+                        <ul>
+                            <li><b>Mengirim paket seberat 0,8 kg biayanya Rp10.000:</b> Karena 0,8 kg berada dalam rentang "1 kg pertama" (yaitu $0 < w \le 1$), maka biayanya adalah tarif flat pertama, yaitu Rp10.000. <b>(Benar)</b></li>
+                            <li><b>Biaya pengiriman paket seberat 3,5 kg adalah Rp19.000:</b>
+                                Biaya dipecah menjadi:
+                                <ul>
+                                    <li>1 kg pertama: Rp10.000</li>
+                                    <li>Sisa berat: $3,5 - 1 = 2,5$ kg. Karena ada "bagiannya", 2,5 kg dihitung sebagai 3 kg tambahan.</li>
+                                    <li>Biaya tambahan: $3 \times \text{Rp}3.000 = \text{Rp}9.000$</li>
+                                    <li>Total biaya: $\text{Rp}10.000 + \text{Rp}9.000 = \text{Rp}19.000$. <b>(Benar)</b></li>
+                                </ul>
+                            </li>
+                            <li><b>Jika seseorang membayar Rp22.000, berat paketnya pasti tepat 5 kg:</b>
+                                Biaya Rp22.000 dipecah: Rp10.000 (1 kg pertama) + Rp12.000 (tambahan).
+                                Jumlah kg tambahan: $\text{Rp}12.000 / \text{Rp}3.000 = 4$ kg.
+                                Total berat adalah 1 kg (pertama) + 4 kg (tambahan) = 5 kg. Namun, ini adalah batas atas. Beratnya bisa berapa saja di atas 4 kg hingga 5 kg (misalnya 4,1 kg atau 4,7 kg). Jadi, tidak "pasti tepat 5 kg". <b>(Salah)</b></li>
+                            <li><b>Fungsi $B(w)$ merupakan contoh fungsi linear:</b> Fungsi ini bukan linear. Grafiknya akan berbentuk tangga (step function), karena biayanya tetap pada interval tertentu lalu melonjak naik, bukan naik secara konstan. <b>(Salah)</b></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="pembahasan-box">
+             <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Bentuk Aljabar dan Fungsi</td></tr>
                     <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Domain)</td></tr>
                     <tr><td>Level Kognitif</td><td>LOTS</td></tr>
                 </table>
-                 <div class="soal-pembahasan">
-                     <b>5.</b> Diketahui fungsi $f: A \rightarrow B$. Himpunan $A$ disebut sebagai...
+                <div class="soal-pembahasan">
+                    <b>5.</b> Diketahui fungsi $f: A \rightarrow B$. Himpunan $A$ disebut sebagai...
                     <ol>
                         <li data-option="A">Domain (daerah asal)</li>
                         <li data-option="B">Kodomain (daerah kawan)</li>
@@ -515,28 +533,48 @@
                     </div>
                 </div>
             </div>
-            <div class="pembahasan-box">
+             <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Bentuk Aljabar dan Fungsi</td></tr>
-                    <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Aplikasi Kontekstual)</td></tr>
-                    <tr><td>Level Kognitif</td><td>MOTS</td></tr>
+                    <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Aplikasi)</td></tr>
+                    <tr><td>Level Kognitif</td><td>HOTS</td></tr>
                 </table>
-                 <div class="soal-pembahasan">
-                    <b>6.</b> Suhu udara di puncak gunung pada pukul 05.00 adalah $-4^\circ C$. Suhu meningkat $2^\circ C$ setiap jamnya. Jika $S(t)$ adalah fungsi yang menyatakan suhu ($^\circ C$) pada jam ke-$t$ setelah pukul 05.00, maka suhu pada pukul 11.00 adalah...
-                    <ol>
-                        <li data-option="A">$6^\circ C$</li>
-                        <li data-option="B">$8^\circ C$</li>
-                        <li data-option="C">$10^\circ C$</li>
-                        <li data-option="D">$12^\circ C$</li>
+                <div class="soal-pembahasan">
+                    <b>6.</b> Dua provider seluler menawarkan paket data bulanan. Provider X: Rp60.000 untuk 15 GB, kelebihan Rp4.000/GB. Provider Y: Rp80.000 untuk 25 GB, kelebihan Rp3.000/GB. Manakah pernyataan berikut yang benar? <b>(bisa pilih lebih dari satu jawaban)</b>
+                     <ol>
+                        <li data-option="A">Untuk pemakaian 20 GB dalam sebulan, Provider X lebih murah.</li>
+                        <li data-option="B">Untuk pemakaian 28 GB dalam sebulan, Provider Y lebih murah.</li>
+                        <li data-option="C">Biaya kedua provider akan sama persis pada pemakaian 22 GB.</li>
+                        <li data-option="D">Domain untuk fungsi biaya kedua provider adalah bilangan real non-negatif.</li>
                     </ol>
                     <div class="pembahasan-detail">
-                        <b>Jawaban: B. $8^\circ C$</b><br>
-                        <b>Pembahasan Detail:</b>
-                        <ol>
-                            <li><b>Hitung durasi waktu:</b> Dari pukul 05.00 ke 11.00, waktu yang telah berlalu adalah $11 - 5 = 6$ jam.</li>
-                            <li><b>Hitung total kenaikan suhu:</b> Suhu meningkat $2^\circ C$ setiap jam. Dalam 6 jam, total kenaikannya adalah $6 \text{ jam} \times 2^\circ C/\text{jam} = 12^\circ C$.</li>
-                            <li><b>Hitung suhu akhir:</b> Suhu akhir adalah suhu awal ditambah total kenaikan suhu. Suhu akhir = $-4^\circ C + 12^\circ C = 8^\circ C$.</li>
-                        </ol>
+                        <b>Jawaban: B, D</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        Mari kita hitung biaya untuk setiap skenario:
+                        <ul>
+                            <li><b>A: Pemakaian 20 GB</b>
+                                <ul>
+                                    <li>Provider X: Rp60.000 (15 GB) + (20-15) GB $\times$ Rp4.000 = Rp60.000 + 5 $\times$ Rp4.000 = Rp80.000.</li>
+                                    <li>Provider Y: Rp80.000 (karena 20 GB masih di bawah kuota 25 GB).</li>
+                                    <li>Biayanya sama, jadi pernyataan X lebih murah adalah <b>Salah</b>.</li>
+                                </ul>
+                            </li>
+                             <li><b>B: Pemakaian 28 GB</b>
+                                <ul>
+                                    <li>Provider X: Rp60.000 (15 GB) + (28-15) GB $\times$ Rp4.000 = Rp60.000 + 13 $\times$ Rp4.000 = Rp112.000.</li>
+                                    <li>Provider Y: Rp80.000 (25 GB) + (28-25) GB $\times$ Rp3.000 = Rp80.000 + 3 $\times$ Rp3.000 = Rp89.000.</li>
+                                    <li>Provider Y (Rp89.000) lebih murah dari Provider X (Rp112.000). Pernyataan ini <b>Benar</b>.</li>
+                                </ul>
+                            </li>
+                            <li><b>C: Pemakaian 22 GB</b>
+                                <ul>
+                                   <li>Provider X: Rp60.000 (15 GB) + (22-15) GB $\times$ Rp4.000 = Rp60.000 + 7 $\times$ Rp4.000 = Rp88.000.</li>
+                                   <li>Provider Y: Rp80.000.</li>
+                                   <li>Biayanya tidak sama. Pernyataan ini <b>Salah</b>.</li>
+                                </ul>
+                            </li>
+                             <li><b>D: Domain fungsi biaya</b> adalah inputnya, yaitu pemakaian kuota data. Pemakaian kuota bisa berupa bilangan desimal (misal 1,5 GB) dan tidak mungkin negatif. Jadi, domainnya adalah bilangan real non-negatif. Pernyataan ini <b>Benar</b>.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -560,28 +598,28 @@
              <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Bentuk Aljabar dan Fungsi</td></tr>
-                    <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Aplikasi Kontekstual)</td></tr>
+                    <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Fungsi Kuadrat)</td></tr>
                     <tr><td>Level Kognitif</td><td>MOTS</td></tr>
                 </table>
-                 <div class="soal-pembahasan">
-                    <b>7.</b> Sebuah perusahaan taksi online menetapkan tarif dengan fungsi $T(d) = 8.000 + 2.500d$, di mana $T(d)$ adalah total tarif dan $d$ adalah jarak dalam kilometer. Jika seorang penumpang membayar Rp33.000, maka jarak yang ia tempuh adalah...
-                    <ol>
-                        <li data-option="A">8 km</li>
-                        <li data-option="B">9 km</li>
-                        <li data-option="C">10 km</li>
-                        <li data-option="D">11 km</li>
+                <div class="soal-pembahasan">
+                    <b>7.</b> Diketahui fungsi kuadrat $f(x) = -(x-2)^2 + 9$. Manakah pernyataan berikut yang benar mengenai grafik fungsi tersebut? <b>(bisa pilih lebih dari satu jawaban)</b>
+                     <ol>
+                        <li data-option="A">Grafik fungsi terbuka ke bawah.</li>
+                        <li data-option="B">Sumbu simetri grafik adalah garis $x=2$.</li>
+                        <li data-option="C">Nilai maksimum fungsi adalah 9.</li>
+                        <li data-option="D">Grafik memotong sumbu-y di titik $(0, 5)$.</li>
                     </ol>
                     <div class="pembahasan-detail">
-                        <b>Jawaban: C. 10 km</b><br>
+                        <b>Jawaban: A, B, C, D</b><br>
                         <b>Pembahasan Detail:</b><br>
-                        Kali ini, kita diberikan output ($T(d) = 33.000$) dan harus mencari inputnya ($d$).
-                        <ol>
-                            <li>Masukkan nilai yang diketahui ke dalam persamaan: $33.000 = 8.000 + 2.500d$.</li>
-                            <li>Untuk menemukan $d$, kita harus memisahkannya. Pindahkan 8.000 ke sisi kiri (menjadi kurang): $33.000 - 8.000 = 2.500d$.</li>
-                            <li>Hitung pengurangannya: $25.000 = 2.500d$.</li>
-                            <li>Untuk mendapatkan $d$, bagi kedua sisi dengan 2.500: $d = \frac{25.000}{2.500}$.</li>
-                            <li>$d=10$. Jadi, jarak yang ditempuh adalah 10 km.</li>
-                        </ol>
+                        Fungsi $f(x) = -(x-2)^2 + 9$ adalah bentuk vertex $f(x) = a(x-h)^2 + k$. Dari sini kita dapatkan $a=-1$, $h=2$, dan $k=9$.
+                        <ul>
+                            <li><b>A: Grafik terbuka ke bawah.</b> Karena koefisien $a = -1$ (negatif), maka parabola terbuka ke bawah. <b>(Benar)</b></li>
+                            <li><b>B: Sumbu simetri adalah $x=2$.</b> Sumbu simetri pada bentuk vertex adalah garis $x = h$. Di sini $h=2$, jadi sumbu simetrinya adalah $x=2$. <b>(Benar)</b></li>
+                            <li><b>C: Nilai maksimum adalah 9.</b> Karena parabola terbuka ke bawah, ia memiliki nilai maksimum. Nilai maksimumnya adalah $k=9$. <b>(Benar)</b></li>
+                            <li><b>D: Grafik memotong sumbu-y di $(0, 5)$.</b> Untuk mencari titik potong sumbu-y, substitusikan $x=0$:
+                            $f(0) = -(0-2)^2 + 9 = -(-2)^2 + 9 = -4 + 9 = 5$. Jadi, titik potongnya adalah $(0,5)$. <b>(Benar)</b></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -592,7 +630,7 @@
                     <tr><td>Level Kognitif</td><td>HOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
-                    <b>8.</b> Sebuah persegi panjang memiliki keliling 30 cm. Jika panjangnya adalah $p$ cm, maka fungsi yang menyatakan luasnya, $L(p)$, adalah $L(p) = p(15-p)$. Mengingat konteks fisiknya, domain yang paling mungkin untuk fungsi ini adalah...
+                   <b>8.</b> Sebuah persegi panjang memiliki keliling 30 cm. Jika panjangnya adalah $p$ cm, maka fungsi yang menyatakan luasnya, $L(p)$, adalah $L(p) = p(15-p)$. Mengingat konteks fisiknya, domain yang paling mungkin untuk fungsi ini adalah...
                     <ol>
                         <li data-option="A">$p$ adalah bilangan real</li>
                         <li data-option="B">$p > 15$</li>
@@ -602,14 +640,15 @@
                     <div class="pembahasan-detail">
                         <b>Jawaban: C. $0 < p < 15$</b><br>
                         <b>Pembahasan Detail:</b><br>
-                        Keliling persegi panjang adalah $K = 2(p+l)$.
-                        Diketahui $K=30$, maka $30 = 2(p+l)$, sehingga $15 = p+l$. Ini berarti lebarnya, $l = 15-p$.
-                        Dalam konteks fisik (dunia nyata), panjang dan lebar sebuah bangun datar haruslah bernilai positif.
-                        <ol>
+                        Keliling persegi panjang: $K = 2(p+l)$.
+                        Diketahui $K=30$, maka $30 = 2(p+l) \implies 15 = p+l$.
+                        Dari sini, kita dapatkan ekspresi untuk lebar: $l = 15-p$.
+                        Dalam konteks fisik (bangun datar nyata), panjang dan lebar harus memiliki nilai positif.
+                        <ol style="list-style-type: decimal; padding-left: 20px;">
                             <li>Syarat panjang: $p > 0$.</li>
                             <li>Syarat lebar: $l > 0 \implies 15-p > 0$. Jika kita pindahkan $p$ ke sisi kanan, kita dapatkan $15 > p$.</li>
                         </ol>
-                        Kita harus memenuhi kedua syarat tersebut secara bersamaan. Jika $p>0$ dan $p<15$, maka domain yang mungkin adalah $0 < p < 15$.
+                        Untuk memenuhi kedua syarat tersebut, nilai $p$ harus lebih besar dari 0 dan kurang dari 15. Jadi, domain yang mungkin adalah $0 < p < 15$.
                     </div>
                 </div>
             </div>
@@ -620,7 +659,7 @@
                     <tr><td>Level Kognitif</td><td>HOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
-                     <b>9.</b> Diketahui fungsi $g(x) = x^2 - 4$ dengan domain $D_g = \{x | -3 \le x \le 3, x \in \text{bilangan bulat}\}$. Manakah pernyataan berikut yang benar? <b>(bisa pilih lebih dari satu jawaban)</b>
+                    <b>9.</b> Diketahui fungsi $g(x) = x^2 - 4$ dengan domain $D_g = \{x | -3 \le x \le 3, x \in \text{bilangan bulat}\}$. Manakah pernyataan berikut yang benar? <b>(bisa pilih lebih dari satu jawaban)</b>
                     <ol>
                         <li data-option="A">Domain fungsi adalah $\{-3, -2, -1, 0, 1, 2, 3\}$.</li>
                         <li data-option="B">Nilai minimum fungsi adalah -4.</li>
@@ -632,9 +671,11 @@
                         <b>Pembahasan Detail:</b><br>
                         Mari kita analisis setiap pernyataan:
                         <ul>
-                            <li><b>A:</b> Domainnya adalah bilangan bulat antara -3 dan 3 (inklusif). Jika kita daftar, anggotanya adalah $\{-3, -2, -1, 0, 1, 2, 3\}$. <b>Pernyataan ini Benar.</b></li>
-                            <li><b>B:</b> Fungsi $g(x)=x^2-4$. Nilai $x^2$ akan selalu non-negatif (0 atau positif). Nilai terkecil dari $x^2$ adalah 0 (saat $x=0$). Maka, nilai minimum fungsi ini adalah $0-4=-4$. <b>Pernyataan ini Benar.</b></li>
-                            <li><b>C:</b> Kita hitung rangenya: $g(-3)=5, g(-2)=0, g(-1)=-3, g(0)=-4, g(1)=-3, g(2)=0, g(3)=5$. Jadi, range yang lengkap adalah $\{-4, -3, 0, 5\}$. Pernyataan ini tidak lengkap. <b>Pernyataan ini Salah.</b></li>
+                            <li><b>A:</b> Domainnya adalah bilangan bulat antara -3 dan 3 (termasuk -3 dan 3). Jika didaftar, anggotanya adalah $\{-3, -2, -1, 0, 1, 2, 3\}$. <b>Pernyataan ini Benar.</b></li>
+                            <li><b>B:</b> Nilai $x^2$ selalu non-negatif ($\ge 0$). Nilai terkecil dari $x^2$ adalah 0 (saat $x=0$). Maka, nilai minimum fungsi $g(x)=x^2-4$ adalah $0-4=-4$. <b>Pernyataan ini Benar.</b></li>
+                            <li><b>C:</b> Kita hitung rangenya:
+                                $g(-3)=(-3)^2-4=5$, $g(-2)=(-2)^2-4=0$, $g(-1)=(-1)^2-4=-3$, $g(0)=0^2-4=-4$, $g(1)=1^2-4=-3$, $g(2)=2^2-4=0$, $g(3)=3^2-4=5$.
+                                Range yang lengkap adalah $\{-4, -3, 0, 5\}$. Pernyataan ini tidak lengkap karena tidak menyertakan -4. <b>Pernyataan ini Salah.</b></li>
                              <li><b>D:</b> Kita cek: $g(-2) = (-2)^2 - 4 = 4 - 4 = 0$. Dan $g(2) = 2^2 - 4 = 4 - 4 = 0$. Karena hasilnya sama (0), maka <b>pernyataan ini Benar.</b></li>
                         </ul>
                     </div>
@@ -661,7 +702,7 @@
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Bentuk Aljabar dan Fungsi</td></tr>
                     <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Identifikasi Fungsi)</td></tr>
-                    <tr><td>Level Kognitif</td><td>HOTS</td></tr>
+                    <tr><td>Level Kognitif</td><td>MOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <b>10.</b> Perhatikan relasi "makanan khas dari" dari himpunan P = {Soto, Bakso, Rawon} ke Q = {Surabaya, Lamongan, Malang} yang disajikan sebagai berikut: Soto $\rightarrow$ Lamongan, Bakso $\rightarrow$ Malang, Rawon $\rightarrow$ Surabaya, dan Rawon $\rightarrow$ Malang. Pernyataan mana saja yang benar? <b>(bisa pilih lebih dari satu jawaban)</b>
@@ -672,12 +713,12 @@
                         <li data-option="D">Semua anggota kodomain memiliki pasangan.</li>
                     </ol>
                     <div class="pembahasan-detail">
-                        <b>Jawaban: B, C</b><br>
+                        <b>Jawaban: B, C, D</b><br>
                         <b>Pembahasan Detail:</b><br>
                         <ul>
                             <li><b>A & B:</b> Relasi ini memasangkan 'Rawon' dengan 'Surabaya' DAN 'Malang'. Karena ada satu anggota domain ('Rawon') yang memiliki lebih dari satu pasangan, ini <b>bukan fungsi</b>. Jadi, A salah dan B benar.</li>
                             <li><b>C:</b> Domain adalah himpunan asal, yaitu P = {Soto, Bakso, Rawon}. <b>Pernyataan ini Benar.</b></li>
-                            <li><b>D:</b> Kodomain adalah Q = {Surabaya, Lamongan, Malang}. Dari relasi, Surabaya dan Lamongan punya pasangan. Pernyataan ini tidak dapat dipastikan benar karena tidak semua anggota Q wajib punya pasangan dalam relasi. Jadi, pernyataan ini belum tentu benar.</li>
+                            <li><b>D:</b> Kodomain adalah Q = {Surabaya, Lamongan, Malang}. Dari relasi, Lamongan, Malang, dan Surabaya semuanya memiliki pasangan. <b>Pernyataan ini Benar.</b></li>
                         </ul>
                     </div>
                 </div>
@@ -699,15 +740,21 @@
                     <div class="pembahasan-detail">
                         <b>Jawaban: A, B, C, D</b><br>
                         <b>Pembahasan Detail:</b><br>
-                        Semua pilihan yang diberikan adalah cara standar dan valid untuk merepresentasikan atau menyajikan suatu fungsi dalam matematika. Masing-masing memiliki kegunaan visual dan analitis yang berbeda, tetapi semuanya dapat digunakan untuk menggambarkan hubungan fungsional.
+                        Semua pilihan yang diberikan adalah cara standar dan valid untuk merepresentasikan atau menyajikan suatu fungsi (dan juga relasi) dalam matematika.
+                        <ul>
+                            <li><b>Diagram panah:</b> Menunjukkan pemetaan dari domain ke kodomain secara visual.</li>
+                            <li><b>Tabel:</b> Mendaftar pasangan input (x) dan output (f(x)) secara terstruktur.</li>
+                            <li><b>Himpunan pasangan berurutan:</b> Menuliskan setiap pasangan (x,y) dalam sebuah himpunan.</li>
+                            <li><b>Grafik Kartesius:</b> Menggambarkan setiap pasangan (x,y) sebagai titik pada sistem koordinat.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
              <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Bentuk Aljabar dan Fungsi</td></tr>
-                    <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Aplikasi Kontekstual)</td></tr>
-                    <tr><td>Level Kognitif</td><td>HOTS</td></tr>
+                    <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Aplikasi)</td></tr>
+                    <tr><td>Level Kognitif</td><td>MOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <b>12.</b> Sebuah toko online memberikan diskon sebesar 20% untuk semua produk. Jika $h$ adalah harga asli produk, maka fungsi harga setelah diskon adalah $D(h) = 0,8h$. Manakah pernyataan yang benar? <b>(bisa pilih lebih dari satu jawaban)</b>
@@ -721,10 +768,10 @@
                         <b>Jawaban: A, B, D</b><br>
                         <b>Pembahasan Detail:</b>
                         <ul>
-                            <li><b>A:</b> Domain adalah harga asli ($h$). Harga tidak mungkin negatif atau nol. Jadi domainnya adalah $h>0$. <b>Benar.</b></li>
+                            <li><b>A:</b> Domain adalah harga asli ($h$). Harga produk tidak mungkin negatif atau nol dalam konteks jual beli. Jadi domainnya adalah $h>0$. <b>Benar.</b></li>
                             <li><b>B:</b> $D(100.000) = 0,8 \times 100.000 = 80.000$. <b>Benar.</b></li>
-                            <li><b>C:</b> Range adalah harga setelah diskon, yang selalu lebih kecil dari harga asli. Maka range tidak sama dengan domain. <b>Salah.</b></li>
-                            <li><b>D:</b> Jika harga bayar 40.000, maka $40.000 = 0,8h$. Untuk mencari $h$, kita hitung $h = 40.000 / 0,8 = 50.000$. <b>Benar.</b></li>
+                            <li><b>C:</b> Range adalah harga setelah diskon. Karena ada diskon, harga setelah diskon ($0,8h$) akan selalu lebih kecil dari harga asli ($h$). Maka range tidak sama dengan domain. <b>Salah.</b></li>
+                            <li><b>D:</b> Jika harga bayar Rp40.000, maka $40.000 = 0,8h$. Untuk mencari $h$, kita hitung $h = \frac{40.000}{0,8} = 50.000$. <b>Benar.</b></li>
                         </ul>
                     </div>
                 </div>
@@ -750,19 +797,28 @@
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Bentuk Aljabar dan Fungsi</td></tr>
                     <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Identifikasi Fungsi)</td></tr>
-                    <tr><td>Level Kognitif</td><td>HOTS</td></tr>
+                    <tr><td>Level Kognitif</td><td>MOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <b>13.</b> Perhatikan relasi-relasi yang disajikan dalam himpunan pasangan berurutan berikut. Tentukan apakah setiap relasi merupakan fungsi atau bukan.
-                    <p>a) $\{(1,a), (2,b), (3,c)\}$<br>b) $\{(1,a), (1,b), (2,c)\}$<br>c) $\{(a,1), (b,1), (c,1)\}$<br>d) $\{(a,b), (c,d), (e,f)\}$ (dengan a,c,e berbeda)</p>
+                    <table class="soal-kategori">
+                        <thead><tr><th>Relasi</th><th>Fungsi</th><th>Bukan Fungsi</th></tr></thead>
+                        <tbody>
+                            <tr><td>$\{(1,a), (2,b), (3,c)\}$</td><td>✓</td><td></td></tr>
+                            <tr><td>$\{(1,a), (1,b), (2,c)\}$</td><td></td><td>✓</td></tr>
+                            <tr><td>$\{(a,1), (b,1), (c,1)\}$</td><td>✓</td><td></td></tr>
+                            <tr><td>$\{(a,b), (c,d), (e,f)\}$ (dengan a,c,e berbeda)</td><td>✓</td><td></td></tr>
+                        </tbody>
+                    </table>
                     <div class="pembahasan-detail">
-                        <b>Jawaban:</b><br>
-                        <b>Pembahasan Detail:</b>
+                        <b>Jawaban: Fungsi, Bukan Fungsi, Fungsi, Fungsi</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        Kuncinya adalah memeriksa apakah ada anggota domain (elemen pertama) yang muncul lebih dari sekali.
                         <ul>
-                            <li>a) Domain {1, 2, 3} masing-masing muncul sekali. <b>Fungsi</b>.</li>
-                            <li>b) Domain '1' muncul dua kali dengan pasangan berbeda. <b>Bukan Fungsi</b>.</li>
-                            <li>c) Domain {a, b, c} masing-masing muncul sekali. <b>Fungsi</b>.</li>
-                            <li>d) Karena a, c, e dijamin berbeda, maka setiap domain hanya muncul sekali. <b>Fungsi</b>.</li>
+                            <li><b>$\{(1,a), (2,b), (3,c)\}$:</b> Domainnya {1, 2, 3}. Setiap anggota muncul tepat satu kali. <b>(Fungsi)</b></li>
+                            <li><b>$\{(1,a), (1,b), (2,c)\}$:</b> Domain '1' muncul dua kali dengan pasangan berbeda (a dan b). <b>(Bukan Fungsi)</b></li>
+                            <li><b>$\{(a,1), (b,1), (c,1)\}$:</b> Domainnya {a, b, c}. Setiap anggota muncul tepat satu kali. <b>(Fungsi)</b></li>
+                            <li><b>$\{(a,b), (c,d), (e,f)\}$ (dengan a,c,e berbeda):</b> Karena a, c, e dijamin berbeda, maka setiap anggota domain hanya muncul sekali. <b>(Fungsi)</b></li>
                         </ul>
                     </div>
                 </div>
@@ -775,39 +831,60 @@
                 </table>
                  <div class="soal-pembahasan">
                     <b>14.</b> Sebuah fungsi $f$ didefinisikan sebagai $f(x) = 10 - x^2$ dengan domain bilangan asli kurang dari 4. Tentukan kebenaran dari setiap pernyataan berikut.
-                     <p>a) Domain fungsi adalah $\{1, 2, 3\}$.<br>b) Range fungsi adalah $\{9, 6, 2\}$.<br>c) Nilai $f(3)$ adalah 1.<br>d) Fungsi ini memiliki nilai maksimum 9.</p>
+                     <table class="soal-kategori">
+                        <thead><tr><th>Pernyataan</th><th>Benar</th><th>Salah</th></tr></thead>
+                        <tbody>
+                            <tr><td>Domain fungsi adalah $\{1, 2, 3\}$.</td><td>✓</td><td></td></tr>
+                            <tr><td>Range fungsi adalah $\{9, 6, 1\}$.</td><td>✓</td><td></td></tr>
+                            <tr><td>Nilai $f(3)$ adalah 1.</td><td>✓</td><td></td></tr>
+                            <tr><td>Fungsi ini memiliki nilai maksimum 9.</td><td>✓</td><td></td></tr>
+                        </tbody>
+                    </table>
                     <div class="pembahasan-detail">
-                        <b>Jawaban:</b> a) Benar, b) Salah, c) Benar, d) Benar<br>
+                        <b>Jawaban: Benar, Benar, Benar, Benar</b><br>
                         <b>Pembahasan Detail:</b><br>
-                        Domain "bilangan asli kurang dari 4" adalah $\{1, 2, 3\}$. Mari kita hitung rangenya:
+                        Domain "bilangan asli kurang dari 4" adalah himpunan $\{1, 2, 3\}$. Mari kita hitung rangenya:
                          <ul>
                             <li>$f(1)=10-1^2=9$</li>
                             <li>$f(2)=10-2^2=6$</li>
                             <li>$f(3)=10-3^2=1$</li>
                         </ul>
-                        a) Domain adalah $\{1, 2, 3\}$. <b>Benar</b>.<br>
-                        b) Range adalah $\{1, 6, 9\}$. Pernyataan mengatakan $\{9, 6, 2\}$. <b>Salah</b>.<br>
-                        c) Nilai $f(3)$ adalah 1. <b>Benar</b>.<br>
-                        d) Nilai tertinggi di range adalah 9. <b>Benar</b>.
+                        Sekarang kita evaluasi setiap pernyataan:
+                        <ul>
+                            <li><b>Domain fungsi adalah $\{1, 2, 3\}$.</b> Ini sesuai dengan definisi soal. <b>(Benar)</b></li>
+                            <li><b>Range fungsi adalah $\{9, 6, 1\}$.</b> Ini adalah hasil perhitungan kita. Urutan tidak masalah dalam himpunan. <b>(Benar)</b></li>
+                            <li><b>Nilai $f(3)$ adalah 1.</b> Sesuai hasil perhitungan. <b>(Benar)</b></li>
+                            <li><b>Fungsi ini memiliki nilai maksimum 9.</b> Dari anggota range {1, 6, 9}, nilai tertingginya adalah 9. <b>(Benar)</b></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="pembahasan-box">
+             <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Bentuk Aljabar dan Fungsi</td></tr>
-                    <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Aplikasi Kontekstual)</td></tr>
+                    <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Transformasi Grafik)</td></tr>
                     <tr><td>Level Kognitif</td><td>HOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
-                     <b>15.</b> Klub kebugaran "Sehat Selalu" menawarkan dua paket keanggotaan. Paket A: Biaya bulanan Rp150.000. Paket B: Biaya pendaftaran Rp100.000 dan biaya bulanan Rp125.000. Fungsi biaya total untuk $x$ bulan adalah $A(x)=150.000x$ dan $B(x)=100.000+125.000x$. Tentukan kebenaran pernyataan berikut.
-                    <p>a) Untuk 2 bulan, Paket A lebih murah.<br>b) Biaya kedua paket sama pada bulan ke-4.<br>c) Untuk 1 tahun (12 bulan), Paket B lebih mahal.<br>d) Domain yang relevan untuk $x$ adalah bilangan bulat positif.</p>
+                    <b>15.</b> Diberikan sebuah fungsi $f(x)$. Tentukan kebenaran dari setiap pernyataan mengenai transformasi (pergeseran atau pencerminan) dari fungsi tersebut.
+                    <table class="soal-kategori">
+                        <thead><tr><th>Pernyataan</th><th>Benar</th><th>Salah</th></tr></thead>
+                        <tbody>
+                            <tr><td>Grafik $g(x) = f(x) + 3$ adalah pergeseran grafik $f(x)$ sejauh 3 satuan ke atas.</td><td>✓</td><td></td></tr>
+                            <tr><td>Grafik $h(x) = f(x-5)$ adalah pergeseran grafik $f(x)$ sejauh 5 satuan ke kiri.</td><td></td><td>✓</td></tr>
+                            <tr><td>Grafik $k(x) = -f(x)$ adalah hasil pencerminan grafik $f(x)$ terhadap sumbu-y.</td><td></td><td>✓</td></tr>
+                            <tr><td>Jika $f(x)=x^2$, maka grafik $p(x) = f(-x)$ sama dengan grafik $f(x)$.</td><td>✓</td><td></td></tr>
+                        </tbody>
+                    </table>
                     <div class="pembahasan-detail">
-                        <b>Jawaban:</b> a) Benar, b) Benar, c) Salah, d) Benar<br>
+                        <b>Jawaban: Benar, Salah, Salah, Benar</b><br>
                         <b>Pembahasan Detail:</b><br>
-                         a) Untuk $x=2$: A = $150.000(2) = 300.000$; B = $100.000+125.000(2) = 350.000$. A lebih murah. <b>Benar</b>.<br>
-                         b) Sama jika $150.000x = 100.000 + 125.000x \implies 25.000x = 100.000 \implies x = 4$. <b>Benar</b>.<br>
-                         c) Untuk $x=12$: A = $1.800.000$; B = $100.000+1.500.000=1.600.000$. B lebih murah. <b>Salah</b>.<br>
-                         d) Bulan dihitung sebagai 1, 2, 3, dst., yang merupakan bilangan bulat positif. <b>Benar</b>.
+                         <ul>
+                            <li><b>Grafik $g(x) = f(x) + 3$ adalah pergeseran $f(x)$ 3 satuan ke atas.</b> Penambahan konstanta di luar fungsi ($f(x)+c$) menyebabkan pergeseran vertikal. Jika c positif, geser ke atas. <b>(Benar)</b></li>
+                            <li><b>Grafik $h(x) = f(x-5)$ adalah pergeseran $f(x)$ 5 satuan ke kiri.</b> Perubahan di dalam fungsi ($f(x-c)$) menyebabkan pergeseran horizontal. Aturannya terbalik: $x-c$ bergeser ke kanan, $x+c$ bergeser ke kiri. Jadi $f(x-5)$ bergeser 5 satuan ke kanan. <b>(Salah)</b></li>
+                            <li><b>Grafik $k(x) = -f(x)$ adalah pencerminan $f(x)$ terhadap sumbu-y.</b> Tanda negatif di luar fungsi ($-f(x)$) menyebabkan pencerminan terhadap sumbu-x. Pencerminan terhadap sumbu-y rumusnya adalah $f(-x)$. <b>(Salah)</b></li>
+                            <li><b>Jika $f(x)=x^2$, maka grafik $p(x) = f(-x)$ sama dengan grafik $f(x)$.</b> Jika $f(x)=x^2$, maka $p(x)=f(-x)=(-x)^2 = x^2$. Karena $p(x)=f(x)$, grafiknya sama. Fungsi seperti ini disebut fungsi genap. <b>(Benar)</b></li>
+                        </ul>
                     </div>
                 </div>
             </div>
