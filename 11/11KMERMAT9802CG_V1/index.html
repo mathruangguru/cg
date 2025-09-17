@@ -68,6 +68,8 @@
         .page-header {
             margin: -1.8cm -2.5cm 0 -2.5cm;
             flex-shrink: 0;
+            position: relative;
+            z-index: 10;
         }
 
         .header-top-box {
@@ -182,8 +184,7 @@
             padding-left: 20px;
             margin: 5px 0 0 0;
         }
-
-        /* New structure for question indentation */
+        
         .soal-pembahasan {
             display: flex;
             align-items: flex-start;
@@ -251,6 +252,8 @@
             border-top: 1px solid var(--border-color);
             flex-shrink: 0;
             width: 100%;
+            position: relative;
+            z-index: 10;
         }
         
         .true-false-table {
@@ -279,7 +282,7 @@
                 margin: 0;
             }
 
-            .page-container{
+            .page-container {
                 margin: 0;
             }
 
@@ -292,16 +295,22 @@
                 page-break-after: always;
                 display: flex;
                 flex-direction: column;
+                position: relative;
             }
 
             .page:last-of-type {
                 page-break-after: auto;
             }
-
-            .pembahasan-box, .summary-table, .section-title {
-                page-break-inside: avoid;
+            
+            .content-wrapper {
+                flex-grow: 1;
+                overflow: hidden;
             }
 
+            .pembahasan-box {
+                page-break-inside: avoid;
+            }
+            
             .soal-card td:first-child, .summary-table .summary-table-header td, .pembahasan-detail, .true-false-table th, .header-top-box, .header-bottom-text {
                 -webkit-print-color-adjust: exact; 
                 print-color-adjust: exact;
