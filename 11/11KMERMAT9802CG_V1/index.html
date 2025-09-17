@@ -271,7 +271,7 @@
         @media print {
             @page {
                 size: A4;
-                margin: 0;
+                margin: 0; /* Let the .page element handle margins */
             }
 
             body {
@@ -279,43 +279,32 @@
                 margin: 0;
             }
 
-            .page-container {
+            .page-container{
                 margin: 0;
-                }
+            }
 
             .page {
                 box-shadow: none;
                 margin: 0;
-                padding: 1.8cm 2.5cm;
+                padding: 1.8cm 2.5cm; /* Re-apply margins here */
                 width: 21cm;
-                min-height: 29.7cm;
-                display: block; /* WAS flex, now block for print */
-                position: relative;
+                height: 29.7cm; /* Enforce A4 dimensions */
                 page-break-after: always;
-                overflow: hidden;
+                display: flex;
+                flex-direction: column;
             }
 
             .page:last-of-type {
                 page-break-after: auto;
             }
-        
-            /* Prevent break in the middle of important blocks */
-            .pembahasan-box, .soal-pembahasan, .page-footer {
+
+            .pembahasan-box, .summary-table, .section-title {
                 page-break-inside: avoid;
             }
-        
-            .page-footer {
-                position: absolute;
-                bottom: 1.8cm; /* or 0, sesuai kebutuhan */
-                left: 2.5cm;
-                right: 2.5cm;
-                width: calc(100% - 5cm);
-                background: white;
-                z-index: 2;
-            }
-        
-            .content-wrapper {
-                padding-bottom: 80px; /* Reserve space for footer */
+
+            .soal-card td:first-child, .summary-table .summary-table-header td, .pembahasan-detail, .true-false-table th, .header-top-box, .header-bottom-text {
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact;
             }
         }
     </style>
