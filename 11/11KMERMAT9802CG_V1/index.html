@@ -271,7 +271,7 @@
         @media print {
             @page {
                 size: A4;
-                margin: 0; /* Let the .page element handle margins */
+                margin: 0;
             }
 
             body {
@@ -279,32 +279,43 @@
                 margin: 0;
             }
 
-            .page-container{
+            .page-container {
                 margin: 0;
-            }
+                }
 
             .page {
                 box-shadow: none;
                 margin: 0;
-                padding: 1.8cm 2.5cm; /* Re-apply margins here */
+                padding: 1.8cm 2.5cm;
                 width: 21cm;
-                height: 29.7cm; /* Enforce A4 dimensions */
+                min-height: 29.7cm;
+                display: block; /* WAS flex, now block for print */
+                position: relative;
                 page-break-after: always;
-                display: flex;
-                flex-direction: column;
+                overflow: hidden;
             }
 
             .page:last-of-type {
                 page-break-after: auto;
             }
-
-            .pembahasan-box, .summary-table, .section-title {
+        
+            /* Prevent break in the middle of important blocks */
+            .pembahasan-box, .soal-pembahasan, .page-footer {
                 page-break-inside: avoid;
             }
-
-            .soal-card td:first-child, .summary-table .summary-table-header td, .pembahasan-detail, .true-false-table th, .header-top-box, .header-bottom-text {
-                -webkit-print-color-adjust: exact; 
-                print-color-adjust: exact;
+        
+            .page-footer {
+                position: absolute;
+                bottom: 1.8cm; /* or 0, sesuai kebutuhan */
+                left: 2.5cm;
+                right: 2.5cm;
+                width: calc(100% - 5cm);
+                background: white;
+                z-index: 2;
+            }
+        
+            .content-wrapper {
+                padding-bottom: 80px; /* Reserve space for footer */
             }
         }
     </style>
