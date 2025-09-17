@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panduan Mengajar - Relasi dan Fungsi</title>
+    <title>Drill Soal TKA - Review Materi Kelas 11</title>
     <script>
         window.MathJax = {
             tex: {
@@ -28,8 +28,6 @@
             --header-bottom-bg: #f0f0f0;
             --header-title-color: #00838F;
             --table-header-bg: #e9e9e9;
-            --header-print-height: 3.5cm;
-            --footer-print-height: 2.5cm;
         }
         
         *, *::before, *::after {
@@ -46,24 +44,44 @@
             padding: 0;
         }
 
-        .web-container {
+        .page-container {
+            counter-reset: page;
+        }
+
+        .page {
             background: white;
             width: 21cm;
+            min-height: 29.7cm; /* Changed to min-height */
             padding: 1.8cm 2.5cm;
             margin: 1cm auto;
             box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .page-number::after {
+            counter-increment: page;
+            content: counter(page);
         }
 
         .page-header {
-            margin-bottom: 20px;
+            margin: -1.8cm -2.5cm 20px -2.5cm;
+            flex-shrink: 0;
         }
-        
+
         .header-top-box {
             background-color: var(--header-top-bg);
-            padding: 10px 20px;
+            padding: 10px 2.5cm;
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+        
+        .page:not(:first-of-type) .header-bottom-box {
+            display: none;
+        }
+        .page:not(:first-of-type) .header-top-box {
             margin-bottom: 2px;
         }
         
@@ -81,8 +99,9 @@
         }
 
         .header-bottom-box {
-            padding: 8px 0;
-            text-align: center;
+            padding: 8px 2.5cm;
+            text-align: left; /* Aligned to the left */
+            margin-bottom: 2px;
         }
         
         .header-bottom-text {
@@ -91,15 +110,20 @@
             font-weight: 700;
             font-size: 8.5pt;
             color: var(--secondary-text);
-            display: inline-block;
+            display: block; /* Changed to block to fill width */
             border-radius: 4px;
-            white-space: nowrap;
+            white-space: normal; /* Allow text wrapping */
         }
 
         .header-logo {
             max-height: 60px;
         }
         
+        .content-wrapper { 
+            flex-grow: 1;
+            /* overflow: hidden; Removed this to allow content to flow */
+        }
+
         .section-title {
             font-size: 14pt;
             font-weight: 700;
@@ -119,7 +143,7 @@
         }
         
         .pembahasan-box {
-            margin-bottom: 20px;
+            margin-bottom: 25px; /* Added more space between questions */
         }
 
         .soal-card {
@@ -148,6 +172,7 @@
         .summary-table td {
             border: 1px solid var(--border-color);
             padding: 8px 12px;
+            vertical-align: top;
         }
         .summary-table .summary-table-header td {
             background-color: var(--table-header-bg);
@@ -158,26 +183,25 @@
             padding-left: 20px;
             margin: 5px 0 0 0;
         }
-        .summary-table .star-row td {
-            text-align: center;
-            font-weight: bold;
-        }
         
         .soal-pembahasan {
             margin-top: 10px;
         }
         .soal-pembahasan ol {
             list-style-type: none;
-            padding-left: 20px;
+            padding-left: 0;
             margin-top: 10px;
         }
-         .soal-pembahasan ol li {
+        .soal-pembahasan ol li {
             margin-bottom: 8px;
-         }
+            padding-left: 25px;
+            position: relative;
+        }
         .soal-pembahasan ol li::before {
             content: attr(data-option) ". ";
             font-weight: bold;
-            margin-right: 5px;
+            position: absolute;
+            left: 0;
         }
         .pembahasan-detail {
             margin-top: 10px;
@@ -186,83 +210,91 @@
             padding: 10px 15px;
             border-radius: 0 4px 4px 0;
         }
-        .pembahasan-detail ul {
-             padding-left: 20px;
+        .pembahasan-detail ul, .pembahasan-detail ol {
+            padding-left: 20px;
         }
 
-        .print-header, .print-footer {
-            display: none;
+        .pilihan-ganda-mcma div {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            padding-left: 5px;
         }
+        .pilihan-ganda-mcma input[type="checkbox"] {
+            width: 14px;
+            height: 14px;
+            margin-right: 10px;
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+
+        .page-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            font-size: 8pt;
+            color: var(--secondary-text);
+            margin-top: auto; /* Pushes footer to the bottom */
+            padding-top: 20px; /* Space above footer */
+            border-top: 1px solid var(--border-color);
+            flex-shrink: 0;
+            width: 100%; /* Ensure footer spans width */
+        }
+        
+        .true-false-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .true-false-table th, .true-false-table td {
+            border: 1px solid var(--border-color);
+            padding: 8px;
+            text-align: left;
+        }
+        .true-false-table th {
+            background-color: var(--table-header-bg);
+        }
+
 
         /* --- PRINT STYLES --- */
         @media print {
             @page {
                 size: A4;
-                margin: 0;
+                margin: 1.8cm 2.5cm; /* Standard print margins */
             }
 
             body { 
                 background: none;
                 margin: 0;
-                padding-top: var(--header-print-height);
-                padding-bottom: var(--footer-print-height);
             }
-            .web-container {
-                width: 100%;
-                margin: 0;
-                padding: 0 2.5cm;
-                box-shadow: none;
+            .page-container {
+                counter-reset: none;
             }
 
-            .page-header.web-only {
-                display: none;
+            .page { 
+                width: auto;
+                min-height: 0;
+                margin: 0; 
+                padding: 0;
+                box-shadow: none; 
+                page-break-after: always;
+                border: none;
             }
             
-            .print-header, .print-footer {
-                display: block;
-                position: fixed;
-                left: 0;
-                right: 0;
-                background: white;
-            }
-
-            .print-header {
-                top: 0;
-                height: var(--header-print-height);
-            }
-            .print-header .header-top-box{
-                margin: 0;
-            }
-
-            .print-footer {
-                bottom: 0;
-                height: var(--footer-print-height);
-                counter-reset: page;
-            }
-            .print-footer-content{
-                display: flex;
-                justify-content: space-between;
-                align-items: flex-end;
-                font-size: 8pt;
-                color: var(--secondary-text);
-                padding: 15px 2.5cm 1.8cm;
-                border-top: 1px solid var(--border-color);
-            }
-            .print-footer-content .page-number::after{
-                counter-increment: page;
-                content: counter(page);
+            .page-header, .page-footer {
+                display: none; /* Hide header/footer from each .page to avoid duplication */
             }
 
             .pembahasan-box {
-                break-inside: avoid;
+                page-break-inside: avoid;
             }
-
-            .first-page-info {
-                page-break-after: always;
+            
+            .content-wrapper {
+                overflow: visible;
             }
 
             /* Force background colors to print */
-            .header-top-box, .header-bottom-text, .soal-card td:first-child, .summary-table .summary-table-header td, .pembahasan-detail {
+            .soal-card td:first-child, .summary-table .summary-table-header td, .pembahasan-detail, .true-false-table th {
                 -webkit-print-color-adjust: exact; 
                 print-color-adjust: exact;
             }
@@ -271,497 +303,553 @@
 </head>
 <body>
 
-<header class="print-header">
-    <div class="header-top-box">
-        <div>
-            <div class="header-title-main">Panduan Mengajar</div>
-            <div class="header-title-sub">Matematika</div>
-        </div>
-        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
-    </div>
-</header>
+<div class="page-container">
 
-<div class="web-container">
-    <header class="page-header web-only">
-        <div class="header-top-box">
-            <div>
-                <div class="header-title-main">Panduan Mengajar</div>
-                <div class="header-title-sub">Matematika</div>
+    <!-- HALAMAN 1: TUJUAN, ALUR & TEORI -->
+    <section class="page">
+        <header class="page-header">
+            <div class="header-top-box">
+                <div>
+                    <div class="header-title-main">Panduan Mengajar</div>
+                    <div class="header-title-sub">Matematika TKA</div>
+                </div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
             </div>
-            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
-        </div>
-        <div class="header-bottom-box">
-            <div class="header-bottom-text">
-                IX SMP | Kurikulum Merdeka | [TKA] Bentuk Aljabar dan Fungsi | Relasi dan Fungsi | Pertemuan 14
+            <div class="header-bottom-box">
+                <div class="header-bottom-text">
+                    XI SMA | Kurikulum Merdeka | [TKA] Drill Soal | Drill Soal TKA Matematika - Paket 2 | Pertemuan 6
+                </div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <main class="content-wrapper">
-
-        <div class="first-page-info">
+        <div class="content-wrapper">
             <table class="summary-table">
                 <tr class="summary-table-header">
-                    <td>Belajar Apa Hari Ini</td>
+                    <td colspan="2">Belajar Apa Hari Ini</td>
                 </tr>
                 <tr class="summary-table-content">
-                    <td>
-                        Review / Bahas soal dari beberapa topik meliputi:
+                    <td colspan="2">
+                        Drill soal TKA untuk review materi kelas 11 pada topik-topik berikut:
                         <ul>
-                            <li>Definisi dan identifikasi relasi, fungsi, domain, kodomain, dan range.</li>
-                            <li>Menghitung nilai fungsi dari domain yang diberikan.</li>
-                            <li>Aplikasi fungsi dalam masalah kontekstual (sehari-hari).</li>
+                            <li><b>Fungsi Komposisi dan Fungsi Invers:</b> Menentukan hasil komposisi, invers, domain, serta aplikasinya.</li>
+                            <li><b>Lingkaran:</b> Menganalisis persamaan lingkaran, garis singgung, dan kedudukan titik/garis.</li>
+                            <li><b>Statistika:</b> Menganalisis ukuran pemusatan dan penyebaran data, serta interpretasi data.</li>
                         </ul>
                     </td>
                 </tr>
                 <tr class="summary-table-header">
-                    <td>LO: Relasi dan Fungsi</td>
+                    <td>Topik</td>
+                    <td>Learning Objectives (LO)</td>
                 </tr>
                 <tr class="summary-table-content">
+                    <td><b>Fungsi Komposisi & Invers</b></td>
                     <td>
                         <ul>
-                            <li>Menjelaskan konsep himpunan, relasi dan fungsi.</li>
-                            <li>Menjelaskan contoh kegiatan sehari-hari yang berkaitan dengan relasi dan fungsi.</li>
-                            <li>Menjelaskan cara menyajikan relasi dan fungsi.</li>
-                            <li>Menjelaskan nilai fungsi dan grafik fungsi pada koordinat Cartesius.</li>
-                            <li>Menyajikan hasil penyelesaian masalah yang terkait relasi dan fungsi.</li>
+                            <li>Menentukan fungsi komposisi $(f \circ g)(x)$ dan $(g \circ f)(x)$.</li>
+                            <li>Menentukan salah satu fungsi pembentuk jika fungsi komposisi diketahui.</li>
+                            <li>Menjelaskan syarat dan menentukan fungsi invers.</li>
                         </ul>
                     </td>
                 </tr>
-                 <tr class="star-row">
+                 <tr class="summary-table-content">
+                    <td><b>Lingkaran</b></td>
                     <td>
-                        Soal nomor 1 - 15 ⭐85⭐ (masing-masing 7 ⭐)
+                        <ul>
+                            <li>Menyusun persamaan lingkaran.</li>
+                            <li>Menganalisis kedudukan titik dan garis terhadap lingkaran.</li>
+                            <li>Menentukan persamaan garis singgung lingkaran.</li>
+                        </ul>
+                    </td>
+                </tr>
+                 <tr class="summary-table-content">
+                    <td><b>Statistika</b></td>
+                    <td>
+                        <ul>
+                           <li>Menganalisis ukuran pemusatan dan penyebaran data.</li>
+                           <li>Menyelesaikan masalah kontekstual yang berkaitan dengan statistika.</li>
+                        </ul>
                     </td>
                 </tr>
             </table>
 
-            <h2 class="section-title">1. Alur Penjelasan</h2>
-            <ol class="guide-list">
-                <li><b>Pembukaan:</b> Mulai dengan pertanyaan pemantik untuk menghubungkan konsep relasi dengan kehidupan sehari-hari (misal: hubungan siswa dengan ukuran sepatunya).</li>
-                <li><b>Konsep Relasi & Fungsi:</b> Jelaskan definisi relasi, domain, kodomain, range, dan bedanya dengan fungsi (setiap domain punya <b>tepat satu</b> pasangan). Gunakan analogi "mesin fungsi".</li>
-                <li><b>Notasi dan Aplikasi:</b> Ajarkan cara substitusi nilai ke dalam $f(x)$ dan aplikasikan pada soal cerita untuk membahas domain kontekstual.</li>
-                <li><b>Penutup:</b> Rangkum perbedaan utama relasi dan fungsi.</li>
-            </ol>
-            
-            <h2 class="section-title">2. Teknik Elicit (Pertanyaan Pemantik)</h2>
+            <h2 class="section-title">Alur & Pertanyaan Pemantik</h2>
             <ul class="guide-list">
-                <li>"Apakah hubungan siswa dengan tanggal lahirnya itu fungsi? Kenapa? Kalau dibalik, apakah itu fungsi?"</li>
-                <li>"Di soal parkir, kenapa rumusnya ada $(t-1)$? Apa artinya angka 2.000 di depan?"</li>
-                <li>"Di soal persegi panjang, kenapa panjangnya tidak boleh 15? Apa yang terjadi pada lebarnya?"</li>
+                <li><b>Fungsi:</b> "Jika proses produksi baju terdiri dari tahap memotong kain lalu menjahit, apakah urutannya bisa dibalik? Konsep apa yang terkait?"</li>
+                <li><b>Lingkaran:</b> "Bagaimana stasiun pemancar radio memastikan sinyalnya menjangkau area tertentu tanpa tumpang tindih?"</li>
+                <li><b>Statistika:</b> "Jika nilai rata-rata kelas adalah 75, apakah artinya semua siswa pintar? Info apa lagi yang kita butuhkan?"</li>
             </ul>
         </div>
-        
-        <h2 class="section-title">3. Kunci Jawaban dan Pembahasan</h2>
-        
-        <div class="pembahasan-box">
-             <table class="soal-card">
-                <tr><td>Topik</td><td>Bentuk Aljabar dan Fungsi</td></tr>
-                <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Range)</td></tr>
-                <tr><td>Level Kognitif</td><td>LOTS</td></tr>
-            </table>
-            <div class="soal-pembahasan">
-                <b>1.</b> Diketahui himpunan pasangan berurutan $R = \{(1, a), (2, b), (3, a), (4, c)\}$. Range dari relasi tersebut adalah...
-                <ol>
-                    <li data-option="A">$\{1, 2, 3, 4\}$</li>
-                    <li data-option="B">$\{a, b, c\}$</li>
-                    <li data-option="C">$\{1, 2, 3, 4, a, b, c\}$</li>
-                    <li data-option="D">$\{ (1,a), (2,b), (3,a), (4,c) \}$</li>
-                </ol>
-                <div class="pembahasan-detail">
-                    <b>Jawaban: B. $\{a, b, c\}$</b><br>
-                    <b>Pembahasan Detail:</b><br>
-                    Sebuah "pasangan berurutan" ditulis dalam format $(x, y)$. Elemen pertama ($x$) adalah anggota domain (daerah asal), dan elemen kedua ($y$) adalah anggota kodomain (daerah kawan).
-                    <b>Range</b> atau daerah hasil adalah kumpulan semua anggota kodomain ($y$) yang benar-benar memiliki pasangan.
+
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 2: Soal 1-2 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika TKA</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Fungsi Komposisi dan Fungsi Invers</td></tr>
+                    <tr><td>Sub Topik</td><td>Fungsi Komposisi</td></tr>
+                    <tr><td>Level Kognitif</td><td>Pengetahuan dan Pemahaman</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <b>1.</b> Diketahui fungsi $f(x) = 2x + 1$ dan $g(x) = x^2 - 3x + 5$. Nilai dari $(g \circ f)(x)$ adalah...
                     <ol>
-                        <li>Kita daftar semua elemen kedua dari setiap pasangan: $a, b, a, c$.</li>
-                        <li>Dalam aturan penulisan himpunan, setiap anggota yang unik hanya ditulis satu kali. Meskipun 'a' muncul dua kali, kita hanya menuliskannya sekali.</li>
-                        <li>Jadi, himpunan range-nya adalah $\{a, b, c\}$.</li>
+                        <li data-option="A">$4x^2 - 2x + 3$</li>
+                        <li data-option="B">$2x^2 - 6x + 11$</li>
+                        <li data-option="C">$4x^2 + 2x + 3$</li>
                     </ol>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: A. $4x^2 - 2x + 3$</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        $(g \circ f)(x) = g(f(x)) = (f(x))^2 - 3(f(x)) + 5$<br>
+                        $= (2x+1)^2 - 3(2x+1) + 5$<br>
+                        $= (4x^2 + 4x + 1) - (6x + 3) + 5$<br>
+                        $= 4x^2 - 2x + 3$
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="pembahasan-box">
-             <table class="soal-card">
-                <tr><td>Topik</td><td>Bentuk Aljabar dan Fungsi</td></tr>
-                <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Identifikasi Fungsi)</td></tr>
-                <tr><td>Level Kognitif</td><td>LOTS</td></tr>
-            </table>
-             <div class="soal-pembahasan">
-                <b>2.</b> Di antara himpunan pasangan berurutan berikut, manakah yang merupakan fungsi?
-                <ol>
-                    <li data-option="A">$\{(a, 1), (b, 2), (c, 3), (a, 4)\}$</li>
-                    <li data-option="B">$\{(1, p), (2, q), (1, r), (2, s)\}$</li>
-                    <li data-option="C">$\{(x, 5), (y, 5), (z, 5), (w, 5)\}$</li>
-                    <li data-option="D">$\{(9, 3), (9, -3), (4, 2), (4, -2)\}$</li>
-                </ol>
-                <div class="pembahasan-detail">
-                    <b>Jawaban: C. $\{(x, 5), (y, 5), (z, 5), (w, 5)\}$</b><br>
-                    <b>Pembahasan Detail:</b><br>
-                    Syarat utama sebuah relasi disebut <b>fungsi</b> adalah: setiap anggota domain (elemen pertama) harus memiliki <b>tepat satu</b> pasangan di kodomain (elemen kedua). Mari kita periksa setiap pilihan:
-                    <ul>
-                        <li>A: Anggota domain 'a' memiliki dua pasangan, yaitu 1 dan 4. Ini melanggar aturan. Bukan fungsi.</li>
-                        <li>B: Domain '1' punya dua pasangan (p dan r). Domain '2' juga punya dua pasangan (q dan s). Bukan fungsi.</li>
-                        <li>C: Domainnya adalah {x, y, z, w}. Setiap anggota domain ini hanya muncul satu kali. Ini adalah <b>fungsi</b>. Tidak masalah jika semua hasilnya sama.</li>
-                        <li>D: Domain '9' punya dua pasangan (3 dan -3). Domain '4' juga punya dua pasangan (2 dan -2). Bukan fungsi.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-        <div class="pembahasan-box">
-            <table class="soal-card">
-                <tr><td>Topik</td><td>Bentuk Aljabar dan Fungsi</td></tr>
-                <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Menghitung Nilai Fungsi)</td></tr>
-                <tr><td>Level Kognitif</td><td>MOTS</td></tr>
-            </table>
-            <div class="soal-pembahasan">
-                <b>3.</b> Sebuah fungsi didefinisikan dengan rumus $f(x) = 3x - 5$. Jika domain $D = \{ -2, -1, 0, 1, 2 \}$, maka range-nya adalah...
-                 <ol>
-                    <li data-option="A">$\{ -11, -8, -5, -2, 1 \}$</li>
-                    <li data-option="B">$\{ 11, 8, 5, 2, -1 \}$</li>
-                    <li data-option="C">$\{ -1, 2, 5, 8, 11 \}$</li>
-                    <li data-option="D">$\{ -5, -2, 1, 4, 7 \}$</li>
-                </ol>
-                <div class="pembahasan-detail">
-                    <b>Jawaban: A. $\{ -11, -8, -5, -2, 1 \}$</b><br>
-                    <b>Pembahasan Detail:</b><br>
-                    Untuk menemukan range (daerah hasil), kita perlu memasukkan setiap anggota domain (nilai $x$) ke dalam rumus fungsi $f(x) = 3x - 5$ satu per satu:
-                    <ul>
-                        <li>Untuk $x = -2$: $f(-2) = 3(-2) - 5 = -6 - 5 = -11$</li>
-                        <li>Untuk $x = -1$: $f(-1) = 3(-1) - 5 = -3 - 5 = -8$</li>
-                        <li>Untuk $x = 0$: $f(0) = 3(0) - 5 = 0 - 5 = -5$</li>
-                        <li>Untuk $x = 1$: $f(1) = 3(1) - 5 = 3 - 5 = -2$</li>
-                        <li>Untuk $x = 2$: $f(2) = 3(2) - 5 = 6 - 5 = 1$</li>
-                    </ul>
-                    Kumpulan dari semua hasil ini adalah range, yaitu $\{-11, -8, -5, -2, 1\}$.
-                </div>
-            </div>
-        </div>
-
-        <div class="pembahasan-box">
-            <table class="soal-card">
-                <tr><td>Topik</td><td>Bentuk Aljabar dan Fungsi</td></tr>
-                <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Aplikasi Kontekstual)</td></tr>
-                <tr><td>Level Kognitif</td><td>MOTS</td></tr>
-            </table>
-             <div class="soal-pembahasan">
-                <b>4.</b> Biaya parkir motor di sebuah mal ditentukan oleh fungsi $B(t) = 2.000 + 1.000(t-1)$, dengan $B(t)$ adalah total biaya dalam Rupiah dan $t$ adalah lama parkir dalam jam (untuk $t \ge 1$). Jika Andi parkir selama 5 jam, biaya yang harus ia bayar adalah...
-                <ol>
-                    <li data-option="A">Rp5.000,-</li>
-                    <li data-option="B">Rp6.000,-</li>
-                    <li data-option="C">Rp7.000,-</li>
-                    <li data-option="D">Rp8.000,-</li>
-                </ol>
-                <div class="pembahasan-detail">
-                    <b>Jawaban: B. Rp6.000,-</b><br>
-                    <b>Pembahasan Detail:</b><br>
-                    Fungsi ini memberitahu kita cara menghitung biaya parkir. $t$ adalah lama parkir.
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Lingkaran</td></tr>
+                    <tr><td>Sub Topik</td><td>Persamaan Garis Singgung</td></tr>
+                    <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <b>2.</b> Salah satu persamaan garis singgung lingkaran $x^2 + y^2 = 25$ yang sejajar dengan garis $3x - 4y + 8 = 0$ adalah...
                     <ol>
-                        <li>Diketahui Andi parkir selama 5 jam, jadi $t=5$.</li>
-                        <li>Masukkan nilai $t=5$ ke dalam fungsi: $B(5) = 2.000 + 1.000(5-1)$.</li>
-                        <li>Kerjakan yang di dalam kurung dulu: $5-1=4$.</li>
-                        <li>Fungsinya menjadi: $B(5) = 2.000 + 1.000(4)$.</li>
-                        <li>Lakukan perkalian: $1.000 \times 4 = 4.000$.</li>
-                        <li>Terakhir, lakukan penjumlahan: $B(5) = 2.000 + 4.000 = 6.000$.</li>
+                        <li data-option="A">$3x - 4y = 25$</li>
+                        <li data-option="B">$3x + 4y = 25$</li>
+                        <li data-option="C">$4x - 3y = 25$</li>
                     </ol>
-                    Jadi, biayanya adalah Rp6.000,-.
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: A. $3x - 4y = 25$</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        Lingkaran berpusat di $(0,0)$ dengan $r=5$. Gradien garis adalah $m=3/4$.<br>
+                        Rumus: $y = mx \pm r\sqrt{m^2 + 1}$<br>
+                        $y = \frac{3}{4}x \pm 5\sqrt{(\frac{3}{4})^2 + 1} = \frac{3}{4}x \pm 5(\frac{5}{4})$<br>
+                        $4y = 3x \pm 25 \implies 3x - 4y = 25$ atau $3x-4y = -25$.
+                    </div>
                 </div>
             </div>
         </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
 
-        <div class="pembahasan-box">
-            <table class="soal-card">
-                <tr><td>Topik</td><td>Bentuk Aljabar dan Fungsi</td></tr>
-                <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Domain)</td></tr>
-                <tr><td>Level Kognitif</td><td>LOTS</td></tr>
-            </table>
-             <div class="soal-pembahasan">
-                <b>5.</b> Diketahui fungsi $f: A \rightarrow B$. Himpunan $A$ disebut sebagai...
-                <ol>
-                    <li data-option="A">Domain (daerah asal)</li>
-                    <li data-option="B">Kodomain (daerah kawan)</li>
-                    <li data-option="C">Range (daerah hasil)</li>
-                    <li data-option="D">Relasi</li>
-                </ol>
-                <div class="pembahasan-detail">
-                    <b>Jawaban: A. Domain (daerah asal)</b><br>
-                    <b>Pembahasan Detail:</b><br>
-                    Notasi $f: A \rightarrow B$ adalah cara standar untuk mendefinisikan sebuah fungsi.
-                    <ul>
-                        <li><b>$f$</b> adalah nama fungsinya.</li>
-                        <li><b>$A$</b> adalah himpunan awal tempat semua input berasal. Ini disebut <b>Domain</b> atau daerah asal.</li>
-                        <li><b>$B$</b> adalah himpunan tujuan tempat semua kemungkinan output berada. Ini disebut <b>Kodomain</b> atau daerah kawan.</li>
-                        <li>Tanda panah ($\rightarrow$) menunjukkan pemetaan dari himpunan A ke himpunan B.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="pembahasan-box">
-            <table class="soal-card">
-                <tr><td>Topik</td><td>Bentuk Aljabar dan Fungsi</td></tr>
-                <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Aplikasi Kontekstual)</td></tr>
-                <tr><td>Level Kognitif</td><td>MOTS</td></tr>
-            </table>
-             <div class="soal-pembahasan">
-                <b>6.</b> Suhu udara di puncak gunung pada pukul 05.00 adalah $-4^\circ C$. Suhu meningkat $2^\circ C$ setiap jamnya. Jika $S(t)$ adalah fungsi yang menyatakan suhu ($^\circ C$) pada jam ke-$t$ setelah pukul 05.00, maka suhu pada pukul 11.00 adalah...
-                <ol>
-                    <li data-option="A">$6^\circ C$</li>
-                    <li data-option="B">$8^\circ C$</li>
-                    <li data-option="C">$10^\circ C$</li>
-                    <li data-option="D">$12^\circ C$</li>
-                </ol>
-                <div class="pembahasan-detail">
-                    <b>Jawaban: B. $8^\circ C$</b><br>
-                    <b>Pembahasan Detail:</b>
+    <!-- HALAMAN 3: Soal 3-4 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika TKA</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan (Lanjutan)</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Statistika</td></tr>
+                    <tr><td>Sub Topik</td><td>Ukuran Pemusatan Data</td></tr>
+                    <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <b>3.</b> Nilai rata-rata ulangan dari 39 siswa adalah 70. Jika nilai Budi digabungkan, rata-rata menjadi 71. Nilai Budi adalah...
                     <ol>
-                        <li><b>Hitung durasi waktu:</b> Dari pukul 05.00 ke 11.00, waktu yang telah berlalu adalah $11 - 5 = 6$ jam.</li>
-                        <li><b>Hitung total kenaikan suhu:</b> Suhu meningkat $2^\circ C$ setiap jam. Dalam 6 jam, total kenaikannya adalah $6 \text{ jam} \times 2^\circ C/\text{jam} = 12^\circ C$.</li>
-                        <li><b>Hitung suhu akhir:</b> Suhu akhir adalah suhu awal ditambah total kenaikan suhu. Suhu akhir = $-4^\circ C + 12^\circ C = 8^\circ C$.</li>
+                        <li data-option="A">80</li><li data-option="B">90</li><li data-option="C">110</li>
                     </ol>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: C. 110</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        Jumlah nilai awal: $39 \times 70 = 2730$.<br>
+                        Jumlah nilai baru: $(39+1) \times 71 = 2840$.<br>
+                        Nilai Budi: $2840 - 2730 = 110$.
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="pembahasan-box">
-            <table class="soal-card">
-                <tr><td>Topik</td><td>Bentuk Aljabar dan Fungsi</td></tr>
-                <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Aplikasi Kontekstual)</td></tr>
-                <tr><td>Level Kognitif</td><td>MOTS</td></tr>
-            </table>
-             <div class="soal-pembahasan">
-                <b>7.</b> Sebuah perusahaan taksi online menetapkan tarif dengan fungsi $T(d) = 8.000 + 2.500d$, di mana $T(d)$ adalah total tarif dan $d$ adalah jarak dalam kilometer. Jika seorang penumpang membayar Rp33.000, maka jarak yang ia tempuh adalah...
-                <ol>
-                    <li data-option="A">8 km</li>
-                    <li data-option="B">9 km</li>
-                    <li data-option="C">10 km</li>
-                    <li data-option="D">11 km</li>
-                </ol>
-                <div class="pembahasan-detail">
-                    <b>Jawaban: C. 10 km</b><br>
-                    <b>Pembahasan Detail:</b><br>
-                    Kali ini, kita diberikan output ($T(d) = 33.000$) dan harus mencari inputnya ($d$).
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Fungsi Komposisi dan Fungsi Invers</td></tr>
+                    <tr><td>Sub Topik</td><td>Aplikasi Fungsi Komposisi</td></tr>
+                    <tr><td>Level Kognitif</td><td>Penalaran (HOTS)</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <b>4.</b> Sebuah pabrik kertas memproduksi kertas dari kayu melalui dua tahap. Tahap I dengan mesin $f(x) = x - 1$ dan tahap II dengan mesin $g(x) = x^2 + 2x$. Jika bahan kayu tersedia 5 ton, kertas yang dihasilkan adalah...
                     <ol>
-                        <li>Masukkan nilai yang diketahui ke dalam persamaan: $33.000 = 8.000 + 2.500d$.</li>
-                        <li>Untuk menemukan $d$, kita harus memisahkannya. Pindahkan 8.000 ke sisi kiri (menjadi kurang): $33.000 - 8.000 = 2.500d$.</li>
-                        <li>Hitung pengurangannya: $25.000 = 2.500d$.</li>
-                        <li>Untuk mendapatkan $d$, bagi kedua sisi dengan 2.500: $d = \frac{25.000}{2.500}$.</li>
-                        <li>$d=10$. Jadi, jarak yang ditempuh adalah 10 km.</li>
+                        <li data-option="A">20 ton</li><li data-option="B">24 ton</li><li data-option="C">30 ton</li>
                     </ol>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: B. 24 ton</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        Ini adalah $(g \circ f)(5) = g(f(5))$.<br>
+                        Tahap I: $f(5) = 5 - 1 = 4$ ton.<br>
+                        Tahap II: $g(4) = 4^2 + 2(4) = 16 + 8 = 24$ ton.
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <div class="pembahasan-box">
-            <table class="soal-card">
-                <tr><td>Topik</td><td>Bentuk Aljabar dan Fungsi</td></tr>
-                <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Domain Kontekstual)</td></tr>
-                <tr><td>Level Kognitif</td><td>HOTS</td></tr>
-            </table>
-            <div class="soal-pembahasan">
-                <b>8.</b> Sebuah persegi panjang memiliki keliling 30 cm. Jika panjangnya adalah $p$ cm, maka fungsi yang menyatakan luasnya, $L(p)$, adalah $L(p) = p(15-p)$. Mengingat konteks fisiknya, domain yang paling mungkin untuk fungsi ini adalah...
-                <ol>
-                    <li data-option="A">$p$ adalah bilangan real</li>
-                    <li data-option="B">$p > 15$</li>
-                    <li data-option="C">$0 < p < 15$</li>
-                    <li data-option="D">$p < 0$</li>
-                </ol>
-                <div class="pembahasan-detail">
-                    <b>Jawaban: C. $0 < p < 15$</b><br>
-                    <b>Pembahasan Detail:</b><br>
-                    Keliling persegi panjang adalah $K = 2(p+l)$.
-                    Diketahui $K=30$, maka $30 = 2(p+l)$, sehingga $15 = p+l$. Ini berarti lebarnya, $l = 15-p$.
-                    Dalam konteks fisik (dunia nyata), panjang dan lebar sebuah bangun datar haruslah bernilai positif.
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 4: Soal 5-6 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika TKA</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan (Lanjutan)</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Lingkaran</td></tr>
+                    <tr><td>Sub Topik</td><td>Kecukupan Data</td></tr>
+                    <tr><td>Level Kognitif</td><td>Penalaran (HOTS)</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <b>5.</b> Berapakah jari-jari lingkaran yang berpusat di (2, 3)?
+                    <p>(1) Lingkaran tersebut menyinggung sumbu X.<br>
+                       (2) Lingkaran tersebut melalui titik (2, 6).</p>
                     <ol>
-                        <li>Syarat panjang: $p > 0$.</li>
-                        <li>Syarat lebar: $l > 0 \implies 15-p > 0$. Jika kita pindahkan $p$ ke sisi kanan, kita dapatkan $15 > p$.</li>
+                        <li data-option="A">Pernyataan (1) SAJA cukup.</li>
+                        <li data-option="B">Pernyataan (2) SAJA cukup.</li>
+                        <li data-option="C">DUA pernyataan BERSAMA-SAMA cukup.</li>
+                        <li data-option="D">Pernyataan (1) SAJA cukup dan (2) SAJA cukup.</li>
                     </ol>
-                    Kita harus memenuhi kedua syarat tersebut secara bersamaan. Jika $p>0$ dan $p<15$, maka domain yang mungkin adalah $0 < p < 15$.
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: D. Pernyataan (1) SAJA cukup dan (2) SAJA cukup.</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        (1) Pusat $(2,3)$ menyinggung sumbu X (y=0). Jari-jarinya adalah jarak vertikal dari pusat ke sumbu, yaitu $|3| = 3$. <b>Cukup</b>.
+                        <br>(2) Jari-jari adalah jarak dari pusat $(2,3)$ ke titik $(2,6)$. $r = \sqrt{(2-2)^2 + (6-3)^2} = 3$. <b>Cukup</b>.
+                    </div>
+                </div>
+            </div>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Statistika</td></tr>
+                    <tr><td>Sub Topik</td><td>Pilihan Ganda Kompleks</td></tr>
+                    <tr><td>Level Kognitif</td><td>Penalaran (HOTS)</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <b>6.</b> Data terurut: $x, 6, 7, 8, 8, y$. Rata-rata data adalah 7 dan jangkauannya 5. Manakah pernyataan yang benar? <b>(bisa pilih lebih dari satu jawaban)</b>
+                    <div class="pilihan-ganda-mcma">
+                        <div><input type="checkbox" disabled><span>Median data adalah 7.5.</span></div>
+                        <div><input type="checkbox" disabled><span>Nilai $x+y=13$.</span></div>
+                        <div><input type="checkbox" disabled><span>Modus data adalah 8.</span></div>
+                        <div><input type="checkbox" disabled><span>Nilai $y=9$.</span></div>
+                    </div>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: Semua pilihan benar</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        - Rata-rata: $\frac{x+6+7+8+8+y}{6} = 7 \implies x+y+29 = 42 \implies x+y = 13$. (Pilihan 2 benar).<br>
+                        - Jangkauan: $y - x = 5$.<br>
+                        - SPLDV: $x+y=13$ dan $y-x=5$ menghasilkan $x=4, y=9$. (Pilihan 4 benar).<br>
+                        - Data: 4, 6, 7, 8, 8, 9.<br>
+                        - Median: $\frac{7+8}{2} = 7.5$. (Pilihan 1 benar).<br>
+                        - Modus: 8. (Pilihan 3 benar).
+                    </div>
                 </div>
             </div>
         </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
 
-        <div class="pembahasan-box">
-            <table class="soal-card">
-                <tr><td>Topik</td><td>Bentuk Aljabar dan Fungsi</td></tr>
-                <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Analisis Fungsi)</td></tr>
-                <tr><td>Level Kognitif</td><td>HOTS</td></tr>
-            </table>
-            <div class="soal-pembahasan">
-                <b>9.</b> Diketahui fungsi $g(x) = x^2 - 4$ dengan domain $D_g = \{x | -3 \le x \le 3, x \in \text{bilangan bulat}\}$. Manakah pernyataan berikut yang benar? <b>(bisa pilih lebih dari satu jawaban)</b>
-                <ol>
-                    <li data-option="A">Domain fungsi adalah $\{-3, -2, -1, 0, 1, 2, 3\}$.</li>
-                    <li data-option="B">Nilai minimum fungsi adalah -4.</li>
-                    <li data-option="C">Range fungsi adalah $\{-3, 0, 5\}$.</li>
-                    <li data-option="D">$g(-2) = g(2)$.</li>
-                </ol>
-                <div class="pembahasan-detail">
-                    <b>Jawaban: A, B, D</b><br>
-                    <b>Pembahasan Detail:</b><br>
-                    Mari kita analisis setiap pernyataan:
-                    <ul>
-                        <li><b>A:</b> Domainnya adalah bilangan bulat antara -3 dan 3 (inklusif). Jika kita daftar, anggotanya adalah $\{-3, -2, -1, 0, 1, 2, 3\}$. <b>Pernyataan ini Benar.</b></li>
-                        <li><b>B:</b> Fungsi $g(x)=x^2-4$. Nilai $x^2$ akan selalu non-negatif (0 atau positif). Nilai terkecil dari $x^2$ adalah 0 (saat $x=0$). Maka, nilai minimum fungsi ini adalah $0-4=-4$. <b>Pernyataan ini Benar.</b></li>
-                        <li><b>C:</b> Kita hitung rangenya: $g(-3)=5, g(-2)=0, g(-1)=-3, g(0)=-4, g(1)=-3, g(2)=0, g(3)=5$. Jadi, range yang lengkap adalah $\{-4, -3, 0, 5\}$. Pernyataan ini tidak lengkap. <b>Pernyataan ini Salah.</b></li>
-                            <li><b>D:</b> Kita cek: $g(-2) = (-2)^2 - 4 = 4 - 4 = 0$. Dan $g(2) = 2^2 - 4 = 4 - 4 = 0$. Karena hasilnya sama (0), maka <b>pernyataan ini Benar.</b></li>
-                    </ul>
+    <!-- HALAMAN 5: Soal 7-9 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika TKA</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan (Lanjutan)</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Fungsi Komposisi dan Fungsi Invers</td></tr>
+                    <tr><td>Sub Topik</td><td>Fungsi Invers</td></tr>
+                    <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <b>7.</b> Jika $f(x) = \frac{2x+3}{4x-5}$, dengan $x \neq \frac{5}{4}$, maka $f^{-1}(x)$ adalah...
+                    <ol>
+                        <li data-option="A">$\frac{5x+3}{4x-2}, x \neq \frac{1}{2}$</li>
+                        <li data-option="B">$\frac{5x-3}{4x+2}, x \neq -\frac{1}{2}$</li>
+                        <li data-option="C">$\frac{-5x+3}{4x+2}, x \neq -\frac{1}{2}$</li>
+                    </ol>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: A. $\frac{5x+3}{4x-2}, x \neq \frac{1}{2}$</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        Gunakan rumus cepat $f(x) = \frac{ax+b}{cx+d} \implies f^{-1}(x) = \frac{-dx+b}{cx-a}$.<br>
+                        $a=2, b=3, c=4, d=-5 \implies f^{-1}(x) = \frac{-(-5)x+3}{4x-2} = \frac{5x+3}{4x-2}$.
+                    </div>
+                </div>
+            </div>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Lingkaran</td></tr>
+                    <tr><td>Sub Topik</td><td>Kedudukan Titik (Kategori)</td></tr>
+                    <tr><td>Level Kognitif</td><td>Pengetahuan dan Pemahaman</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <b>8.</b> Diberikan lingkaran $(x-1)^2 + (y+2)^2 = 16$. Tentukan kebenaran pernyataan berikut.
+                    <table class="true-false-table">
+                        <thead><tr><th>Pernyataan</th><th>Benar</th><th>Salah</th></tr></thead>
+                        <tbody>
+                            <tr><td>Titik A(1, 2) berada pada lingkaran.</td><td></td><td></td></tr>
+                            <tr><td>Titik B(4, 1) berada di luar lingkaran.</td><td></td><td></td></tr>
+                            <tr><td>Titik C(2, -1) berada di dalam lingkaran.</td><td></td><td></td></tr>
+                        </tbody>
+                    </table>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban:</b> Semua pernyataan Benar.<br>
+                        <b>Pembahasan Detail:</b><br>
+                        Substitusikan titik ke Kuasa Titik (K) dan bandingkan dengan $r^2=16$.<br>
+                        - A(1, 2): $K = (1-1)^2 + (2+2)^2 = 16$. $K=r^2 \implies$ Pada. (Benar)<br>
+                        - B(4, 1): $K = (4-1)^2 + (1+2)^2 = 18$. $K>r^2 \implies$ Luar. (Benar)<br>
+                        - C(2, -1): $K = (2-1)^2 + (-1+2)^2 = 2$. $K<r^2 \implies$ Dalam. (Benar)
+                    </div>
+                </div>
+            </div>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Statistika</td></tr>
+                    <tr><td>Sub Topik</td><td>Ukuran Penyebaran Data</td></tr>
+                    <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <b>9.</b> Simpangan baku dari data 4, 6, 8, 2, 5 adalah...
+                    <ol>
+                        <li data-option="A">$\sqrt{2}$</li><li data-option="B">2</li><li data-option="C">$\sqrt{5}$</li>
+                    </ol>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: B. 2</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        Rata-rata = $\frac{4+6+8+2+5}{5} = 5$.<br>
+                        Ragam = $\frac{(4-5)^2+(6-5)^2+(8-5)^2+(2-5)^2+(5-5)^2}{5} = \frac{1+1+9+9+0}{5} = 4$.<br>
+                        Simpangan baku = $\sqrt{4} = 2$.
+                    </div>
                 </div>
             </div>
         </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
 
-        <div class="pembahasan-box">
-            <table class="soal-card">
-                <tr><td>Topik</td><td>Bentuk Aljabar dan Fungsi</td></tr>
-                <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Identifikasi Fungsi)</td></tr>
-                <tr><td>Level Kognitif</td><td>HOTS</td></tr>
-            </table>
-            <div class="soal-pembahasan">
-                <b>10.</b> Perhatikan relasi "makanan khas dari" dari himpunan P = {Soto, Bakso, Rawon} ke Q = {Surabaya, Lamongan, Malang} yang disajikan sebagai berikut: Soto $\rightarrow$ Lamongan, Bakso $\rightarrow$ Malang, Rawon $\rightarrow$ Surabaya, dan Rawon $\rightarrow$ Malang. Pernyataan mana saja yang benar? <b>(bisa pilih lebih dari satu jawaban)</b>
-                <ol>
-                    <li data-option="A">Relasi tersebut adalah sebuah fungsi.</li>
-                    <li data-option="B">Relasi tersebut bukan merupakan fungsi.</li>
-                    <li data-option="C">Domain relasi adalah {Soto, Bakso, Rawon}.</li>
-                    <li data-option="D">Semua anggota kodomain memiliki pasangan.</li>
-                </ol>
-                <div class="pembahasan-detail">
-                    <b>Jawaban: B, C</b><br>
-                    <b>Pembahasan Detail:</b><br>
-                    <ul>
-                        <li><b>A & B:</b> Relasi ini memasangkan 'Rawon' dengan 'Surabaya' DAN 'Malang'. Karena ada satu anggota domain ('Rawon') yang memiliki lebih dari satu pasangan, ini <b>bukan fungsi</b>. Jadi, A salah dan B benar.</li>
-                        <li><b>C:</b> Domain adalah himpunan asal, yaitu P = {Soto, Bakso, Rawon}. <b>Pernyataan ini Benar.</b></li>
-                        <li><b>D:</b> Kodomain adalah Q = {Surabaya, Lamongan, Malang}. Dari relasi, Surabaya dan Lamongan punya pasangan. Pernyataan ini tidak dapat dipastikan benar karena tidak semua anggota Q wajib punya pasangan dalam relasi. Jadi, pernyataan ini belum tentu benar.</li>
-                    </ul>
+    <!-- HALAMAN 6: Soal 10-11 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika TKA</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan (Lanjutan)</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Fungsi Komposisi dan Fungsi Invers</td></tr>
+                    <tr><td>Sub Topik</td><td>Invers Fungsi Komposisi</td></tr>
+                    <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <b>10.</b> Diketahui $f(x)=x+1$ dan $g(x) = \frac{x}{2x-1}, x \neq \frac{1}{2}$. Jika $(f \circ g)^{-1}(a) = 1$, maka nilai $a$ adalah...
+                    <ol>
+                        <li data-option="A">-1</li><li data-option="B">1</li><li data-option="C">2</li>
+                    </ol>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: C. 2</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        $(f \circ g)^{-1}(a) = 1 \implies (f \circ g)(1) = a$.<br>
+                        $(f \circ g)(x) = f(g(x)) = \frac{x}{2x-1} + 1 = \frac{3x-1}{2x-1}$.<br>
+                        $a = (f \circ g)(1) = \frac{3(1)-1}{2(1)-1} = \frac{2}{1} = 2$.
+                    </div>
+                </div>
+            </div>
+            <div class="pembahasan-box">
+                 <table class="soal-card">
+                    <tr><td>Topik</td><td>Lingkaran</td></tr>
+                    <tr><td>Sub Topik</td><td>Aplikasi (Pilihan Ganda Kompleks)</td></tr>
+                    <tr><td>Level Kognitif</td><td>Penalaran (HOTS)</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <b>11.</b> Radar di $(2, 3)$ jangkauannya 50 km. Pesawat melintas di garis $3x - 4y = 12$. Mana pernyataan yang benar? <b>(bisa pilih lebih dari satu jawaban)</b>
+                     <div class="pilihan-ganda-mcma">
+                        <div><input type="checkbox" disabled><span>Persamaan jangkauan radar: $(x-2)^2 + (y-3)^2 = 2500$.</span></div>
+                        <div><input type="checkbox" disabled><span>Jarak terdekat radar ke lintasan pesawat adalah 3.6 km.</span></div>
+                        <div><input type="checkbox" disabled><span>Pesawat akan terdeteksi oleh radar.</span></div>
+                    </div>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: Pilihan 1, 2, 3 benar</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        1. Persamaan radar: Pusat $(2,3)$, $r=50 \implies (x-2)^2 + (y-3)^2 = 2500$. (Benar).<br>
+                        2. Jarak pusat ke garis $3x-4y-12=0$: $d = \frac{|3(2)-4(3)-12|}{\sqrt{3^2+(-4)^2}} = \frac{|-18|}{5} = 3.6$ km. (Benar).<br>
+                        3. Deteksi: Jarak (3.6 km) < Jangkauan (50 km), maka pesawat terdeteksi. (Benar).
+                    </div>
                 </div>
             </div>
         </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
 
-         <div class="pembahasan-box">
-            <table class="soal-card">
-                <tr><td>Topik</td><td>Bentuk Aljabar dan Fungsi</td></tr>
-                <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Penyajian Fungsi)</td></tr>
-                <tr><td>Level Kognitif</td><td>LOTS</td></tr>
-            </table>
-            <div class="soal-pembahasan">
-                <b>11.</b> Suatu fungsi dapat disajikan dalam bentuk... <b>(bisa pilih lebih dari satu jawaban)</b>
-                <ol>
-                    <li data-option="A">Diagram panah</li>
-                    <li data-option="B">Tabel</li>
-                    <li data-option="C">Himpunan pasangan berurutan</li>
-                    <li data-option="D">Grafik Kartesius</li>
-                </ol>
-                <div class="pembahasan-detail">
-                    <b>Jawaban: A, B, C, D</b><br>
-                    <b>Pembahasan Detail:</b><br>
-                    Semua pilihan yang diberikan adalah cara standar dan valid untuk merepresentasikan atau menyajikan suatu fungsi dalam matematika. Masing-masing memiliki kegunaan visual dan analitis yang berbeda, tetapi semuanya dapat digunakan untuk menggambarkan hubungan fungsional.
+    <!-- HALAMAN 7: Soal 12-13 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika TKA</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan (Lanjutan)</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Statistika</td></tr>
+                    <tr><td>Sub Topik</td><td>Interpretasi Data (Kategori)</td></tr>
+                    <tr><td>Level Kognitif</td><td>Penalaran (HOTS)</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <b>12.</b> Perhatikan tabel nilai ujian:
+                     <table class="true-false-table" style="font-size: 8.5pt;">
+                         <tr><th>Nilai</th><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+                         <tr><th>Frekuensi</th><td>3</td><td>8</td><td>10</td><td>7</td><td>2</td></tr>
+                     </table><br>
+                     Tentukan kebenaran pernyataan analisis data berikut.
+                     <table class="true-false-table">
+                        <thead><tr><th>Pernyataan</th><th>Benar</th><th>Salah</th></tr></thead>
+                        <tbody>
+                            <tr><td>Rata-rata nilai ujian adalah 6.9.</td><td></td><td></td></tr>
+                            <tr><td>Median dari data tersebut adalah 7.</td><td></td><td></td></tr>
+                            <tr><td>Modus dari data tersebut adalah 7.</td><td></td><td></td></tr>
+                        </tbody>
+                    </table>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban:</b> Semua pernyataan Benar.<br>
+                        <b>Pembahasan Detail:</b><br>
+                        - Total siswa: $n = 30$.<br>
+                        - Rata-rata: $\frac{(5 \times 3) + ... + (9 \times 2)}{30} = \frac{207}{30} = 6.9$. (Benar).<br>
+                        - Median: Data ke-15 & 16 ada di kelompok nilai 7. Median=7. (Benar).<br>
+                        - Modus: Nilai 7 punya frekuensi tertinggi (10). (Benar).
+                    </div>
+                </div>
+            </div>
+             <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Fungsi Komposisi dan Fungsi Invers</td></tr>
+                    <tr><td>Sub Topik</td><td>Menentukan Fungsi Awal</td></tr>
+                    <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <b>13.</b> Diketahui $(f \circ g)(x) = 4x^2 - 12x + 9$ dan $f(x) = x^2$. Maka fungsi $g(x)$ adalah...
+                    <ol>
+                        <li data-option="A">$2x+3$</li><li data-option="B">$2x-3$</li><li data-option="C">$4x-6$</li>
+                    </ol>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: B. $2x-3$</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        $(f \circ g)(x) = f(g(x)) = (g(x))^2$.<br>
+                        $(g(x))^2 = 4x^2 - 12x + 9 = (2x-3)^2$.<br>
+                        Maka, $g(x) = 2x-3$.
+                    </div>
                 </div>
             </div>
         </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
 
-         <div class="pembahasan-box">
-            <table class="soal-card">
-                <tr><td>Topik</td><td>Bentuk Aljabar dan Fungsi</td></tr>
-                <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Aplikasi Kontekstual)</td></tr>
-                <tr><td>Level Kognitif</td><td>HOTS</td></tr>
-            </table>
-            <div class="soal-pembahasan">
-                <b>12.</b> Sebuah toko online memberikan diskon sebesar 20% untuk semua produk. Jika $h$ adalah harga asli produk, maka fungsi harga setelah diskon adalah $D(h) = 0,8h$. Manakah pernyataan yang benar? <b>(bisa pilih lebih dari satu jawaban)</b>
-                <ol>
-                    <li data-option="A">Domain fungsi adalah semua bilangan real lebih besar dari nol.</li>
-                    <li data-option="B">Jika harga asli Rp100.000, harga setelah diskon Rp80.000.</li>
-                    <li data-option="C">Range fungsi sama dengan domainnya.</li>
-                    <li data-option="D">Jika seseorang membayar Rp40.000, maka harga aslinya Rp50.000.</li>
-                </ol>
-                <div class="pembahasan-detail">
-                    <b>Jawaban: A, B, D</b><br>
-                    <b>Pembahasan Detail:</b>
-                    <ul>
-                        <li><b>A:</b> Domain adalah harga asli ($h$). Harga tidak mungkin negatif atau nol. Jadi domainnya adalah $h>0$. <b>Benar.</b></li>
-                        <li><b>B:</b> $D(100.000) = 0,8 \times 100.000 = 80.000$. <b>Benar.</b></li>
-                        <li><b>C:</b> Range adalah harga setelah diskon, yang selalu lebih kecil dari harga asli. Maka range tidak sama dengan domain. <b>Salah.</b></li>
-                        <li><b>D:</b> Jika harga bayar 40.000, maka $40.000 = 0,8h$. Untuk mencari $h$, kita hitung $h = 40.000 / 0,8 = 50.000$. <b>Benar.</b></li>
-                    </ul>
+    <!-- HALAMAN 8: Soal 14-15 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika TKA</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan (Lanjutan)</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Lingkaran</td></tr>
+                    <tr><td>Sub Topik</td><td>Persamaan Lingkaran</td></tr>
+                    <tr><td>Level Kognitif</td><td>Penalaran (HOTS)</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <b>14.</b> Persamaan lingkaran yang berpusat di (1, 4) dan menyinggung garis $3x - 4y - 2 = 0$ adalah...
+                    <ol>
+                        <li data-option="A">$x^2 + y^2 - 2x - 8y - 8 = 0$</li>
+                        <li data-option="B">$x^2 + y^2 - 2x - 8y + 8 = 0$</li>
+                        <li data-option="C">$x^2 + y^2 + 2x - 8y - 8 = 0$</li>
+                    </ol>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: B. $x^2 + y^2 - 2x - 8y + 8 = 0$</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        1. Jari-jari (r) adalah jarak dari pusat $(1,4)$ ke garis $3x-4y-2=0$.<br>
+                           $r = \frac{|3(1) - 4(4) - 2|}{\sqrt{3^2+(-4)^2}} = \frac{|-15|}{5} = 3$.<br>
+                        2. Persamaan: $(x-1)^2 + (y-4)^2 = 3^2$.<br>
+                           $x^2 - 2x + 1 + y^2 - 8y + 16 = 9 \implies x^2 + y^2 - 2x - 8y + 8 = 0$.
+                    </div>
+                </div>
+            </div>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Statistika</td></tr>
+                    <tr><td>Sub Topik</td><td>Kecukupan Data</td></tr>
+                    <tr><td>Level Kognitif</td><td>Penalaran (HOTS)</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <b>15.</b> Ada lima bilangan bulat positif. Berapakah mediannya?
+                    <p>(1) Bilangan terbesar 10 dan jangkauannya 7.<br>
+                       (2) Rata-rata kelima bilangan adalah 6.</p>
+                    <ol>
+                        <li data-option="A">Pernyataan (1) SAJA cukup.</li>
+                        <li data-option="B">Pernyataan (2) SAJA cukup.</li>
+                        <li data-option="C">DUA pernyataan BERSAMA-SAMA cukup.</li>
+                        <li data-option="D">Pernyataan (1) dan (2) tidak cukup.</li>
+                    </ol>
+                    <div class="pembahasan-detail">
+                        <b>Jawaban: D. Pernyataan (1) dan (2) tidak cukup.</b><br>
+                        <b>Pembahasan Detail:</b><br>
+                        (1) Bilangan terbesar=10, terkecil=3. Data: $3,b,c,d,10$. Median (c) tidak pasti. <b>Tidak Cukup</b>.<br>
+                        (2) Rata-rata 6, jumlah 30. Median tidak pasti. <b>Tidak Cukup</b>.<br>
+                        (1)+(2): $3+b+c+d+10=30 \implies b+c+d=17$. Median (c) masih tidak pasti. Bisa (3,4,5,8,10) median 5, bisa (3,3,6,8,10) median 6. <b>Tidak Cukup</b>.
+                    </div>
                 </div>
             </div>
         </div>
-        
-         <div class="pembahasan-box">
-            <table class="soal-card">
-                <tr><td>Topik</td><td>Bentuk Aljabar dan Fungsi</td></tr>
-                <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Identifikasi Fungsi)</td></tr>
-                <tr><td>Level Kognitif</td><td>HOTS</td></tr>
-            </table>
-            <div class="soal-pembahasan">
-                <b>13.</b> Perhatikan relasi-relasi yang disajikan dalam himpunan pasangan berurutan berikut. Tentukan apakah setiap relasi merupakan fungsi atau bukan.
-                <p>a) $\{(1,a), (2,b), (3,c)\}$<br>b) $\{(1,a), (1,b), (2,c)\}$<br>c) $\{(a,1), (b,1), (c,1)\}$<br>d) $\{(a,b), (c,d), (e,f)\}$ (dengan a,c,e berbeda)</p>
-                <div class="pembahasan-detail">
-                    <b>Jawaban:</b><br>
-                    <b>Pembahasan Detail:</b>
-                    <ul>
-                        <li>a) Domain {1, 2, 3} masing-masing muncul sekali. <b>Fungsi</b>.</li>
-                        <li>b) Domain '1' muncul dua kali dengan pasangan berbeda. <b>Bukan Fungsi</b>.</li>
-                        <li>c) Domain {a, b, c} masing-masing muncul sekali. <b>Fungsi</b>.</li>
-                        <li>d) Karena a, c, e dijamin berbeda, maka setiap domain hanya muncul sekali. <b>Fungsi</b>.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
 
-        <div class="pembahasan-box">
-            <table class="soal-card">
-                <tr><td>Topik</td><td>Bentuk Aljabar dan Fungsi</td></tr>
-                <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Analisis Fungsi)</td></tr>
-                <tr><td>Level Kognitif</td><td>HOTS</td></tr>
-            </table>
-             <div class="soal-pembahasan">
-                <b>14.</b> Sebuah fungsi $f$ didefinisikan sebagai $f(x) = 10 - x^2$ dengan domain bilangan asli kurang dari 4. Tentukan kebenaran dari setiap pernyataan berikut.
-                 <p>a) Domain fungsi adalah $\{1, 2, 3\}$.<br>b) Range fungsi adalah $\{9, 6, 2\}$.<br>c) Nilai $f(3)$ adalah 1.<br>d) Fungsi ini memiliki nilai maksimum 9.</p>
-                <div class="pembahasan-detail">
-                    <b>Jawaban:</b> a) Benar, b) Salah, c) Benar, d) Benar<br>
-                    <b>Pembahasan Detail:</b><br>
-                    Domain "bilangan asli kurang dari 4" adalah $\{1, 2, 3\}$. Mari kita hitung rangenya:
-                     <ul>
-                        <li>$f(1)=10-1^2=9$</li>
-                        <li>$f(2)=10-2^2=6$</li>
-                        <li>$f(3)=10-3^2=1$</li>
-                    </ul>
-                    a) Domain adalah $\{1, 2, 3\}$. <b>Benar</b>.<br>
-                    b) Range adalah $\{1, 6, 9\}$. Pernyataan mengatakan $\{9, 6, 2\}$. <b>Salah</b>.<br>
-                    c) Nilai $f(3)$ adalah 1. <b>Benar</b>.<br>
-                    d) Nilai tertinggi di range adalah 9. <b>Benar</b>.
-                </div>
-            </div>
-        </div>
-
-        <div class="pembahasan-box">
-            <table class="soal-card">
-                <tr><td>Topik</td><td>Bentuk Aljabar dan Fungsi</td></tr>
-                <tr><td>Sub Topik</td><td>Relasi dan Fungsi (Aplikasi Kontekstual)</td></tr>
-                <tr><td>Level Kognitif</td><td>HOTS</td></tr>
-            </table>
-            <div class="soal-pembahasan">
-                <b>15.</b> Klub kebugaran "Sehat Selalu" menawarkan dua paket keanggotaan. Paket A: Biaya bulanan Rp150.000. Paket B: Biaya pendaftaran Rp100.000 dan biaya bulanan Rp125.000. Fungsi biaya total untuk $x$ bulan adalah $A(x)=150.000x$ dan $B(x)=100.000+125.000x$. Tentukan kebenaran pernyataan berikut.
-                <p>a) Untuk 2 bulan, Paket A lebih murah.<br>b) Biaya kedua paket sama pada bulan ke-4.<br>c) Untuk 1 tahun (12 bulan), Paket B lebih mahal.<br>d) Domain yang relevan untuk $x$ adalah bilangan bulat positif.</p>
-                <div class="pembahasan-detail">
-                    <b>Jawaban:</b> a) Benar, b) Benar, c) Salah, d) Benar<br>
-                    <b>Pembahasan Detail:</b><br>
-                      a) Untuk $x=2$: A = $150.000(2) = 300.000$; B = $100.000+125.000(2) = 350.000$. A lebih murah. <b>Benar</b>.<br>
-                      b) Sama jika $150.000x = 100.000 + 125.000x \implies 25.000x = 100.000 \implies x = 4$. <b>Benar</b>.<br>
-                      c) Untuk $x=12$: A = $1.800.000$; B = $100.000+1.500.000=1.600.000$. B lebih murah. <b>Salah</b>.<br>
-                      d) Bulan dihitung sebagai 1, 2, 3, dst., yang merupakan bilangan bulat positif. <b>Benar</b>.
-                </div>
-            </div>
-        </div>
-
-    </main>
 </div>
-
-<footer class="print-footer">
-    <div class="print-footer-content">
-        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
-        <span class="page-number"></span>
-    </div>
-</footer>
 
 </body>
 </html>
