@@ -143,7 +143,6 @@
         
         .pembahasan-box {
             margin-bottom: 25px;
-            page-break-inside: avoid;
         }
 
         .soal-card {
@@ -183,33 +182,34 @@
             padding-left: 20px;
             margin: 5px 0 0 0;
         }
-        
+
+        /* New structure for question indentation */
         .soal-pembahasan {
-            margin-top: 10px;
             display: flex;
             align-items: flex-start;
             gap: 5px;
+            margin-top: 10px;
         }
         .soal-nomor {
-            flex-shrink: 0;
             font-weight: bold;
+            min-width: 20px;
         }
         .soal-konten {
             flex-grow: 1;
             text-align: justify;
         }
 
-        .soal-pembahasan ol {
+        .soal-konten ol {
             list-style-type: none;
             padding-left: 0;
             margin-top: 10px;
         }
-        .soal-pembahasan ol li {
+        .soal-konten ol li {
             margin-bottom: 8px;
             padding-left: 25px;
             position: relative;
         }
-        .soal-pembahasan ol li::before {
+        .soal-konten ol li::before {
             content: attr(data-option) ". ";
             font-weight: bold;
             position: absolute;
@@ -267,32 +267,46 @@
             background-color: var(--table-header-bg);
         }
 
+        /* --- PRINT STYLES --- */
         @media print {
-    @page {
-        size: A4;
-        margin: 0;
-    }
-    body, html {
-        margin: 0 !important;
-        padding: 0 !important;
-        background: none !important;
-    }
-    .page {
-        margin: 0 !important;
-        padding: 1cm !important;
-        box-shadow: none !important;
-        width: auto !important;
-        min-height: auto !important;
-        page-break-before: always;
-        page-break-after: always;
-    }
-    .layout-2-kolom {
-        columns: 1 !important;
-    }
-    .soal-latihan {
-        break-inside: avoid-page;
-    }
-}
+            @page {
+                size: A4;
+                margin: 0; /* Let the .page element handle margins */
+            }
+
+            body {
+                background-color: white;
+                margin: 0;
+            }
+
+            .page-container{
+                margin: 0;
+            }
+
+            .page {
+                box-shadow: none;
+                margin: 0;
+                padding: 1.8cm 2.5cm; /* Re-apply margins here */
+                width: 21cm;
+                height: 29.7cm; /* Enforce A4 dimensions */
+                page-break-after: always;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .page:last-of-type {
+                page-break-after: auto;
+            }
+
+            .pembahasan-box, .summary-table, .section-title {
+                page-break-inside: avoid;
+            }
+
+            .soal-card td:first-child, .summary-table .summary-table-header td, .pembahasan-detail, .true-false-table th, .header-top-box, .header-bottom-text {
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact;
+            }
+        }
     </style>
 </head>
 <body>
@@ -397,7 +411,7 @@
                     <tr><td>Level Kognitif</td><td>Pengetahuan dan Pemahaman</td></tr>
                 </table>
                 <div class="soal-pembahasan">
-                    <div class="soal-nomor"><b>1.</b></div>
+                    <div class="soal-nomor">1.</div>
                     <div class="soal-konten">
                         Diketahui fungsi $f(x) = 2x + 1$ dan $g(x) = x^2 - 3x + 5$. Nilai dari $(g \circ f)(x)$ adalah...
                         <ol>
@@ -410,10 +424,7 @@
                         <div class="pembahasan-detail">
                             <b>Jawaban: A. $4x^2 - 2x + 3$</b><br>
                             <b>Pembahasan Detail:</b><br>
-                            $(g \circ f)(x) = g(f(x)) = (f(x))^2 - 3(f(x)) + 5$<br>
-                            $= (2x+1)^2 - 3(2x+1) + 5$<br>
-                            $= (4x^2 + 4x + 1) - (6x + 3) + 5$<br>
-                            $= 4x^2 - 2x + 3$
+                            $\begin{aligned}(g \circ f)(x) &= g(f(x)) \\ &= (f(x))^2 - 3(f(x)) + 5 \\ &= (2x+1)^2 - 3(2x+1) + 5 \\ &= (4x^2 + 4x + 1) - (6x + 3) + 5 \\ &= 4x^2 - 2x + 3\end{aligned}$
                         </div>
                     </div>
                 </div>
@@ -425,7 +436,7 @@
                     <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
                 </table>
                 <div class="soal-pembahasan">
-                    <div class="soal-nomor"><b>2.</b></div>
+                    <div class="soal-nomor">2.</div>
                     <div class="soal-konten">
                         Salah satu persamaan garis singgung lingkaran $x^2 + y^2 = 25$ yang sejajar dengan garis $3x - 4y + 8 = 0$ adalah...
                         <ol>
@@ -438,10 +449,11 @@
                         <div class="pembahasan-detail">
                             <b>Jawaban: A. $3x - 4y = 25$</b><br>
                             <b>Pembahasan Detail:</b><br>
-                            Lingkaran berpusat di $(0,0)$ dengan $r=5$. Gradien garis adalah $m=3/4$.<br>
-                            Rumus: $y = mx \pm r\sqrt{m^2 + 1}$<br>
-                            $y = \frac{3}{4}x \pm 5\sqrt{(\frac{3}{4})^2 + 1} = \frac{3}{4}x \pm 5(\frac{5}{4})$<br>
-                            $4y = 3x \pm 25 \implies 3x - 4y = 25$ atau $3x-4y = -25$.
+                            Lingkaran berpusat di $(0,0)$ dengan jari-jari $r=\sqrt{25}=5$.<br>
+                            Gradien garis $3x - 4y + 8 = 0$ adalah $m = -(\frac{3}{-4}) = \frac{3}{4}$.<br>
+                            Persamaan garis singgung: $y = mx \pm r\sqrt{m^2 + 1}$<br>
+                            $\begin{aligned}y &= \frac{3}{4}x \pm 5\sqrt{(\frac{3}{4})^2 + 1} \\ y &= \frac{3}{4}x \pm 5\sqrt{\frac{9}{16} + 1} \\ y &= \frac{3}{4}x \pm 5\sqrt{\frac{25}{16}} \\ y &= \frac{3}{4}x \pm 5(\frac{5}{4}) \quad (\text{kali 4}) \\ 4y &= 3x \pm 25\end{aligned}$<br>
+                            Jadi, persamaannya adalah $3x - 4y = 25$ atau $3x-4y = -25$.
                         </div>
                     </div>
                 </div>
@@ -469,7 +481,7 @@
                     <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
                 </table>
                 <div class="soal-pembahasan">
-                    <div class="soal-nomor"><b>3.</b></div>
+                    <div class="soal-nomor">3.</div>
                     <div class="soal-konten">
                         Nilai rata-rata ulangan dari 39 siswa adalah 70. Jika nilai Budi digabungkan, rata-rata menjadi 71. Nilai Budi adalah...
                         <ol>
@@ -483,8 +495,8 @@
                             <b>Jawaban: D. 110</b><br>
                             <b>Pembahasan Detail:</b><br>
                             Jumlah nilai awal: $39 \times 70 = 2730$.<br>
-                            Jumlah nilai baru: $(39+1) \times 71 = 2840$.<br>
-                            Nilai Budi: $2840 - 2730 = 110$.
+                            Jumlah nilai baru (dengan Budi): $(39+1) \times 71 = 40 \times 71 = 2840$.<br>
+                            Nilai Budi adalah selisihnya: $2840 - 2730 = 110$.
                         </div>
                     </div>
                 </div>
@@ -496,9 +508,9 @@
                     <tr><td>Level Kognitif</td><td>Penalaran (HOTS)</td></tr>
                 </table>
                 <div class="soal-pembahasan">
-                    <div class="soal-nomor"><b>4.</b></div>
+                    <div class="soal-nomor">4.</div>
                     <div class="soal-konten">
-                        Sebuah pabrik kertas memproduksi kertas dari kayu melalui dua tahap. Tahap I dengan mesin $f(x) = x - 1$ dan tahap II dengan mesin $g(x) = x^2 + 2x$. Jika bahan kayu tersedia 5 ton, kertas yang dihasilkan adalah...
+                        Sebuah pabrik kertas memproduksi kertas dari kayu melalui dua tahap. Tahap I dengan mesin $f(x) = x - 1$ dan tahap II dengan mesin $g(x) = x^2 + 2x$. Jika bahan kayu yang tersedia untuk produksi sebanyak 5 ton, kertas yang dihasilkan adalah...
                         <ol>
                             <li data-option="A">20 ton</li>
                             <li data-option="B">24 ton</li>
@@ -509,7 +521,8 @@
                         <div class="pembahasan-detail">
                             <b>Jawaban: B. 24 ton</b><br>
                             <b>Pembahasan Detail:</b><br>
-                            Ini adalah $(g \circ f)(5) = g(f(5))$.<br>
+                            Produksi kertas merupakan fungsi komposisi $(g \circ f)(x)$ dengan $x=5$.<br>
+                            $(g \circ f)(5) = g(f(5))$.<br>
                             Tahap I: $f(5) = 5 - 1 = 4$ ton.<br>
                             Tahap II: $g(4) = 4^2 + 2(4) = 16 + 8 = 24$ ton.
                         </div>
@@ -539,7 +552,7 @@
                     <tr><td>Level Kognitif</td><td>Penalaran (HOTS)</td></tr>
                 </table>
                 <div class="soal-pembahasan">
-                    <div class="soal-nomor"><b>5.</b></div>
+                    <div class="soal-nomor">5.</div>
                     <div class="soal-konten">
                        Berapakah jari-jari lingkaran yang berpusat di (2, 3)?<br>
                        (1) Lingkaran tersebut menyinggung sumbu X.<br>
@@ -554,8 +567,8 @@
                         <div class="pembahasan-detail">
                             <b>Jawaban: D. Pernyataan (1) SAJA cukup dan (2) SAJA cukup.</b><br>
                             <b>Pembahasan Detail:</b><br>
-                            (1) Pusat $(2,3)$ menyinggung sumbu X (y=0). Jari-jarinya adalah jarak vertikal dari pusat ke sumbu, yaitu $|3| = 3$. <b>Cukup</b>.
-                            <br>(2) Jari-jari adalah jarak dari pusat $(2,3)$ ke titik $(2,6)$. $r = \sqrt{(2-2)^2 + (6-3)^2} = 3$. <b>Cukup</b>.
+                            (1) Jika pusat lingkaran $(a,b)$ menyinggung sumbu X, maka jari-jarinya $r = |b|$. Dengan pusat $(2,3)$, maka $r = |3| = 3$. <b>Cukup</b>.
+                            <br>(2) Jari-jari adalah jarak dari pusat $(2,3)$ ke titik pada lingkaran $(2,6)$.<br> $r = \sqrt{(2-2)^2 + (6-3)^2} = \sqrt{0^2+3^2} = 3$. <b>Cukup</b>.
                         </div>
                     </div>
                 </div>
@@ -567,7 +580,7 @@
                     <tr><td>Level Kognitif</td><td>Penalaran (HOTS)</td></tr>
                 </table>
                 <div class="soal-pembahasan">
-                    <div class="soal-nomor"><b>6.</b></div>
+                    <div class="soal-nomor">6.</div>
                     <div class="soal-konten">
                         Data terurut: $x, 6, 7, 8, 8, y$. Rata-rata data adalah 7 dan jangkauannya 5. Manakah pernyataan yang benar? <b>(bisa pilih lebih dari satu jawaban)</b>
                         <div class="pilihan-ganda-mcma">
@@ -583,10 +596,10 @@
                             - Rata-rata: $\frac{x+6+7+8+8+y}{6} = 7 \implies x+y+29 = 42 \implies x+y = 13$. (Pilihan 2 benar).<br>
                             - Jangkauan: $y - x = 5$.<br>
                             - SPLDV: $x+y=13$ dan $y-x=5$ menghasilkan $x=4, y=9$. (Pilihan 4 benar).<br>
-                            - Data: 4, 6, 7, 8, 8, 9.<br>
+                            - Data menjadi: 4, 6, 7, 8, 8, 9.<br>
                             - Median: $\frac{7+8}{2} = 7.5$. (Pilihan 1 benar).<br>
                             - Modus: 8. (Pilihan 3 benar).<br>
-                            - Variansi = $\frac{(4-7)^2+...+(9-7)^2}{6} = \frac{16}{6} \approx 2.67$, tidak lebih dari 3. (Pilihan 5 salah).
+                            - Variansi = $\frac{(4-7)^2+(6-7)^2+(7-7)^2+(8-7)^2+(8-7)^2+(9-7)^2}{6} = \frac{9+1+0+1+1+4}{6} = \frac{16}{6} \approx 2.67$, tidak lebih dari 3. (Pilihan 5 salah).
                         </div>
                     </div>
                 </div>
@@ -614,7 +627,7 @@
                     <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
                 </table>
                 <div class="soal-pembahasan">
-                    <div class="soal-nomor"><b>7.</b></div>
+                    <div class="soal-nomor">7.</div>
                     <div class="soal-konten">
                         Jika $f(x) = \frac{2x+3}{4x-5}$, dengan $x \neq \frac{5}{4}$, maka $f^{-1}(x)$ adalah...
                         <ol>
@@ -640,7 +653,7 @@
                     <tr><td>Level Kognitif</td><td>Pengetahuan dan Pemahaman</td></tr>
                 </table>
                 <div class="soal-pembahasan">
-                    <div class="soal-nomor"><b>8.</b></div>
+                    <div class="soal-nomor">8.</div>
                     <div class="soal-konten">
                         Diberikan lingkaran $(x-1)^2 + (y+2)^2 = 16$. Tentukan kebenaran pernyataan berikut.
                         <table class="true-false-table">
@@ -669,7 +682,7 @@
                     <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
                 </table>
                 <div class="soal-pembahasan">
-                    <div class="soal-nomor"><b>9.</b></div>
+                    <div class="soal-nomor">9.</div>
                     <div class="soal-konten">
                         Simpangan baku dari data 4, 6, 8, 2, 5 adalah...
                         <ol>
@@ -708,7 +721,7 @@
                     <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
                 </table>
                 <div class="soal-pembahasan">
-                    <div class="soal-nomor"><b>10.</b></div>
+                    <div class="soal-nomor">10.</div>
                     <div class="soal-konten">
                         Diketahui $f(x)=x+1$ dan $g(x) = \frac{x}{2x-1}, x \neq \frac{1}{2}$. Jika $(f \circ g)^{-1}(a) = 1$, maka nilai $a$ adalah...
                         <ol>
@@ -731,7 +744,7 @@
                     <tr><td>Level Kognitif</td><td>Penalaran (HOTS)</td></tr>
                 </table>
                 <div class="soal-pembahasan">
-                    <div class="soal-nomor"><b>11.</b></div>
+                    <div class="soal-nomor">11.</div>
                     <div class="soal-konten">
                         Radar di $(2, 3)$ jangkauannya 50 km. Pesawat melintas di garis $3x - 4y = 12$. Mana pernyataan yang benar? <b>(bisa pilih lebih dari satu jawaban)</b>
                          <div class="pilihan-ganda-mcma">
@@ -774,7 +787,7 @@
                     <tr><td>Level Kognitif</td><td>Penalaran (HOTS)</td></tr>
                 </table>
                 <div class="soal-pembahasan">
-                    <div class="soal-nomor"><b>12.</b></div>
+                    <div class="soal-nomor">12.</div>
                     <div class="soal-konten">
                         Perhatikan tabel nilai ujian:
                          <table class="true-false-table" style="font-size: 8.5pt;">
@@ -808,7 +821,7 @@
                     <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
                 </table>
                 <div class="soal-pembahasan">
-                    <div class="soal-nomor"><b>13.</b></div>
+                    <div class="soal-nomor">13.</div>
                     <div class="soal-konten">
                         Diketahui $(f \circ g)(x) = 4x^2 - 12x + 9$ dan $f(x) = x^2$. Maka fungsi $g(x)$ adalah...
                         <ol>
@@ -851,7 +864,7 @@
                     <tr><td>Level Kognitif</td><td>Penalaran (HOTS)</td></tr>
                 </table>
                 <div class="soal-pembahasan">
-                    <div class="soal-nomor"><b>14.</b></div>
+                    <div class="soal-nomor">14.</div>
                     <div class="soal-konten">
                         Persamaan lingkaran yang berpusat di (1, 4) dan menyinggung garis $3x - 4y - 2 = 0$ adalah...
                         <ol>
@@ -879,7 +892,7 @@
                     <tr><td>Level Kognitif</td><td>Penalaran (HOTS)</td></tr>
                 </table>
                 <div class="soal-pembahasan">
-                    <div class="soal-nomor"><b>15.</b></div>
+                    <div class="soal-nomor">15.</div>
                     <div class="soal-konten">
                        Ada lima bilangan bulat positif. Berapakah mediannya?<br>
                        (1) Bilangan terbesar 10 dan jangkauannya 7.<br>
