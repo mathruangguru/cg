@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drill Soal TKA - Review Materi Kelas 11 Lanjutan</title>
+    <title>Panduan Mengajar - Drill Soal TKA Matematika</title>
     <script>
         window.MathJax = {
             tex: {
                 inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                packages: {'[+]': ['ams']}
             },
             svg: {
                 fontCache: 'global'
@@ -145,6 +146,7 @@
         
         .pembahasan-box {
             margin-bottom: 25px;
+            page-break-inside: avoid;
         }
 
         .soal-card {
@@ -183,6 +185,12 @@
         .summary-table .summary-table-content ul {
             padding-left: 20px;
             margin: 5px 0 0 0;
+        }
+         .star-row td {
+            text-align: center;
+            font-weight: bold;
+            background-color: #fcf8e3;
+            color: #8a6d3b;
         }
         
         .soal-pembahasan {
@@ -274,7 +282,7 @@
         @media print {
             @page {
                 size: A4;
-                margin: 0; /* Let the .page element handle margins */
+                margin: 0;
             }
 
             body {
@@ -289,9 +297,9 @@
             .page {
                 box-shadow: none;
                 margin: 0;
-                padding: 1.8cm 2.5cm; /* Re-apply margins here */
+                padding: 1.8cm 2.5cm;
                 width: 21cm;
-                height: 29.7cm; /* Enforce A4 dimensions */
+                min-height: 29.7cm; /* Use min-height instead of height */
                 page-break-after: always;
                 display: flex;
                 flex-direction: column;
@@ -306,12 +314,8 @@
                 flex-grow: 1;
                 overflow: hidden;
             }
-
-            .pembahasan-box {
-                page-break-inside: avoid;
-            }
             
-            .soal-card td:first-child, .summary-table .summary-table-header td, .pembahasan-detail, .true-false-table th, .header-top-box, .header-bottom-text {
+            .soal-card td:first-child, .summary-table .summary-table-header td, .pembahasan-detail, .true-false-table th, .header-top-box, .header-bottom-text, .star-row td {
                 -webkit-print-color-adjust: exact; 
                 print-color-adjust: exact;
             }
@@ -328,7 +332,7 @@
             <div class="header-top-box">
                 <div>
                     <div class="header-title-main">Panduan Mengajar</div>
-                    <div class="header-title-sub">Matematika TKA</div>
+                    <div class="header-title-sub">Matematika Lanjut (TKA)</div>
                 </div>
                 <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
             </div>
@@ -399,6 +403,11 @@
                         </ul>
                     </td>
                 </tr>
+                <tr class="star-row">
+                    <td colspan="2">
+                        Soal nomor 1 - 15 ⭐75⭐ (masing-masing 5 ⭐)
+                    </td>
+                </tr>
             </table>
 
         </div>
@@ -409,16 +418,16 @@
         </footer>
     </section>
 
-    <!-- HALAMAN 2: Soal 1-2 -->
+    <!-- HALAMAN 2: Soal 1 -->
     <section class="page">
         <header class="page-header">
               <div class="header-top-box">
-                  <div><div class="header-title-main">Drill Soal TKA</div><div class="header-title-sub">Matematika Lanjutan</div></div>
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
                   <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
               </div>
         </header>
         <div class="content-wrapper">
-            <h2 class="section-title">Soal & Pembahasan</h2>
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
             <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Vektor</td></tr>
@@ -428,39 +437,48 @@
                 <div class="soal-pembahasan">
                     <div class="soal-nomor">1.</div>
                     <div class="soal-konten">
-                        Diketahui vektor $\vec{a} = 2\hat{i} - 3\hat{j} + 4\hat{k}$ dan $\vec{b} = \hat{i} + 2\hat{j} - \hat{k}$. Jika $\vec{a} \cdot \vec{b} = |\vec{a}|^2$, dan sudut antara vektor $\vec{a}$ dan $\vec{b}$ adalah $\theta$, maka nilai $\cos \theta$ adalah...
+                        Diketahui vektor $\vec{a} = 2\hat{i} - 3\hat{j} + 4\hat{k}$ dan $\vec{b} = \hat{i} + 2\hat{j} - \hat{k}$. Sudut antara vektor $\vec{a}$ dan $\vec{b}$ adalah $\theta$, maka nilai $\cos \theta$ adalah...
                         <ol>
                             <li data-option="A">$-\frac{4}{29}$</li>
-                            <li data-option="B">$-\frac{4}{\sqrt{174}}$</li>
+                            <li data-option="B">$-\frac{8}{\sqrt{174}}$</li>
                             <li data-option="C">$\frac{29}{\sqrt{6}}$</li>
                             <li data-option="D">$\frac{\sqrt{6}}{29}$</li>
                             <li data-option="E">$-\frac{4\sqrt{6}}{29}$</li>
                         </ol>
                         <div class="pembahasan-detail">
-                            <b>Jawaban: B. $-\frac{4}{\sqrt{174}}$</b><br>
+                            <b>Jawaban: B. $-\frac{8}{\sqrt{174}}$</b><br>
                             <b>Pembahasan Detail:</b><br>
-                            Langkah 1: Hitung $\vec{a} \cdot \vec{b}$ dan $|\vec{a}|$.
+                            Langkah 1: Hitung dot product $\vec{a} \cdot \vec{b}$ dan panjang (magnitudo) dari masing-masing vektor.<br>
                             <ul>
                                 <li>$\vec{a} \cdot \vec{b} = (2)(1) + (-3)(2) + (4)(-1) = 2 - 6 - 4 = -8$.</li>
                                 <li>$|\vec{a}| = \sqrt{2^2 + (-3)^2 + 4^2} = \sqrt{4 + 9 + 16} = \sqrt{29}$.</li>
                                 <li>$|\vec{b}| = \sqrt{1^2 + 2^2 + (-1)^2} = \sqrt{1 + 4 + 1} = \sqrt{6}$.</li>
                             </ul>
                             Langkah 2: Gunakan rumus dot product untuk mencari $\cos \theta$.<br>
-                            $\vec{a} \cdot \vec{b} = |\vec{a}| |\vec{b}| \cos \theta$<br>
-                            $-8 = \sqrt{29} \cdot \sqrt{6} \cdot \cos \theta$<br>
-                            $-8 = \sqrt{174} \cos \theta$<br>
+                            $\cos \theta = \frac{\vec{a} \cdot \vec{b}}{|\vec{a}| |\vec{b}|}$<br>
+                            $\cos \theta = \frac{-8}{\sqrt{29} \cdot \sqrt{6}}$<br>
                             $\cos \theta = -\frac{8}{\sqrt{174}}$<br>
-                            Oh, sepertinya ada kesalahan pada soal atau pilihan jawaban. Mari kita re-evaluasi soal. Jika soalnya adalah tentukan $\vec{a} \cdot \vec{c}$ dimana $\vec{c} = \vec{a} - \vec{b}$.<br>
-                            $\vec{c} = (2-1)\hat{i} + (-3-2)\hat{j} + (4-(-1))\hat{k} = \hat{i} - 5\hat{j} + 5\hat{k}$.<br>
-                            $\vec{a} \cdot \vec{c} = (2)(1) + (-3)(-5) + (4)(5) = 2 + 15 + 20 = 37$. <br>
-                            Mari kita asumsikan ada typo di soal, dan yang ditanyakan adalah $\vec{a} \cdot \vec{b}$. Hasilnya adalah -8. Jika yang ditanyakan adalah $\cos \theta$ berdasarkan data awal:
-                            $\cos \theta = \frac{\vec{a} \cdot \vec{b}}{|\vec{a}||\vec{b}|} = \frac{-8}{\sqrt{29}\sqrt{6}} = \frac{-8}{\sqrt{174}}$. Pilihan jawaban yang paling mendekati adalah B, mungkin ada kesalahan ketik di soal. Mari kita asumsikan $\vec{b} = \hat{i} + 2\hat{j} + \hat{k}$.
-                            Maka $\vec{a} \cdot \vec{b} = 2-6+4=0$. Ini berarti vektor saling tegak lurus.
-                            Mari kita kerjakan sesuai soal asli dan cari jawaban yang paling logis. Dari perhitungan, $\vec{a} \cdot \vec{b} = -8$ dan $|\vec{a}||\vec{b}| = \sqrt{174}$. Maka $\cos \theta = -8/\sqrt{174}$. Tampaknya ada kesalahan pada pilihan jawaban. Namun, jika kita harus memilih, B adalah yang paling mirip secara struktur. Untuk tujuan pembelajaran, kita akan menganggap ada salah ketik di soal.
+                            Jadi, nilai dari $\cos \theta$ adalah $-\frac{8}{\sqrt{174}}$.
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 3: Soal 2 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
             <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Polinomial</td></tr>
@@ -479,51 +497,23 @@
                             <li data-option="E">8</li>
                         </ol>
                         <div class="pembahasan-detail">
-                            <b>Jawaban: A. -6</b><br>
+                            <b>Jawaban: D. 6</b><br>
                             <b>Pembahasan Detail:</b><br>
                             Pembagi adalah $x^2 - 1 = (x-1)(x+1)$.<br>
                             Menurut teorema sisa, jika $P(x)$ dibagi $(x-k)$, sisanya adalah $P(k)$.<br>
                             Sisa pembagian adalah $S(x) = 6x+5$.
                             <ul>
-                                <li>Untuk pembagi $(x-1)$, maka $x=1$.<br>
+                                <li>Untuk pembagi $(x-1)$, maka $x=1$. Sisanya adalah $S(1)$.<br>
                                 $P(1) = S(1) \implies 2(1)^4 + a(1)^3 - 3(1)^2 + 5(1) + b = 6(1) + 5$<br>
-                                $2 + a - 3 + 5 + b = 11 \implies a + b = 7$ (Persamaan 1)</li>
-                                <li>Untuk pembagi $(x+1)$, maka $x=-1$.<br>
+                                $2 + a - 3 + 5 + b = 11 \implies a + b + 4 = 11 \implies a + b = 7$ (Persamaan 1)</li>
+                                <li>Untuk pembagi $(x+1)$, maka $x=-1$. Sisanya adalah $S(-1)$.<br>
                                 $P(-1) = S(-1) \implies 2(-1)^4 + a(-1)^3 - 3(-1)^2 + 5(-1) + b = 6(-1) + 5$<br>
-                                $2 - a - 3 - 5 + b = -1 \implies -a + b = 5$ (Persamaan 2)</li>
+                                $2 - a - 3 - 5 + b = -1 \implies -a + b - 6 = -1 \implies -a + b = 5$ (Persamaan 2)</li>
                             </ul>
-                            Eliminasi dan substitusi kedua persamaan:
-                            <br>$(a+b) - (-a+b) = 7 - 5 \implies 2a = 2 \implies a = 1$.
-                            <br>Substitusi $a=1$ ke persamaan 1: $1 + b = 7 \implies b = 6$.
-                            <br>Tunggu, ada kesalahan hitung. Mari kita cek lagi.<br>
-                            $P(-1)$: $2 - a - 3 - 5 + b = -1 \implies -a + b - 6 = -1 \implies -a + b = 5$. (Benar)<br>
-                            $P(1)$: $2 + a - 3 + 5 + b = 11 \implies a + b + 4 = 11 \implies a + b = 7$. (Benar)<br>
+                            Eliminasi dan substitusi kedua persamaan:<br>
                             $(a+b) + (-a+b) = 7 + 5 \implies 2b = 12 \implies b=6$.<br>
-                            Substitusi $b=6$: $a+6=7 \implies a=1$.
-                            <br>Maka $a \cdot b = 1 \cdot 6 = 6$.
-                            Mari cek ulang perhitungan.
-                            $P(1) = 2+a-3+5+b = a+b+4$. $S(1) = 6+5=11$. $a+b+4=11 \implies a+b=7$.
-                            $P(-1) = 2-a-3-5+b = -a+b-6$. $S(-1) = -6+5=-1$. $-a+b-6=-1 \implies -a+b=5$.
-                            Sistem persamaan sudah benar. Penjumlahan kedua persamaan: $2b = 12 \implies b=6$.
-                            Substitusi: $a+6=7 \implies a=1$.
-                            Hasilnya $a \cdot b = 6$. Jawaban adalah D.
-
-                            Mari kita cek lagi, mungkin ada kesalahan pemahaman.
-                            Ah, $P(x) = 2x^4+ax^3-3x^2+5x+b$.
-                            $P(1) = 2(1)^4+a(1)^3-3(1)^2+5(1)+b = 2+a-3+5+b = a+b+4$.
-                            $S(1) = 6(1)+5=11$. Maka $a+b+4=11 \Rightarrow a+b=7$.
-                            $P(-1) = 2(-1)^4+a(-1)^3-3(-1)^2+5(-1)+b = 2-a-3-5+b = -a+b-6$.
-                            $S(-1) = 6(-1)+5=-1$. Maka $-a+b-6 = -1 \Rightarrow -a+b=5$.
-                            Jika kita jumlahkan kedua persamaan: $(a+b)+(-a+b)=7+5 \Rightarrow 2b=12 \Rightarrow b=6$.
-                            Jika $b=6$, maka $a+6=7 \Rightarrow a=1$.
-                            Maka $a \cdot b = 1 \cdot 6 = 6$.
-                            Mungkin ada kesalahan di kunci jawaban yang saya pikirkan. Jawabannya adalah 6 (D). Mari kita coba soal lain.
-
-                            Jika soalnya $P(x)$ dibagi $(x-1)$ sisa $6$ dan dibagi $(x+1)$ sisa $5$.
-                            $P(1) = a+b+4=6 \implies a+b=2$.
-                            $P(-1) = -a+b-6=5 \implies -a+b=11$.
-                            $2b = 13 \implies b=6.5$. Tidak bulat.
-                            Soal awal sudah benar, dan jawabannya $a \cdot b = 6$. Pilihan D.
+                            Substitusi $b=6$ ke persamaan 1: $a+6=7 \implies a=1$.
+                            <br>Maka nilai dari $a \cdot b = 1 \cdot 6 = 6$.
                         </div>
                     </div>
                 </div>
@@ -535,16 +525,16 @@
         </footer>
     </section>
     
-    <!-- HALAMAN 3: Soal 3-4 -->
+    <!-- HALAMAN 4: Soal 3 -->
     <section class="page">
         <header class="page-header">
               <div class="header-top-box">
-                  <div><div class="header-title-main">Drill Soal TKA</div><div class="header-title-sub">Matematika Lanjutan</div></div>
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
                   <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
               </div>
         </header>
         <div class="content-wrapper">
-             <div class="pembahasan-box">
+            <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Matriks</td></tr>
                     <tr><td>Sub Topik</td><td>Invers Matriks</td></tr>
@@ -556,13 +546,13 @@
                         Jika $A = \begin{pmatrix} 2 & 5 \\ 1 & 3 \end{pmatrix}$ dan $B = \begin{pmatrix} 4 & -1 \\ -2 & 1 \end{pmatrix}$, dan $C = A^{-1} B$, maka matriks $C$ adalah...
                         <ol>
                             <li data-option="A">$\begin{pmatrix} 14 & -8 \\ -6 & 3 \end{pmatrix}$</li>
-                            <li data-option="B">$\begin{pmatrix} 22 & -7 \\ -8 & 3 \end{pmatrix}$</li>
+                            <li data-option="B">$\begin{pmatrix} 22 & -8 \\ -8 & 3 \end{pmatrix}$</li>
                             <li data-option="C">$\begin{pmatrix} -2 & 1 \\ 4 & -1 \end{pmatrix}$</li>
                             <li data-option="D">$\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$</li>
                             <li data-option="E">$\begin{pmatrix} 18 & -4 \\ -7 & 2 \end{pmatrix}$</li>
                         </ol>
                         <div class="pembahasan-detail">
-                            <b>Jawaban: B. $\begin{pmatrix} 22 & -7 \\ -8 & 3 \end{pmatrix}$</b><br>
+                            <b>Jawaban: B. $\begin{pmatrix} 22 & -8 \\ -8 & 3 \end{pmatrix}$</b><br>
                             <b>Pembahasan Detail:</b><br>
                             Langkah 1: Cari invers dari matriks A.<br>
                             $\det(A) = (2)(3) - (5)(1) = 6 - 5 = 1$.<br>
@@ -571,12 +561,27 @@
                             $C = A^{-1} B = \begin{pmatrix} 3 & -5 \\ -1 & 2 \end{pmatrix} \begin{pmatrix} 4 & -1 \\ -2 & 1 \end{pmatrix}$<br>
                             $C = \begin{pmatrix} (3)(4)+(-5)(-2) & (3)(-1)+(-5)(1) \\ (-1)(4)+(2)(-2) & (-1)(-1)+(2)(1) \end{pmatrix}$<br>
                             $C = \begin{pmatrix} 12+10 & -3-5 \\ -4-4 & 1+2 \end{pmatrix} = \begin{pmatrix} 22 & -8 \\ -8 & 3 \end{pmatrix}$.<br>
-                            Tunggu, ada salah hitung lagi. $(3)(-1)+(-5)(1) = -3-5 = -8$.<br>
-                            Maka $C = \begin{pmatrix} 22 & -8 \\ -8 & 3 \end{pmatrix}$. Pilihan jawaban B sepertinya salah ketik, seharusnya -8 bukan -7. Mari kita asumsikan itu typo.
+                            Hasil perhitungan sesuai dengan pilihan B.
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 5: Soal 4 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
             <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Transformasi Geometri</td></tr>
@@ -595,22 +600,28 @@
                             <li data-option="E">$P''(-2, 3)$</li>
                         </ol>
                         <div class="pembahasan-detail">
-                            <b>Jawaban: C. $P''(-3, -2)$</b><br>
+                            <b>Jawaban: A. $P''(-2, -3)$</b><br>
                             <b>Pembahasan Detail:</b><br>
-                            Langkah 1: Tentukan matriks transformasi.<br>
-                            Matriks rotasi $R(O, 90^\circ)$ adalah $T_1 = \begin{pmatrix} \cos 90^\circ & -\sin 90^\circ \\ \sin 90^\circ & \cos 90^\circ \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$.<br>
-                            Matriks refleksi terhadap $y=-x$ adalah $T_2 = \begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}$.<br>
-                            Langkah 2: Tentukan matriks komposisi $T = T_2 \circ T_1$.<br>
-                            $T = \begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} (0)(0)+(-1)(1) & (0)(-1)+(-1)(0) \\ (-1)(0)+(0)(1) & (-1)(-1)+(0)(0) \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}$.<br>
-                            Langkah 3: Terapkan matriks komposisi ke titik $P(2, -3)$.<br>
-                            $\begin{pmatrix} x'' \\ y'' \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} 2 \\ -3 \end{pmatrix} = \begin{pmatrix} -2 \\ -3 \end{pmatrix}$.<br>
-                            Jadi, bayangannya adalah $P''(-2, -3)$. Jawabannya A.<br><br>
-                            <b>Cara Alternatif (tanpa matriks):</b>
+                            <b>Cara 1: Transformasi Bertahap (tanpa matriks)</b>
                             <ul>
-                            <li>$P(x,y) \xrightarrow{R(O, 90^\circ)} P'(-y, x)$. Maka $P(2, -3) \rightarrow P'(3, 2)$.</li>
-                            <li>$P'(x,y) \xrightarrow{M_{y=-x}} P''(-y, -x)$. Maka $P'(3, 2) \rightarrow P''(-2, -3)$.</li>
+                            <li>Langkah 1: Rotasi $R(O, 90^\circ)$.
+                            Aturan: $P(x,y) \xrightarrow{R(O, 90^\circ)} P'(-y, x)$.
+                            Maka $P(2, -3) \rightarrow P'(-(-3), 2) = P'(3, 2)$.</li>
+                            <li>Langkah 2: Refleksi terhadap garis $y=-x$.
+                            Aturan: $P'(x,y) \xrightarrow{M_{y=-x}} P''(-y, -x)$.
+                            Maka $P'(3, 2) \rightarrow P''(-2, -3)$.</li>
                             </ul>
-                            Hasilnya tetap sama. $P''(-2, -3)$. Jawabannya A.
+                             <b>Cara 2: Komposisi Matriks</b>
+                            <ul>
+                                <li>Langkah 1: Tentukan matriks transformasi.
+                                    Matriks rotasi $R(O, 90^\circ)$ adalah $T_1 = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$.<br>
+                                    Matriks refleksi terhadap $y=-x$ adalah $T_2 = \begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}$.</li>
+                                <li>Langkah 2: Tentukan matriks komposisi $T = T_2 \circ T_1$.<br>
+                                $T = \begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}$.</li>
+                                <li>Langkah 3: Terapkan matriks komposisi ke titik $P(2, -3)$.<br>
+                                $\begin{pmatrix} x'' \\ y'' \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} 2 \\ -3 \end{pmatrix} = \begin{pmatrix} -2 \\ -3 \end{pmatrix}$.</li>
+                            </ul>
+                            Kedua cara menghasilkan bayangan yang sama, yaitu $P''(-2, -3)$.
                         </div>
                     </div>
                 </div>
@@ -622,16 +633,16 @@
         </footer>
     </section>
     
-    <!-- HALAMAN 4: Soal 5-6 -->
+    <!-- HALAMAN 6: Soal 5 -->
     <section class="page">
         <header class="page-header">
               <div class="header-top-box">
-                  <div><div class="header-title-main">Drill Soal TKA</div><div class="header-title-sub">Matematika Lanjutan</div></div>
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
                   <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
               </div>
         </header>
         <div class="content-wrapper">
-             <div class="pembahasan-box">
+            <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Vektor</td></tr>
                     <tr><td>Sub Topik</td><td>Proyeksi Vektor</td></tr>
@@ -656,18 +667,34 @@
                             <b>Pembahasan Detail:</b><br>
                             Pertanyaan: Berapa panjang proyeksi $\vec{u}$ pada $\vec{v}$? Rumusnya adalah $|\vec{c}| = \frac{|\vec{u} \cdot \vec{v}|}{|\vec{v}|}$. Untuk menjawabnya, kita perlu tahu nilai $p$ dalam vektor $\vec{v}$.<br>
                             <b>Analisis Pernyataan (1):</b>
-                            Jika $\vec{u}$ dan $\vec{v}$ saling tegak lurus, maka $\vec{u} \cdot \vec{v} = 0$. Panjang proyeksi vektor yang saling tegak lurus adalah 0. Kita tidak perlu mencari nilai $p$ untuk mengetahui panjang proyeksinya. Jadi, pernyataan (1) SAJA cukup. <br>
+                            Jika $\vec{u}$ dan $\vec{v}$ saling tegak lurus, maka dot product-nya $\vec{u} \cdot \vec{v} = 0$. Panjang proyeksi skalar dari vektor yang saling tegak lurus adalah 0. Kita tidak perlu mencari nilai $p$ atau $|\vec{v}|$ untuk mengetahui panjang proyeksinya. Jadi, pernyataan (1) SAJA cukup. <br>
                             <b>Analisis Pernyataan (2):</b>
                             Jika $p=-1$, maka vektor $\vec{v}$ menjadi $\begin{pmatrix} 4 \\ 10 \\ -1 \end{pmatrix}$. Dengan nilai $p$ yang diketahui, kita bisa menghitung $\vec{u} \cdot \vec{v}$ dan $|\vec{v}|$ secara lengkap.
                             $\vec{u} \cdot \vec{v} = (2)(4) + (-1)(10) + (2)(-1) = 8-10-2 = -4$.
-                            $|\vec{v}| = \sqrt{4^2+10^2+(-1)^2} = \sqrt{117}$.
+                            $|\vec{v}| = \sqrt{4^2+10^2+(-1)^2} = \sqrt{16+100+1} = \sqrt{117}$.
                             Panjang proyeksi $|\vec{c}| = \frac{|-4|}{\sqrt{117}}$. Karena nilainya bisa dihitung, maka pernyataan (2) SAJA cukup.<br>
                             Kesimpulan: Karena (1) saja cukup dan (2) saja cukup, maka jawabannya adalah D.
                         </div>
                     </div>
                 </div>
             </div>
-             <div class="pembahasan-box">
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 7: Soal 6 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
+            <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Polinomial</td></tr>
                     <tr><td>Sub Topik</td><td>Teorema Faktor</td></tr>
@@ -686,11 +713,11 @@
                             <div><input type="checkbox" disabled><span>Salah satu akarnya adalah -6.</span></div>
                         </div>
                         <div class="pembahasan-detail">
-                            <b>Jawaban: Pilihan 1, 2, 3, 4 benar</b><br>
+                            <b>Jawaban: Pilihan 1, 3, 4, 5 benar.</b><br>
                             <b>Pembahasan Detail:</b><br>
-                            1.  <b>Cari nilai p:</b> Jika $(x-2)$ adalah faktor, maka $f(2)=0$.
+                            1.  <b>Cari nilai p:</b> Jika $(x-2)$ adalah faktor, maka sisa pembagiannya adalah 0, atau $f(2)=0$.
                                 $f(2) = (2)^3 - (2)^2 - 32(2) + p = 0$
-                                $8 - 4 - 64 + p = 0 \implies -60 + p = 0 \implies p = 60$. (Pernyataan 1 Benar).
+                                $8 - 4 - 64 + p = 0 \implies -60 + p = 0 \implies p = 60$. (Pernyataan 1 Benar).<br><br>
                             2.  <b>Cari faktor lain:</b> Kita gunakan Horner untuk membagi $f(x) = x^3 - x^2 - 32x + 60$ dengan $(x-2)$.<br>
                                 <table style="border-collapse: collapse; text-align: right; margin-left: 20px; font-family: 'Courier New', Courier, monospace;">
                                     <tbody>
@@ -720,18 +747,17 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <br>Hasil baginya adalah $x^2 + x - 30$.
-                                Faktorkan: $x^2 + x - 30 = (x+6)(x-5)$.
-                                Jadi, faktor-faktornya adalah $(x-2), (x+6), (x-5)$. Pernyataan 2 salah karena seharusnya $(x-5)$ atau $(x+6)$, bukan $(x+5)$.
-                                Pernyataan 5 salah karena akarnya adalah -6, bukan faktornya $(x-6)$. Tunggu, akarnya memang -6, jadi pernyataan 5 benar.
-                                Oh, pernyataan 2 menyebutkan $(x+5)$. Ini salah. Akar-akarnya adalah 2, -6, dan 5.
+                                Hasil baginya adalah $x^2 + x - 30$. Faktorkan: $x^2 + x - 30 = (x+6)(x-5)$.
+                                Jadi, faktor-faktor linearnya adalah $(x-2), (x+6), (x-5)$. Akar-akarnya adalah $x=2, x=-6, x=5$.
+                                <ul>
+                                    <li>Pernyataan 2: "Faktor linear lainnya adalah $(x+5)$" adalah Salah. Seharusnya $(x-5)$.</li>
+                                    <li>Pernyataan 5: "Salah satu akarnya adalah -6" adalah Benar.</li>
+                                </ul>
                             3.  <b>Analisis Sifat Akar (Teorema Vieta):</b> Untuk $Ax^3+Bx^2+Cx+D=0$:
                                 <ul>
-                                    <li>Jumlah akar ($x_1+x_2+x_3$) = $-B/A = -(-1)/1 = 1$. (Pernyataan 3 Benar).</li>
-                                    <li>Hasil kali akar ($x_1x_2x_3$) = $-D/A = -(60)/1 = -60$. (Pernyataan 4 Benar).</li>
+                                    <li>Jumlah akar ($x_1+x_2+x_3$) = $-B/A = -(-1)/1 = 1$. (Pernyataan 3 Benar). (Cek: $2 + (-6) + 5 = 1$).</li>
+                                    <li>Hasil kali akar ($x_1x_2x_3$) = $-D/A = -(60)/1 = -60$. (Pernyataan 4 Benar). (Cek: $2 \cdot (-6) \cdot 5 = -60$).</li>
                                 </ul>
-                            Mari kita cek lagi faktornya: $x^2+x-30 = (x+6)(x-5)$. Faktor linearnya adalah $(x-2), (x+6), (x-5)$. Pernyataan 2 salah. Pernyataan 5 menyebutkan salah satu akarnya adalah -6, yang benar.
-                            Jadi, pernyataan yang benar adalah 1, 3, 4, 5.
                         </div>
                     </div>
                 </div>
@@ -743,16 +769,16 @@
         </footer>
     </section>
     
-    <!-- HALAMAN 5: Soal 7-8 -->
+    <!-- HALAMAN 8: Soal 7 -->
     <section class="page">
         <header class="page-header">
               <div class="header-top-box">
-                  <div><div class="header-title-main">Drill Soal TKA</div><div class="header-title-sub">Matematika Lanjutan</div></div>
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
                   <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
               </div>
         </header>
         <div class="content-wrapper">
-             <div class="pembahasan-box">
+            <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Matriks</td></tr>
                     <tr><td>Sub Topik</td><td>Determinan Matriks 3x3</td></tr>
@@ -781,7 +807,23 @@
                     </div>
                 </div>
             </div>
-             <div class="pembahasan-box">
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 9: Soal 8 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
+            <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Transformasi Geometri</td></tr>
                     <tr><td>Sub Topik</td><td>Transformasi pada Kurva</td></tr>
@@ -795,11 +837,11 @@
                             <li data-option="A">$x - 2y + 5 = 0$</li>
                             <li data-option="B">$x + 2y - 5 = 0$</li>
                             <li data-option="C">$2x + y - 5 = 0$</li>
-                            <li data-option="D">$2x - y - 5 = 0$</li>
+                            <li data-option="D">$x - 2y - 5 = 0$</li>
                             <li data-option="E">$-x + 2y + 5 = 0$</li>
                         </ol>
                         <div class="pembahasan-detail">
-                            <b>Jawaban: A. $x - 2y + 5 = 0$</b><br>
+                            <b>Jawaban: E. $-x + 2y + 5 = 0$</b><br>
                             <b>Pembahasan Detail:</b><br>
                             Transformasi pencerminan terhadap garis $y=x$ menukar posisi $x$ dan $y$.
                             Titik $(x,y)$ menjadi $(x', y')$ dengan $x' = y$ dan $y' = x$.
@@ -808,13 +850,8 @@
                             $2(y') - (x') + 5 = 0$<br>
                             $2y' - x' + 5 = 0$<br>
                             Hilangkan tanda aksen (') untuk mendapatkan persamaan bayangan:<br>
-                            $2y - x + 5 = 0$ atau $x - 2y - 5 = 0$.
-                            Cek pilihan, tidak ada yang cocok. Mari kita periksa kembali.
-                            $2(y') - (x') + 5 = 0 \implies -x' + 2y' + 5 = 0$.
-                            Kalikan dengan -1 menjadi $x' - 2y' - 5 = 0$.
-                            Jawabannya adalah $x-2y-5=0$.
-                            Pilihan A adalah $x - 2y + 5 = 0$. Mungkin ada kesalahan tanda di soal atau pilihan. Mari kita asumsikan jawabannya adalah A, yang berarti persamaan bayangannya adalah $-x+2y+5=0$. Pilihan E cocok. Atau jika dikali -1 menjadi $x-2y-5=0$. Pilihan A adalah yang paling mirip.
-                            Mari kita re-check konsep. $2x-y+5=0$. Ganti x jadi y, ganti y jadi x. Jadi $2y-x+5=0$. Atau $x-2y-5=0$. Pilihan A: $x-2y+5=0$.
+                            $2y - x + 5 = 0$<br>
+                            Persamaan ini ekuivalen dengan $-x + 2y + 5 = 0$, yang sesuai dengan pilihan E.
                         </div>
                     </div>
                 </div>
@@ -826,11 +863,11 @@
         </footer>
     </section>
 
-    <!-- HALAMAN 6: Soal 9-10 -->
+    <!-- HALAMAN 10: Soal 9 -->
     <section class="page">
         <header class="page-header">
               <div class="header-top-box">
-                  <div><div class="header-title-main">Drill Soal TKA</div><div class="header-title-sub">Matematika Lanjutan</div></div>
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
                   <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
               </div>
         </header>
@@ -872,7 +909,23 @@
                     </div>
                 </div>
             </div>
-             <div class="pembahasan-box">
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 11: Soal 10 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
+            <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Matriks</td></tr>
                     <tr><td>Sub Topik</td><td>Aplikasi Matriks (Kehidupan Sehari-hari)</td></tr>
@@ -912,11 +965,11 @@
         </footer>
     </section>
 
-    <!-- HALAMAN 7: Soal 11-12 -->
+    <!-- HALAMAN 12: Soal 11 -->
     <section class="page">
         <header class="page-header">
               <div class="header-top-box">
-                  <div><div class="header-title-main">Drill Soal TKA</div><div class="header-title-sub">Matematika Lanjutan</div></div>
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
                   <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
               </div>
         </header>
@@ -953,12 +1006,28 @@
                             Koordinat A bisa dihitung: $A = \frac{1}{2}\begin{pmatrix} 2 & -1 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 4 \\ 6 \end{pmatrix} = \frac{1}{2}\begin{pmatrix} 8-6 \\ 6 \end{pmatrix} = \begin{pmatrix} 1 \\ 3 \end{pmatrix}$.
                             Karena koordinat A bisa ditemukan, pernyataan (1) SAJA cukup.<br>
                             <b>Analisis Pernyataan (2):</b>
-                            Mengetahui jenis transformasinya tidak memberikan nilai spesifik untuk $a$. Nilai $a$ bisa berapa saja. Jadi, pernyataan (2) SAJA tidak cukup.<br>
+                            Mengetahui jenis transformasinya (komposisi dilatasi dan geseran) tidak memberikan nilai spesifik untuk $a$. Nilai $a$ bisa berapa saja. Jadi, pernyataan (2) SAJA tidak cukup.<br>
                             Kesimpulan: Hanya pernyataan (1) yang cukup.
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 13: Soal 12 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
             <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Matriks</td></tr>
@@ -980,7 +1049,7 @@
                             </tbody>
                         </table>
                         <div class="pembahasan-detail">
-                            <b>Jawaban:</b> Semua pernyataan Benar.<br>
+                            <b>Jawaban:</b> Pernyataan 1, 2, dan 4 benar.<br>
                             <b>Pembahasan Detail:</b><br>
                             1.  <b>Sifat Komutatif:</b> Perkalian matriks umumnya tidak komutatif.
                                 $PQ = \begin{pmatrix} 2 & 1 \\ 4 & 3 \end{pmatrix}\begin{pmatrix} -1 & 0 \\ 2 & 1 \end{pmatrix} = \begin{pmatrix} 0 & 1 \\ 2 & 3 \end{pmatrix}$.
@@ -992,7 +1061,6 @@
                                 $\det(P+Q) = (1)(4) - (1)(6) = 4-6 = -2$.
                                 Pernyataan ini salah.
                             4.  <b>Sifat Invers Transpose:</b> Ini adalah sifat standar dari matriks. Invers dari transpose sama dengan transpose dari invers. (Benar)<br>
-                            Kesimpulan: Pernyataan 1, 2, 4 benar, pernyataan 3 salah.
                         </div>
                     </div>
                 </div>
@@ -1004,11 +1072,11 @@
         </footer>
     </section>
 
-    <!-- HALAMAN 8: Soal 13-14 -->
+    <!-- HALAMAN 14: Soal 13 -->
     <section class="page">
         <header class="page-header">
               <div class="header-top-box">
-                  <div><div class="header-title-main">Drill Soal TKA</div><div class="header-title-sub">Matematika Lanjutan</div></div>
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
                   <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
               </div>
         </header>
@@ -1036,7 +1104,7 @@
                             Misalkan akar-akarnya adalah $x_1, x_2, x_3$. Diketahui $x_1 = -1$.
                             Dari Teorema Vieta untuk $Ax^3+Bx^2+Cx+D=0$:
                             $x_1 x_2 x_3 = -D/A$.
-                            Pada persamaan $x^3 - 7x - 6 = 0$, kita punya $A=1, B=0, C=-7, D=-6$.
+                            Pada persamaan $x^3 + 0x^2 - 7x - 6 = 0$, kita punya $A=1, B=0, C=-7, D=-6$.
                             Maka, $x_1 x_2 x_3 = -(-6)/1 = 6$.
                             Substitusi $x_1 = -1$:
                             $(-1) x_2 x_3 = 6$.
@@ -1046,6 +1114,22 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 15: Soal 14 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
              <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Transformasi Geometri</td></tr>
@@ -1065,18 +1149,17 @@
                             <div><input type="checkbox" disabled><span>Transformasi oleh matriks $\begin{pmatrix} 2 & 0 \\ 0 & 1/2 \end{pmatrix}$</span></div>
                         </div>
                         <div class="pembahasan-detail">
-                            <b>Jawaban: Pilihan 1, 2, 4 benar</b><br>
+                            <b>Jawaban: Pilihan 1, 2, 4, 5 benar</b><br>
                             <b>Pembahasan Detail:</b><br>
-                            Luas bayangan sebuah bangun oleh transformasi matriks T adalah $L' = |\det(T)| \times L$.
-                            Transformasi yang tidak mengubah luas disebut isometri, dan memiliki $|\det(T)|=1$.
+                            Luas bayangan sebuah bangun ($L'$) oleh transformasi matriks T adalah $L' = |\det(T)| \times L$.
+                            Transformasi yang tidak mengubah luas (isometri) adalah transformasi yang memiliki nilai determinan matriksnya $|\det(T)|=1$.
                             <ol>
                                 <li><b>Translasi:</b> Translasi adalah pergeseran, tidak mengubah bentuk dan ukuran. Luas tetap. (Benar)</li>
-                                <li><b>Rotasi:</b> Rotasi memutar objek, tidak mengubah bentuk dan ukuran. Matriks rotasi memiliki determinan $\cos^2\theta - (-\sin^2\theta) = 1$. Luas tetap. (Benar)</li>
+                                <li><b>Rotasi:</b> Rotasi memutar objek, tidak mengubah bentuk dan ukuran. Matriks rotasi memiliki determinan $\cos^2\theta - (-\sin\theta \cdot \sin\theta) = \cos^2\theta + \sin^2\theta = 1$. Luas tetap. (Benar)</li>
                                 <li><b>Dilatasi:</b> Dilatasi dengan faktor skala $k$ mengubah luas menjadi $k^2$ kali luas semula. Di sini $k=2$, luas menjadi $4$ kali. Luas berubah. (Salah)</li>
-                                <li><b>Refleksi:</b> Refleksi mencerminkan objek, tidak mengubah bentuk dan ukuran. Matriks refleksi memiliki determinan $-1$, sehingga $|\det|=1$. Luas tetap. (Benar)</li>
+                                <li><b>Refleksi:</b> Refleksi mencerminkan objek, tidak mengubah bentuk dan ukuran. Matriks refleksi (misal thd sumbu Y, $\begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}$) memiliki determinan $-1$, sehingga $|\det|=1$. Luas tetap. (Benar)</li>
                                 <li><b>Transformasi Matriks:</b> Determinan matriks $T = \begin{pmatrix} 2 & 0 \\ 0 & 1/2 \end{pmatrix}$ adalah $(2)(1/2) - (0)(0) = 1$. Karena $|\det(T)|=1$, luasnya tidak berubah. (Benar).</li>
                             </ol>
-                            Jadi yang tidak mengubah luas adalah Translasi, Rotasi, Refleksi, dan transformasi matriks pada pilihan 5. Pilihan yang benar adalah 1, 2, 4, 5.
                         </div>
                     </div>
                 </div>
@@ -1088,11 +1171,11 @@
         </footer>
     </section>
 
-    <!-- HALAMAN 9: Soal 15 -->
+    <!-- HALAMAN 16: Soal 15 -->
     <section class="page">
         <header class="page-header">
               <div class="header-top-box">
-                  <div><div class="header-title-main">Drill Soal TKA</div><div class="header-title-sub">Matematika Lanjutan</div></div>
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
                   <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
               </div>
         </header>
@@ -1100,8 +1183,8 @@
             <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Vektor</td></tr>
-                    <tr><td>Sub Topik</td><td>Perbandingan Vektor</td></tr>
-                    <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
+                    <tr><td>Sub Topik</td><td>Analisis Vektor Geometri</td></tr>
+                    <tr><td>Level Kognitif</td><td>Penalaran</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <div class="soal-nomor">15.</div>
@@ -1126,7 +1209,7 @@
                             3.  <b>Hitung Dot Product:</b><br>
                                 $\vec{AB} \cdot \vec{AC} = (1)(1) + (1)(0) + (1)(-1) = 1+0-1 = 0$. (Pernyataan 3 Benar)
                             4.  <b>Tentukan Sudut $\alpha$:</b><br>
-                                Karena $\vec{AB} \cdot \vec{AC} = 0$, maka kedua vektor saling tegak lurus. Sudutnya adalah $\alpha = 90^\circ$. (Pernyataan 4 Benar)
+                                Karena $\vec{AB} \cdot \vec{AC} = 0$, maka kedua vektor saling tegak lurus (ortogonal). Sudutnya adalah $\alpha = 90^\circ$. (Pernyataan 4 Benar)
                             5.  <b>Tentukan Vektor Proyeksi:</b><br>
                                 Proyeksi $\vec{AB}$ pada $\vec{AC}$ adalah $\vec{c} = \frac{\vec{AB} \cdot \vec{AC}}{|\vec{AC}|^2}\vec{AC}$.
                                 Karena $\vec{AB} \cdot \vec{AC} = 0$, maka $\vec{c} = \frac{0}{|\vec{AC}|^2}\vec{AC} = \vec{0}$ (vektor nol). (Pernyataan 5 Benar)
