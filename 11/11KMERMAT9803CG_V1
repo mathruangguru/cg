@@ -3,35 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panduan Mengajar - Drill Soal TKA Matematika (Lanjut) - Paket 1</title>
+    <title>Panduan Mengajar - Drill Soal TKA Matematika</title>
     <script>
         window.MathJax = {
           tex: {
             inlineMath: [['$', '$'], ['\\(', '\\)']],
-            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            packages: {'[+]': ['ams']}
           },
           svg: {
-            fontCache: 'global',
-            matchWebFonts: false
-          },
-          options: {
-            mtextFontInherit: true
+            fontCache: 'global'
           }
         };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-text: #333333;
             --secondary-text: #555555;
-            --header-bg: #EAF4F6;
-            --sub-header-bg: #f0f0f0;
-            --header-title-color: #00979d;
-            --table-header-bg: #F2F2F2;
-            --dark-grey: #6F6F6F;
+            --border-color: #dddddd;
+            --header-top-bg: #E0F7FA;
+            --header-bottom-bg: #f0f0f0;
+            --header-title-color: #00838F;
+            --table-header-bg: #e9e9e9;
         }
         
         *, *::before, *::after {
@@ -39,830 +36,1106 @@
         }
 
         body {
-            font-family: 'Nunito', 'Montserrat', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 9pt;
             line-height: 1.6;
             color: var(--primary-text);
-            background-color: #e0e0e0; 
+            background-color: #e0e0e0;
             margin: 0;
-            padding: 2cm 0;
+            padding: 0;
         }
-        
+
+        .page-container {
+            counter-reset: page;
+        }
+
         .page {
             background: white;
             width: 21cm;
-            height: 29.7cm; /* Tinggi A4 dibuat tetap */
-            padding: 1.8cm 2.5cm 2.5cm 2.5cm;
-            margin: 0 auto 2cm auto;
+            min-height: 29.7cm;
+            padding: 1.8cm 2.5cm;
+            margin: 1cm auto;
             box-shadow: 0 0 10px rgba(0,0,0,0.2);
             position: relative;
             display: flex;
             flex-direction: column;
         }
-
-        .page:last-child {
-            margin-bottom: 0;
+        
+        .page-number::after {
+            counter-increment: page;
+            content: counter(page);
         }
 
         .page-header {
-            margin: -1.8cm -2.5cm 15px -2.5cm;
-            width: 21cm;
-            flex-shrink: 0; /* Mencegah header menyusut */
+            margin: -1.8cm -2.5cm 0 -2.5cm;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 10;
         }
-        
+
         .header-top-box {
-            background-color: var(--header-bg);
+            background-color: var(--header-top-bg);
             padding: 10px 2.5cm;
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .header-title .main-title {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 12pt;
-            color: var(--header-title-color);
+            margin-bottom: 2px;
         }
         
-        .header-title .subtitle {
-            font-family: 'Montserrat', sans-serif;
+        .page:not(:first-of-type) .header-bottom-box {
+            display: none;
+        }
+        .page:not(:first-of-type) .header-top-box {
+            margin-bottom: 20px;
+        }
+        
+        .header-title-main {
+            font-size: 18pt;
             font-weight: 700;
-            font-size: 9pt;
-            color: var(--dark-grey);
-            margin-top: 4px;
+            color: var(--header-title-color);
+            line-height: 1.2;
         }
 
-        .header-logo img {
-            height: 55px;
+        .header-title-sub {
+            font-size: 12pt;
+            font-weight: 400;
+            color: var(--primary-text);
         }
 
         .header-bottom-box {
-            padding: 8px 2.5cm;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 0 2.5cm 20px 2.5cm;
+            text-align: left;
         }
-
+        
         .header-bottom-text {
-            background-color: var(--sub-header-bg);
+            background-color: var(--header-bottom-bg);
             padding: 8px 15px;
             font-weight: 700;
             font-size: 8.5pt;
-            color: var(--secondary-text);
-            display: inline-block;
+            color: var(--primary-text);
+            display: block;
             border-radius: 4px;
-            white-space: nowrap;
+            white-space: normal;
+        }
+
+        .header-logo {
+            max-height: 60px;
         }
         
         .content-wrapper { 
-            width: 100%; 
-            flex-grow: 1; /* Membuat konten mengisi ruang yang tersedia */
-            overflow: hidden; /* Mencegah konten meluber keluar area */
+            flex-grow: 1;
         }
-        
-        .soal-latihan { 
-            margin-bottom: 10px; 
-            overflow-wrap: break-word; 
-            word-wrap: break-word;
-            text-align: justify;
-            padding-left: 22px;
-            text-indent: -22px;
-        }
-        
-        .soal-latihan b {
+
+        .section-title {
+            font-size: 14pt;
             font-weight: 700;
-            margin-right: 5px; 
+            color: var(--header-title-color);
+            border-bottom: 2px solid var(--header-top-bg);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            margin-top: 10px;
         }
         
-        ol.pilihan-ganda { 
-            list-style-type: none; 
-            padding-left: 22px; 
-            margin-top: 8px;
-            text-indent: 0;
+        ol.guide-list, ul.guide-list {
+            padding-left: 20px;
         }
-        ol.pilihan-ganda li { margin-bottom: 8px; font-weight: normal;}
-        ol.pilihan-ganda li::before { content: attr(data-option) ". "; font-weight: normal; margin-right: 5px; }
         
-        .pilihan-ganda-mcma { text-indent: 0; padding-left: 22px; margin-top: 8px; }
-        .pilihan-ganda-mcma div { display: flex; align-items: center; margin-bottom: 8px; font-weight: normal; }
-        .pilihan-ganda-mcma input[type="checkbox"] { width: 14px; height: 14px; margin-right: 10px; flex-shrink: 0; }
-
-        table.soal-kategori { width:100%; border-collapse: collapse; text-align: left; margin-top: 10px; font-size: 9pt; text-indent: 0; }
-        table.soal-kategori th, table.soal-kategori td { padding: 8px; border: 1px solid #ccc; vertical-align: middle; font-weight: normal;}
-        table.soal-kategori th { background-color: var(--table-header-bg); font-weight: bold; text-transform: uppercase; }
-        table.soal-kategori th:not(:first-child) { text-align: center; width: 70px;}
-        table.soal-kategori td:not(:first-child) { text-align: center; }
-
-        .page-footer {
-            position: absolute;
-            bottom: 1.5cm; /* Posisi tetap dari bawah .page */
-            left: 2.5cm;
-            right: 2.5cm;
-            text-align: center;
-            flex-shrink: 0; /* Mencegah footer menyusut */
+        ol.guide-list li, ul.guide-list li {
+            margin-bottom: 8px;
         }
-        .footer-content { font-size: 8pt; color: var(--dark-grey); }
-        .copyright-main { font-weight: bold; }
-        .copyright-secondary { font-style: italic; font-weight: normal; }
-        .footer-line { border: 0; border-top: 1px solid var(--dark-grey); width: 100%; margin: 0 auto 5px auto; }
-
-        .print-button { position: fixed; bottom: 30px; right: 30px; background-color: #00979d; color: white; border: none; border-radius: 50px; padding: 15px 25px; font-family: 'Montserrat', sans-serif; font-size: 10pt; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 1000; }
-        .print-button:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.25); }
-
-        .info-box { border: 1px solid #00979d; background-color: #f0fbff; padding: 15px; margin-bottom: 15px; margin-top: 20px; border-radius: 5px; font-size: 9pt; }
-        .info-box h3 { font-family: 'Montserrat', sans-serif; font-size: 10pt; color: #00979d; margin: 0 0 10px 0; padding-bottom: 5px; border-bottom: 1px solid #bce8f1; }
-        .info-box ul { list-style-type: disc; padding-left: 20px; margin: 0; }
-        .info-box li { margin-bottom: 5px; }
-
-        .rekap-box { border: 1px solid #f0ad4e; background-color: #fdf7e3; padding: 15px; margin-bottom: 20px; border-radius: 5px; font-size: 9pt; text-align: center; font-weight: bold; color: #8a6d3b; }
-
-        .soal-pembahasan-wrapper { margin-bottom: 25px; break-inside: avoid; }
         
-        .soal-info-table {
+        .pembahasan-box {
+            margin-bottom: 25px;
+            page-break-inside: avoid;
+        }
+
+        .soal-card {
             width: 100%;
             border-collapse: collapse;
-            font-size: 8pt;
             margin-bottom: 10px;
-            background-color: #f8f9fa;
-            border: 1px solid #dee2e6;
+            border: 1px solid var(--border-color);
         }
-        .soal-info-table td {
-            padding: 5px 8px;
-            border: 1px solid #e9ecef;
+        .soal-card td {
+            border: 1px solid var(--border-color);
+            padding: 6px 10px;
+            font-size: 8.5pt;
         }
-        .soal-info-table td:first-child {
-            width: 100px;
-            font-family: 'Montserrat', sans-serif;
+        .soal-card td:first-child {
             font-weight: 700;
-            background-color: #e9ecef;
+            background-color: var(--table-header-bg);
+            width: 120px;
+        }
+        
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+        .summary-table td {
+            border: 1px solid var(--border-color);
+            padding: 8px 12px;
+            vertical-align: top;
+        }
+        .summary-table .summary-table-header td {
+            background-color: var(--table-header-bg);
+            font-weight: 700;
+            font-size: 10pt;
+        }
+        .summary-table .summary-table-content ul {
+            padding-left: 20px;
+            margin: 5px 0 0 0;
+        }
+        
+        .soal-pembahasan {
+            display: flex;
+            align-items: flex-start;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        .soal-nomor {
+            font-weight: bold;
+            min-width: 20px;
+        }
+        .soal-konten {
+            flex-grow: 1;
+            text-align: justify;
         }
 
-        .materi-singkat, .pembahasan { background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 4px; padding: 12px; margin-top: 15px; font-size: 9pt; text-align: justify; text-indent: 0; }
-        .materi-singkat h4, .pembahasan h4 { margin: 0 0 10px 0; font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--header-title-color); font-size: 10pt; padding-bottom: 5px; border-bottom: 1px solid #eee; }
-
-        .pembahasan .equation-container {
-            text-align: center;
-            margin: 1em 0;
-            overflow-x: auto;
+        .soal-konten ol {
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 10px;
+        }
+        .soal-konten ol li {
+            margin-bottom: 8px;
+            padding-left: 25px;
+            position: relative;
+        }
+        .soal-konten ol li::before {
+            content: attr(data-option) ". ";
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        .pembahasan-detail {
+            margin-top: 10px;
+            background-color: #f9f9f9;
+            border-left: 4px solid var(--header-title-color);
+            padding: 10px 15px;
+            border-radius: 0 4px 4px 0;
+        }
+        .pembahasan-detail ul, .pembahasan-detail ol {
+            padding-left: 20px;
         }
 
+        .pilihan-ganda-mcma div {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            padding-left: 5px;
+        }
+        .pilihan-ganda-mcma input[type="checkbox"] {
+            width: 14px;
+            height: 14px;
+            margin-right: 10px;
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+
+        .page-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            font-size: 8pt;
+            color: var(--secondary-text);
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            flex-shrink: 0;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .true-false-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .true-false-table th, .true-false-table td {
+            border: 1px solid var(--border-color);
+            padding: 8px;
+            text-align: left;
+        }
+        .true-false-table th {
+            background-color: var(--table-header-bg);
+        }
+
+        /* --- PRINT STYLES --- */
         @media print {
-            body { background: #FFFFFF; padding: 0; margin: 0; }
-            
-            .page { 
-                width: 21cm; 
-                height: 29.7cm; /* Paksa tinggi A4 saat print */
-                margin: 0; 
-                padding: 1.8cm 2.5cm 2.5cm 2.5cm;
-                box-shadow: none; 
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                background-color: white;
+                margin: 0;
+            }
+
+            .page-container {
+                margin: 0;
+            }
+
+            .page {
+                box-shadow: none;
+                margin: 0;
+                padding: 1.8cm 2.5cm;
+                width: 21cm;
+                height: 29.7cm;
                 page-break-after: always;
+                display: flex;
+                flex-direction: column;
+                position: relative;
             }
 
             .page:last-of-type {
-                page-break-after: avoid;
+                page-break-after: auto;
             }
             
-            .page-header, .header-top-box, .header-bottom-text, table.soal-kategori th, .soal-info-table, .soal-info-table td:first-child {
-                -webkit-print-color-adjust: exact; 
-                print-color-adjust: exact;
-            }
-            .info-box, .rekap-box, .materi-singkat, .pembahasan, .soal-kategori td {
-                -webkit-print-color-adjust: exact; 
-                print-color-adjust: exact;
+            .content-wrapper {
+                flex-grow: 1;
+                overflow: hidden;
             }
 
-            .print-button { display: none; }
+            .pembahasan-box {
+                page-break-inside: avoid;
+            }
+            
+            .soal-card td:first-child, .summary-table .summary-table-header td, .pembahasan-detail, .true-false-table th, .header-top-box, .header-bottom-text {
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact;
+            }
         }
     </style>
 </head>
 <body>
 
-<button class="print-button" onclick="window.print()">Cetak ke PDF</button>
+<div class="page-container">
 
-<!-- PAGE 1: COVER -->
-<div class="page">
-    <header class="page-header">
-        <div class="header-top-box">
-            <div class="header-title">
-                <div class="main-title">Panduan Mengajar</div>
-                <div class="subtitle">Matematika Lanjut</div>
+    <!-- HALAMAN 1: TUJUAN, ALUR & TEORI -->
+    <section class="page">
+        <header class="page-header">
+            <div class="header-top-box">
+                <div>
+                    <div class="header-title-main">Panduan Mengajar</div>
+                    <div class="header-title-sub">Matematika Lanjut (TKA)</div>
+                </div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
             </div>
-            <div class="header-logo">
-                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo">
+            <div class="header-bottom-box">
+                <div class="header-bottom-text">
+                    XI SMA | Kurikulum Merdeka | [TKA] Drill Soal | Subtopik: Drill Soal TKA Matematika (Lanjut) - Paket 1 | Pertemuan 05
+                </div>
             </div>
-        </div>
-        <div class="header-bottom-box">
-            <div class="header-bottom-text">
-                XI SMA | Kurikulum Merdeka | [TKA] Drill Soal | Subtopik: Drill Soal TKA Matematika (Lanjut) - Paket 1 | Pertemuan 05
-            </div>
-        </div>
-    </header>
-    <div class="content-wrapper">
-        <div class="info-box">
-            <h3>Belajar Apa Hari Ini? (Learning Objectives)</h3>
-            <ul>
-                <li>Eksponen dan Logaritma</li>
-                <li>Barisan dan Deret Aritmetika & Geometri</li>
-                <li>Perbandingan Trigonometri</li>
-                <li>Sistem Persamaan dan Pertidaksamaan Linear</li>
-                <li>Fungsi Kuadrat</li>
-                <li>Statistika Dasar</li>
-                <li>Peluang</li>
+        </header>
+
+        <div class="content-wrapper">
+            <table class="summary-table">
+                <tr class="summary-table-header">
+                    <td colspan="2">Belajar Apa Hari Ini</td>
+                </tr>
+                <tr class="summary-table-content">
+                    <td colspan="2">
+                        Drill soal TKA untuk review materi esensial kelas 10 dan 11 yang sering muncul di UTBK, mencakup topik-topik berikut:
+                        <ul>
+                            <li><b>Aljabar & Fungsi:</b> Eksponen, Logaritma, Fungsi Kuadrat, Polinomial, Sistem Persamaan.</li>
+                            <li><b>Geometri & Trigonometri:</b> Geometri Analitik (Lingkaran), Trigonometri Dasar.</li>
+                             <li><b>Statistika & Peluang:</b> Ukuran Pemusatan & Penyebaran Data, Kaidah Pencacahan, Peluang.</li>
+                             <li><b>Kalkulus Dasar:</b> Barisan dan Deret.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="summary-table-header">
+                    <td>Topik</td>
+                    <td>Learning Objectives (LO)</td>
+                </tr>
+                <tr class="summary-table-content">
+                    <td><b>Fungsi, Persamaan & Pertidaksamaan</b></td>
+                    <td>
+                        <ul>
+                            <li>Menyelesaikan persamaan eksponen dan logaritma.</li>
+                            <li>Menganalisis karakteristik fungsi kuadrat.</li>
+                             <li>Menentukan sisa dan faktor polinomial (Teorema Sisa).</li>
+                             <li>Menyelesaikan sistem persamaan dan pertidaksamaan linear.</li>
+                        </ul>
+                    </td>
+                </tr>
+                 <tr class="summary-table-content">
+                    <td><b>Barisan & Deret</b></td>
+                    <td>
+                        <ul>
+                            <li>Menyelesaikan masalah barisan/deret aritmetika dan geometri.</li>
+                            <li>Menghitung deret geometri tak hingga dalam konteks fisika.</li>
+                        </ul>
+                    </td>
+                </tr>
+                 <tr class="summary-table-content">
+                    <td><b>Statistika & Peluang</b></td>
+                    <td>
+                        <ul>
+                           <li>Menentukan ukuran pemusatan dan penyebaran data tunggal.</li>
+                           <li>Menghitung peluang kejadian majemuk.</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+
+            <h2 class="section-title">Alur & Pertanyaan Pemantik</h2>
+            <ul class="guide-list">
+                <li><b>Eksponen:</b> "Jika bakteri membelah diri setiap menit, bagaimana kita tahu jumlahnya setelah satu jam tanpa menghitung satu per satu?"</li>
+                <li><b>Fungsi Kuadrat:</b> "Bagaimana lintasan lemparan bola basket bisa diprediksi secara matematis untuk mencetak skor?"</li>
+                 <li><b>Peluang:</b> "Jika kamu mengambil dua kartu dari tumpukan tanpa melihat, lebih besar mana peluang keduanya As atau keduanya King?"</li>
+                <li><b>Statistika:</b> "Mengapa nilai rata-rata saja tidak cukup untuk menggambarkan performa sebuah tim sepakbola?"</li>
             </ul>
         </div>
-        <div class="rekap-box">
-            REKAP STARCHAMPS: 85 ⭐ untuk 15 soal (masing-masing 5⭐ / soal)
-        </div>
-    </div>
-    <footer class="page-footer">
-        <hr class="footer-line">
-        <div class="footer-content">
-            <span class="copyright-main">Copyright &copy; 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</span> 
-            <span class="copyright-secondary">Dilarang menyebarluaskan ini tanpa seizin PT Ruang Raya Indonesia.</span>
-        </div>
-    </footer>
-</div>
 
-<!-- PAGE 2: SOAL 1 -->
-<div class="page">
-    <header class="page-header">
-        <div class="header-top-box"><div class="header-title"><div class="main-title">Panduan Mengajar</div><div class="subtitle">Matematika Lanjut</div></div><div class="header-logo"><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo"></div></div>
-        <div class="header-bottom-box"><div class="header-bottom-text">XI SMA | Kurikulum Merdeka | [TKA] Drill Soal | Subtopik: Drill Soal TKA Matematika (Lanjut) - Paket 1 | Pertemuan 05</div></div>
-    </header>
-    <div class="content-wrapper">
-        <div class="soal-pembahasan-wrapper">
-            <table class="soal-info-table"><tbody>
-                <tr><td><b>Topik</b></td><td>Eksponen dan Logaritma</td></tr>
-                <tr><td><b>Subtopik</b></td><td>Peluruhan Eksponensial</td></tr>
-                <tr><td><b>Level Kognitif</b></td><td>Aplikasi (C3)</td></tr>
-            </tbody></table>
-            <div class="soal-latihan"><b>1.</b>Suatu zat radioaktif memiliki waktu paruh 20 hari. Jika awalnya terdapat 128 gram zat, massa yang tersisa setelah 100 hari adalah...<ol class="pilihan-ganda"><li data-option="A">2 gram</li><li data-option="B">4 gram</li><li data-option="C">8 gram</li><li data-option="D">16 gram</li><li data-option="E">32 gram</li></ol></div>
-            <div class="materi-singkat">
-                <h4>Materi Singkat</h4>
-                Peluruhan eksponensial adalah proses penyusutan kuantitas seiring waktu. Rumus yang digunakan adalah $M(t) = M_0 \times (\frac{1}{2})^{\frac{t}{T}}$, di mana $M(t)$ adalah massa sisa, $M_0$ adalah massa awal, $t$ adalah waktu yang berlalu, dan $T$ adalah waktu paruh.
-            </div>
-            <div class="pembahasan">
-                <h4>Pembahasan</h4>
-                <b>Langkah 1: Identifikasi variabel dari soal.</b><br>
-                - Massa awal ($M_0$) = 128 gram<br>
-                - Waktu paruh ($T$) = 20 hari<br>
-                - Waktu berlalu ($t$) = 100 hari<br><br>
-                <b>Langkah 2: Substitusikan nilai ke dalam rumus.</b><br>
-                Masukkan semua nilai yang diketahui ke dalam rumus peluruhan eksponensial.
-                <div class="equation-container">
-                $$ M(100) = 128 \times \left(\frac{1}{2}\right)^{\frac{100}{20}} $$
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 2: Soal 1 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Eksponensial</td></tr>
+                    <tr><td>Sub Topik</td><td>Peluruhan Eksponensial</td></tr>
+                    <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">1.</div>
+                    <div class="soal-konten">
+                        Suatu zat radioaktif memiliki waktu paruh 20 hari. Ini berarti massa zat tersebut akan menjadi setengah dari massa semula setiap 20 hari. Jika pada awalnya terdapat 128 gram zat tersebut, massa zat yang tersisa setelah 100 hari adalah...
+                        <ol><li data-option="A">2 gram</li><li data-option="B">4 gram</li><li data-option="C">8 gram</li><li data-option="D">16 gram</li><li data-option="E">32 gram</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: B. 4 gram</b><br>
+                            <b>Pembahasan Detail:</b><br>
+                            Konsep yang digunakan adalah peluruhan eksponensial. Rumus umum untuk massa sisa ($M_t$) setelah waktu tertentu adalah $M_t = M_0 \times (\frac{1}{2})^n$, di mana $M_0$ adalah massa awal dan $n$ adalah jumlah periode waktu paruh yang telah berlalu.<br>
+                            <b>Langkah 1: Tentukan jumlah periode waktu paruh ($n$).</b><br>
+                            Periode waktu paruh adalah interval waktu di mana massa zat menjadi setengahnya.
+                            $$ n = \frac{\text{Waktu total}}{\text{Waktu paruh}} = \frac{100 \text{ hari}}{20 \text{ hari}} = 5 $$
+                            Ini berarti zat akan mengalami peluruhan sebanyak 5 kali.<br>
+                             <b>Langkah 2: Hitung massa sisa.</b><br>
+                             Substitusikan nilai $M_0 = 128$ dan $n=5$ ke dalam rumus.
+                            $$ M_t = 128 \times \left(\frac{1}{2}\right)^5 = 128 \times \frac{1}{32} = 4 \text{ gram} $$
+                        </div>
+                    </div>
                 </div>
-                <b>Langkah 3: Lakukan perhitungan.</b><br>
-                Sederhanakan eksponennya terlebih dahulu, lalu hitung hasilnya.
-                <div class="equation-container">
-                $$ \begin{aligned} M(100) &= 128 \times \left(\frac{1}{2}\right)^5 \\ &= 128 \times \frac{1}{32} \\ &= 4 \end{aligned} $$
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 3: Soal 2 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+             <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Barisan dan Deret</td></tr>
+                    <tr><td>Sub Topik</td><td>Deret Aritmetika</td></tr>
+                    <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">2.</div>
+                    <div class="soal-konten">
+                        Seorang karyawan menabung dengan pola aritmetika. Pada bulan pertama, ia menabung Rp500.000, bulan kedua Rp550.000, dan seterusnya. Total tabungan setelah 2 tahun adalah...
+                        <ol><li data-option="A">Rp25.800.000</li><li data-option="B">Rp26.500.000</li><li data-option="C">Rp27.400.000</li><li data-option="D">Rp28.200.000</li><li data-option="E">Rp29.100.000</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: A. Rp25.800.000</b><br>
+                            <b>Pembahasan Detail:</b><br>
+                            Pola tabungan ini membentuk deret aritmetika karena kenaikan tabungannya tetap setiap bulan. Kita perlu mencari jumlah total tabungan ($S_n$) selama 2 tahun.<br>
+                            <b>Langkah 1: Identifikasi variabel deret.</b><br>
+                            - Suku pertama ($a$) atau tabungan bulan pertama = 500.000<br>
+                            - Beda ($b$) atau kenaikan tabungan per bulan = 550.000 - 500.000 = 50.000<br>
+                            - Jumlah periode ($n$) = 2 tahun = 24 bulan<br>
+                             <b>Langkah 2: Gunakan rumus jumlah deret aritmetika.</b><br>
+                             Rumus jumlah $n$ suku pertama deret aritmetika adalah $S_n = \frac{n}{2} (2a + (n-1)b)$.
+                            $$ \begin{aligned} S_{24} &= \frac{24}{2}(2(500.000) + (24-1)(50.000)) \\ &= 12(1.000.000 + 23(50.000)) \\ &= 12(1.000.000 + 1.150.000) \\ &= 12(2.150.000) = 25.800.000 \end{aligned} $$
+                        </div>
+                    </div>
                 </div>
-                Dengan demikian, massa zat yang tersisa setelah 100 hari adalah 4 gram.
-                <br>
-                <b>Jawaban: B</b>
             </div>
         </div>
-    </div>
-    <footer class="page-footer">
-        <hr class="footer-line">
-        <div class="footer-content"><span class="copyright-main">Copyright &copy; 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</span> <span class="copyright-secondary">Dilarang menyebarluaskan ini tanpa seizin PT Ruang Raya Indonesia.</span></div>
-    </footer>
-</div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
 
-<!-- PAGE 3: SOAL 2 -->
-<div class="page">
-    <header class="page-header">
-        <div class="header-top-box"><div class="header-title"><div class="main-title">Panduan Mengajar</div><div class="subtitle">Matematika Lanjut</div></div><div class="header-logo"><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo"></div></div>
-        <div class="header-bottom-box"><div class="header-bottom-text">XI SMA | Kurikulum Merdeka | [TKA] Drill Soal | Subtopik: Drill Soal TKA Matematika (Lanjut) - Paket 1 | Pertemuan 05</div></div>
-    </header>
-    <div class="content-wrapper">
-        <div class="soal-pembahasan-wrapper">
-            <table class="soal-info-table"><tbody>
-                <tr><td><b>Topik</b></td><td>Barisan dan Deret</td></tr>
-                <tr><td><b>Subtopik</b></td><td>Deret Aritmetika</td></tr>
-                <tr><td><b>Level Kognitif</b></td><td>Aplikasi (C3)</td></tr>
-            </tbody></table>
-            <div class="soal-latihan"><b>2.</b>Seorang karyawan menabung dengan pola aritmetika: Rp500.000, Rp550.000, Rp600.000, dst. Total tabungan setelah 2 tahun adalah...<ol class="pilihan-ganda"><li data-option="A">Rp25.800.000</li><li data-option="B">Rp26.500.000</li><li data-option="C">Rp27.400.000</li><li data-option="D">Rp28.200.000</li><li data-option="E">Rp29.100.000</li></ol></div>
-            <div class="materi-singkat">
-                <h4>Materi Singkat</h4>
-                Deret aritmetika adalah jumlahan suku-suku dari barisan yang memiliki selisih tetap. Jumlah $n$ suku pertama ($S_n$) dihitung dengan rumus $S_n = \frac{n}{2}(2a + (n-1)b)$, di mana $a$ adalah suku pertama, $b$ adalah beda, dan $n$ adalah banyak suku.
-            </div>
-            <div class="pembahasan">
-                <h4>Pembahasan</h4>
-                <b>Langkah 1: Tentukan komponen deret aritmetika.</b><br>
-                - Suku pertama ($a$) = 500.000<br>
-                - Beda ($b$) = 550.000 - 500.000 = 50.000<br>
-                - Banyak suku ($n$) = 2 tahun = 24 bulan<br><br>
-                <b>Langkah 2: Hitung total tabungan menggunakan rumus $S_n$.</b><br>
-                Kita akan menghitung jumlah 24 suku pertama ($S_{24}$).
-                <div class="equation-container">
-                $$ \begin{aligned} S_{24} &= \frac{24}{2}(2(500.000) + (24-1)50.000) \\ &= 12(1.000.000 + (23) \times 50.000) \\ &= 12(1.000.000 + 1.150.000) \\ &= 12(2.150.000) \\ &= 25.800.000 \end{aligned} $$
+    <!-- HALAMAN 4: Soal 3 -->
+    <section class="page">
+         <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+             <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+             <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Trigonometri</td></tr>
+                    <tr><td>Sub Topik</td><td>Perbandingan Trigonometri</td></tr>
+                    <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">3.</div>
+                    <div class="soal-konten">
+                        Sebuah drone terbang dari titik P. Seorang pengamat di Q, 100 m dari P, melihat drone dengan sudut elevasi 30°, lalu 60°. Kenaikan ketinggian drone adalah...
+                        <ol><li data-option="A">$100(\sqrt{3}-1)$ m</li><li data-option="B">$\frac{200}{\sqrt{3}}$ m</li><li data-option="C">$\frac{100}{\sqrt{3}}$ m</li><li data-option="D">$100\sqrt{3}$ m</li><li data-option="E">$200(\sqrt{3}-1)$ m</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: B. $\frac{200}{\sqrt{3}}$ m</b><br>
+                            <b>Pembahasan Detail:</b><br>
+                            Masalah ini diselesaikan dengan perbandingan tangen pada segitiga siku-siku, di mana $\tan(\theta) = \frac{\text{sisi depan}}{\text{sisi samping}}$.<br>
+                            <b>Langkah 1: Hitung ketinggian pertama ($h_1$).</b><br>
+                            Sisi samping (jarak pengamat) = 100 m, sudut = 30°.
+                             $$ \tan(30^\circ) = \frac{h_1}{100} \implies h_1 = 100 \times \tan(30^\circ) = 100 \times \frac{1}{\sqrt{3}} = \frac{100}{\sqrt{3}} $$
+                             <b>Langkah 2: Hitung ketinggian kedua ($h_2$).</b><br>
+                             Sisi samping tetap 100 m, sudut = 60°.
+                             $$ \tan(60^\circ) = \frac{h_2}{100} \implies h_2 = 100 \times \tan(60^\circ) = 100\sqrt{3} $$
+                             <b>Langkah 3: Hitung kenaikan ketinggian.</b><br>
+                             Kenaikan = $h_2 - h_1 = 100\sqrt{3} - \frac{100}{\sqrt{3}} = \frac{100(3)-100}{\sqrt{3}} = \frac{200}{\sqrt{3}}$.
+                        </div>
+                    </div>
                 </div>
-                Jadi, total tabungan karyawan setelah 2 tahun adalah Rp25.800.000.
-                <br>
-                <b>Jawaban: A</b>
             </div>
         </div>
-    </div>
-    <footer class="page-footer">
-        <hr class="footer-line">
-        <div class="footer-content"><span class="copyright-main">Copyright &copy; 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</span> <span class="copyright-secondary">Dilarang menyebarluaskan ini tanpa seizin PT Ruang Raya Indonesia.</span></div>
-    </footer>
-</div>
-
-<!-- PAGE 4: SOAL 3 -->
-<div class="page">
-    <header class="page-header">
-        <div class="header-top-box"><div class="header-title"><div class="main-title">Panduan Mengajar</div><div class="subtitle">Matematika Lanjut</div></div><div class="header-logo"><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo"></div></div>
-        <div class="header-bottom-box"><div class="header-bottom-text">XI SMA | Kurikulum Merdeka | [TKA] Drill Soal | Subtopik: Drill Soal TKA Matematika (Lanjut) - Paket 1 | Pertemuan 05</div></div>
-    </header>
-    <div class="content-wrapper">
-        <div class="soal-pembahasan-wrapper">
-             <table class="soal-info-table"><tbody>
-                <tr><td><b>Topik</b></td><td>Trigonometri</td></tr>
-                <tr><td><b>Subtopik</b></td><td>Perbandingan Trigonometri</td></tr>
-                <tr><td><b>Level Kognitif</b></td><td>Penalaran (C4)</td></tr>
-            </tbody></table>
-            <div class="soal-latihan"><b>3.</b>Seorang pengamat berjarak 100 m dari titik P melihat drone di atas P. Sudut elevasi awal 30°, kemudian menjadi 60°. Kenaikan ketinggian drone adalah...<ol class="pilihan-ganda"><li data-option="A">$100(\sqrt{3}-1)$ m</li><li data-option="B">$\frac{200}{\sqrt{3}}$ m</li><li data-option="C">$\frac{100}{\sqrt{3}}$ m</li><li data-option="D">$100\sqrt{3}$ m</li><li data-option="E">$200(\sqrt{3}-1)$ m</li></ol></div>
-            <div class="materi-singkat">
-                <h4>Materi Singkat</h4>
-                Dalam segitiga siku-siku, perbandingan tangen adalah $\tan(\theta) = \frac{\text{sisi depan}}{\text{sisi samping}}$. Konsep ini digunakan untuk menghubungkan sudut elevasi dengan jarak dan ketinggian.
-            </div>
-            <div class="pembahasan">
-                <h4>Pembahasan</h4>
-                <b>Langkah 1: Hitung ketinggian awal ($h_1$).</b><br>
-                Pada sudut 30°, sisi depan adalah $h_1$ dan sisi samping adalah 100 m.
-                $$ h_1 = 100 \times \tan(30^\circ) = 100 \times \frac{1}{\sqrt{3}} = \frac{100}{\sqrt{3}} \text{ m} $$
-                <b>Langkah 2: Hitung ketinggian akhir ($h_2$).</b><br>
-                Pada sudut 60°, sisi depan adalah $h_2$ dan sisi samping tetap 100 m.
-                $$ h_2 = 100 \times \tan(60^\circ) = 100\sqrt{3} \text{ m} $$
-                <b>Langkah 3: Hitung kenaikan ketinggian ($\Delta h$).</b><br>
-                Kenaikan ketinggian adalah selisih antara $h_2$ dan $h_1$.
-                <div class="equation-container">
-                $$ \begin{aligned} \Delta h &= h_2 - h_1 = 100\sqrt{3} - \frac{100}{\sqrt{3}} \\ &= \frac{100\sqrt{3}(\sqrt{3}) - 100}{\sqrt{3}} \\ &= \frac{300 - 100}{\sqrt{3}} = \frac{200}{\sqrt{3}} \end{aligned} $$
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
+    
+    <!-- HALAMAN 5: Soal 4 -->
+    <section class="page">
+         <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+             <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+             <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Fungsi Kuadrat</td></tr>
+                    <tr><td>Sub Topik</td><td>Titik Puncak</td></tr>
+                    <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">4.</div>
+                    <div class="soal-konten">
+                        Lintasan bola mengikuti $h(t) = -5t^2 + 20t + 2$. Ketinggian maksimumnya adalah...
+                        <ol><li data-option="A">20 m</li><li data-option="B">22 m</li><li data-option="C">25 m</li><li data-option="D">27 m</li><li data-option="E">30 m</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: B. 22 m</b><br>
+                            <b>Pembahasan Detail:</b><br>
+                            Ketinggian maksimum dari fungsi kuadrat $at^2+bt+c$ adalah nilai ordinat (y) dari titik puncaknya. Karena koefisien $a=-5$ (negatif), parabola terbuka ke bawah dan memiliki titik maksimum.<br>
+                            <b>Langkah 1: Cari waktu ($t_p$) saat mencapai puncak.</b><br>
+                            Sumbu simetri atau waktu puncak diberikan oleh rumus $t_p = -\frac{b}{2a}$.
+                            $$ t_p = -\frac{20}{2(-5)} = -\frac{20}{-10} = 2 \text{ detik} $$
+                            <b>Langkah 2: Substitusi $t_p$ ke fungsi ketinggian untuk mencari nilai maksimum.</b><br>
+                            $h(2) = -5(2)^2 + 20(2) + 2 = -5(4) + 40 + 2 = -20+40+2 = 22$ meter.
+                        </div>
+                    </div>
                 </div>
-                <b>Jawaban: B</b>
             </div>
         </div>
-    </div>
-    <footer class="page-footer">
-        <hr class="footer-line">
-        <div class="footer-content"><span class="copyright-main">Copyright &copy; 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</span> <span class="copyright-secondary">Dilarang menyebarluaskan ini tanpa seizin PT Ruang Raya Indonesia.</span></div>
-    </footer>
-</div>
-
-<!-- PAGE 5: SOAL 4 -->
-<div class="page">
-    <header class="page-header">
-        <div class="header-top-box"><div class="header-title"><div class="main-title">Panduan Mengajar</div><div class="subtitle">Matematika Lanjut</div></div><div class="header-logo"><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo"></div></div>
-        <div class="header-bottom-box"><div class="header-bottom-text">XI SMA | Kurikulum Merdeka | [TKA] Drill Soal | Subtopik: Drill Soal TKA Matematika (Lanjut) - Paket 1 | Pertemuan 05</div></div>
-    </header>
-    <div class="content-wrapper">
-        <div class="soal-pembahasan-wrapper">
-            <table class="soal-info-table"><tbody>
-                <tr><td><b>Topik</b></td><td>Fungsi Kuadrat</td></tr>
-                <tr><td><b>Subtopik</b></td><td>Aplikasi (Nilai Maksimum)</td></tr>
-                <tr><td><b>Level Kognitif</b></td><td>Aplikasi (C3)</td></tr>
-            </tbody></table>
-            <div class="soal-latihan"><b>4.</b>Lintasan bola mengikuti fungsi $h(t) = -5t^2 + 20t + 2$. Ketinggian maksimum bola adalah...<ol class="pilihan-ganda"><li data-option="A">20 meter</li><li data-option="B">22 meter</li><li data-option="C">25 meter</li><li data-option="D">27 meter</li><li data-option="E">30 meter</li></ol></div>
-            <div class="materi-singkat">
-                <h4>Materi Singkat</h4>
-                Nilai optimum (maksimum/minimum) dari fungsi $f(x)=ax^2+bx+c$ adalah $y_p = -\frac{b^2-4ac}{4a}$. Karena koefisien $a$ pada soal ini negatif, maka yang dicari adalah nilai maksimum.
-            </div>
-            <div class="pembahasan">
-                <h4>Pembahasan</h4>
-                <b>Langkah 1: Identifikasi koefisien fungsi kuadrat.</b><br>
-                Dari $h(t) = -5t^2 + 20t + 2$, kita dapatkan $a=-5, b=20, c=2$.<br><br>
-                <b>Langkah 2: Hitung nilai maksimum menggunakan rumus.</b><br>
-                Substitusikan nilai $a, b,$ dan $c$ ke dalam rumus nilai puncak.
-                <div class="equation-container">
-                $$ \begin{aligned} h_{max} &= -\frac{b^2 - 4ac}{4a} \\ &= -\frac{(20)^2 - 4(-5)(2)}{4(-5)} \\ &= -\frac{400+40}{-20} = \frac{440}{20} = 22 \end{aligned} $$
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
+    
+    <!-- HALAMAN 6: Soal 5 -->
+    <section class="page">
+         <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+             <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Barisan dan Deret</td></tr>
+                    <tr><td>Sub Topik</td><td>Barisan Geometri</td></tr>
+                    <tr><td>Level Kognitif</td><td>Penalaran</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">5.</div>
+                    <div class="soal-konten">
+                        Tiga bilangan barisan geometri berjumlah 26 dan hasil kalinya 216. Suku terbesarnya adalah...
+                        <ol><li data-option="A">12</li><li data-option="B">16</li><li data-option="C">18</li><li data-option="D">20</li><li data-option="E">24</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: C. 18</b><br>
+                            <b>Pembahasan Detail:</b><br>
+                            <b>Langkah 1: Gunakan pemisalan yang efisien.</b><br>
+                            Untuk soal seperti ini, pemisalan yang paling mudah adalah $\frac{a}{r}, a, ar$ untuk ketiga bilangan tersebut.<br>
+                            <b>Langkah 2: Gunakan informasi hasil kali.</b><br>
+                            Hasil kali: $(\frac{a}{r}) \times (a) \times (ar) = a^3 = 216$. Maka, $a = \sqrt[3]{216} = 6$. Kita temukan suku tengahnya adalah 6.<br>
+                            <b>Langkah 3: Gunakan informasi jumlah.</b><br>
+                            $\frac{6}{r}+6+6r=26 \implies \frac{6}{r}+6r=20$. Kalikan semua ruas dengan $r$ untuk menghilangkan penyebut: $6+6r^2=20r \implies 6r^2-20r+6=0$. Sederhanakan dengan membagi 2: $3r^2-10r+3=0$.<br>
+                            <b>Langkah 4: Selesaikan persamaan kuadrat untuk mencari rasio ($r$).</b><br>
+                            Faktorkan: $(3r-1)(r-3)=0$. Diperoleh dua kemungkinan rasio: $r=3$ atau $r=\frac{1}{3}$.<br>
+                            - Jika $a=6$ dan $r=3$, barisannya adalah 2, 6, 18.<br>
+                            - Jika $a=6$ dan $r=1/3$, barisannya adalah 18, 6, 2.<br>
+                            Dalam kedua kasus, suku terbesarnya adalah 18.
+                        </div>
+                    </div>
                 </div>
-                Jadi, ketinggian maksimum yang dicapai bola adalah 22 meter.
-                <br>
-                <b>Jawaban: B</b>
             </div>
         </div>
-    </div>
-    <footer class="page-footer">
-        <hr class="footer-line">
-        <div class="footer-content"><span class="copyright-main">Copyright &copy; 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</span> <span class="copyright-secondary">Dilarang menyebarluaskan ini tanpa seizin PT Ruang Raya Indonesia.</span></div>
-    </footer>
-</div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
+    
+    <!-- HALAMAN 7: Soal 6 -->
+    <section class="page">
+         <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+             <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+             <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Logaritma</td></tr>
+                    <tr><td>Sub Topik</td><td>Persamaan Logaritma</td></tr>
+                    <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">6.</div>
+                    <div class="soal-konten">
+                        Diberikan $^2\log(x-2) + \ ^2\log(x-3) = 1$. Nilai $x$ yang memenuhi adalah...
+                        <ol><li data-option="A">1</li><li data-option="B">2</li><li data-option="C">3</li><li data-option="D">4</li><li data-option="E">5</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: D. 4</b><br>
+                            <b>Pembahasan Detail:</b><br>
+                             <b>Langkah 1: Gunakan sifat penjumlahan logaritma.</b><br>
+                             Sifat yang digunakan: $^a\log b + ^a\log c = ^a\log(bc)$.
+                             $$ ^2\log((x-2)(x-3)) = 1 $$
+                             <b>Langkah 2: Ubah persamaan logaritma ke bentuk eksponen.</b><br>
+                             Sifat yang digunakan: $^a\log b = c \iff a^c=b$.
+                             $$ (x-2)(x-3) = 2^1 \implies x^2-5x+6=2 \implies x^2-5x+4=0 $$
+                             <b>Langkah 3: Selesaikan persamaan kuadrat yang terbentuk.</b><br>
+                            Faktorkan: $(x-1)(x-4)=0$. Diperoleh dua calon solusi: $x=1$ atau $x=4$.<br>
+                            <b>Langkah 4: Periksa syarat numerus logaritma.</b><br>
+                            Numerus dalam logaritma harus bernilai positif.<br>
+                            - Syarat 1: $x-2>0 \implies x>2$.<br>
+                            - Syarat 2: $x-3>0 \implies x>3$.<br>
+                            Irisan dari kedua syarat adalah $x>3$. Dari calon solusi, hanya $x=4$ yang memenuhi syarat ini.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
 
-<!-- PAGE 6: SOAL 5 -->
-<div class="page">
-    <header class="page-header">
-        <div class="header-top-box"><div class="header-title"><div class="main-title">Panduan Mengajar</div><div class="subtitle">Matematika Lanjut</div></div><div class="header-logo"><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo"></div></div>
-        <div class="header-bottom-box"><div class="header-bottom-text">XI SMA | Kurikulum Merdeka | [TKA] Drill Soal | Subtopik: Drill Soal TKA Matematika (Lanjut) - Paket 1 | Pertemuan 05</div></div>
-    </header>
-    <div class="content-wrapper">
-       <div class="soal-pembahasan-wrapper">
-            <table class="soal-info-table"><tbody>
-                <tr><td><b>Topik</b></td><td>Barisan dan Deret</td></tr>
-                <tr><td><b>Subtopik</b></td><td>Barisan Geometri</td></tr>
-                <tr><td><b>Level Kognitif</b></td><td>Penalaran (C4)</td></tr>
-            </tbody></table>
-            <div class="soal-latihan"><b>5.</b>Tiga bilangan membentuk barisan geometri. Jumlahnya 26 dan hasil kalinya 216. Suku terbesar dari barisan tersebut adalah...<ol class="pilihan-ganda"><li data-option="A">12</li><li data-option="B">16</li><li data-option="C">18</li><li data-option="D">20</li><li data-option="E">24</li></ol></div>
-            <div class="materi-singkat">
-                <h4>Materi Singkat</h4>
-                Untuk mempermudah perhitungan, tiga suku barisan geometri dapat dimisalkan sebagai $\frac{a}{r}, a, ar$. Hasil kali ketiganya akan menjadi $a^3$, yang menyederhanakan pencarian nilai suku tengah.
-            </div>
-            <div class="pembahasan">
-                <h4>Pembahasan</h4>
-                <b>Langkah 1: Gunakan informasi hasil kali untuk mencari suku tengah ($a$).</b><br>
-                $(\frac{a}{r}) \times a \times (ar) = a^3 = 216$. Maka $a = \sqrt[3]{216} = 6$.<br><br>
-                <b>Langkah 2: Gunakan informasi jumlah untuk mencari rasio ($r$).</b><br>
-                $\frac{6}{r} + 6 + 6r = 26 \implies \frac{6}{r} + 6r = 20$. Kalikan dengan $r$:
-                $6 + 6r^2 = 20r \implies 6r^2 - 20r + 6 = 0$.<br>
-                Sederhanakan menjadi $3r^2 - 10r + 3 = 0$.<br><br>
-                <b>Langkah 3: Faktorkan dan tentukan barisannya.</b><br>
-                $(3r - 1)(r - 3) = 0$, maka $r=3$ atau $r=1/3$. Jika $r=3$, barisannya adalah (2, 6, 18). Jika $r=1/3$, barisannya adalah (18, 6, 2). Keduanya memiliki suku terbesar 18.
-                <br>
-                <b>Jawaban: C</b>
+    <!-- HALAMAN 8: Soal 7 -->
+    <section class="page">
+         <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+             <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Sistem Persamaan</td></tr>
+                    <tr><td>Sub Topik</td><td>SPLDV</td></tr>
+                    <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">7.</div>
+                    <div class="soal-konten">
+                        Paket A (2 buku, 1 pensil) Rp25.000. Paket B (1 buku, 2 pensil) Rp20.000. Harga Paket C (2 buku, 2 pensil) adalah...
+                        <ol><li data-option="A">Rp30.000</li><li data-option="B">Rp35.000</li><li data-option="C">Rp40.000</li><li data-option="D">Rp45.000</li><li data-option="E">Rp50.000</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: A. Rp30.000</b><br>
+                            <b>Pembahasan Detail:</b><br>
+                            <b>Langkah 1: Buat model matematika.</b><br>
+                            Misalkan harga 1 buku = $b$ dan harga 1 pensil = $p$.<br>
+                            (1) $2b+p=25.000$<br>
+                            (2) $b+2p=20.000$<br>
+                            Yang ditanyakan adalah harga Paket C, yaitu $2b+2p$.<br>
+                            <b>Langkah 2: Gunakan metode eliminasi cerdas.</b><br>
+                            Perhatikan bahwa kita tidak perlu mencari nilai $b$ dan $p$ satu per satu. Jumlahkan saja kedua persamaan yang ada:
+                            $$ (2b+p) + (b+2p) = 25.000 + 20.000 $$
+                            $$ 3b+3p = 45.000 $$
+                            Bagi kedua ruas dengan 3:
+                            $$ b+p = 15.000 $$
+                            <b>Langkah 3: Hitung harga Paket C.</b><br>
+                            Harga Paket C = $2b+2p = 2(b+p) = 2(15.000) = 30.000$.
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <footer class="page-footer">
-        <hr class="footer-line">
-        <div class="footer-content"><span class="copyright-main">Copyright &copy; 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</span> <span class="copyright-secondary">Dilarang menyebarluaskan ini tanpa seizin PT Ruang Raya Indonesia.</span></div>
-    </footer>
-</div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
 
-<!-- PAGE 7: SOAL 6 -->
-<div class="page">
-    <header class="page-header">
-        <div class="header-top-box"><div class="header-title"><div class="main-title">Panduan Mengajar</div><div class="subtitle">Matematika Lanjut</div></div><div class="header-logo"><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo"></div></div>
-        <div class="header-bottom-box"><div class="header-bottom-text">XI SMA | Kurikulum Merdeka | [TKA] Drill Soal | Subtopik: Drill Soal TKA Matematika (Lanjut) - Paket 1 | Pertemuan 05</div></div>
-    </header>
-    <div class="content-wrapper">
-        <div class="soal-pembahasan-wrapper">
-            <table class="soal-info-table"><tbody>
-                <tr><td><b>Topik</b></td><td>Eksponen dan Logaritma</td></tr>
-                <tr><td><b>Subtopik</b></td><td>Persamaan Logaritma</td></tr>
-                <tr><td><b>Level Kognitif</b></td><td>Aplikasi (C3)</td></tr>
-            </tbody></table>
-            <div class="soal-latihan"><b>6.</b>Diberikan persamaan $^2\log(x-2) + \ ^2\log(x-3) = 1$. Nilai $x$ yang memenuhi adalah...<ol class="pilihan-ganda"><li data-option="A">1</li><li data-option="B">2</li><li data-option="C">3</li><li data-option="D">4</li><li data-option="E">5</li></ol></div>
-            <div class="materi-singkat">
-                <h4>Materi Singkat</h4>
-                Gunakan sifat $^a\log b + \ ^a\log c = \ ^a\log(bc)$ dan ingat syarat numerus logaritma, yaitu argumennya harus lebih besar dari nol ($>0$).
-            </div>
-            <div class="pembahasan">
-                <h4>Pembahasan</h4>
-                <b>Langkah 1: Gabungkan logaritma dan selesaikan persamaan.</b><br>
-                $^2\log((x-2)(x-3)) = 1 \implies (x-2)(x-3) = 2^1$.<br>
-                $x^2 - 5x + 6 = 2 \implies x^2 - 5x + 4 = 0$.<br>
-                Faktorkan: $(x-4)(x-1) = 0$, sehingga diperoleh $x=4$ atau $x=1$.<br><br>
-                <b>Langkah 2: Periksa syarat numerus.</b><br>
-                Syarat 1: $x-2>0 \implies x>2$.<br>
-                Syarat 2: $x-3>0 \implies x>3$.<br>
-                Kedua syarat harus terpenuhi, sehingga syarat akhir adalah $x>3$.<br><br>
-                <b>Langkah 3: Tentukan solusi yang valid.</b><br>
-                Dari hasil faktorisasi, hanya $x=4$ yang memenuhi syarat $x>3$.
-                <br>
-                <b>Jawaban: D</b>
+    <!-- HALAMAN 9: Soal 8 -->
+    <section class="page">
+         <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+             <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+             <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Statistika</td></tr>
+                    <tr><td>Sub Topik</td><td>Ukuran Pemusatan & Penyebaran</td></tr>
+                    <tr><td>Level Kognitif</td><td>Aplikasi (PG Kompleks)</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">8.</div>
+                    <div class="soal-konten">
+                        Data: 8, 7, 6, 9, 5, 8, 7, 10, 8, 4. Manakah pernyataan yang benar? <b>(bisa pilih lebih dari satu jawaban)</b>
+                        <div class="pilihan-ganda-mcma">
+                           <div><input type="checkbox" disabled><span>Rata-rata nilai ujian adalah 7.2.</span></div>
+                           <div><input type="checkbox" disabled><span>Modus dari data tersebut adalah 8.</span></div>
+                           <div><input type="checkbox" disabled><span>Median dari data tersebut adalah 7.5.</span></div>
+                           <div><input type="checkbox" disabled><span>Jangkauan data adalah 6.</span></div>
+                        </div>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: Semua pernyataan benar.</b><br>
+                            <b>Pembahasan Detail:</b><br>
+                            <b>Langkah 1: Urutkan data dari terkecil ke terbesar.</b><br>
+                            4, 5, 6, 7, 7, 8, 8, 8, 9, 10. (Jumlah data $n=10$).<br>
+                            <b>Langkah 2: Cek kebenaran setiap pernyataan.</b>
+                            <ul>
+                               <li><b>Rata-rata (Mean):</b> Jumlah semua nilai dibagi banyaknya data.<br>
+                               $\frac{4+5+6+7+7+8+8+8+9+10}{10} = \frac{72}{10} = 7.2$. (Benar)</li>
+                               <li><b>Modus:</b> Nilai yang paling sering muncul. Nilai 8 muncul sebanyak 3 kali, paling banyak di antara yang lain. (Benar)</li>
+                               <li><b>Median:</b> Nilai tengah data. Karena $n=10$ (genap), median adalah rata-rata dari dua data di tengah (data ke-5 dan ke-6).<br>
+                               Median = $\frac{\text{data ke-5} + \text{data ke-6}}{2} = \frac{7+8}{2}=7.5$. (Benar)</li>
+                               <li><b>Jangkauan (Range):</b> Selisih antara data terbesar dan data terkecil.<br>
+                               Jangkauan = $10-4=6$. (Benar)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <footer class="page-footer">
-        <hr class="footer-line">
-        <div class="footer-content"><span class="copyright-main">Copyright &copy; 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</span> <span class="copyright-secondary">Dilarang menyebarluaskan ini tanpa seizin PT Ruang Raya Indonesia.</span></div>
-    </footer>
-</div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
 
-<!-- PAGE 8: SOAL 7 -->
-<div class="page">
-    <header class="page-header">
-        <div class="header-top-box"><div class="header-title"><div class="main-title">Panduan Mengajar</div><div class="subtitle">Matematika Lanjut</div></div><div class="header-logo"><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo"></div></div>
-        <div class="header-bottom-box"><div class="header-bottom-text">XI SMA | Kurikulum Merdeka | [TKA] Drill Soal | Subtopik: Drill Soal TKA Matematika (Lanjut) - Paket 1 | Pertemuan 05</div></div>
-    </header>
-    <div class="content-wrapper">
-        <div class="soal-pembahasan-wrapper">
-            <table class="soal-info-table"><tbody>
-                <tr><td><b>Topik</b></td><td>Sistem Persamaan Linear</td></tr>
-                <tr><td><b>Subtopik</b></td><td>SPLDV</td></tr>
-                <tr><td><b>Level Kognitif</b></td><td>Aplikasi (C3)</td></tr>
-            </tbody></table>
-            <div class="soal-latihan"><b>7.</b>Paket A (2 buku, 1 pensil) Rp25.000. Paket B (1 buku, 2 pensil) Rp20.000. Harga Paket C (2 buku, 2 pensil) adalah...<ol class="pilihan-ganda"><li data-option="A">Rp30.000</li><li data-option="B">Rp35.000</li><li data-option="C">Rp40.000</li><li data-option="D">Rp45.000</li><li data-option="E">Rp50.000</li></ol></div>
-             <div class="pembahasan">
-                <h4>Pembahasan</h4>
-                <b>Langkah 1: Buat model matematika.</b><br>
-                Misal harga buku=$b$ dan harga pensil=$p$.<br>
-                (1) $2b + p = 25.000$<br>
-                (2) $b + 2p = 20.000$<br>
-                Ditanya: $2b + 2p$.<br><br>
-                <b>Langkah 2: Gunakan trik penjumlahan.</b><br>
-                Jumlahkan Persamaan (1) dan (2):<br>
-                $(2b + p) + (b + 2p) = 25.000 + 20.000$<br>
-                $3b + 3p = 45.000$<br><br>
-                <b>Langkah 3: Sederhanakan dan cari harga yang dituju.</b><br>
-                Bagi hasil penjumlahan dengan 3: $b+p=15.000$.<br>
-                Maka, harga paket C adalah $2b + 2p = 2(b+p) = 2(15.000) = 30.000$.
-                <br>
-                <b>Jawaban: A</b>
+    <!-- HALAMAN 10: Soal 9 -->
+    <section class="page">
+         <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+             <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+              <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Fungsi Kuadrat</td></tr>
+                    <tr><td>Sub Topik</td><td>Menyusun Persamaan</td></tr>
+                    <tr><td>Level Kognitif</td><td>Penalaran (PG Kompleks)</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">9.</div>
+                    <div class="soal-konten">
+                       $f(x) = ax^2 + bx + c$ punya puncak (2,-1) dan melalui (4,7). Mana pernyataan yang benar? <b>(bisa pilih lebih dari satu jawaban)</b>
+                         <div class="pilihan-ganda-mcma">
+                           <div><input type="checkbox" disabled><span>Nilai $a=2$.</span></div>
+                           <div><input type="checkbox" disabled><span>Grafik membuka ke atas.</span></div>
+                           <div><input type="checkbox" disabled><span>Fungsi memotong sumbu-y di titik (0, 7).</span></div>
+                           <div><input type="checkbox" disabled><span>Diskriminan fungsi bernilai positif.</span></div>
+                        </div>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: Semua pernyataan benar.</b><br>
+                            <b>Pembahasan Detail:</b><br>
+                            <b>Langkah 1: Susun fungsi dari titik puncak $(x_p, y_p)$.</b><br>
+                            Gunakan rumus $f(x)=a(x-x_p)^2+y_p \implies f(x)=a(x-2)^2-1$.<br>
+                            <b>Langkah 2: Cari nilai $a$ dengan mensubstitusi titik yang dilalui.</b><br>
+                            Substitusi titik (4,7): $7=a(4-2)^2-1 \implies 7=a(2)^2-1 \implies 8=4a \implies a=2$. (Pernyataan 1 Benar)<br>
+                            <b>Langkah 3: Analisis fungsi yang sudah ditemukan.</b><br>
+                            - Karena $a=2$ (positif), maka grafik parabola membuka ke atas. (Pernyataan 2 Benar)<br>
+                            - Jabarkan ke bentuk umum: $f(x)=2(x^2-4x+4)-1 = 2x^2-8x+7$. Titik potong sumbu-y terjadi saat $x=0$, yaitu $f(0)=7$. Jadi, titik potongnya adalah (0, 7). (Pernyataan 3 Benar)<br>
+                            - Hitung Diskriminan ($D=b^2-4ac$): $D = (-8)^2-4(2)(7)=64-56=8$. Karena $D>0$, fungsi memiliki dua akar riil berbeda. (Pernyataan 4 Benar)
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <footer class="page-footer">
-        <hr class="footer-line">
-        <div class="footer-content"><span class="copyright-main">Copyright &copy; 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</span> <span class="copyright-secondary">Dilarang menyebarluaskan ini tanpa seizin PT Ruang Raya Indonesia.</span></div>
-    </footer>
-</div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
 
-<!-- PAGE 9: SOAL 8 -->
-<div class="page">
-    <header class="page-header">
-        <div class="header-top-box"><div class="header-title"><div class="main-title">Panduan Mengajar</div><div class="subtitle">Matematika Lanjut</div></div><div class="header-logo"><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo"></div></div>
-        <div class="header-bottom-box"><div class="header-bottom-text">XI SMA | Kurikulum Merdeka | [TKA] Drill Soal | Subtopik: Drill Soal TKA Matematika (Lanjut) - Paket 1 | Pertemuan 05</div></div>
-    </header>
-    <div class="content-wrapper">
-        <div class="soal-pembahasan-wrapper">
-             <table class="soal-info-table"><tbody>
-                <tr><td><b>Topik</b></td><td>Statistika</td></tr>
-                <tr><td><b>Subtopik</b></td><td>Ukuran Pemusatan & Penyebaran</td></tr>
-                <tr><td><b>Level Kognitif</b></td><td>Aplikasi (C3)</td></tr>
-            </tbody></table>
-            <div class="soal-latihan"><b>8.</b>Data nilai: 8, 7, 6, 9, 5, 8, 7, 10, 8, 4. Manakah pernyataan yang benar? <span style="font-size:9pt; color:#555;"><b>(pilih lebih dari satu)</b></span>
-            <div class="pilihan-ganda-mcma">
-                <div><input type="checkbox" checked disabled> Rata-rata nilai ujian adalah 7.2.</div>
-                <div><input type="checkbox" checked disabled> Modus dari data tersebut adalah 8.</div>
-                <div><input type="checkbox" checked disabled> Median dari data tersebut adalah 7.5.</div>
-                <div><input type="checkbox" checked disabled> Jangkauan data adalah 6.</div>
-            </div>
-            </div>
-             <div class="pembahasan">
-                <h4>Pembahasan</h4>
-                <b>Langkah 1: Urutkan data.</b><br>
-                4, 5, 6, 7, 7, 8, 8, 8, 9, 10.<br><br>
-                <b>Langkah 2: Evaluasi setiap pernyataan.</b><br>
-                - <b>Rata-rata:</b> $\frac{4+5+6+7+7+8+8+8+9+10}{10} = \frac{72}{10} = 7.2$ (Benar)<br>
-                - <b>Modus:</b> Nilai yang paling sering muncul adalah 8 (3 kali). (Benar)<br>
-                - <b>Median:</b> Nilai tengah dari 10 data adalah rata-rata data ke-5 dan ke-6. $\frac{7+8}{2} = 7.5$ (Benar)<br>
-                - <b>Jangkauan:</b> Nilai terbesar - nilai terkecil = $10 - 4 = 6$ (Benar)<br><br>
-                <b>Jawaban: Semua pernyataan benar.</b>
+    <!-- HALAMAN 11: Soal 10 -->
+    <section class="page">
+         <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+             <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+             <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Peluang</td></tr>
+                    <tr><td>Sub Topik</td><td>Peluang Kejadian Majemuk</td></tr>
+                    <tr><td>Level Kognitif</td><td>Aplikasi (PG Kompleks)</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">10.</div>
+                    <div class="soal-konten">
+                        Kotak berisi 5M & 3P. Diambil 2 bola satu per satu tanpa pengembalian. Mana pernyataan yang benar? <b>(bisa pilih lebih dari satu jawaban)</b>
+                        <div class="pilihan-ganda-mcma">
+                           <div><input type="checkbox" disabled><span>Peluang kedua bola merah adalah $\frac{5}{14}$.</span></div>
+                           <div><input type="checkbox" disabled><span>Peluang bola pertama merah dan kedua putih adalah $\frac{15}{56}$.</span></div>
+                           <div><input type="checkbox" disabled><span>Peluang kedua bola berwarna sama adalah $\frac{13}{28}$.</span></div>
+                           <div><input type="checkbox" disabled><span>Peluang minimal satu bola putih adalah $\frac{9}{14}$.</span></div>
+                        </div>
+                        <div class="pembahasan-detail">
+                           <b>Jawaban: Semua pernyataan benar.</b><br>
+                            <b>Pembahasan Detail:</b><br>
+                           Total bola awal = 8. Pengambilan tanpa pengembalian berarti jumlah bola berkurang di pengambilan kedua.<br>
+                           - <b>P(keduanya merah):</b> $P(M_1 \cap M_2) = P(M_1) \times P(M_2|M_1) = \frac{5}{8}\times\frac{4}{7}=\frac{20}{56}=\frac{5}{14}$. (Benar)<br>
+                           - <b>P(merah, lalu putih):</b> $P(M_1 \cap P_2) = \frac{5}{8}\times\frac{3}{7}=\frac{15}{56}$. (Benar)<br>
+                           - <b>P(warna sama):</b> Ini adalah P(keduanya merah) ATAU P(keduanya putih).<br>
+                           $P(PP) = \frac{3}{8} \times \frac{2}{7} = \frac{6}{56} = \frac{3}{28}$.<br>
+                           $P(\text{sama}) = P(MM)+P(PP) = \frac{5}{14}+\frac{3}{28} = \frac{10}{28}+\frac{3}{28}=\frac{13}{28}$. (Benar)<br>
+                           - <b>P(minimal 1 putih):</b> Ini adalah komplemen dari kejadian P(tidak ada putih sama sekali), yaitu P(keduanya merah).<br>
+                           $P(\text{min 1 P}) = 1-P(MM)=1-\frac{5}{14}=\frac{9}{14}$. (Benar)
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <footer class="page-footer">
-        <hr class="footer-line">
-        <div class="footer-content"><span class="copyright-main">Copyright &copy; 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</span> <span class="copyright-secondary">Dilarang menyebarluaskan ini tanpa seizin PT Ruang Raya Indonesia.</span></div>
-    </footer>
-</div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
 
-<!-- PAGE 10: SOAL 9 -->
-<div class="page">
-    <header class="page-header">
-        <div class="header-top-box"><div class="header-title"><div class="main-title">Panduan Mengajar</div><div class="subtitle">Matematika Lanjut</div></div><div class="header-logo"><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo"></div></div>
-        <div class="header-bottom-box"><div class="header-bottom-text">XI SMA | Kurikulum Merdeka | [TKA] Drill Soal | Subtopik: Drill Soal TKA Matematika (Lanjut) - Paket 1 | Pertemuan 05</div></div>
-    </header>
-    <div class="content-wrapper">
-        <div class="soal-pembahasan-wrapper">
-            <table class="soal-info-table"><tbody>
-                <tr><td><b>Topik</b></td><td>Fungsi Kuadrat</td></tr>
-                <tr><td><b>Subtopik</b></td><td>Menyusun Fungsi Kuadrat</td></tr>
-                <tr><td><b>Level Kognitif</b></td><td>Penalaran (C4)</td></tr>
-            </tbody></table>
-            <div class="soal-latihan"><b>9.</b>Fungsi kuadrat $f(x)$ memiliki puncak $(2, -1)$ dan melalui titik $(4, 7)$. Manakah pernyataan yang benar? <span style="font-size:9pt; color:#555;"><b>(pilih >1)</b></span>
-            <div class="pilihan-ganda-mcma">
-                <div><input type="checkbox" checked disabled> Nilai $a=2$.</div>
-                <div><input type="checkbox" checked disabled> Grafik membuka ke atas.</div>
-                <div><input type="checkbox" checked disabled> Fungsi memotong sumbu-y di titik (0, 7).</div>
-                <div><input type="checkbox" checked disabled> Diskriminan fungsi bernilai positif.</div>
-            </div>
-            </div>
-             <div class="pembahasan">
-                <h4>Pembahasan</h4>
-                <b>Langkah 1: Tentukan fungsi kuadratnya.</b><br>
-                Gunakan rumus $y = a(x - x_p)^2 + y_p$. Substitusi puncak $(2,-1)$ dan titik $(4,7)$:
-                $7 = a(4-2)^2-1 \implies 8=4a \implies a=2$.<br>
-                Fungsi kuadratnya adalah $f(x)=2(x-2)^2-1 = 2x^2-8x+7$.<br><br>
-                <b>Langkah 2: Evaluasi setiap pernyataan.</b><br>
-                - Nilai $a=2$. (Benar)<br>
-                - Karena $a=2 > 0$, grafik membuka ke atas. (Benar)<br>
-                - Titik potong sumbu-y ($x=0$) adalah $f(0)=7$, yaitu di (0, 7). (Benar)<br>
-                - Diskriminan $D=b^2-4ac=(-8)^2-4(2)(7)=64-56=8$. Karena $D>0$, diskriminan positif. (Benar)<br><br>
-                <b>Jawaban: Semua pernyataan benar.</b>
+    <!-- HALAMAN 12: Soal 11 -->
+    <section class="page">
+         <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+             <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+             <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Sistem Pertidaksamaan</td></tr>
+                    <tr><td>Sub Topik</td><td>Daerah Penyelesaian</td></tr>
+                    <tr><td>Level Kognitif</td><td>Aplikasi (PG Kompleks)</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">11.</div>
+                    <div class="soal-konten">
+                        Titik mana saja yang berada di daerah penyelesaian $x+y \le 6$, $2x+y \le 8$, $x \ge 0$, $y \ge 0$? <b>(bisa pilih lebih dari satu jawaban)</b>
+                        <div class="pilihan-ganda-mcma">
+                           <div><input type="checkbox" disabled><span>(1, 4)</span></div>
+                           <div><input type="checkbox" disabled><span>(3, 2)</span></div>
+                           <div><input type="checkbox" disabled><span>(2, 3)</span></div>
+                           <div><input type="checkbox" disabled><span>(4, 1)</span></div>
+                        </div>
+                        <div class="pembahasan-detail">
+                           <b>Jawaban: (1, 4), (3, 2), (2, 3) benar.</b><br>
+                            <b>Pembahasan Detail:</b><br>
+                           Kita uji setiap titik dengan mensubstitusikannya ke semua pertidaksamaan. Sebuah titik berada di daerah penyelesaian jika memenuhi SEMUA syarat.<br>
+                           - <b>Uji (1, 4):</b><br>
+                             $1+4=5 \le 6$ (Memenuhi)<br>
+                             $2(1)+4=6 \le 8$ (Memenuhi)<br>
+                             $1 \ge 0$ dan $4 \ge 0$ (Memenuhi). Maka (1, 4) benar.<br>
+                           - <b>Uji (3, 2):</b><br>
+                             $3+2=5 \le 6$ (Memenuhi)<br>
+                             $2(3)+2=8 \le 8$ (Memenuhi)<br>
+                             $3 \ge 0$ dan $2 \ge 0$ (Memenuhi). Maka (3, 2) benar.<br>
+                           - <b>Uji (2, 3):</b><br>
+                             $2+3=5 \le 6$ (Memenuhi)<br>
+                             $2(2)+3=7 \le 8$ (Memenuhi)<br>
+                              $2 \ge 0$ dan $3 \ge 0$ (Memenuhi). Maka (2, 3) benar.<br>
+                           - <b>Uji (4, 1):</b><br>
+                             $4+1=5 \le 6$ (Memenuhi)<br>
+                             $2(4)+1=9 \not\le 8$ (Tidak Memenuhi). Maka (4, 1) salah.
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <footer class="page-footer">
-        <hr class="footer-line">
-        <div class="footer-content"><span class="copyright-main">Copyright &copy; 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</span> <span class="copyright-secondary">Dilarang menyebarluaskan ini tanpa seizin PT Ruang Raya Indonesia.</span></div>
-    </footer>
-</div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
+    
+     <!-- HALAMAN 13: Soal 12 -->
+    <section class="page">
+         <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+             <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+             <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Barisan dan Deret</td></tr>
+                    <tr><td>Sub Topik</td><td>Deret Geometri Tak Hingga</td></tr>
+                    <tr><td>Level Kognitif</td><td>Penalaran (Kategori)</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">12.</div>
+                    <div class="soal-konten">
+                        Bola jatuh dari 10m, memantul $\frac{3}{4}$ tinggi sebelumnya. Tentukan kebenaran pernyataan.
+                         <table class="true-false-table">
+                            <thead><tr><th>Pernyataan</th><th>Benar</th><th>Salah</th></tr></thead>
+                            <tbody>
+                                <tr><td>Total panjang lintasan bola saat turun adalah 40 meter.</td><td></td><td></td></tr>
+                                <tr><td>Total panjang lintasan bola saat naik adalah 30 meter.</td><td></td><td></td></tr>
+                                <tr><td>Ketinggian bola setelah pantulan ketiga adalah $\frac{135}{32}$ meter.</td><td></td><td></td></tr>
+                                <tr><td>Total seluruh lintasan yang ditempuh bola hingga berhenti adalah 70 meter.</td><td></td><td></td></tr>
+                            </tbody>
+                        </table>
+                        <div class="pembahasan-detail">
+                             <b>Jawaban: Semua pernyataan Benar.</b><br>
+                             <b>Pembahasan Detail:</b><br>
+                            Ini adalah masalah deret geometri tak hingga karena bola memantul terus menerus dengan rasio $r=3/4$. Rumus jumlah deret tak hingga adalah $S_\infty = \frac{a}{1-r}$.<br>
+                            - <b>Lintasan Turun:</b> $L_{\text{turun}} = 10 + 10(\frac{3}{4}) + 10(\frac{3}{4})^2 + ...$. Ini adalah deret geometri dengan $a=10$. $S_\infty = \frac{10}{1-3/4}=\frac{10}{1/4}=40$ m. (Benar)<br>
+                            - <b>Lintasan Naik:</b> $L_{\text{naik}} = 10(\frac{3}{4}) + 10(\frac{3}{4})^2 + ...$. Deret ini sama dengan lintasan turun dikurangi suku pertama (jatuh awal). Suku pertama lintasan naik adalah $a=10(\frac{3}{4})=7.5$. $S_\infty = \frac{7.5}{1-3/4}=\frac{7.5}{1/4}=30$ m. (Benar)<br>
+                            - <b>Pantulan ke-3:</b> Ketinggian setelah pantulan ke-n adalah $h_n = h_0 \times r^n$. Maka ketinggian setelah pantulan ketiga adalah $h_3=10(\frac{3}{4})^3 = 10(\frac{27}{64}) = \frac{270}{64} = \frac{135}{32}$ m. (Benar)<br>
+                            - <b>Total Lintasan:</b> $L_{\text{total}} = L_{\text{turun}} + L_{\text{naik}} = 40+30=70$ m. (Benar)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
 
-<!-- PAGE 11: SOAL 10 -->
-<div class="page">
-    <header class="page-header">
-        <div class="header-top-box"><div class="header-title"><div class="main-title">Panduan Mengajar</div><div class="subtitle">Matematika Lanjut</div></div><div class="header-logo"><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo"></div></div>
-        <div class="header-bottom-box"><div class="header-bottom-text">XI SMA | Kurikulum Merdeka | [TKA] Drill Soal | Subtopik: Drill Soal TKA Matematika (Lanjut) - Paket 1 | Pertemuan 05</div></div>
-    </header>
-    <div class="content-wrapper">
-        <div class="soal-pembahasan-wrapper">
-            <table class="soal-info-table"><tbody>
-                <tr><td><b>Topik</b></td><td>Peluang</td></tr>
-                <tr><td><b>Subtopik</b></td><td>Peluang Kejadian Majemuk</td></tr>
-                <tr><td><b>Level Kognitif</b></td><td>Penalaran (C4)</td></tr>
-            </tbody></table>
-            <div class="soal-latihan"><b>10.</b>Dari kotak berisi 5 bola merah & 3 putih, diambil 2 bola satu per satu tanpa pengembalian. Manakah pernyataan peluang yang benar? <span style="font-size:9pt; color:#555;"><b>(pilih >1)</b></span>
-            <div class="pilihan-ganda-mcma">
-                <div><input type="checkbox" checked disabled> Peluang kedua bola merah adalah $\frac{5}{14}$.</div>
-                <div><input type="checkbox" checked disabled> Peluang merah lalu putih adalah $\frac{15}{56}$.</div>
-                <div><input type="checkbox" checked disabled> Peluang warna sama adalah $\frac{13}{28}$.</div>
-                <div><input type="checkbox" checked disabled> Peluang minimal 1 putih adalah $\frac{9}{14}$.</div>
-            </div>
-            </div>
-             <div class="pembahasan">
-                <h4>Pembahasan</h4>
-                - $P(M,M) = \frac{5}{8} \times \frac{4}{7} = \frac{20}{56} = \frac{5}{14}$. (Benar)<br>
-                - $P(M,P) = \frac{5}{8} \times \frac{3}{7} = \frac{15}{56}$. (Benar)<br>
-                - $P(\text{warna sama}) = P(M,M) + P(P,P) = \frac{20}{56} + (\frac{3}{8}\times\frac{2}{7}) = \frac{20+6}{56} = \frac{26}{56} = \frac{13}{28}$. (Benar)<br>
-                - $P(\text{minimal 1 Putih}) = 1 - P(M,M) = 1 - \frac{5}{14} = \frac{9}{14}$. (Benar)<br><br>
-                <b>Jawaban: Semua pernyataan benar.</b>
+     <!-- HALAMAN 14: Soal 13 -->
+    <section class="page">
+         <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+             <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+             <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Trigonometri</td></tr>
+                    <tr><td>Sub Topik</td><td>Perbandingan Dasar</td></tr>
+                    <tr><td>Level Kognitif</td><td>Pemahaman (Kategori)</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">13.</div>
+                    <div class="soal-konten">
+                       Jika $\sin A = \frac{3}{5}$ (A sudut lancip), tentukan kebenaran pernyataan berikut.
+                         <table class="true-false-table">
+                            <thead><tr><th>Pernyataan</th><th>Benar</th><th>Salah</th></tr></thead>
+                            <tbody>
+                                <tr><td>$\cos A = \frac{4}{5}$</td><td></td><td></td></tr>
+                                <tr><td>$\tan A = \frac{3}{4}$</td><td></td><td></td></tr>
+                                <tr><td>$\sec A = \frac{5}{4}$</td><td></td><td></td></tr>
+                                <tr><td>$\csc A = \frac{5}{3}$</td><td></td><td></td></tr>
+                            </tbody>
+                        </table>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: Semua pernyataan Benar.</b><br>
+                             <b>Pembahasan Detail:</b><br>
+                           Karena $A$ sudut lancip (di kuadran I), semua nilai trigonometri akan positif. Kita bisa gunakan bantuan segitiga siku-siku.
+                           $$ \sin A = \frac{\text{sisi depan (de)}}{\text{sisi miring (mi)}} = \frac{3}{5} $$
+                           <b>Langkah 1: Cari panjang sisi samping (sa).</b><br>
+                           Gunakan Teorema Pythagoras: $sa = \sqrt{mi^2 - de^2} = \sqrt{5^2-3^2}=\sqrt{25-9}=\sqrt{16}=4$.<br>
+                           <b>Langkah 2: Tentukan perbandingan trigonometri lainnya.</b><br>
+                           - $\cos A=\frac{sa}{mi}=\frac{4}{5}$. (Benar)<br>
+                           - $\tan A=\frac{de}{sa}=\frac{3}{4}$. (Benar)<br>
+                           - $\sec A=\frac{1}{\cos A}=\frac{1}{4/5} = \frac{5}{4}$. (Benar)<br>
+                           - $\csc A=\frac{1}{\sin A}=\frac{1}{3/5} = \frac{5}{3}$. (Benar)
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <footer class="page-footer">
-        <hr class="footer-line">
-        <div class="footer-content"><span class="copyright-main">Copyright &copy; 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</span> <span class="copyright-secondary">Dilarang menyebarluaskan ini tanpa seizin PT Ruang Raya Indonesia.</span></div>
-    </footer>
-</div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
 
-<!-- PAGE 12: SOAL 11 -->
-<div class="page">
-    <header class="page-header">
-        <div class="header-top-box"><div class="header-title"><div class="main-title">Panduan Mengajar</div><div class="subtitle">Matematika Lanjut</div></div><div class="header-logo"><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo"></div></div>
-        <div class="header-bottom-box"><div class="header-bottom-text">XI SMA | Kurikulum Merdeka | [TKA] Drill Soal | Subtopik: Drill Soal TKA Matematika (Lanjut) - Paket 1 | Pertemuan 05</div></div>
-    </header>
-    <div class="content-wrapper">
-        <div class="soal-pembahasan-wrapper">
-            <table class="soal-info-table"><tbody>
-                <tr><td><b>Topik</b></td><td>Sistem Pertidaksamaan Linear</td></tr>
-                <tr><td><b>Subtopik</b></td><td>Daerah Penyelesaian</td></tr>
-                <tr><td><b>Level Kognitif</b></td><td>Pemahaman (C2)</td></tr>
-            </tbody></table>
-            <div class="soal-latihan"><b>11.</b>Titik mana saja yang berada di dalam daerah penyelesaian $x+y \le 6$, $2x+y \le 8$, $x \ge 0$, $y \ge 0$? <span style="font-size:9pt; color:#555;"><b>(pilih >1)</b></span>
-            <div class="pilihan-ganda-mcma">
-                <div><input type="checkbox" checked disabled> (1, 4)</div>
-                <div><input type="checkbox" checked disabled> (3, 2)</div>
-                <div><input type="checkbox" checked disabled> (2, 3)</div>
-                <div><input type="checkbox" disabled> (4, 1)</div>
-            </div>
-            </div>
-             <div class="pembahasan">
-                <h4>Pembahasan</h4>
-                <b>Langkah 1: Uji setiap titik pada semua pertidaksamaan.</b><br>
-                - <b>(1, 4)</b>: $1+4=5 \le 6$ (✓), $2(1)+4=6 \le 8$ (✓). Memenuhi.<br>
-                - <b>(3, 2)</b>: $3+2=5 \le 6$ (✓), $2(3)+2=8 \le 8$ (✓). Memenuhi.<br>
-                - <b>(2, 3)</b>: $2+3=5 \le 6$ (✓), $2(2)+3=7 \le 8$ (✓). Memenuhi.<br>
-                - <b>(4, 1)</b>: $4+1=5 \le 6$ (✓), $2(4)+1=9 \not\le 8$ (✗). Tidak memenuhi.<br><br>
-                <b>Jawaban: (1, 4), (3, 2), dan (2, 3).</b>
+    <!-- HALAMAN 15: Soal 14 -->
+    <section class="page">
+         <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+             <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+              <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Eksponen & Logaritma</td></tr>
+                    <tr><td>Sub Topik</td><td>Sifat-sifat & Persamaan</td></tr>
+                    <tr><td>Level Kognitif</td><td>Penalaran (Kategori)</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">14.</div>
+                    <div class="soal-konten">
+                        Tentukan kebenaran dari setiap pernyataan matematis berikut.
+                         <table class="true-false-table">
+                            <thead><tr><th>Pernyataan</th><th>Benar</th><th>Salah</th></tr></thead>
+                            <tbody>
+                                <tr><td>Jika $^2\log 3 = a$ dan $^3\log 5 = b$, maka $^2\log 20 = 2+ab$.</td><td></td><td></td></tr>
+                                <tr><td>Nilai dari $^9\log 25 \cdot \ ^5\log 2 - \ ^3\log 54$ adalah -3.</td><td></td><td></td></tr>
+                                <tr><td>Penyelesaian $2^{2x+1} - 5 \cdot 2^x + 2 = 0$ adalah $x=1$ atau $x=-1$.</td><td></td><td></td></tr>
+                                <tr><td>Ekspresi $\frac{a^{-1} + b^{-1}}{(ab)^{-1}}$ ekuivalen dengan $a+b$.</td><td></td><td></td></tr>
+                            </tbody>
+                        </table>
+                        <div class="pembahasan-detail">
+                           <b>Jawaban: Semua pernyataan Benar.</b><br>
+                             <b>Pembahasan Detail:</b><br>
+                            1. Sifat logaritma: $^p\log q = \frac{^r\log q}{^r\log p}$ dan $^p\log(qr) = ^p\log q + ^p\log r$.<br>
+                            $^2\log 20 = ^2\log(4 \cdot 5) = ^2\log 4 + ^2\log 5 = 2 + (^2\log 3 \cdot ^3\log 5) = 2+ab$. (Benar)<br>
+                            2. Sifat logaritma: $^{a^m}\log b^n = \frac{n}{m} \ ^a\log b$ dan $^a\log b \cdot ^b\log c = ^a\log c$.<br>
+                            $\begin{aligned} &^{3^2}\log 5^2 \cdot \ ^5\log 2 - \ ^3\log(27 \cdot 2) \\ &= (\frac{2}{2} \ ^3\log 5 \cdot \ ^5\log 2) - (^3\log 27 + \ ^3\log 2) \\ &= (^3\log 2) - (3 + \ ^3\log 2) = -3 \end{aligned}$. (Benar)<br>
+                            3. Persamaan eksponen: $2 \cdot 2^{2x} - 5 \cdot 2^x + 2 = 0 \implies 2 \cdot (2^x)^2 - 5(2^x) + 2 = 0$. Misal $p=2^x$, maka $2p^2-5p+2=0 \implies (2p-1)(p-2)=0$.<br>
+                            - $p=1/2 \implies 2^x=2^{-1} \implies x=-1$.<br>
+                            - $p=2 \implies 2^x=2^1 \implies x=1$. (Benar)<br>
+                            4. Sifat eksponen: $x^{-n}=\frac{1}{x^n}$.<br>
+                            $\frac{a^{-1} + b^{-1}}{(ab)^{-1}} = \frac{\frac{1}{a} + \frac{1}{b}}{\frac{1}{ab}} = (\frac{b+a}{ab}) \div \frac{1}{ab} = (\frac{a+b}{ab}) \times ab = a+b$. (Benar)
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <footer class="page-footer">
-        <hr class="footer-line">
-        <div class="footer-content"><span class="copyright-main">Copyright &copy; 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</span> <span class="copyright-secondary">Dilarang menyebarluaskan ini tanpa seizin PT Ruang Raya Indonesia.</span></div>
-    </footer>
-</div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
 
-<!-- PAGE 13: SOAL 12 -->
-<div class="page">
-    <header class="page-header">
-        <div class="header-top-box"><div class="header-title"><div class="main-title">Panduan Mengajar</div><div class="subtitle">Matematika Lanjut</div></div><div class="header-logo"><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo"></div></div>
-        <div class="header-bottom-box"><div class="header-bottom-text">XI SMA | Kurikulum Merdeka | [TKA] Drill Soal | Subtopik: Drill Soal TKA Matematika (Lanjut) - Paket 1 | Pertemuan 05</div></div>
-    </header>
-    <div class="content-wrapper">
-        <div class="soal-pembahasan-wrapper">
-            <table class="soal-info-table"><tbody>
-                <tr><td><b>Topik</b></td><td>Barisan dan Deret</td></tr>
-                <tr><td><b>Subtopik</b></td><td>Deret Geometri Tak Hingga</td></tr>
-                <tr><td><b>Level Kognitif</b></td><td>Penalaran (C4)</td></tr>
-            </tbody></table>
-            <div class="soal-latihan">
-                <b>12.</b>Bola jatuh dari ketinggian 10m dan memantul $\frac{3}{4}$ dari tinggi sebelumnya. Tentukan kebenaran pernyataan berikut.
-                <table class="soal-kategori"><thead><tr><th>PERNYATAAN</th><th>BENAR</th><th>SALAH</th></tr></thead>
-                <tbody>
-                    <tr><td>Total panjang lintasan bola saat turun adalah 40 meter.</td><td style="background-color:#dff0d8;">✔</td><td></td></tr>
-                    <tr><td>Total panjang lintasan bola saat naik adalah 30 meter.</td><td style="background-color:#dff0d8;">✔</td><td></td></tr>
-                    <tr><td>Ketinggian bola setelah pantulan ketiga adalah $\frac{135}{32}$ m.</td><td style="background-color:#dff0d8;">✔</td><td></td></tr>
-                    <tr><td>Total seluruh lintasan yang ditempuh bola adalah 70 meter.</td><td style="background-color:#dff0d8;">✔</td><td></td></tr>
-                </tbody></table>
-            </div>
-             <div class="pembahasan">
-                <h4>Pembahasan</h4>
-                - <b>Lintasan turun:</b> Ini adalah deret geometri tak hingga dengan $a=10$ dan $r=3/4$. $S_{turun} = \frac{a}{1-r} = \frac{10}{1-3/4} = 40$ m. (Benar)<br>
-                - <b>Lintasan naik:</b> Suku pertamanya adalah pantulan pertama, yaitu $10 \times 3/4 = 7.5$. $S_{naik} = \frac{7.5}{1-3/4} = 30$ m. (Benar)<br>
-                - <b>Tinggi pantulan ke-3:</b> Ini adalah suku ke-4 ($U_4 = ar^3$) dari barisan ketinggian. $h_3 = 10 \times (\frac{3}{4})^3 = \frac{135}{32}$ m. (Benar)<br>
-                - <b>Total lintasan:</b> $S_{total} = S_{turun} + S_{naik} = 40+30=70$ m. (Benar)
+    <!-- HALAMAN 16: Soal 15 -->
+    <section class="page">
+         <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika Lanjut (TKA)</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+             <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+               <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Polinomial</td></tr>
+                    <tr><td>Sub Topik</td><td>Teorema Sisa & Faktor</td></tr>
+                    <tr><td>Level Kognitif</td><td>Penalaran (Kategori)</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">15.</div>
+                    <div class="soal-konten">
+                       $P(x)=x^3-2x^2+ax+b$ dibagi $(x-2)$ sisa 11, dibagi $(x+1)$ sisa -4. Tentukan kebenaran.
+                         <table class="true-false-table">
+                            <thead><tr><th>Pernyataan</th><th>Benar</th><th>Salah</th></tr></thead>
+                            <tbody>
+                                <tr><td>Nilai dari $a-b=1$.</td><td></td><td></td></tr>
+                                <tr><td>Sisa pembagian $P(x)$ oleh $(x-1)$ adalah 6.</td><td></td><td></td></tr>
+                                <tr><td>Salah satu faktor dari $P(x)$ adalah $(x+3)$.</td><td></td><td></td></tr>
+                                <tr><td>Jumlah akar-akar polinomial $P(x)$ adalah 2.</td><td></td><td></td></tr>
+                            </tbody>
+                        </table>
+                        <div class="pembahasan-detail">
+                           <b>Jawaban: Pernyataan 1, 2, dan 4 benar.</b><br>
+                           <b>Pembahasan Detail:</b><br>
+                            <b>Langkah 1: Gunakan Teorema Sisa.</b><br>
+                            Teorema Sisa menyatakan bahwa jika polinomial $P(x)$ dibagi oleh $(x-k)$, maka sisanya adalah $P(k)$.<br>
+                            - Dibagi $(x-2)$ sisa 11 $\implies P(2)=11$.<br>
+                              $2^3-2(2)^2+a(2)+b=11 \implies 8-8+2a+b=11 \implies 2a+b=11$.<br>
+                            - Dibagi $(x+1)$ sisa -4 $\implies P(-1)=-4$.<br>
+                              $(-1)^3-2(-1)^2+a(-1)+b=-4 \implies -1-2-a+b=-4 \implies -a+b=-1$.<br>
+                            <b>Langkah 2: Selesaikan SPLDV untuk $a$ dan $b$.</b><br>
+                            Eliminasi: $(2a+b)-(-a+b)=11-(-1) \implies 3a=12 \implies a=4$.<br>
+                            Substitusi $a=4$ ke $-a+b=-1 \implies -4+b=-1 \implies b=3$.<br>
+                            Jadi, polinomialnya adalah $P(x)=x^3-2x^2+4x+3$.<br>
+                            <b>Langkah 3: Cek kebenaran setiap pernyataan.</b><br>
+                            1. $a-b=4-3=1$. (Benar)<br>
+                            2. Sisa $P(x)$ dibagi $(x-1)$ adalah $P(1) = 1^3-2(1)^2+4(1)+3=1-2+4+3=6$. (Benar)<br>
+                            3. Jika $(x+3)$ adalah faktor, maka sisa pembagiannya harus 0, atau $P(-3)=0$.<br>
+                               $P(-3)=(-3)^3-2(-3)^2+4(-3)+3=-27-18-12+3=-54 \neq 0$. (Salah)<br>
+                            4. Untuk polinomial $Ax^3+Bx^2+Cx+D$, jumlah akar-akarnya ($x_1+x_2+x_3$) adalah $-\frac{B}{A}$.<br>
+                               Jumlah akar = $-(\frac{-2}{1})=2$. (Benar)
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <footer class="page-footer">
-        <hr class="footer-line">
-        <div class="footer-content"><span class="copyright-main">Copyright &copy; 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</span> <span class="copyright-secondary">Dilarang menyebarluaskan ini tanpa seizin PT Ruang Raya Indonesia.</span></div>
-    </footer>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
 </div>
-
-<!-- PAGE 14: SOAL 13 -->
-<div class="page">
-    <header class="page-header">
-        <div class="header-top-box"><div class="header-title"><div class="main-title">Panduan Mengajar</div><div class="subtitle">Matematika Lanjut</div></div><div class="header-logo"><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo"></div></div>
-        <div class="header-bottom-box"><div class="header-bottom-text">XI SMA | Kurikulum Merdeka | [TKA] Drill Soal | Subtopik: Drill Soal TKA Matematika (Lanjut) - Paket 1 | Pertemuan 05</div></div>
-    </header>
-    <div class="content-wrapper">
-        <div class="soal-pembahasan-wrapper">
-            <table class="soal-info-table"><tbody>
-                <tr><td><b>Topik</b></td><td>Trigonometri</td></tr>
-                <tr><td><b>Subtopik</b></td><td>Perbandingan Trigonometri</td></tr>
-                <tr><td><b>Level Kognitif</b></td><td>Pemahaman (C2)</td></tr>
-            </tbody></table>
-            <div class="soal-latihan">
-                <b>13.</b>Diketahui $\sin A = \frac{3}{5}$ dengan A sudut lancip. Tentukan kebenaran dari nilai perbandingan trigonometri berikut.
-                <table class="soal-kategori"><thead><tr><th>PERNYATAAN</th><th>BENAR</th><th>SALAH</th></tr></thead>
-                <tbody>
-                    <tr><td>$\cos A = \frac{4}{5}$</td><td style="background-color:#dff0d8;">✔</td><td></td></tr>
-                    <tr><td>$\tan A = \frac{3}{4}$</td><td style="background-color:#dff0d8;">✔</td><td></td></tr>
-                    <tr><td>$\sec A = \frac{5}{4}$</td><td style="background-color:#dff0d8;">✔</td><td></td></tr>
-                    <tr><td>$\sin(90^\circ - A) = \frac{4}{5}$</td><td style="background-color:#dff0d8;">✔</td><td></td></tr>
-                </tbody></table>
-            </div>
-             <div class="pembahasan">
-                <h4>Pembahasan</h4>
-                Jika $\sin A = \frac{3}{5}$ (depan/miring), maka dengan Pythagoras, sisi samping = $\sqrt{5^2-3^2}=4$.<br>
-                - $\cos A = \frac{\text{samping}}{\text{miring}} = \frac{4}{5}$ (Benar).<br>
-                - $\tan A = \frac{\text{depan}}{\text{samping}} = \frac{3}{4}$ (Benar).<br>
-                - $\sec A = \frac{1}{\cos A} = \frac{5}{4}$ (Benar).<br>
-                - $\sin(90^\circ - A)$ adalah kofungsi dari $\cos A$, sehingga nilainya $\frac{4}{5}$ (Benar).
-            </div>
-        </div>
-    </div>
-    <footer class="page-footer">
-        <hr class="footer-line">
-        <div class="footer-content"><span class="copyright-main">Copyright &copy; 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</span> <span class="copyright-secondary">Dilarang menyebarluaskan ini tanpa seizin PT Ruang Raya Indonesia.</span></div>
-    </footer>
-</div>
-
-<!-- PAGE 15: SOAL 14 & 15 -->
-<div class="page">
-    <header class="page-header">
-        <div class="header-top-box"><div class="header-title"><div class="main-title">Panduan Mengajar</div><div class="subtitle">Matematika Lanjut</div></div><div class="header-logo"><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo"></div></div>
-        <div class="header-bottom-box"><div class="header-bottom-text">XI SMA | Kurikulum Merdeka | [TKA] Drill Soal | Subtopik: Drill Soal TKA Matematika (Lanjut) - Paket 1 | Pertemuan 05</div></div>
-    </header>
-    <div class="content-wrapper">
-        <div class="soal-pembahasan-wrapper">
-            <table class="soal-info-table"><tbody>
-                <tr><td><b>Topik</b></td><td>Eksponen & Logaritma</td></tr>
-                <tr><td><b>Subtopik</b></td><td>Sifat Dasar</td></tr>
-                <tr><td><b>Level Kognitif</b></td><td>Pemahaman (C1)</td></tr>
-            </tbody></table>
-            <div class="soal-latihan">
-                <b>14.</b>Perhatikan sifat-sifat eksponen dan logaritma berikut. Tentukan kebenaran setiap pernyataan.
-                <table class="soal-kategori"><thead><tr><th>PERNYATAAN</th><th>BENAR</th><th>SALAH</th></tr></thead>
-                <tbody>
-                    <tr><td>$(a^m)^n = a^{m \cdot n}$</td><td style="background-color:#dff0d8;">✔</td><td></td></tr>
-                    <tr><td>$^a\log b + \ ^a\log c = \ ^a\log (b \times c)$</td><td style="background-color:#dff0d8;">✔</td><td></td></tr>
-                    <tr><td>$\frac{a^m}{a^n} = a^{m-n}$</td><td style="background-color:#dff0d8;">✔</td><td></td></tr>
-                    <tr><td>$^a\log b^n = n \cdot \ ^a\log b$</td><td style="background-color:#dff0d8;">✔</td><td></td></tr>
-                </tbody></table>
-            </div>
-             <div class="pembahasan">
-                <h4>Pembahasan</h4>
-                Semua pernyataan yang diberikan merupakan sifat-sifat dasar yang fundamental dan benar dari eksponen dan logaritma.
-            </div>
-        </div>
-        <div class="soal-pembahasan-wrapper">
-            <table class="soal-info-table"><tbody>
-                <tr><td><b>Topik</b></td><td>Fungsi</td></tr>
-                <tr><td><b>Subtopik</b></td><td>Aplikasi Fungsi Linear</td></tr>
-                <tr><td><b>Level Kognitif</b></td><td>Aplikasi (C3)</td></tr>
-            </tbody></table>
-            <div class="soal-latihan">
-                <b>15.</b>Model nilai ujian ($y$) dari jam belajar tambahan ($x$) adalah $y=3x+70$. Tentukan kebenaran interpretasi.
-                <table class="soal-kategori"><thead><tr><th>PERNYATAAN</th><th>BENAR</th><th>SALAH</th></tr></thead>
-                <tbody>
-                    <tr><td>Tanpa belajar tambahan, nilai siswa diperkirakan 70.</td><td style="background-color:#dff0d8;">✔</td><td></td></tr>
-                    <tr><td>Setiap 1 jam belajar, nilai siswa diperkirakan naik 3 poin.</td><td style="background-color:#dff0d8;">✔</td><td></td></tr>
-                    <tr><td>Jika siswa belajar tambahan 5 jam, nilainya jadi 85.</td><td style="background-color:#dff0d8;">✔</td><td></td></tr>
-                    <tr><td>Model bisa memprediksi nilai jika tidak belajar sama sekali.</td><td style="background-color:#f2dede;"></td><td>✔</td></tr>
-                </tbody></table>
-            </div>
-             <div class="pembahasan">
-                <h4>Pembahasan</h4>
-                1. Saat $x=0$ (tanpa jam tambahan), $y=70$. (Benar)<br>
-                2. Gradien 3 berarti tiap 1 jam, nilai naik 3 poin. (Benar)<br>
-                3. Saat $x=5$, $y = 3(5)+70=85$. (Benar)<br>
-                4. Model hanya untuk jam belajar *tambahan*, bukan total jam belajar. (Salah)
-            </div>
-        </div>
-    </div>
-    <footer class="page-footer">
-        <hr class="footer-line">
-        <div class="footer-content"><span class="copyright-main">Copyright &copy; 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</span> <span class="copyright-secondary">Dilarang menyebarluaskan ini tanpa seizin PT Ruang Raya Indonesia.</span></div>
-    </footer>
-</div>
-
 
 </body>
 </html>
