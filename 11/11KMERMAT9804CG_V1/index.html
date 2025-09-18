@@ -46,7 +46,7 @@
         }
 
         .page-container {
-            counter-reset: page;
+            /* counter-reset removed as page numbers are no longer used */
         }
 
         .page {
@@ -59,11 +59,6 @@
             position: relative;
             display: flex;
             flex-direction: column;
-        }
-        
-        .page-number::after {
-            counter-increment: page;
-            content: counter(page);
         }
 
         .page-header {
@@ -138,6 +133,7 @@
         
         ol.guide-list, ul.guide-list {
             padding-left: 20px;
+            font-size: 8.5pt;
         }
         
         ol.guide-list li, ul.guide-list li {
@@ -170,21 +166,22 @@
             width: 100%;
             border-collapse: collapse;
             border: 1px solid var(--border-color);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         .summary-table td {
             border: 1px solid var(--border-color);
-            padding: 8px 12px;
+            padding: 6px 10px;
             vertical-align: top;
+            font-size: 8.5pt;
         }
         .summary-table .summary-table-header td {
             background-color: var(--table-header-bg);
             font-weight: 700;
-            font-size: 10pt;
+            font-size: 9.5pt;
         }
         .summary-table .summary-table-content ul {
             padding-left: 20px;
-            margin: 5px 0 0 0;
+            margin: 4px 0 0 0;
         }
          .star-row td {
             text-align: center;
