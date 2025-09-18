@@ -8,7 +8,8 @@
         window.MathJax = {
             tex: {
                 inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                packages: {'[+]': ['ams']}
             },
             svg: {
                 fontCache: 'global'
@@ -145,6 +146,7 @@
         
         .pembahasan-box {
             margin-bottom: 25px;
+            page-break-inside: avoid;
         }
 
         .soal-card {
@@ -183,6 +185,12 @@
         .summary-table .summary-table-content ul {
             padding-left: 20px;
             margin: 5px 0 0 0;
+        }
+        .star-row td {
+            text-align: center;
+            font-weight: bold;
+            background-color: #fcf8e3;
+            color: #8a6d3b;
         }
         
         .soal-pembahasan {
@@ -274,7 +282,7 @@
         @media print {
             @page {
                 size: A4;
-                margin: 0; /* Let the .page element handle margins */
+                margin: 0;
             }
 
             body {
@@ -289,9 +297,9 @@
             .page {
                 box-shadow: none;
                 margin: 0;
-                padding: 1.8cm 2.5cm; /* Re-apply margins here */
+                padding: 1.8cm 2.5cm;
                 width: 21cm;
-                height: 29.7cm; /* Enforce A4 dimensions */
+                min-height: 29.7cm; /* Use min-height for flexibility */
                 page-break-after: always;
                 display: flex;
                 flex-direction: column;
@@ -306,12 +314,8 @@
                 flex-grow: 1;
                 overflow: hidden;
             }
-
-            .pembahasan-box {
-                page-break-inside: avoid;
-            }
             
-            .soal-card td:first-child, .summary-table .summary-table-header td, .pembahasan-detail, .true-false-table th, .header-top-box, .header-bottom-text {
+            .soal-card td:first-child, .summary-table .summary-table-header td, .pembahasan-detail, .true-false-table th, .header-top-box, .header-bottom-text, .star-row td {
                 -webkit-print-color-adjust: exact; 
                 print-color-adjust: exact;
             }
@@ -382,9 +386,14 @@
                     <td><b>Statistika</b></td>
                     <td>
                         <ul>
-                           <li>Menganalisis ukuran pemusatan dan penyebaran data.</li>
-                           <li>Menyelesaikan masalah kontekstual yang berkaitan dengan statistika.</li>
+                            <li>Menganalisis ukuran pemusatan dan penyebaran data.</li>
+                            <li>Menyelesaikan masalah kontekstual yang berkaitan dengan statistika.</li>
                         </ul>
+                    </td>
+                </tr>
+                <tr class="star-row">
+                    <td colspan="2">
+                        Soal nomor 1 - 15 ⭐75⭐ (masing-masing 5 ⭐)
                     </td>
                 </tr>
             </table>
@@ -403,7 +412,7 @@
         </footer>
     </section>
 
-    <!-- HALAMAN 2: Soal 1-2 -->
+    <!-- HALAMAN 2: Soal 1 -->
     <section class="page">
         <header class="page-header">
               <div class="header-top-box">
@@ -417,7 +426,7 @@
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Fungsi Komposisi dan Fungsi Invers</td></tr>
                     <tr><td>Sub Topik</td><td>Fungsi Komposisi</td></tr>
-                    <tr><td>Level Kognitif</td><td>Pengetahuan dan Pemahaman</td></tr>
+                    <tr><td>Level Kognitif</td><td>LOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <div class="soal-nomor">1.</div>
@@ -438,11 +447,27 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 3: Soal 2 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika TKA</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
             <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Lingkaran</td></tr>
                     <tr><td>Sub Topik</td><td>Persamaan Garis Singgung</td></tr>
-                    <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
+                    <tr><td>Level Kognitif</td><td>MOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <div class="soal-nomor">2.</div>
@@ -474,7 +499,7 @@
         </footer>
     </section>
 
-    <!-- HALAMAN 3: Soal 3-4 -->
+    <!-- HALAMAN 4: Soal 3 -->
     <section class="page">
         <header class="page-header">
               <div class="header-top-box">
@@ -487,7 +512,7 @@
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Statistika</td></tr>
                     <tr><td>Sub Topik</td><td>Ukuran Pemusatan Data</td></tr>
-                    <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
+                    <tr><td>Level Kognitif</td><td>MOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <div class="soal-nomor">3.</div>
@@ -510,11 +535,27 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 5: Soal 4 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika TKA</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
             <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Fungsi Komposisi dan Fungsi Invers</td></tr>
                     <tr><td>Sub Topik</td><td>Aplikasi Fungsi Komposisi</td></tr>
-                    <tr><td>Level Kognitif</td><td>Penalaran (HOTS)</td></tr>
+                    <tr><td>Level Kognitif</td><td>HOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <div class="soal-nomor">4.</div>
@@ -545,7 +586,7 @@
         </footer>
     </section>
 
-    <!-- HALAMAN 4: Soal 5-6 -->
+    <!-- HALAMAN 6: Soal 5 -->
     <section class="page">
         <header class="page-header">
               <div class="header-top-box">
@@ -558,15 +599,15 @@
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Lingkaran</td></tr>
                     <tr><td>Sub Topik</td><td>Kecukupan Data</td></tr>
-                    <tr><td>Level Kognitif</td><td>Penalaran (HOTS)</td></tr>
+                    <tr><td>Level Kognitif</td><td>HOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <div class="soal-nomor">5.</div>
                     <div class="soal-konten">
-                       Berapakah jari-jari lingkaran yang berpusat di (2, 3)?<br>
-                       (1) Lingkaran tersebut menyinggung sumbu X.<br>
-                       (2) Lingkaran tersebut melalui titik (2, 6).
-                        <ol>
+                        Berapakah jari-jari lingkaran yang berpusat di (2, 3)?<br>
+                        (1) Lingkaran tersebut menyinggung sumbu X.<br>
+                        (2) Lingkaran tersebut melalui titik (2, 6).
+                         <ol>
                             <li data-option="A">Pernyataan (1) SAJA cukup, tetapi (2) SAJA tidak cukup.</li>
                             <li data-option="B">Pernyataan (2) SAJA cukup, tetapi (1) SAJA tidak cukup.</li>
                             <li data-option="C">DUA pernyataan BERSAMA-SAMA cukup, tetapi SATU SAJA tidak cukup.</li>
@@ -582,11 +623,27 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 7: Soal 6 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika TKA</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
             <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Statistika</td></tr>
                     <tr><td>Sub Topik</td><td>Pilihan Ganda Kompleks</td></tr>
-                    <tr><td>Level Kognitif</td><td>Penalaran (HOTS)</td></tr>
+                    <tr><td>Level Kognitif</td><td>HOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <div class="soal-nomor">6.</div>
@@ -620,7 +677,7 @@
         </footer>
     </section>
 
-    <!-- HALAMAN 5: Soal 7-9 -->
+    <!-- HALAMAN 8: Soal 7 -->
     <section class="page">
         <header class="page-header">
               <div class="header-top-box">
@@ -633,7 +690,7 @@
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Fungsi Komposisi dan Fungsi Invers</td></tr>
                     <tr><td>Sub Topik</td><td>Fungsi Invers</td></tr>
-                    <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
+                    <tr><td>Level Kognitif</td><td>MOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <div class="soal-nomor">7.</div>
@@ -655,11 +712,27 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 9: Soal 8 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika TKA</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
             <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Lingkaran</td></tr>
                     <tr><td>Sub Topik</td><td>Kedudukan Titik (Kategori)</td></tr>
-                    <tr><td>Level Kognitif</td><td>Pengetahuan dan Pemahaman</td></tr>
+                    <tr><td>Level Kognitif</td><td>LOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <div class="soal-nomor">8.</div>
@@ -684,11 +757,27 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 10: Soal 9 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika TKA</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
             <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Statistika</td></tr>
                     <tr><td>Sub Topik</td><td>Ukuran Penyebaran Data</td></tr>
-                    <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
+                    <tr><td>Level Kognitif</td><td>MOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <div class="soal-nomor">9.</div>
@@ -714,7 +803,7 @@
         </footer>
     </section>
 
-    <!-- HALAMAN 6: Soal 10-11 -->
+    <!-- HALAMAN 11: Soal 10 -->
     <section class="page">
         <header class="page-header">
               <div class="header-top-box">
@@ -727,7 +816,7 @@
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Fungsi Komposisi dan Fungsi Invers</td></tr>
                     <tr><td>Sub Topik</td><td>Invers Fungsi Komposisi</td></tr>
-                    <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
+                    <tr><td>Level Kognitif</td><td>MOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <div class="soal-nomor">10.</div>
@@ -740,17 +829,33 @@
                             <b>Jawaban: C. 2</b><br>
                             <b>Pembahasan Detail:</b><br>
                             $(f \circ g)^{-1}(a) = 1 \implies (f \circ g)(1) = a$.<br>
-                            $(f \circ g)(x) = f(g(x)) = \frac{x}{2x-1} + 1 = \frac{3x-1}{2x-1}$.<br>
+                            $(f \circ g)(x) = f(g(x)) = \frac{x}{2x-1} + 1 = \frac{x + (2x-1)}{2x-1} = \frac{3x-1}{2x-1}$.<br>
                             $a = (f \circ g)(1) = \frac{3(1)-1}{2(1)-1} = \frac{2}{1} = 2$.
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 12: Soal 11 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika TKA</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
             <div class="pembahasan-box">
                  <table class="soal-card">
                     <tr><td>Topik</td><td>Lingkaran</td></tr>
                     <tr><td>Sub Topik</td><td>Aplikasi (Pilihan Ganda Kompleks)</td></tr>
-                    <tr><td>Level Kognitif</td><td>Penalaran (HOTS)</td></tr>
+                    <tr><td>Level Kognitif</td><td>HOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <div class="soal-nomor">11.</div>
@@ -766,8 +871,8 @@
                         <div class="pembahasan-detail">
                             <b>Jawaban: Pilihan 1, 2, 3 benar</b><br>
                             <b>Pembahasan Detail:</b><br>
-                            1. Persamaan radar: Pusat $(2,3)$, $r=50 \implies (x-2)^2 + (y-3)^2 = 2500$. (Benar).<br>
-                            2. Jarak pusat ke garis $3x-4y-12=0$: $d = \frac{|3(2)-4(3)-12|}{\sqrt{3^2+(-4)^2}} = \frac{|-18|}{5} = 3.6$ km. (Benar, maka pilihan 4 salah).<br>
+                            1. Persamaan radar: Pusat $(2,3)$, $r=50 \implies (x-2)^2 + (y-3)^2 = 50^2 = 2500$. (Benar).<br>
+                            2. Jarak pusat ke garis $3x-4y-12=0$: $d = \frac{|3(2)-4(3)-12|}{\sqrt{3^2+(-4)^2}} = \frac{|6-12-12|}{\sqrt{25}} = \frac{|-18|}{5} = 3.6$ km. (Benar, maka pilihan 4 salah).<br>
                             3. Deteksi: Jarak (3.6 km) < Jangkauan (50 km), maka pesawat terdeteksi. (Benar, maka pilihan 5 salah).
                         </div>
                     </div>
@@ -780,7 +885,7 @@
         </footer>
     </section>
 
-    <!-- HALAMAN 7: Soal 12-13 -->
+    <!-- HALAMAN 13: Soal 12 -->
     <section class="page">
         <header class="page-header">
               <div class="header-top-box">
@@ -793,17 +898,17 @@
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Statistika</td></tr>
                     <tr><td>Sub Topik</td><td>Interpretasi Data (Kategori)</td></tr>
-                    <tr><td>Level Kognitif</td><td>Penalaran (HOTS)</td></tr>
+                    <tr><td>Level Kognitif</td><td>HOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <div class="soal-nomor">12.</div>
                     <div class="soal-konten">
                         Perhatikan tabel nilai ujian:
                          <table class="true-false-table" style="font-size: 8.5pt;">
-                             <tr><th>Nilai</th><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
-                             <tr><th>Frekuensi</th><td>3</td><td>8</td><td>10</td><td>7</td><td>2</td></tr>
-                         </table><br>
-                         Tentukan kebenaran pernyataan analisis data berikut.
+                            <tr><th>Nilai</th><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+                            <tr><th>Frekuensi</th><td>3</td><td>8</td><td>10</td><td>7</td><td>2</td></tr>
+                        </table><br>
+                        Tentukan kebenaran pernyataan analisis data berikut.
                          <table class="true-false-table">
                             <thead><tr><th>Pernyataan</th><th>Benar</th><th>Salah</th></tr></thead>
                             <tbody>
@@ -815,19 +920,35 @@
                         <div class="pembahasan-detail">
                             <b>Jawaban:</b> Semua pernyataan Benar.<br>
                             <b>Pembahasan Detail:</b><br>
-                            - Total siswa: $n = 30$.<br>
-                            - Rata-rata: $\frac{(5 \times 3) + ... + (9 \times 2)}{30} = \frac{207}{30} = 6.9$. (Benar).<br>
-                            - Median: Data ke-15 & 16 ada di kelompok nilai 7. Median=7. (Benar).<br>
+                            - Total siswa: $n = 3+8+10+7+2 = 30$.<br>
+                            - Rata-rata: $\frac{(5 \times 3) + (6 \times 8) + (7 \times 10) + (8 \times 7) + (9 \times 2)}{30} = \frac{15+48+70+56+18}{30} = \frac{207}{30} = 6.9$. (Benar).<br>
+                            - Median: Letak median adalah data ke-$\frac{30+1}{2} = 15.5$. Ini berarti rata-rata data ke-15 dan ke-16. Data ke-15 dan ke-16 berada di kelompok nilai 7 (karena frekuensi kumulatifnya 3, 11, 21,...). Jadi, Median=7. (Benar).<br>
                             - Modus: Nilai 7 punya frekuensi tertinggi (10). (Benar).
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 14: Soal 13 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika TKA</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
              <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Fungsi Komposisi dan Fungsi Invers</td></tr>
                     <tr><td>Sub Topik</td><td>Menentukan Fungsi Awal</td></tr>
-                    <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
+                    <tr><td>Level Kognitif</td><td>MOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <div class="soal-nomor">13.</div>
@@ -841,11 +962,11 @@
                             <li data-option="E">$x-3/2$</li>
                         </ol>
                         <div class="pembahasan-detail">
-                            <b>Jawaban: B. $2x-3$</b><br>
+                            <b>Jawaban: B. $2x-3$</b> (dan D juga benar)<br>
                             <b>Pembahasan Detail:</b><br>
                             $(f \circ g)(x) = f(g(x)) = (g(x))^2$.<br>
                             $(g(x))^2 = 4x^2 - 12x + 9 = (2x-3)^2$.<br>
-                            Maka, $g(x) = 2x-3$ (atau $g(x) = -(2x-3) = -2x+3$, yang juga ada di opsi D). Biasanya diambil yang positif.
+                            Maka, $g(x) = \sqrt{(2x-3)^2}$. Ada dua kemungkinan, yaitu $g(x) = 2x-3$ atau $g(x) = -(2x-3) = -2x+3$. Kedua jawaban (B dan D) secara matematis benar, namun biasanya diambil bentuk positifnya.
                         </div>
                     </div>
                 </div>
@@ -857,7 +978,7 @@
         </footer>
     </section>
 
-    <!-- HALAMAN 8: Soal 14-15 -->
+    <!-- HALAMAN 15: Soal 14 -->
     <section class="page">
         <header class="page-header">
               <div class="header-top-box">
@@ -870,7 +991,7 @@
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Lingkaran</td></tr>
                     <tr><td>Sub Topik</td><td>Persamaan Lingkaran</td></tr>
-                    <tr><td>Level Kognitif</td><td>Penalaran (HOTS)</td></tr>
+                    <tr><td>Level Kognitif</td><td>HOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <div class="soal-nomor">14.</div>
@@ -887,25 +1008,41 @@
                             <b>Jawaban: B. $x^2 + y^2 - 2x - 8y + 8 = 0$</b><br>
                             <b>Pembahasan Detail:</b><br>
                             1. Jari-jari (r) adalah jarak dari pusat $(1,4)$ ke garis $3x-4y-2=0$.<br>
-                               $r = \frac{|3(1) - 4(4) - 2|}{\sqrt{3^2+(-4)^2}} = \frac{|-15|}{5} = 3$.<br>
+                               $r = \frac{|3(1) - 4(4) - 2|}{\sqrt{3^2+(-4)^2}} = \frac{|3 - 16 - 2|}{\sqrt{9+16}} = \frac{|-15|}{5} = 3$.<br>
                             2. Persamaan: $(x-1)^2 + (y-4)^2 = 3^2$.<br>
-                               $x^2 - 2x + 1 + y^2 - 8y + 16 = 9 \implies x^2 + y^2 - 2x - 8y + 8 = 0$.
+                               $x^2 - 2x + 1 + y^2 - 8y + 16 = 9 \implies x^2 + y^2 - 2x - 8y + 17 - 9 = 0 \implies x^2 + y^2 - 2x - 8y + 8 = 0$.
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b><br>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</span>
+            <span class="page-number"></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 16: Soal 15 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika TKA</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
             <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Statistika</td></tr>
                     <tr><td>Sub Topik</td><td>Kecukupan Data</td></tr>
-                    <tr><td>Level Kognitif</td><td>Penalaran (HOTS)</td></tr>
+                    <tr><td>Level Kognitif</td><td>HOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <div class="soal-nomor">15.</div>
                     <div class="soal-konten">
-                       Ada lima bilangan bulat positif. Berapakah mediannya?<br>
-                       (1) Bilangan terbesar 10 dan jangkauannya 7.<br>
-                       (2) Rata-rata kelima bilangan adalah 6.
+                        Ada lima bilangan bulat positif. Berapakah mediannya?<br>
+                        (1) Bilangan terbesar 10 dan jangkauannya 7.<br>
+                        (2) Rata-rata kelima bilangan adalah 6.
                         <ol>
                             <li data-option="A">Pernyataan (1) SAJA cukup, tetapi (2) SAJA tidak cukup.</li>
                             <li data-option="B">Pernyataan (2) SAJA cukup, tetapi (1) SAJA tidak cukup.</li>
@@ -916,9 +1053,15 @@
                         <div class="pembahasan-detail">
                             <b>Jawaban: E. Pernyataan (1) dan (2) tidak cukup.</b><br>
                             <b>Pembahasan Detail:</b><br>
-                            (1) Bilangan terbesar=10, terkecil=3. Data: $3,b,c,d,10$. Median (c) tidak pasti. <b>Tidak Cukup</b>.<br>
-                            (2) Rata-rata 6, jumlah 30. Median tidak pasti. <b>Tidak Cukup</b>.<br>
-                            (1)+(2): $3+b+c+d+10=30 \implies b+c+d=17$. Median (c) masih tidak pasti. Bisa (3,4,5,8,10) median 5, bisa (3,3,6,8,10) median 6. <b>Tidak Cukup</b>.
+                            Data terurut: $x_1, x_2, x_3, x_4, x_5$. Median adalah $x_3$.<br>
+                            (1) Bilangan terbesar $x_5=10$. Jangkauan $x_5-x_1=7 \implies 10-x_1=7 \implies x_1=3$. Data: $3, x_2, x_3, x_4, 10$ dengan $3 \le x_2 \le x_3 \le x_4 \le 10$. Median ($x_3$) tidak pasti. <b>Tidak Cukup</b>.<br>
+                            (2) Rata-rata 6 $\implies$ Jumlah kelima bilangan adalah $5 \times 6 = 30$. Median tidak pasti. <b>Tidak Cukup</b>.<br>
+                            (1)+(2): Kita tahu $x_1=3$ dan $x_5=10$. Maka $3+x_2+x_3+x_4+10=30 \implies x_2+x_3+x_4=17$. Median ($x_3$) masih tidak pasti.
+                            <ul>
+                                <li>Contoh 1: (3, 4, 5, 8, 10). Jumlahnya 30, jangkauan 7. Median = 5.</li>
+                                <li>Contoh 2: (3, 5, 6, 6, 10). Jumlahnya 30, jangkauan 7. Median = 6.</li>
+                            </ul>
+                            Karena median bisa berbeda, kedua pernyataan bersama-sama <b>Tidak Cukup</b>.
                         </div>
                     </div>
                 </div>
