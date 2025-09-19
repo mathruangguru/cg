@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Mengajar - Rasio, KPK, dan FPB</title>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                packages: {'[+]': ['ams']}
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-text: #333333;
+            --secondary-text: #555555;
+            --border-color: #dddddd;
+            --header-top-bg: #E0F7FA;
+            --header-bottom-bg: #f0f0f0;
+            --header-title-color: #00838F;
+            --table-header-bg: #e9e9e9;
+            --grey-text: #8d8e8d;
+        }
+        
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9pt;
+            line-height: 1.6;
+            color: var(--primary-text);
+            background-color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page-container {
+            /* counter-reset removed as page numbers are no longer used */
+        }
+
+        .page {
+            background: white;
+            width: 21cm;
+            min-height: 29.7cm;
+            padding: 1.8cm 2.5cm;
+            margin: 1cm auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-header {
+            margin: -1.8cm -2.5cm 0 -2.5cm;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-top-box {
+            background-color: var(--header-top-bg);
+            padding: 10px 2.5cm;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2px;
+        }
+        
+        .page:not(:first-of-type) .header-bottom-box {
+            display: none;
+        }
+        .page:not(:first-of-type) .header-top-box {
+            margin-bottom: 20px;
+        }
+        
+        .header-title-main {
+            font-size: 18pt;
+            font-weight: 700;
+            color: var(--header-title-color);
+            line-height: 1.2;
+        }
+
+        .header-title-sub {
+            font-size: 9pt;
+            font-weight: 700;
+            color: var(--primary-text);
+        }
+
+        .header-bottom-box {
+            padding: 0 2.5cm 20px 2.5cm;
+            text-align: left;
+        }
+        
+        .header-bottom-text {
+            background-color: var(--header-bottom-bg);
+            padding: 8px 15px;
+            font-weight: 700;
+            font-size: 8.5pt;
+            color: var(--primary-text);
+            display: block;
+            border-radius: 4px;
+            white-space: normal;
+        }
+
+        .header-logo {
+            max-height: 60px;
+        }
+        
+        .content-wrapper { 
+            flex-grow: 1;
+        }
+
+        .section-title {
+            font-size: 14pt;
+            font-weight: 700;
+            color: var(--header-title-color);
+            border-bottom: 2px solid var(--header-top-bg);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            margin-top: 10px;
+        }
+        
+        ol.guide-list, ul.guide-list {
+            padding-left: 20px;
+            font-size: 8.5pt;
+        }
+        
+        ol.guide-list li, ul.guide-list li {
+            margin-bottom: 8px;
+        }
+        
+        .pembahasan-box {
+            margin-bottom: 25px;
+            page-break-inside: avoid;
+        }
+
+        .soal-card {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            border: 1px solid var(--border-color);
+        }
+        .soal-card td {
+            border: 1px solid var(--border-color);
+            padding: 6px 10px;
+            font-size: 8.5pt;
+        }
+        .soal-card td:first-child {
+            font-weight: 700;
+            background-color: var(--table-header-bg);
+            width: 120px;
+        }
+        
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid var(--border-color);
+            margin-bottom: 15px;
+        }
+        .summary-table td {
+            border: 1px solid var(--border-color);
+            padding: 6px 10px;
+            vertical-align: top;
+            font-size: 8.5pt;
+        }
+        .summary-table .summary-table-header td {
+            background-color: var(--table-header-bg);
+            font-weight: 700;
+            font-size: 9.5pt;
+        }
+        .summary-table .summary-table-content ul {
+            padding-left: 20px;
+            margin: 4px 0 0 0;
+        }
+         .star-row td {
+            text-align: center;
+            font-weight: bold;
+            background-color: #fcf8e3;
+            color: #8a6d3b;
+        }
+        
+        .soal-pembahasan {
+            display: flex;
+            align-items: flex-start;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        .soal-nomor {
+            font-weight: bold;
+            min-width: 20px;
+        }
+        .soal-konten {
+            flex-grow: 1;
+            text-align: justify;
+        }
+
+        .soal-konten ol.pilihan-ganda {
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 10px;
+        }
+        .soal-konten ol.pilihan-ganda li {
+            margin-bottom: 8px;
+        }
+        .soal-konten ol.pilihan-ganda li::before {
+            content: attr(data-option) ". ";
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .pembahasan-detail {
+            margin-top: 10px;
+            background-color: #f9f9f9;
+            border-left: 4px solid var(--header-title-color);
+            padding: 10px 15px;
+            border-radius: 0 4px 4px 0;
+        }
+        .pembahasan-detail ul, .pembahasan-detail ol {
+            padding-left: 20px;
+        }
+
+        .pilihan-ganda-mcma div {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            padding-left: 5px;
+        }
+        .pilihan-ganda-mcma input[type="checkbox"] {
+            width: 14px;
+            height: 14px;
+            margin-right: 10px;
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+        
+        .page-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            font-size: 6pt;
+            color: var(--grey-text);
+            margin-top: auto;
+            padding-top: 2px;
+            border-top: 2.5px solid var(--border-color);
+            flex-shrink: 0;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .true-false-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .true-false-table th, .true-false-table td {
+            border: 1px solid var(--border-color);
+            padding: 8px;
+            text-align: left;
+        }
+        .true-false-table th {
+            background-color: var(--table-header-bg);
+        }
+
+        /* --- PRINT STYLES --- */
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                background-color: white;
+                margin: 0;
+            }
+
+            .page-container {
+                margin: 0;
+            }
+
+            .page {
+                box-shadow: none;
+                margin: 0;
+                padding: 1.8cm 2.5cm;
+                width: 21cm;
+                min-height: 29.7cm; /* Use min-height instead of height */
+                page-break-after: always;
+                display: flex;
+                flex-direction: column;
+                position: relative;
+            }
+
+            .page:last-of-type {
+                page-break-after: auto;
+            }
+            
+            .content-wrapper {
+                flex-grow: 1;
+                overflow: hidden;
+            }
+            
+            .soal-card td:first-child, .summary-table .summary-table-header td, .pembahasan-detail, .true-false-table th, .header-top-box, .header-bottom-text, .star-row td {
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-container">
+
+    <!-- HALAMAN 1: TUJUAN, ALUR & TEORI -->
+    <section class="page">
+        <header class="page-header">
+            <div class="header-top-box">
+                <div>
+                    <div class="header-title-main">Panduan Mengajar</div>
+                    <div class="header-title-sub">Matematika</div>
+                </div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+            </div>
+            <div class="header-bottom-box">
+                <div class="header-bottom-text">
+                    VI SD | Kurikulum Merdeka | [TKA] Rasio, KPK, dan FPB | Subtopik: Rasio, KPK, dan FPB | Pertemuan 16
+                </div>
+            </div>
+        </header>
+
+        <div class="content-wrapper">
+            <table class="summary-table">
+                <tr class="summary-table-header">
+                    <td colspan="2">Belajar Apa Hari Ini</td>
+                </tr>
+                <tr class="summary-table-content">
+                    <td colspan="2">
+                        Mendalami konsep dan aplikasi rasio, Kelipatan Persekutuan Terkecil (KPK), dan Faktor Persekutuan Terbesar (FPB) melalui latihan soal-soal HOTS yang variatif untuk mengasah kemampuan bernalar siswa.
+                        <ul>
+                            <li><b>Rasio:</b> Membandingkan dua atau lebih kuantitas dan menyederhanakannya.</li>
+                            <li><b>Faktor & Kelipatan:</b> Mengidentifikasi faktor dan kelipatan dari suatu bilangan.</li>
+                            <li><b>FPB (Faktor Persekutuan Terbesar):</b> Menemukan faktor terbesar yang sama dari dua bilangan atau lebih.</li>
+                            <li><b>KPK (Kelipatan Persekutuan Terkecil):</b> Menemukan kelipatan terkecil yang sama dari dua bilangan atau lebih.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="summary-table-header">
+                    <td>Topik</td>
+                    <td>Learning Objectives (LO)</td>
+                </tr>
+                <tr class="summary-table-content">
+                    <td><b>Rasio, KPK, dan FPB</b></td>
+                    <td>
+                        <ul>
+                            <li>Menentukan dan menyederhanakan rasio dua kuantitas.</li>
+                            <li>Menentukan kelipatan dan faktor dari suatu bilangan.</li>
+                            <li>Menentukan KPK dan FPB dari dua bilangan atau lebih.</li>
+                            <li>Menyelesaikan masalah kontekstual yang berkaitan dengan rasio, KPK, dan FPB.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="star-row">
+                    <td colspan="2">
+                        Soal nomor 1 - 15 ⭐75⭐ (masing-masing 5 ⭐)
+                    </td>
+                </tr>
+            </table>
+
+             <h2 class="section-title">Alur & Pertanyaan Pemantik</h2>
+            <ul class="guide-list">
+                <li><b>Rasio:</b> "Jika kamu ingin membuat jus dengan rasa yang sama persis setiap saat, bagaimana perbandingan buah dan air yang harus kamu gunakan?"</li>
+                <li><b>KPK:</b> "Dua lampu hias berkedip dengan waktu yang berbeda. Kapan kedua lampu itu akan berkedip bersamaan lagi untuk pertama kalinya?"</li>
+                <li><b>FPB:</b> "Ibu punya beberapa permen dan cokelat yang ingin dibagikan sama rata ke teman-temanmu. Berapa paling banyak teman yang bisa mendapatkan bagian, agar setiap teman mendapat jumlah permen dan cokelat yang sama?"</li>
+            </ul>
+
+        </div>
+
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            
+        </footer>
+    </section>
+
+    <!-- HALAMAN 2 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>FPB</td></tr>
+                    <tr><td>Sub Topik</td><td>Menentukan FPB</td></tr>
+                    <tr><td>Level Kognitif</td><td>LOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">1.</div>
+                    <div class="soal-konten">
+                        Faktor Persekutuan Terbesar (FPB) dari 24 dan 36 adalah...
+                        <ol class="pilihan-ganda">
+                            <li data-option="A">6</li>
+                            <li data-option="B">8</li>
+                            <li data-option="C">12</li>
+                            <li data-option="D">24</li>
+                        </ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: C. 12</b><br>
+                            <b>Pembahasan Detail:</b><br>
+                            <b>Cara 1: Mendaftar Faktor</b><br>
+                            <ul>
+                                <li>Faktor dari 24 adalah 1, 2, 3, 4, 6, 8, <b>12</b>, 24.</li>
+                                <li>Faktor dari 36 adalah 1, 2, 3, 4, 6, 9, <b>12</b>, 18, 36.</li>
+                            </ul>
+                            Faktor persekutuan (yang sama) adalah 1, 2, 3, 4, 6, dan 12. Faktor yang paling besar adalah 12.<br><br>
+                            <b>Cara 2: Faktorisasi Prima (Pohon Faktor)</b><br>
+                             <ul>
+                                <li>$24 = 2^3 \times 3$</li>
+                                <li>$36 = 2^2 \times 3^2$</li>
+                            </ul>
+                            FPB diambil dari faktor prima yang sama dengan pangkat terkecil: $2^2 \times 3^1 = 4 \times 3 = 12$.
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Kelipatan</td></tr>
+                    <tr><td>Sub Topik</td><td>Menentukan Kelipatan</td></tr>
+                    <tr><td>Level Kognitif</td><td>LOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">2.</div>
+                    <div class="soal-konten">
+                        Manakah di antara bilangan berikut yang merupakan kelipatan dari 8? <b>(bisa pilih lebih dari satu jawaban)</b>
+                        <div class="pilihan-ganda-mcma">
+                            <div><input type="checkbox" disabled><span>18</span></div>
+                            <div><input type="checkbox" disabled checked><span>32</span></div>
+                            <div><input type="checkbox" disabled checked><span>40</span></div>
+                            <div><input type="checkbox" disabled><span>54</span></div>
+                        </div>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: 32 dan 40.</b><br>
+                            <b>Pembahasan Detail:</b><br>
+                            Kelipatan suatu bilangan adalah hasil perkalian bilangan tersebut dengan bilangan asli (1, 2, 3, ...), atau bilangan yang habis dibagi oleh bilangan tersebut.<br>
+                            <ul>
+                                <li>$18 \div 8$ = 2 sisa 2 (Bukan kelipatan)</li>
+                                <li>$32 \div 8$ = 4 (Kelipatan)</li>
+                                <li>$40 \div 8$ = 5 (Kelipatan)</li>
+                                <li>$54 \div 8$ = 6 sisa 6 (Bukan kelipatan)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 3 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>KPK</td></tr>
+                    <tr><td>Sub Topik</td><td>Menentukan KPK</td></tr>
+                    <tr><td>Level Kognitif</td><td>LOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">3.</div>
+                    <div class="soal-konten">
+                        Kelipatan Persekutuan Terkecil (KPK) dari 15 dan 20 adalah...
+                        <ol class="pilihan-ganda">
+                            <li data-option="A">30</li>
+                            <li data-option="B">40</li>
+                            <li data-option="C">50</li>
+                            <li data-option="D">60</li>
+                        </ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: D. 60</b><br>
+                            <b>Pembahasan Detail:</b><br>
+                            Kita dapat menggunakan faktorisasi prima:<br>
+                            <ul>
+                                <li>$15 = 3 \times 5$</li>
+                                <li>$20 = 2^2 \times 5$</li>
+                            </ul>
+                            KPK diambil dari semua faktor prima dengan pangkat tertinggi.
+                            KPK = $2^2 \times 3 \times 5 = 4 \times 3 \times 5 = 60$.
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Faktor & Kelipatan</td></tr>
+                    <tr><td>Sub Topik</td><td>Konsep Dasar</td></tr>
+                    <tr><td>Level Kognitif</td><td>MOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">4.</div>
+                    <div class="soal-konten">
+                        Perhatikan pernyataan mengenai faktor dan kelipatan berikut. Tentukan kebenaran setiap pernyataan.
+                        <table class="true-false-table">
+                           <thead><tr><th>Pernyataan</th><th>Benar</th><th>Salah</th></tr></thead>
+                           <tbody>
+                               <tr><td>1 adalah faktor dari semua bilangan.</td><td></td><td></td></tr>
+                               <tr><td>Setiap bilangan adalah kelipatan dari dirinya sendiri.</td><td></td><td></td></tr>
+                               <tr><td>Bilangan prima hanya memiliki satu faktor.</td><td></td><td></td></tr>
+                               <tr><td>Faktor dari 12 adalah 1, 2, 3, 4, 6, 12.</td><td></td><td></td></tr>
+                           </tbody>
+                       </table>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban:</b><br>
+                             <ul style="list-style-type:none; padding-left:0;">
+                                <li>Pernyataan 1: <b>Benar</b>. Angka 1 bisa membagi habis semua bilangan.</li>
+                                <li>Pernyataan 2: <b>Benar</b>. Setiap bilangan adalah hasil perkalian dirinya sendiri dengan 1 (contoh: $15 = 15 \times 1$).</li>
+                                <li>Pernyataan 3: <b>Salah</b>. Bilangan prima memiliki tepat dua faktor, yaitu 1 dan dirinya sendiri (contoh: faktor dari 7 adalah 1 dan 7).</li>
+                                <li>Pernyataan 4: <b>Benar</b>. Semua bilangan tersebut (1, 2, 3, 4, 6, 12) dapat membagi habis 12.</li>
+                             </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 4 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Rasio</td></tr>
+                    <tr><td>Sub Topik</td><td>Menyederhanakan Rasio</td></tr>
+                    <tr><td>Level Kognitif</td><td>LOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">5.</div>
+                    <div class="soal-konten">
+                        Bentuk paling sederhana dari rasio 18 : 45 adalah...
+                        <ol class="pilihan-ganda">
+                            <li data-option="A">1 : 2,5</li>
+                            <li data-option="B">2 : 5</li>
+                            <li data-option="C">3 : 7</li>
+                            <li data-option="D">6 : 15</li>
+                        </ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: B. 2 : 5</b><br>
+                            <b>Pembahasan Detail:</b><br>
+                            Untuk menyederhanakan rasio, kita bagi kedua bilangan dengan Faktor Persekutuan Terbesar (FPB) dari keduanya.
+                            FPB dari 18 dan 45 adalah 9.<br>
+                            <ul>
+                                <li>$18 \div 9 = 2$</li>
+                                <li>$45 \div 9 = 5$</li>
+                            </ul>
+                            Jadi, bentuk sederhananya adalah 2 : 5.
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>FPB & KPK</td></tr>
+                    <tr><td>Sub Topik</td><td>Sifat-sifat FPB & KPK</td></tr>
+                    <tr><td>Level Kognitif</td><td>MOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">6.</div>
+                    <div class="soal-konten">
+                        Pernyataan mana yang benar mengenai FPB dan KPK? <b>(bisa pilih lebih dari satu jawaban)</b>
+                        <div class="pilihan-ganda-mcma">
+                            <div><input type="checkbox" disabled checked><span>KPK dari dua bilangan selalu lebih besar atau sama dengan kedua bilangan tersebut.</span></div>
+                            <div><input type="checkbox" disabled checked><span>FPB dari dua bilangan selalu lebih kecil atau sama dengan kedua bilangan tersebut.</span></div>
+                            <div><input type="checkbox" disabled><span>Jika dua bilangan adalah prima, FPB-nya adalah hasil kali keduanya.</span></div>
+                            <div><input type="checkbox" disabled><span>KPK dari 1 dan sebuah bilangan adalah 1.</span></div>
+                        </div>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: Pernyataan 1 dan 2 benar.</b><br>
+                             <b>Pembahasan Detail:</b><br>
+                             <ul style="list-style-type:none; padding-left:0;">
+                                <li><b>Pernyataan 1: Benar.</b> Contoh: KPK dari 6 dan 8 adalah 24. Nilai 24 lebih besar dari 6 dan 8.</li>
+                                <li><b>Pernyataan 2: Benar.</b> Contoh: FPB dari 6 dan 8 adalah 2. Nilai 2 lebih kecil dari 6 dan 8.</li>
+                                <li><b>Pernyataan 3: Salah.</b> FPB dari dua bilangan prima yang berbeda selalu 1. Contoh: FPB dari 3 dan 5 adalah 1.</li>
+                                <li><b>Pernyataan 4: Salah.</b> KPK dari 1 dan sebuah bilangan adalah bilangan itu sendiri. Contoh: KPK dari 1 dan 7 adalah 7.</li>
+                             </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 5 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Rasio</td></tr>
+                    <tr><td>Sub Topik</td><td>Aplikasi Rasio</td></tr>
+                    <tr><td>Level Kognitif</td><td>MOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">7.</div>
+                    <div class="soal-konten">
+                        Di sebuah kelas, perbandingan jumlah siswa laki-laki dan perempuan adalah 3 : 5. Jika jumlah siswa perempuan adalah 20 orang, maka jumlah siswa laki-laki adalah...
+                        <ol class="pilihan-ganda">
+                            <li data-option="A">9 orang</li>
+                            <li data-option="B">12 orang</li>
+                            <li data-option="C">15 orang</li>
+                            <li data-option="D">18 orang</li>
+                        </ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: B. 12 orang</b><br>
+                            <b>Pembahasan Detail:</b><br>
+                            <b>Cara 1: Mencari Nilai per Bagian Rasio</b><br>
+                            Rasio L : P = 3 : 5. Jumlah perempuan (5 bagian) = 20 orang.
+                            Maka, nilai 1 bagian rasio = $20 \div 5 = 4$ orang.<br>
+                            Jumlah laki-laki (3 bagian) = $3 \times 4 = 12$ orang.<br><br>
+                            <b>Cara 2: Menggunakan Proporsi/Perbandingan Senilai</b><br>
+                            $\frac{\text{Jumlah Laki-laki}}{\text{Jumlah Perempuan}} = \frac{\text{Rasio Laki-laki}}{\text{Rasio Perempuan}}$<br>
+                            $\frac{L}{20} = \frac{3}{5}$<br>
+                            $L = \frac{3}{5} \times 20 = 12$ orang.
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>KPK</td></tr>
+                    <tr><td>Sub Topik</td><td>Aplikasi KPK</td></tr>
+                    <tr><td>Level Kognitif</td><td>MOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">8.</div>
+                    <div class="soal-konten">
+                        Lampu A menyala setiap 6 detik dan lampu B menyala setiap 8 detik. Jika kedua lampu menyala bersamaan pada pukul 10:00:00, kapan kedua lampu akan menyala bersamaan lagi?
+                        <ol class="pilihan-ganda">
+                            <li data-option="A">10:00:14</li>
+                            <li data-option="B">10:00:24</li>
+                            <li data-option="C">10:00:36</li>
+                            <li data-option="D">10:00:48</li>
+                        </ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: B. 10:00:24</b><br>
+                            <b>Pembahasan Detail:</b><br>
+                            Masalah ini mencari kapan suatu kejadian berulang terjadi bersamaan, jadi kita menggunakan Kelipatan Persekutuan Terkecil (KPK).
+                            KPK dari 6 dan 8:<br>
+                            <ul>
+                                <li>$6 = 2 \times 3$</li>
+                                <li>$8 = 2^3$</li>
+                            </ul>
+                            KPK = $2^3 \times 3 = 8 \times 3 = 24$.<br>
+                            Lampu akan menyala bersama lagi setelah 24 detik.
+                            Jadi, waktunya adalah pukul 10:00:00 + 24 detik = 10:00:24.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+    
+    <!-- HALAMAN 6 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>FPB</td></tr>
+                    <tr><td>Sub Topik</td><td>Aplikasi FPB</td></tr>
+                    <tr><td>Level Kognitif</td><td>HOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">9.</div>
+                    <div class="soal-konten">
+                        Ibu membeli 12 buah apel dan 18 buah jeruk. Buah-buahan tersebut akan dimasukkan ke dalam beberapa kantong plastik dengan jumlah dan jenis yang sama di setiap kantong. Tentukan kebenaran pernyataan berikut.
+                         <table class="true-false-table">
+                           <thead><tr><th>Pernyataan</th><th>Benar</th><th>Salah</th></tr></thead>
+                           <tbody>
+                               <tr><td>Jumlah kantong plastik paling banyak yang dibutuhkan adalah 6.</td><td></td><td></td></tr>
+                               <tr><td>Setiap kantong akan berisi 2 buah apel.</td><td></td><td></td></tr>
+                               <tr><td>Setiap kantong akan berisi 4 buah jeruk.</td><td></td><td></td></tr>
+                               <tr><td>Jumlah total buah di setiap kantong adalah 5.</td><td></td><td></td></tr>
+                           </tbody>
+                       </table>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban:</b><br>
+                             <ul style="list-style-type:none; padding-left:0;">
+                                <li><b>Pernyataan 1: Benar.</b> Mencari "jumlah kantong paling banyak" dengan isi yang sama adalah aplikasi dari FPB. FPB(12, 18) = 6.</li>
+                                <li><b>Pernyataan 2: Benar.</b> Jumlah apel per kantong = (Total Apel) / (Jumlah Kantong) = $12 \div 6 = 2$ buah.</li>
+                                <li><b>Pernyataan 3: Salah.</b> Jumlah jeruk per kantong = (Total Jeruk) / (Jumlah Kantong) = $18 \div 6 = 3$ buah, bukan 4.</li>
+                                <li><b>Pernyataan 4: Benar.</b> Total buah per kantong = 2 apel + 3 jeruk = 5 buah.</li>
+                             </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Rasio</td></tr>
+                    <tr><td>Sub Topik</td><td>Aplikasi Rasio</td></tr>
+                    <tr><td>Level Kognitif</td><td>HOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">10.</div>
+                    <div class="soal-konten">
+                        Sebuah resep kue memerlukan perbandingan tepung terigu, gula, dan mentega sebesar 5 : 3 : 2. Jika adonan yang dibuat menggunakan 150 gram gula, manakah pernyataan yang benar? <b>(bisa pilih lebih dari satu jawaban)</b>
+                        <div class="pilihan-ganda-mcma">
+                            <div><input type="checkbox" disabled><span>Tepung terigu yang dibutuhkan adalah 200 gram.</span></div>
+                            <div><input type="checkbox" disabled checked><span>Mentega yang dibutuhkan adalah 100 gram.</span></div>
+                            <div><input type="checkbox" disabled checked><span>Total berat ketiga bahan adalah 500 gram.</span></div>
+                            <div><input type="checkbox" disabled checked><span>Selisih berat tepung dan mentega adalah 150 gram.</span></div>
+                        </div>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: Pernyataan 2, 3, dan 4 benar.</b><br>
+                            <b>Pembahasan Detail:</b><br>
+                            Rasio T:G:M = 5:3:2. Gula (3 bagian) = 150 gram. Ini berarti nilai 1 bagian rasio adalah $150 \div 3 = 50$ gram.<br>
+                             <ul style="list-style-type:none; padding-left:0;">
+                                <li><b>Pernyataan 1: Salah.</b> Tepung (5 bagian) = $5 \times 50 = 250$ gram.</li>
+                                <li><b>Pernyataan 2: Benar.</b> Mentega (2 bagian) = $2 \times 50 = 100$ gram.</li>
+                                <li><b>Pernyataan 3: Benar.</b> Total berat = (Tepung) + (Gula) + (Mentega) = 250g + 150g + 100g = 500 gram.</li>
+                                <li><b>Pernyataan 4: Benar.</b> Selisih berat tepung dan mentega = $250 - 100 = 150$ gram.</li>
+                             </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+    
+    <!-- HALAMAN 7 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>FPB</td></tr>
+                    <tr><td>Sub Topik</td><td>Aplikasi FPB</td></tr>
+                    <tr><td>Level Kognitif</td><td>MOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">11.</div>
+                    <div class="soal-konten">
+                        Pak Budi ingin membagikan 40 buku tulis dan 60 pensil kepada beberapa siswa. Setiap siswa harus menerima jumlah buku dan pensil yang sama. Berapa jumlah siswa paling banyak yang dapat menerima bantuan tersebut?
+                        <ol class="pilihan-ganda">
+                            <li data-option="A">10 siswa</li>
+                            <li data-option="B">15 siswa</li>
+                            <li data-option="C">20 siswa</li>
+                            <li data-option="D">30 siswa</li>
+                        </ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: C. 20 siswa</b><br>
+                            <b>Pembahasan Detail:</b><br>
+                            Soal ini menanyakan pembagian dengan jumlah sama rata dan "paling banyak", yang merupakan kata kunci untuk aplikasi dari FPB.
+                            FPB dari 40 dan 60:<br>
+                            <ul>
+                                <li>$40 = 2^3 \times 5$</li>
+                                <li>$60 = 2^2 \times 3 \times 5$</li>
+                            </ul>
+                            FPB = $2^2 \times 5 = 4 \times 5 = 20$.<br>
+                            Jadi, jumlah siswa paling banyak adalah 20 orang.
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Rasio</td></tr>
+                    <tr><td>Sub Topik</td><td>Aplikasi Rasio</td></tr>
+                    <tr><td>Level Kognitif</td><td>MOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">12.</div>
+                    <div class="soal-konten">
+                        Perbandingan umur Ayah dan Budi adalah 7 : 2. Jika jumlah umur mereka sekarang adalah 54 tahun, berapakah umur Budi?
+                        <ol class="pilihan-ganda">
+                            <li data-option="A">12 tahun</li>
+                            <li data-option="B">14 tahun</li>
+                            <li data-option="C">18 tahun</li>
+                            <li data-option="D">42 tahun</li>
+                        </ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: A. 12 tahun</b><br>
+                            <b>Pembahasan Detail:</b><br>
+                            Karena yang diketahui adalah jumlah umur, kita jumlahkan angka perbandingannya: $7 + 2 = 9$ bagian.
+                            Jumlah total 9 bagian ini setara dengan 54 tahun.<br>
+                            Nilai 1 bagian = (Total Umur) / (Total Bagian) = $54 \div 9 = 6$ tahun.<br>
+                            Umur Budi memiliki 2 bagian rasio, maka: $2 \times 6 = 12$ tahun.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+    
+    <!-- HALAMAN 8 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>KPK</td></tr>
+                    <tr><td>Sub Topik</td><td>Aplikasi KPK</td></tr>
+                    <tr><td>Level Kognitif</td><td>HOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">13.</div>
+                    <div class="soal-konten">
+                        Tiga bus, A, B, dan C, berangkat dari terminal yang sama. Bus A berangkat setiap 15 menit, bus B setiap 20 menit, dan bus C setiap 30 menit. Ketiganya berangkat bersama-sama pada pukul 06:00. Tentukan kebenaran pernyataan berikut.
+                         <table class="true-false-table">
+                           <thead><tr><th>Pernyataan</th><th>Benar</th><th>Salah</th></tr></thead>
+                           <tbody>
+                               <tr><td>Ketiga bus akan berangkat bersama lagi pada pukul 07:00.</td><td></td><td></td></tr>
+                               <tr><td>Bus A dan C akan berangkat bersama pada pukul 06:30.</td><td></td><td></td></tr>
+                               <tr><td>Dari pukul 06:01 hingga 07:00, bus B dan C tidak pernah berangkat bersama.</td><td></td><td></td></tr>
+                               <tr><td>Pada pukul 07:00, bus A telah berangkat 4 kali (tidak termasuk keberangkatan pukul 06:00).</td><td></td><td></td></tr>
+                           </tbody>
+                       </table>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: Semua pernyataan benar.</b><br>
+                            <b>Pembahasan Detail:</b><br>
+                            <ul style="list-style-type:none; padding-left:0;">
+                                <li><b>Pernyataan 1: Benar.</b> Waktu berangkat bersama adalah KPK(15, 20, 30). Faktorisasi: $15=3 \times 5$; $20=2^2 \times 5$; $30=2 \times 3 \times 5$. KPK = $2^2 \times 3 \times 5 = 60$ menit (1 jam). Jadi 06:00 + 1 jam = 07:00.</li>
+                                <li><b>Pernyataan 2: Benar.</b> Bus A dan C berangkat bersama setiap KPK(15, 30) = 30 menit. Jadi setelah 06:00, mereka berangkat bersama lagi pukul 06:30.</li>
+                                <li><b>Pernyataan 3: Benar.</b> Bus B dan C berangkat bersama setiap KPK(20, 30) = 60 menit. Artinya mereka hanya bersama pukul 06:00 dan 07:00, tidak pernah di antara waktu itu.</li>
+                                <li><b>Pernyataan 4: Benar.</b> Bus A berangkat setiap 15 menit. Setelah pukul 06:00, ia berangkat pada: 06:15, 06:30, 06:45, dan 07:00. Total 4 kali.</li>
+                             </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>KPK</td></tr>
+                    <tr><td>Sub Topik</td><td>Aplikasi KPK</td></tr>
+                    <tr><td>Level Kognitif</td><td>HOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">14.</div>
+                    <div class="soal-konten">
+                        Sebuah toko roti menjual roti cokelat kemasan isi 10 dan roti keju kemasan isi 12. Ibu ingin membeli kedua jenis roti dengan jumlah yang sama banyak. Manakah pernyataan yang benar? <b>(bisa pilih lebih dari satu jawaban)</b>
+                         <div class="pilihan-ganda-mcma">
+                            <div><input type="checkbox" disabled><span>Konsep matematika yang paling tepat untuk masalah ini adalah FPB.</span></div>
+                            <div><input type="checkbox" disabled checked><span>Jumlah roti paling sedikit dari masing-masing jenis yang harus dibeli Ibu adalah 60 buah.</span></div>
+                            <div><input type="checkbox" disabled checked><span>Ibu harus membeli 6 kemasan roti cokelat.</span></div>
+                            <div><input type="checkbox" disabled><span>Total kemasan roti yang harus dibeli Ibu adalah 10 kemasan.</span></div>
+                        </div>
+                        <div class="pembahasan-detail">
+                             <b>Jawaban: Pernyataan 2 dan 3 benar.</b><br>
+                             <b>Pembahasan Detail:</b><br>
+                            Kata kunci "jumlah yang sama banyak" dan "paling sedikit" menunjukkan aplikasi KPK. KPK(10, 12) = 60.<br>
+                             <ul style="list-style-type:none; padding-left:0;">
+                                <li><b>Pernyataan 1: Salah.</b> Konsep yang digunakan adalah KPK, bukan FPB.</li>
+                                <li><b>Pernyataan 2: Benar.</b> Jumlah roti paling sedikit dari masing-masing jenis adalah hasil KPK dari 10 dan 12, yaitu 60 buah.</li>
+                                <li><b>Pernyataan 3: Benar.</b> Kemasan roti cokelat = (Jumlah Roti) / (Isi per Kemasan) = $60 \div 10 = 6$ kemasan.</li>
+                                <li><b>Pernyataan 4: Salah.</b> Kemasan roti keju = $60 \div 12 = 5$ kemasan. Total kemasan = 6 (cokelat) + 5 (keju) = 11 kemasan.</li>
+                             </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 9 -->
+    <section class="page">
+        <header class="page-header">
+              <div class="header-top-box">
+                  <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                  <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+              </div>
+        </header>
+        <div class="content-wrapper">
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>FPB</td></tr>
+                    <tr><td>Sub Topik</td><td>Aplikasi FPB</td></tr>
+                    <tr><td>Level Kognitif</td><td>HOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">15.</div>
+                    <div class="soal-konten">
+                        Pak Anton memiliki tanah berukuran 18 m x 24 m. Di sekeliling tanah akan ditanami pohon dengan jarak yang sama. Tanah tersebut juga akan dibagi menjadi petak persegi terbesar. Jarak antar pohon sama dengan panjang sisi petak persegi tersebut. Berapa banyak pohon yang dibutuhkan?
+                        <ol class="pilihan-ganda">
+                            <li data-option="A">6 pohon</li>
+                            <li data-option="B">12 pohon</li>
+                            <li data-option="C">14 pohon</li>
+                            <li data-option="D">18 pohon</li>
+                        </ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: C. 14 pohon</b><br>
+                            <b>Pembahasan Detail:</b><br>
+                            Kata kunci "jarak yang sama" dan "petak persegi terbesar" menandakan kita perlu mencari FPB dari ukuran panjang dan lebar tanah untuk menentukan jarak tanam pohon. <br>
+                            FPB dari 18 dan 24 adalah 6. Jadi, jarak antar pohon adalah 6 meter.<br>
+                            Selanjutnya, kita hitung keliling tanah untuk mengetahui total panjang area yang akan ditanami pohon.<br>
+                            Keliling = $2 \times (\text{panjang} + \text{lebar}) = 2 \times (18 + 24) = 2 \times 42 = 84$ meter.<br>
+                            Banyak pohon yang dibutuhkan = (Keliling Tanah) $\div$ (Jarak antar Pohon)<br>
+                            $= 84 \div 6 = 14$ pohon.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+</div>
+
+</body>
+</html>
+
