@@ -29,7 +29,7 @@
             --header-bottom-bg: #f0f0f0;
             --header-title-color: #00838F;
             --table-header-bg: #e9e9e9;
-	    --grey-text: #8d8e8d;
+            --grey-text: #8d8e8d;
         }
         
         *, *::before, *::after {
@@ -248,7 +248,7 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            font-size: 6pt; /* Diubah agar lebih kecil dan pas satu baris */
+            font-size: 6pt;
             color: var(--grey-text);
             margin-top: auto;
             padding-top: 2px;
@@ -271,6 +271,16 @@
         }
         .true-false-table th {
             background-color: var(--table-header-bg);
+        }
+
+        .theory-box {
+            margin-bottom: 15px;
+        }
+        .theory-box h3 {
+            font-weight: 700;
+            color: var(--header-title-color);
+            margin-top: 10px;
+            margin-bottom: 5px;
         }
 
         /* --- PRINT STYLES --- */
@@ -331,7 +341,7 @@
             <div class="header-top-box">
                 <div>
                     <div class="header-title-main">Panduan Mengajar</div>
-                    <div class="header-title-sub">Matematika</div>
+                    <div class="header-title-sub"><b>Matematika</b></div>
                 </div>
                 <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
             </div>
@@ -349,7 +359,7 @@
                 </tr>
                 <tr class="summary-table-content">
                     <td colspan="2">
-                        Mendalami Teorema Pythagoras, mulai dari pembuktiannya, penggunaannya pada segitiga siku-siku biasa dan istimewa, konsep tripel Pythagoras, hingga penerapannya dalam menentukan jenis segitiga dan menyelesaikan masalah kontekstual dalam kehidupan sehari-hari serta dalam sistem koordinat Kartesius.
+                        Mengasah kemampuan pemecahan masalah tingkat tinggi (HOTS) terkait Teorema Pythagoras, mencakup analisis mendalam pada segitiga istimewa, tripel Pythagoras, penentuan jenis segitiga, serta penerapan dalam konteks multidimensi dan sistem koordinat yang kompleks.
                     </td>
                 </tr>
                 <tr class="summary-table-header">
@@ -383,30 +393,139 @@
                 </tr>
                 <tr class="summary-table-content">
                     <td colspan="2">
-                        75 ⭐ untuk 15 soal (masing - masing 5⭐ / soal)
+                        60 ⭐ untuk 15 soal (masing - masing 4⭐ / soal)
                     </td>
                 </tr>
             </table>
 
             <h2 class="section-title">Alur & Pertanyaan Pemantik</h2>
             <ul class="guide-list">
-                <li><b>Pembuktian:</b> "Bagaimana kita bisa yakin kalau rumus $a^2 + b^2 = c^2$ itu selalu benar untuk semua segitiga siku-siku? Yuk kita coba buktikan bersama!"</li>
-                <li><b>Aplikasi Dasar:</b> "Jika kamu tahu panjang dua sisi dari sebuah tangga yang bersandar di tembok, bisakah kamu menebak panjang sisi yang satunya tanpa mengukurnya?"</li>
-                <li><b>Tripel Pythagoras:</b> "Apakah semua kelompok tiga angka bisa membentuk segitiga siku-siku? Bagaimana cara kita mengetahuinya dengan cepat tanpa perlu menghitung akar?"</li>
-                <li><b>Aplikasi Lanjutan:</b> "Pernahkah kalian berpikir bagaimana Google Maps bisa menghitung jarak lurus terpendek antara dua lokasi? Ternyata ada 'resep' rahasia dari zaman kuno lho!"</li>
+                <li><b>Analisis Konsep:</b> "Selain untuk mencari sisi miring, apa lagi kegunaan 'sakti' dari Teorema Pythagoras dalam memecahkan misteri bentuk-bentuk geometri?"</li>
+                <li><b>Koneksi Antar Materi:</b> "Bisakah kita menggabungkan Teorema Pythagoras dengan konsep aljabar untuk menemukan panjang sisi yang tidak diketahui dalam suatu persamaan?"</li>
+                <li><b>Pemecahan Masalah Kompleks:</b> "Bayangkan sebuah laba-laba di sudut ruangan. Bagaimana cara tercepat ia bisa mencapai sudut terjauh di seberangnya? Apakah dengan merayap di lantai atau dinding? Mari kita hitung lintasannya!"</li>
+                <li><b>Generalisasi Pola:</b> "Ada pola menarik di balik tripel Pythagoras. Bisakah kita membuat formula untuk menghasilkan tripel Pythagoras kita sendiri tanpa harus menebak-nebak?"</li>
             </ul>
         </div>
 
         <footer class="page-footer">
-            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
         </footer>
     </section>
 
-    <!-- HALAMAN 2: Soal 1 -->
+    <!-- HALAMAN 2: Konsep Materi 1 -->
     <section class="page">
         <header class="page-header">
              <div class="header-top-box">
-                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Konsep Materi Pythagoras</h2>
+            <div class="theory-box">
+                <h3>1. Apa Itu Teorema Pythagoras?</h3>
+                <p>
+                    Bayangkan Teorema Pythagoras sebagai "aturan super" khusus untuk <b>segitiga siku-siku</b>. Segitiga siku-siku adalah segitiga yang salah satu sudutnya sebesar 90°. Sisi yang berhadapan dengan sudut siku-siku disebut <b>sisi miring</b> atau <b>hipotenusa</b> (ini selalu sisi terpanjang!). Dua sisi lainnya disebut <b>sisi siku-siku</b>.
+                </p>
+                <p>
+                    Teorema ini menyatakan bahwa: <i>"Luas persegi yang sisinya adalah sisi miring sama dengan jumlah luas persegi dari kedua sisi siku-sikunya."</i>
+                </p>
+                <p>
+                    Dalam bahasa matematika yang lebih sederhana, rumusnya adalah:
+                    $$ a^2 + b^2 = c^2 $$
+                    di mana $a$ dan $b$ adalah panjang sisi siku-siku, dan $c$ adalah panjang sisi miring.
+                </p>
+            </div>
+             <div class="theory-box">
+                <h3>2. Menghitung Panjang Sisi</h3>
+                <p>Kita bisa menggunakan rumus ini untuk mencari panjang sisi manapun jika dua sisi lainnya diketahui.</p>
+                <ul>
+                    <li>
+                        <b>Mencari Sisi Miring (c):</b>
+                        <p>Jika sisi siku-siku $a=6$ dan $b=8$, maka:</p>
+                        $$ \begin{aligned} c^2 &= 6^2 + 8^2 \\ c^2 &= 36 + 64 = 100 \\ c &= \sqrt{100} = 10 \end{aligned} $$
+                    </li>
+                    <li>
+                        <b>Mencari Sisi Siku-Siku (misal a):</b>
+                        <p>Jika sisi miring $c=13$ dan sisi siku-siku $b=12$, maka:</p>
+                        $$ \begin{aligned} a^2 + 12^2 &= 13^2 \\ a^2 + 144 &= 169 \\ a^2 &= 169 - 144 = 25 \\ a &= \sqrt{25} = 5 \end{aligned} $$
+                    </li>
+                </ul>
+            </div>
+            <div class="theory-box">
+                <h3>3. Tripel Pythagoras</h3>
+                <p>
+                    Tripel Pythagoras adalah "keluarga" tiga bilangan bulat positif ($a, b, c$) yang memenuhi rumus $a^2 + b^2 = c^2$. Menghafal beberapa tripel dasar bisa sangat mempercepat pengerjaan soal!
+                </p>
+                <ul>
+                    <li><b>Contoh Tripel Dasar:</b> (3, 4, 5), (5, 12, 13), (8, 15, 17), (7, 24, 25).</li>
+                    <li><b>Kelipatannya Juga Berlaku!</b> Jika (3, 4, 5) adalah tripel, maka kelipatannya seperti (6, 8, 10) atau (9, 12, 15) juga merupakan tripel Pythagoras.</li>
+                </ul>
+            </div>
+        </div>
+         <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 3: Konsep Materi 2 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Konsep Materi Lanjutan</h2>
+            <div class="theory-box">
+                <h3>4. Kebalikan Teorema Pythagoras (Mendeteksi Jenis Segitiga)</h3>
+                <p>
+                    Ternyata, rumus Pythagoras juga bisa kita gunakan untuk menentukan jenis segitiga jika kita tahu panjang ketiga sisinya. Misalkan $c$ adalah sisi terpanjang:
+                </p>
+                <ul>
+                    <li>Jika $c^2 < a^2 + b^2$, maka segitiga tersebut adalah <b>segitiga lancip</b> (semua sudutnya kurang dari 90°).<br>
+                    <i>Contoh: Sisi 7, 8, 9. Sisi terpanjang 9. $9^2 = 81$. $7^2+8^2 = 49+64=113$. Karena $81 < 113$, ini segitiga lancip.</i>
+                    </li>
+                    <li>Jika $c^2 = a^2 + b^2$, maka segitiga tersebut adalah <b>segitiga siku-siku</b>.<br>
+                    <i>Contoh: Sisi 5, 12, 13. Ini adalah tripel Pythagoras, jadi sudah pasti siku-siku.</i>
+                    </li>
+                     <li>Jika $c^2 > a^2 + b^2$, maka segitiga tersebut adalah <b>segitiga tumpul</b> (salah satu sudutnya lebih dari 90°).<br>
+                     <i>Contoh: Sisi 6, 8, 11. Sisi terpanjang 11. $11^2 = 121$. $6^2+8^2=36+64=100$. Karena $121 > 100$, ini segitiga tumpul.</i>
+                    </li>
+                </ul>
+            </div>
+            <div class="theory-box">
+                <h3>5. Segitiga Siku-Siku Istimewa</h3>
+                <p>
+                    Ada dua jenis segitiga siku-siku yang sangat spesial karena perbandingan sisi-sisinya selalu tetap. Ini jalan pintas yang hebat!
+                </p>
+                <ul>
+                    <li>
+                        <b>Segitiga Siku-Siku Sama Kaki (Sudut 45°-45°-90°)</b><br>
+                        Perbandingan panjang sisinya adalah <b>$1 : 1 : \sqrt{2}$</b>.<br>
+                        (Sisi siku-siku : Sisi siku-siku : Sisi miring).<br>
+                        <i>Contoh: Jika sisi siku-sikunya 5 cm, maka sisi miringnya pasti $5\sqrt{2}$ cm.</i>
+                    </li>
+                     <li>
+                        <b>Segitiga Siku-Siku (Sudut 30°-60°-90°)</b><br>
+                        Perbandingan panjang sisinya adalah <b>$1 : \sqrt{3} : 2$</b>.<br>
+                        (Sisi di depan 30° : Sisi di depan 60° : Sisi di depan 90°).<br>
+                        <i>Contoh: Jika sisi terpendek (di depan 30°) adalah 7 cm, maka sisi di depan 60° adalah $7\sqrt{3}$ cm, dan sisi miringnya adalah $2 \times 7 = 14$ cm.</i>
+                    </li>
+                </ul>
+            </div>
+        </div>
+         <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 4: Soal 1 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
                 <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
              </div>
         </header>
@@ -415,41 +534,40 @@
             <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Teorema Pythagoras</td></tr>
-                    <tr><td>Sub Topik</td><td>Menentukan Panjang Sisi Segitiga</td></tr>
-                    <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
+                    <tr><td>Sub Topik</td><td>Aplikasi pada Bangun Datar</td></tr>
+                    <tr><td>Level Kognitif</td><td>Hard-HOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <div class="soal-nomor">1.</div>
                     <div class="soal-konten">
-                        Sebuah segitiga siku-siku memiliki panjang sisi siku-siku 8 cm dan 15 cm. Berapakah panjang sisi miringnya?
-                        <ol><li data-option="A">13 cm</li><li data-option="B">17 cm</li><li data-option="C">20 cm</li><li data-option="D">23 cm</li><li data-option="E">25 cm</li></ol>
+                        Sebuah belah ketupat memiliki panjang diagonal 12 cm dan 16 cm. Di dalam belah ketupat tersebut dibuat sebuah lingkaran yang menyinggung keempat sisinya. Jari-jari lingkaran tersebut adalah...
+                        <ol><li data-option="A">3,6 cm</li><li data-option="B">4,2 cm</li><li data-option="C">4,8 cm</li><li data-option="D">5,0 cm</li></ol>
                         <div class="pembahasan-detail">
-                            <b>Jawaban: B. 17 cm</b><br>
+                            <b>Jawaban: C. 4,8 cm</b><br>
                             <b>Pembahasan Detail:</b><br>
-                            Misalkan sisi siku-siku adalah $a$ dan $b$, dan sisi miring adalah $c$.
-                            Diketahui $a=8$ cm dan $b=15$ cm.<br>
-                            <b>Langkah 1: Gunakan rumus Teorema Pythagoras.</b><br>
-                            Rumus Teorema Pythagoras adalah $c^2 = a^2 + b^2$.<br>
-                            <b>Langkah 2: Substitusikan nilai yang diketahui ke dalam rumus.</b>
-                            $$ \begin{aligned} c^2 &= 8^2 + 15^2 \\ c^2 &= 64 + 225 \\ c^2 &= 289 \end{aligned} $$
-                            <b>Langkah 3: Hitung nilai $c$ dengan mengakarkan kedua ruas.</b>
-                            $$ \begin{aligned} c &= \sqrt{289} \\ c &= 17 \end{aligned} $$
-                            Jadi, panjang sisi miringnya adalah 17 cm.
+                            <b>Langkah 1: Tentukan panjang sisi belah ketupat ($s$).</b><br>
+                            Setengah dari panjang diagonalnya (6 cm dan 8 cm) menjadi sisi siku-siku sebuah segitiga, dengan sisi belah ketupat sebagai sisi miringnya.
+                            $$ \begin{aligned} s &= \sqrt{6^2 + 8^2} \\ &= \sqrt{36 + 64} = \sqrt{100} = 10 \text{ cm} \end{aligned} $$
+                            <b>Langkah 2: Hitung luas salah satu dari empat segitiga kecil di dalam belah ketupat.</b><br>
+                            Luas 1 segitiga = $\frac{1}{2} \times \text{alas} \times \text{tinggi} = \frac{1}{2} \times 6 \times 8 = 24 \text{ cm}^2$.<br>
+                            <b>Langkah 3: Gunakan luas segitiga untuk menemukan tingginya jika sisi miring menjadi alas.</b><br>
+                            Jari-jari lingkaran dalam ($r$) sama dengan tinggi segitiga tersebut jika sisi miring (10 cm) menjadi alasnya.
+                             $$ \begin{aligned} \text{Luas} &= \frac{1}{2} \times s \times r \\ 24 &= \frac{1}{2} \times 10 \times r \\ 24 &= 5r \\ r &= \frac{24}{5} = 4,8 \text{ cm} \end{aligned} $$
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <footer class="page-footer">
-            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+           <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
         </footer>
     </section>
 
-    <!-- HALAMAN 3: Soal 2 -->
+    <!-- HALAMAN 5: Soal 2 -->
     <section class="page">
         <header class="page-header">
              <div class="header-top-box">
-                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
                 <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
              </div>
         </header>
@@ -458,40 +576,177 @@
             <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Teorema Pythagoras</td></tr>
-                    <tr><td>Sub Topik</td><td>Segitiga Siku-siku Istimewa</td></tr>
-                    <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
+                    <tr><td>Sub Topik</td><td>Jarak Dua Titik & Aljabar</td></tr>
+                    <tr><td>Level Kognitif</td><td>Hard-HOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <div class="soal-nomor">2.</div>
                     <div class="soal-konten">
-                        Dalam sebuah segitiga siku-siku sama kaki (sudut 45°-45°-90°), panjang sisi miringnya adalah $10\sqrt{2}$ cm. Berapakah panjang sisi siku-sikunya?
-                        <ol><li data-option="A">5 cm</li><li data-option="B">$5\sqrt{2}$ cm</li><li data-option="C">10 cm</li><li data-option="D">20 cm</li><li data-option="E">$10\sqrt{3}$ cm</li></ol>
+                        Titik $P(x, 3)$ berjarak 10 satuan dari titik $Q(-2, -5)$. Nilai $x$ yang mungkin adalah...
+                        <ol><li data-option="A">8 atau -4</li><li data-option="B">-8 atau 4</li><li data-option="C">6 atau -10</li><li data-option="D">-6 atau 10</li></ol>
                         <div class="pembahasan-detail">
-                            <b>Jawaban: C. 10 cm</b><br>
+                            <b>Jawaban: B. -8 atau 4</b><br>
                             <b>Pembahasan Detail:</b><br>
-                            <b>Langkah 1: Ingat kembali perbandingan sisi pada segitiga siku-siku sama kaki.</b><br>
-                            Pada segitiga dengan sudut 45°-45°-90°, perbandingan panjang sisi siku-siku dengan sisi miring adalah $1 : \sqrt{2}$.<br>
-                            Misalkan panjang sisi siku-siku adalah $s$. Maka perbandingannya adalah $s : s : s\sqrt{2}$.<br>
-                            <b>Langkah 2: Buat persamaan berdasarkan perbandingan dan informasi yang diketahui.</b><br>
-                            Diketahui sisi miring = $s\sqrt{2} = 10\sqrt{2}$ cm.<br>
-                            <b>Langkah 3: Selesaikan persamaan untuk menemukan $s$.</b>
-                            $$ \begin{aligned} s\sqrt{2} &= 10\sqrt{2} \\ s &= \frac{10\sqrt{2}}{\sqrt{2}} \\ s &= 10 \end{aligned} $$
-                            Jadi, panjang sisi siku-sikunya adalah 10 cm.
+                            <b>Langkah 1: Gunakan rumus jarak antara dua titik dan susun persamaannya.</b><br>
+                            Jarak $d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}$.
+                            $$ 10 = \sqrt{(x - (-2))^2 + (3 - (-5))^2} $$
+                            <b>Langkah 2: Sederhanakan dan selesaikan persamaan tersebut.</b>
+                            $$ \begin{aligned} 10 &= \sqrt{(x+2)^2 + (8)^2} \\ 10^2 &= (x+2)^2 + 64 \\ 100 &= (x+2)^2 + 64 \\ 36 &= (x+2)^2 \end{aligned} $$
+                            <b>Langkah 3: Akarkan kedua ruas untuk menemukan nilai $(x+2)$.</b>
+                            $$ \pm\sqrt{36} = x+2 $$
+                            Maka, $\pm 6 = x+2$.<br>
+                            <b>Langkah 4: Tentukan dua kemungkinan nilai $x$.</b>
+                            - Kemungkinan 1: $6 = x+2$, sehingga $x = 4$.
+                            - Kemungkinan 2: $-6 = x+2$, sehingga $x = -8$.
+                            Jadi, nilai $x$ yang mungkin adalah -8 atau 4.
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <footer class="page-footer">
-            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
         </footer>
     </section>
 
-    <!-- HALAMAN 4: Soal 3 -->
+    <!-- HALAMAN 6: Soal 3 -->
     <section class="page">
         <header class="page-header">
              <div class="header-top-box">
-                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Teorema Pythagoras</td></tr>
+                    <tr><td>Sub Topik</td><td>Aplikasi pada Bangun Ruang</td></tr>
+                    <tr><td>Level Kognitif</td><td>Hard-HOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">3.</div>
+                    <div class="soal-konten">
+                        Sebuah balok berukuran panjang 10 cm, lebar 10 cm, dan tinggi 5 cm. Seekor semut berada di salah satu sudut bawah balok. Semut tersebut akan berjalan ke sudut ruang yang paling jauh. Jarak terpendek yang harus ditempuh semut adalah...
+                        <ol><li data-option="A">15 cm</li><li data-option="B">17 cm</li><li data-option="C">20 cm</li><li data-option="D">25 cm</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: A. 15 cm</b><br>
+                            <b>Pembahasan Detail:</b><br>
+                            Ini adalah soal tentang diagonal ruang balok. Jarak terpendek antara dua sudut yang berlawanan pada balok adalah panjang diagonal ruangnya ($d_r$).<br>
+                            <b>Langkah 1: Gunakan rumus diagonal ruang balok.</b><br>
+                            Rumus ini adalah perluasan dari Teorema Pythagoras untuk tiga dimensi.
+                            $$ d_r = \sqrt{p^2 + l^2 + t^2} $$
+                            <b>Langkah 2: Substitusikan nilai panjang, lebar, dan tinggi.</b>
+                            $$ \begin{aligned} d_r &= \sqrt{10^2 + 10^2 + 5^2} \\ d_r &= \sqrt{100 + 100 + 25} \\ d_r &= \sqrt{225} \end{aligned} $$
+                            <b>Langkah 3: Hitung akarnya.</b>
+                            $$ d_r = 15 \text{ cm} $$
+                            Jadi, jarak terpendek yang harus ditempuh semut adalah 15 cm.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 7: Soal 4 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Teorema Pythagoras</td></tr>
+                    <tr><td>Sub Topik</td><td>Menentukan Jenis Segitiga</td></tr>
+                    <tr><td>Level Kognitif</td><td>Hard-HOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">4.</div>
+                    <div class="soal-konten">
+                        Diketahui tiga sisi segitiga adalah $(x-2)$ cm, $x$ cm, dan $(x+2)$ cm. Agar segitiga tersebut merupakan segitiga tumpul, maka batasan nilai $x$ adalah...
+                        <ol><li data-option="A">$x > 2$</li><li data-option="B">$4 < x < 8$</li><li data-option="C">$2 < x < 4$</li><li data-option="D">$0 < x < 8$</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: B. $4 < x < 8$</b><br>
+                            <b>Pembahasan Detail:</b><br>
+                            <b>Langkah 1: Tentukan syarat agar panjang sisi segitiga valid (Syarat Ketaksamaan Segitiga).</b><br>
+                            - Panjang sisi harus positif: $x-2 > 0$, sehingga $x > 2$.<br>
+                            - Jumlah dua sisi terpendek harus lebih besar dari sisi terpanjang: $(x-2) + x > (x+2)$, sehingga $2x-2 > x+2$, yang berarti $x > 4$.
+                            Syarat yang lebih kuat dan harus dipenuhi adalah $x > 4$.<br>
+                            <b>Langkah 2: Terapkan syarat segitiga tumpul.</b><br>
+                            Sisi terpanjang adalah $(x+2)$. Syarat tumpul: $c^2 > a^2 + b^2$.
+                            $$ \begin{aligned} (x+2)^2 &> (x-2)^2 + x^2 \\ x^2 + 4x + 4 &> (x^2 - 4x + 4) + x^2 \\ x^2 + 4x + 4 &> 2x^2 - 4x + 4 \\ 0 &> x^2 - 8x \\ x(x-8) &< 0 \end{aligned} $$
+                             <b>Langkah 3: Selesaikan pertidaksamaan kuadrat.</b><br>
+                             Pembuat nol adalah $x=0$ dan $x=8$. Karena tandanya 'kurang dari', solusi pertidaksamaan ini adalah $0 < x < 8$.<br>
+                             <b>Langkah 4: Cari irisan dari semua syarat.</b><br>
+                             Kita harus memenuhi syarat $x > 4$ (dari Langkah 1) DAN $0 < x < 8$ (dari Langkah 3). Irisan dari kedua interval ini adalah $4 < x < 8$.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 8: Soal 5 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Teorema Pythagoras</td></tr>
+                    <tr><td>Sub Topik</td><td>Segitiga Istimewa & Luas</td></tr>
+                    <tr><td>Level Kognitif</td><td>Hard-HOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">5.</div>
+                    <div class="soal-konten">
+                        Sebuah segitiga siku-siku memiliki sudut 30°, 60°, dan 90°. Jika luas segitiga tersebut adalah $18\sqrt{3}$ cm$^2$, maka kelilingnya adalah...
+                        <ol><li data-option="A">36 cm</li><li data-option="B">$18\sqrt{3}$ cm</li><li data-option="C">$12+18\sqrt{3}$ cm</li><li data-option="D">$18+6\sqrt{3}$ cm</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: D. $18+6\sqrt{3}$ cm</b><br>
+                            <b>Pembahasan Detail:</b><br>
+                            <b>Langkah 1: Gunakan perbandingan sisi untuk segitiga 30°-60°-90°.</b><br>
+                            Misalkan sisi di depan sudut 30° adalah $a$. Maka sisi di depan sudut 60° (sisi siku-siku lainnya) adalah $a\sqrt{3}$, dan sisi miringnya adalah $2a$.<br>
+                            <b>Langkah 2: Gunakan rumus luas untuk mencari nilai $a$.</b><br>
+                            Luas = $\frac{1}{2} \times \text{alas} \times \text{tinggi}$.
+                            $$ \begin{aligned} 18\sqrt{3} &= \frac{1}{2} \times a \times (a\sqrt{3}) \\ 18\sqrt{3} &= \frac{a^2\sqrt{3}}{2} \\ 18 &= \frac{a^2}{2} \\ a^2 &= 36 \\ a &= 6 \text{ cm} \end{aligned} $$
+                             <b>Langkah 3: Tentukan panjang semua sisi.</b><br>
+                             - Sisi di depan 30°: $a = 6$ cm.
+                             - Sisi di depan 60°: $a\sqrt{3} = 6\sqrt{3}$ cm.
+                             - Sisi miring (depan 90°): $2a = 12$ cm.
+                            <b>Langkah 4: Hitung kelilingnya.</b><br>
+                            Keliling = $6 + 6\sqrt{3} + 12 = (18 + 6\sqrt{3})$ cm.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 9: Soal 6 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
                 <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
              </div>
         </header>
@@ -501,189 +756,36 @@
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Teorema Pythagoras</td></tr>
                     <tr><td>Sub Topik</td><td>Tripel Pythagoras</td></tr>
-                    <tr><td>Level Kognitif</td><td>Penalaran (PG Kompleks)</td></tr>
-                </table>
-                <div class="soal-pembahasan">
-                    <div class="soal-nomor">3.</div>
-                    <div class="soal-konten">
-                        Manakah dari kelompok bilangan berikut yang merupakan tripel Pythagoras? <b>(bisa pilih lebih dari satu jawaban)</b>
-                        <div class="pilihan-ganda-mcma">
-                             <div><input type="checkbox" disabled><span>7, 24, 25</span></div>
-                             <div><input type="checkbox" disabled><span>6, 8, 12</span></div>
-                             <div><input type="checkbox" disabled><span>9, 40, 41</span></div>
-                             <div><input type="checkbox" disabled><span>10, 20, 30</span></div>
-                        </div>
-                        <div class="pembahasan-detail">
-                            <b>Jawaban: Pernyataan 1 dan 3 benar.</b><br>
-                            <b>Pembahasan Detail:</b><br>
-                            Sebuah kelompok bilangan $(a, b, c)$ dengan $c$ sebagai bilangan terbesar disebut tripel Pythagoras jika memenuhi $a^2 + b^2 = c^2$.<br>
-                            <b>Pernyataan 1: (7, 24, 25)</b>
-                            $$ 7^2 + 24^2 = 49 + 576 = 625 $$
-                            $$ 25^2 = 625 $$
-                            Karena $7^2 + 24^2 = 25^2$, maka ini adalah tripel Pythagoras. <b>(Benar)</b><br>
-                            <b>Pernyataan 2: (6, 8, 12)</b>
-                            $$ 6^2 + 8^2 = 36 + 64 = 100 $$
-                            $$ 12^2 = 144 $$
-                            Karena $100 \neq 144$, ini bukan tripel Pythagoras. <b>(Salah)</b><br>
-                            <b>Pernyataan 3: (9, 40, 41)</b>
-                            $$ 9^2 + 40^2 = 81 + 1600 = 1681 $$
-                            $$ 41^2 = 1681 $$
-                            Karena $9^2 + 40^2 = 41^2$, maka ini adalah tripel Pythagoras. <b>(Benar)</b><br>
-                            <b>Pernyataan 4: (10, 20, 30)</b>
-                            $$ 10^2 + 20^2 = 100 + 400 = 500 $$
-                            $$ 30^2 = 900 $$
-                            Karena $500 \neq 900$, ini bukan tripel Pythagoras. <b>(Salah)</b>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <footer class="page-footer">
-            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
-        </footer>
-    </section>
-
-    <!-- HALAMAN 5: Soal 4 -->
-    <section class="page">
-        <header class="page-header">
-             <div class="header-top-box">
-                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
-                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
-             </div>
-        </header>
-        <div class="content-wrapper">
-            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
-            <div class="pembahasan-box">
-                <table class="soal-card">
-                    <tr><td>Topik</td><td>Teorema Pythagoras</td></tr>
-                    <tr><td>Sub Topik</td><td>Menentukan Jenis Segitiga</td></tr>
-                    <tr><td>Level Kognitif</td><td>Aplikasi (Kategori)</td></tr>
-                </table>
-                <div class="soal-pembahasan">
-                    <div class="soal-nomor">4.</div>
-                    <div class="soal-konten">
-                        Diberikan tiga panjang sisi segitiga. Tentukan kebenaran dari setiap pernyataan mengenai jenis segitiga yang terbentuk.
-                        <table class="true-false-table">
-                            <thead><tr><th>Pernyataan</th><th>Benar</th><th>Salah</th></tr></thead>
-                            <tbody>
-                                <tr><td>Sisi 5 cm, 12 cm, 13 cm membentuk segitiga siku-siku.</td><td></td><td></td></tr>
-                                <tr><td>Sisi 8 cm, 11 cm, 14 cm membentuk segitiga tumpul.</td><td></td><td></td></tr>
-                                <tr><td>Sisi 10 cm, 24 cm, 25 cm membentuk segitiga lancip.</td><td></td><td></td></tr>
-                            </tbody>
-                        </table>
-                        <div class="pembahasan-detail">
-                            <b>Jawaban: Benar, Benar, Benar</b><br>
-                            <b>Pembahasan Detail:</b><br>
-                            Gunakan kebalikan Teorema Pythagoras. Misalkan $c$ adalah sisi terpanjang.<br>
-                            - Jika $c^2 < a^2 + b^2$, segitiga lancip.<br>
-                            - Jika $c^2 = a^2 + b^2$, segitiga siku-siku.<br>
-                            - Jika $c^2 > a^2 + b^2$, segitiga tumpul.<br><br>
-                            <b>Pernyataan 1: (5, 12, 13)</b>
-                            $13^2 = 169$. $5^2 + 12^2 = 25 + 144 = 169$. Karena $13^2 = 5^2+12^2$, segitiga ini <b>siku-siku</b>. <b>(Benar)</b>.<br>
-                            <b>Pernyataan 2: (8, 11, 14)</b>
-                            $14^2 = 196$. $8^2 + 11^2 = 64 + 121 = 185$. Karena $14^2 > 8^2+11^2$, segitiga ini <b>tumpul</b>. <b>(Benar)</b>.<br>
-                            <b>Pernyataan 3: (10, 24, 25)</b>
-                            $25^2 = 625$. $10^2 + 24^2 = 100 + 576 = 676$. Karena $25^2 < 10^2+24^2$, segitiga ini <b>lancip</b>. <b>(Benar)</b>.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <footer class="page-footer">
-            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
-        </footer>
-    </section>
-
-    <!-- HALAMAN 6: Soal 5 -->
-    <section class="page">
-        <header class="page-header">
-             <div class="header-top-box">
-                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
-                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
-             </div>
-        </header>
-        <div class="content-wrapper">
-            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
-            <div class="pembahasan-box">
-                <table class="soal-card">
-                    <tr><td>Topik</td><td>Teorema Pythagoras</td></tr>
-                    <tr><td>Sub Topik</td><td>Penerapan Kontekstual</td></tr>
-                    <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
-                </table>
-                <div class="soal-pembahasan">
-                    <div class="soal-nomor">5.</div>
-                    <div class="soal-konten">
-                        Sebuah tangga sepanjang 5 meter bersandar pada dinding. Jarak ujung bawah tangga ke dinding adalah 3 meter. Berapakah tinggi ujung atas tangga dari lantai?
-                        <ol><li data-option="A">2 m</li><li data-option="B">3.5 m</li><li data-option="C">4 m</li><li data-option="D">4.5 m</li><li data-option="E">5.8 m</li></ol>
-                        <div class="pembahasan-detail">
-                            <b>Jawaban: C. 4 m</b><br>
-                            <b>Pembahasan Detail:</b><br>
-                            Situasi ini membentuk segitiga siku-siku, di mana:<br>
-                            - Panjang tangga adalah sisi miring ($c=5$ m).<br>
-                            - Jarak ujung bawah tangga ke dinding adalah sisi alas ($a=3$ m).<br>
-                            - Tinggi ujung atas tangga dari lantai adalah sisi tegak ($b$).<br>
-                            <b>Langkah 1: Gunakan rumus Pythagoras untuk mencari sisi tegak.</b>
-                            $$ \begin{aligned} a^2 + b^2 &= c^2 \\ b^2 &= c^2 - a^2 \end{aligned} $$
-                            <b>Langkah 2: Substitusikan nilai yang diketahui.</b>
-                             $$ \begin{aligned} b^2 &= 5^2 - 3^2 \\ b^2 &= 25 - 9 \\ b^2 &= 16 \end{aligned} $$
-                            <b>Langkah 3: Hitung nilai $b$.</b>
-                             $$ \begin{aligned} b &= \sqrt{16} \\ b &= 4 \end{aligned} $$
-                             Jadi, tinggi ujung atas tangga dari lantai adalah 4 meter.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <footer class="page-footer">
-            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
-        </footer>
-    </section>
-
-    <!-- HALAMAN 7: Soal 6 -->
-    <section class="page">
-        <header class="page-header">
-             <div class="header-top-box">
-                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
-                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
-             </div>
-        </header>
-        <div class="content-wrapper">
-            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
-            <div class="pembahasan-box">
-                <table class="soal-card">
-                    <tr><td>Topik</td><td>Teorema Pythagoras</td></tr>
-                    <tr><td>Sub Topik</td><td>Jarak Antara Dua Titik</td></tr>
-                    <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
+                    <tr><td>Level Kognitif</td><td>Medium</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <div class="soal-nomor">6.</div>
                     <div class="soal-konten">
-                        Tentukan jarak antara titik A(2, 1) dan B(5, 5) pada koordinat Kartesius.
-                        <ol><li data-option="A">3</li><li data-option="B">4</li><li data-option="C">5</li><li data-option="D">6</li><li data-option="E">7</li></ol>
+                        Manakah dari berikut ini yang BUKAN merupakan tripel Pythagoras?
+                        <ol><li data-option="A">20, 21, 29</li><li data-option="B">12, 35, 37</li><li data-option="C">9, 12, 15</li><li data-option="D">10, 22, 26</li></ol>
                         <div class="pembahasan-detail">
-                            <b>Jawaban: C. 5</b><br>
+                            <b>Jawaban: D. 10, 22, 26</b><br>
                             <b>Pembahasan Detail:</b><br>
-                            Jarak antara dua titik $(x_1, y_1)$ dan $(x_2, y_2)$ pada dasarnya adalah penerapan Teorema Pythagoras. Perbedaan koordinat $x$ menjadi satu sisi siku-siku, dan perbedaan koordinat $y$ menjadi sisi siku-siku yang lain.<br>
-                            <b>Langkah 1: Gunakan rumus jarak.</b><br>
-                            $$ d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2} $$
-                            <b>Langkah 2: Substitusikan koordinat titik A(2,1) dan B(5,5).</b>
-                            $$ \begin{aligned} d &= \sqrt{(5 - 2)^2 + (5 - 1)^2} \\ d &= \sqrt{3^2 + 4^2} \\ d &= \sqrt{9 + 16} \\ d &= \sqrt{25} \\ d &= 5 \end{aligned} $$
-                            Jadi, jarak antara titik A dan B adalah 5 satuan.
+                            Kita perlu memeriksa apakah $a^2+b^2=c^2$ untuk setiap opsi.<br>
+                            A: $20^2+21^2 = 400+441 = 841$. Dan $29^2=841$. (Benar)<br>
+                            B: $12^2+35^2 = 144+1225=1369$. Dan $37^2=1369$. (Benar)<br>
+                            C: $9^2+12^2 = 81+144 = 225$. Dan $15^2=225$. (Benar, kelipatan 3 dari 3,4,5)<br>
+                            D: $10^2+22^2 = 100+484 = 584$. Sedangkan $26^2=676$. Karena $584 \neq 676$, ini bukan tripel Pythagoras.
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <footer class="page-footer">
-            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
         </footer>
     </section>
 
-    <!-- HALAMAN 8: Soal 7 -->
+    <!-- HALAMAN 10: Soal 7 -->
     <section class="page">
         <header class="page-header">
              <div class="header-top-box">
-                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
                 <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
              </div>
         </header>
@@ -692,40 +794,41 @@
             <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Teorema Pythagoras</td></tr>
-                    <tr><td>Sub Topik</td><td>Segitiga Siku-siku Istimewa</td></tr>
-                    <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
+                    <tr><td>Sub Topik</td><td>Penerapan Kontekstual</td></tr>
+                    <tr><td>Level Kognitif</td><td>Medium</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <div class="soal-nomor">7.</div>
                     <div class="soal-konten">
-                       Sebuah segitiga siku-siku memiliki sudut 30° dan 60°. Jika panjang sisi di depan sudut 30° adalah 6 cm, berapakah panjang sisi miringnya?
-                        <ol><li data-option="A">$6\sqrt{3}$ cm</li><li data-option="B">12 cm</li><li data-option="C">$12\sqrt{2}$ cm</li><li data-option="D">18 cm</li><li data-option="E">9 cm</li></ol>
+                       Sebuah layar televisi berukuran 32 inci (diagonalnya). Jika perbandingan panjang dan lebarnya adalah 16:9, maka lebar televisi tersebut kira-kira...
+                        <ol><li data-option="A">15,7 inci</li><li data-option="B">27,9 inci</li><li data-option="C">18,5 inci</li><li data-option="D">20,1 inci</li></ol>
                         <div class="pembahasan-detail">
-                            <b>Jawaban: B. 12 cm</b><br>
+                            <b>Jawaban: A. 15,7 inci</b><br>
                             <b>Pembahasan Detail:</b><br>
-                            <b>Langkah 1: Ingat kembali perbandingan sisi pada segitiga siku-siku 30°-60°-90°.</b><br>
-                             Perbandingan sisi di depan sudut 30°, sisi di depan sudut 60°, dan sisi miring (di depan sudut 90°) adalah $1 : \sqrt{3} : 2$.<br>
-                            <b>Langkah 2: Terapkan perbandingan pada soal.</b><br>
-                            Diketahui sisi di depan sudut 30° (perbandingan 1) adalah 6 cm. Sisi miring memiliki perbandingan 2.<br>
-                            <b>Langkah 3: Hitung panjang sisi miring.</b><br>
-                            Panjang sisi miring = (Perbandingan sisi miring / Perbandingan sisi diketahui) $\times$ Panjang sisi diketahui
-                            $$ \text{Sisi miring} = \frac{2}{1} \times 6 \text{ cm} = 12 \text{ cm} $$
-                            Jadi, panjang sisi miringnya adalah 12 cm.
+                            <b>Langkah 1: Gunakan variabel untuk perbandingan.</b><br>
+                            Misalkan panjang = $16x$ dan lebar = $9x$. Diagonal adalah 32 inci.<br>
+                            <b>Langkah 2: Terapkan Teorema Pythagoras.</b>
+                             $$ \begin{aligned} (16x)^2 + (9x)^2 &= 32^2 \\ 256x^2 + 81x^2 &= 1024 \\ 337x^2 &= 1024 \end{aligned} $$
+                            <b>Langkah 3: Selesaikan untuk $x^2$ dan $x$.</b>
+                             $$ \begin{aligned} x^2 &= \frac{1024}{337} \approx 3,038 \\ x &\approx \sqrt{3,038} \approx 1,743 \end{aligned} $$
+                             <b>Langkah 4: Hitung lebar televisi.</b>
+                             Lebar = $9x \approx 9 \times 1,743 \approx 15,687$ inci.
+                             Nilai yang paling mendekati adalah 15,7 inci.
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <footer class="page-footer">
-            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
         </footer>
     </section>
 
-    <!-- HALAMAN 9: Soal 8 -->
+    <!-- HALAMAN 11: Soal 8 -->
     <section class="page">
         <header class="page-header">
              <div class="header-top-box">
-                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
                 <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
              </div>
         </header>
@@ -734,82 +837,40 @@
             <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Teorema Pythagoras</td></tr>
-                    <tr><td>Sub Topik</td><td>Penerapan Kontekstual</td></tr>
-                    <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
+                    <tr><td>Sub Topik</td><td>Segitiga Istimewa</td></tr>
+                    <tr><td>Level Kognitif</td><td>Medium</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <div class="soal-nomor">8.</div>
                     <div class="soal-konten">
-                       Sebuah taman berbentuk persegi dengan panjang sisi 10 meter. Seseorang berjalan secara diagonal dari satu sudut ke sudut yang berlawanan. Berapa jarak yang ditempuhnya?
-                        <ol><li data-option="A">10 m</li><li data-option="B">20 m</li><li data-option="C">$10\sqrt{2}$ m</li><li data-option="D">$10\sqrt{3}$ m</li><li data-option="E">100 m</li></ol>
+                       Pada segitiga siku-siku ABC, siku-siku di B, sudut A = 45°. Jika panjang AC = $10\sqrt{2}$ cm, maka luas segitiga ABC adalah...
+                        <ol><li data-option="A">50 cm$^2$</li><li data-option="B">100 cm$^2$</li><li data-option="C">25 cm$^2$</li><li data-option="D">$25\sqrt{2}$ cm$^2$</li></ol>
                         <div class="pembahasan-detail">
-                            <b>Jawaban: C. $10\sqrt{2}$ m</b><br>
+                            <b>Jawaban: A. 50 cm$^2$</b><br>
                             <b>Pembahasan Detail:</b><br>
-                            Diagonal persegi membaginya menjadi dua segitiga siku-siku sama kaki. Sisi-sisi persegi ($s$) menjadi dua sisi siku-siku, dan diagonal ($d$) menjadi sisi miring.<br>
-                            <b>Langkah 1: Gunakan Teorema Pythagoras.</b>
-                            $$ d^2 = s^2 + s^2 $$
-                            <b>Langkah 2: Substitusikan nilai sisi.</b>
-                            $$ \begin{aligned} d^2 &= 10^2 + 10^2 \\ d^2 &= 100 + 100 \\ d^2 &= 200 \end{aligned} $$
-                             <b>Langkah 3: Hitung nilai $d$.</b>
-                             $$ \begin{aligned} d &= \sqrt{200} \\ d &= \sqrt{100 \times 2} \\ d &= 10\sqrt{2} \end{aligned} $$
-                            Jadi, jarak yang ditempuh adalah $10\sqrt{2}$ meter.
+                            <b>Langkah 1: Identifikasi jenis segitiga.</b><br>
+                            Karena siku-siku di B dan sudut A = 45°, maka sudut C juga 45°. Ini adalah segitiga siku-siku sama kaki.<br>
+                            <b>Langkah 2: Tentukan panjang sisi siku-siku ($s$).</b>
+                             Perbandingan sisi adalah $s:s:s\sqrt{2}$. Sisi miring AC = $s\sqrt{2} = 10\sqrt{2}$.
+                             Maka, $s = 10$ cm. Jadi, AB = BC = 10 cm.<br>
+                             <b>Langkah 3: Hitung luas segitiga.</b>
+                             Luas = $\frac{1}{2} \times \text{alas} \times \text{tinggi} = \frac{1}{2} \times AB \times BC$
+                             $$ \begin{aligned} \text{Luas} &= \frac{1}{2} \times 10 \times 10 \\ &= 50 \text{ cm}^2 \end{aligned} $$
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <footer class="page-footer">
-            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
         </footer>
     </section>
 
-    <!-- HALAMAN 10: Soal 9 -->
+    <!-- HALAMAN 12: Soal 9 -->
     <section class="page">
         <header class="page-header">
              <div class="header-top-box">
-                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
-                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
-             </div>
-        </header>
-        <div class="content-wrapper">
-            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
-            <div class="pembahasan-box">
-                <table class="soal-card">
-                    <tr><td>Topik</td><td>Teorema Pythagoras</td></tr>
-                    <tr><td>Sub Topik</td><td>Menentukan Panjang Sisi Segitiga</td></tr>
-                    <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
-                </table>
-                <div class="soal-pembahasan">
-                    <div class="soal-nomor">9.</div>
-                    <div class="soal-konten">
-                       Panjang sisi miring sebuah segitiga siku-siku adalah 26 cm. Jika panjang salah satu sisi siku-sikunya 10 cm, berapa panjang sisi siku-siku yang lain?
-                        <ol><li data-option="A">16 cm</li><li data-option="B">20 cm</li><li data-option="C">22 cm</li><li data-option="D">24 cm</li><li data-option="E">25 cm</li></ol>
-                        <div class="pembahasan-detail">
-                            <b>Jawaban: D. 24 cm</b><br>
-                            <b>Pembahasan Detail:</b><br>
-                             Misalkan sisi miring $c=26$ cm, dan sisi siku-siku $a=10$ cm dan $b$ adalah sisi yang dicari.<br>
-                             <b>Langkah 1: Gunakan rumus Pythagoras yang telah dimodifikasi.</b>
-                             $$ b^2 = c^2 - a^2 $$
-                             <b>Langkah 2: Substitusikan nilai yang diketahui.</b>
-                            $$ \begin{aligned} b^2 &= 26^2 - 10^2 \\ b^2 &= 676 - 100 \\ b^2 &= 576 \end{aligned} $$
-                            <b>Langkah 3: Hitung nilai $b$.</b>
-                             $$ \begin{aligned} b &= \sqrt{576} \\ b &= 24 \end{aligned} $$
-                             Jadi, panjang sisi siku-siku yang lain adalah 24 cm. (Ini adalah tripel Pythagoras 10, 24, 26, kelipatan 2 dari 5, 12, 13).
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <footer class="page-footer">
-            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
-        </footer>
-    </section>
-
-    <!-- HALAMAN 11: Soal 10 -->
-    <section class="page">
-        <header class="page-header">
-             <div class="header-top-box">
-                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
                 <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
              </div>
         </header>
@@ -819,39 +880,38 @@
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Teorema Pythagoras</td></tr>
                     <tr><td>Sub Topik</td><td>Penerapan Kontekstual</td></tr>
-                    <tr><td>Level Kognitif</td><td>Penalaran</td></tr>
+                    <tr><td>Level Kognitif</td><td>Medium</td></tr>
                 </table>
                 <div class="soal-pembahasan">
-                    <div class="soal-nomor">10.</div>
+                    <div class="soal-nomor">9.</div>
                     <div class="soal-konten">
-                       Dua buah kapal berlayar dari titik yang sama. Kapal A berlayar ke arah Utara sejauh 9 km, sedangkan kapal B berlayar ke arah Timur sejauh 12 km. Berapakah jarak terpendek antara kedua kapal tersebut sekarang?
-                        <ol><li data-option="A">15 km</li><li data-option="B">18 km</li><li data-option="C">21 km</li><li data-option="D">25 km</li><li data-option="E">27 km</li></ol>
+                       Sebuah tiang bendera setinggi 8 meter ditopang oleh tiga buah kawat yang sama panjang. Setiap kawat diikatkan pada puncak tiang dan ditancapkan ke tanah sejauh 6 meter dari pangkal tiang. Total panjang kawat yang dibutuhkan adalah...
+                        <ol><li data-option="A">18 m</li><li data-option="B">24 m</li><li data-option="C">30 m</li><li data-option="D">36 m</li></ol>
                         <div class="pembahasan-detail">
-                            <b>Jawaban: A. 15 km</b><br>
+                            <b>Jawaban: C. 30 m</b><br>
                             <b>Pembahasan Detail:</b><br>
-                            Pergerakan kapal A ke Utara dan kapal B ke Timur membentuk dua sisi siku-siku dari sebuah segitiga. Jarak terpendek antara kedua kapal adalah sisi miringnya.<br>
-                             <b>Langkah 1: Tentukan sisi-sisi segitiga.</b>
-                             $a = 9$ km, $b = 12$ km.<br>
-                             <b>Langkah 2: Gunakan Teorema Pythagoras untuk mencari sisi miring $c$.</b>
-                            $$ \begin{aligned} c^2 &= 9^2 + 12^2 \\ c^2 &= 81 + 144 \\ c^2 &= 225 \end{aligned} $$
-                            <b>Langkah 3: Hitung nilai $c$.</b>
-                             $$ \begin{aligned} c &= \sqrt{225} \\ c &= 15 \end{aligned} $$
-                             Jadi, jarak terpendek antara kedua kapal adalah 15 km.
+                             <b>Langkah 1: Hitung panjang satu kawat.</b><br>
+                             Tinggi tiang (8 m) dan jarak ke tanah (6 m) membentuk sisi siku-siku. Panjang kawat ($k$) adalah sisi miring. Ini adalah kelipatan 2 dari tripel (3,4,5), sehingga sisi miringnya pasti $5 \times 2 = 10$ m.
+                             Atau dengan perhitungan:
+                             $$ \begin{aligned} k &= \sqrt{8^2 + 6^2} \\ &= \sqrt{64 + 36} = \sqrt{100} = 10 \text{ m} \end{aligned} $$
+                             <b>Langkah 2: Hitung total panjang kawat.</b><br>
+                             Karena ada tiga kawat yang sama panjang, maka total panjangnya adalah:
+                             Total = $3 \times 10 \text{ m} = 30 \text{ m}$.
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <footer class="page-footer">
-            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
         </footer>
     </section>
 
-    <!-- HALAMAN 12: Soal 11 -->
+    <!-- HALAMAN 13: Soal 10 -->
     <section class="page">
         <header class="page-header">
              <div class="header-top-box">
-                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
                 <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
              </div>
         </header>
@@ -861,49 +921,80 @@
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Teorema Pythagoras</td></tr>
                     <tr><td>Sub Topik</td><td>Menentukan Jenis Segitiga</td></tr>
-                    <tr><td>Level Kognitif</td><td>Penalaran (PG Kompleks)</td></tr>
+                    <tr><td>Level Kognitif</td><td>Medium</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">10.</div>
+                    <div class="soal-konten">
+                       Sebuah segitiga PQR memiliki sisi p=10 cm, q=15 cm, dan r=17 cm. Jenis segitiga PQR adalah...
+                        <ol><li data-option="A">Siku-siku</li><li data-option="B">Tumpul</li><li data-option="C">Lancip</li><li data-option="D">Sama kaki</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: C. Lancip</b><br>
+                            <b>Pembahasan Detail:</b><br>
+                             <b>Langkah 1: Identifikasi sisi terpanjang.</b><br>
+                             Sisi terpanjang adalah $r=17$ cm.<br>
+                             <b>Langkah 2: Bandingkan kuadrat sisi terpanjang dengan jumlah kuadrat sisi lainnya.</b>
+                             $$ r^2 = 17^2 = 289 $$
+                             $$ p^2 + q^2 = 10^2 + 15^2 = 100 + 225 = 325 $$
+                             <b>Langkah 3: Tentukan jenis segitiga.</b>
+                             Karena $r^2 < p^2 + q^2$ ($289 < 325$), maka segitiga tersebut adalah segitiga lancip.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 14: Soal 11 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Teorema Pythagoras</td></tr>
+                    <tr><td>Sub Topik</td><td>Penerapan pada Lingkaran</td></tr>
+                    <tr><td>Level Kognitif</td><td>Hard-HOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <div class="soal-nomor">11.</div>
                     <div class="soal-konten">
-                        Manakah dari kelompok sisi berikut yang membentuk segitiga tumpul? <b>(bisa pilih lebih dari satu jawaban)</b>
-                        <div class="pilihan-ganda-mcma">
-                             <div><input type="checkbox" disabled><span>5, 8, 10</span></div>
-                             <div><input type="checkbox" disabled><span>7, 9, 11</span></div>
-                             <div><input type="checkbox" disabled><span>12, 16, 20</span></div>
-                             <div><input type="checkbox" disabled><span>10, 15, 20</span></div>
-                        </div>
+                       Dua buah lingkaran memiliki jari-jari 17 cm dan 6 cm. Jarak antara kedua pusatnya adalah 23 cm. Panjang garis singgung persekutuan luar kedua lingkaran tersebut adalah...
+                        <ol><li data-option="A">$2\sqrt{78}$ cm</li><li data-option="B">$4\sqrt{11}$ cm</li><li data-option="C">20 cm</li><li data-option="D">$2\sqrt{102}$ cm</li></ol>
                         <div class="pembahasan-detail">
-                            <b>Jawaban: Pernyataan 1 dan 4 benar.</b><br>
+                            <b>Jawaban: D. $2\sqrt{102}$ cm</b><br>
                             <b>Pembahasan Detail:</b><br>
-                            Sebuah segitiga adalah tumpul jika kuadrat sisi terpanjangnya ($c^2$) lebih besar dari jumlah kuadrat dua sisi lainnya ($a^2 + b^2$).<br>
-                            <b>Pernyataan 1: (5, 8, 10)</b>
-                            $$ 10^2 = 100 \quad ; \quad 5^2 + 8^2 = 25 + 64 = 89 $$
-                            Karena $100 > 89$, segitiga ini tumpul. <b>(Benar)</b><br>
-                            <b>Pernyataan 2: (7, 9, 11)</b>
-                            $$ 11^2 = 121 \quad ; \quad 7^2 + 9^2 = 49 + 81 = 130 $$
-                            Karena $121 < 130$, segitiga ini lancip. <b>(Salah)</b><br>
-                            <b>Pernyataan 3: (12, 16, 20)</b>
-                            $$ 20^2 = 400 \quad ; \quad 12^2 + 16^2 = 144 + 256 = 400 $$
-                            Karena $400 = 400$, segitiga ini siku-siku. <b>(Salah)</b><br>
-                             <b>Pernyataan 4: (10, 15, 20)</b>
-                            $$ 20^2 = 400 \quad ; \quad 10^2 + 15^2 = 100 + 225 = 325 $$
-                            Karena $400 > 325$, segitiga ini tumpul. <b>(Benar)</b><br>
+                             <b>Langkah 1: Identifikasi variabel yang diketahui.</b><br>
+                             Jari-jari besar $R=17$ cm, jari-jari kecil $r=6$ cm, jarak pusat $p=23$ cm.<br>
+                             <b>Langkah 2: Gunakan rumus panjang garis singgung persekutuan luar ($l$).</b>
+                             $$ l = \sqrt{p^2 - (R-r)^2} $$
+                             <b>Langkah 3: Substitusikan nilai-nilainya.</b>
+                             $$ \begin{aligned} l &= \sqrt{23^2 - (17-6)^2} \\ l &= \sqrt{23^2 - 11^2} \\ l &= \sqrt{529 - 121} \\ l &= \sqrt{408} \end{aligned} $$
+                             <b>Langkah 4: Sederhanakan bentuk akar.</b>
+                             $$ l = \sqrt{4 \times 102} = 2\sqrt{102} \text{ cm} $$
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <footer class="page-footer">
-            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
         </footer>
     </section>
 
-    <!-- HALAMAN 13: Soal 12 -->
+    <!-- HALAMAN 15: Soal 12 -->
     <section class="page">
         <header class="page-header">
              <div class="header-top-box">
-                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
                 <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
              </div>
         </header>
@@ -912,44 +1003,38 @@
             <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Teorema Pythagoras</td></tr>
-                    <tr><td>Sub Topik</td><td>Tripel Pythagoras & Aljabar</td></tr>
-                    <tr><td>Level Kognitif</td><td>Penalaran</td></tr>
+                    <tr><td>Sub Topik</td><td>Penerapan Kontekstual</td></tr>
+                    <tr><td>Level Kognitif</td><td>Hard-HOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <div class="soal-nomor">12.</div>
                     <div class="soal-konten">
-                       Tiga bilangan $(x-7), x,$ dan $(x+1)$ membentuk tripel Pythagoras. Berapakah nilai $x$?
-                        <ol><li data-option="A">8</li><li data-option="B">10</li><li data-option="C">12</li><li data-option="D">13</li><li data-option="E">15</li></ol>
+                       Sebuah layang-layang terbang pada ketinggian vertikal 8 meter. Panjang benang yang terulur adalah 17 meter. Jika anak yang memegang layang-layang berjalan maju mendekati titik tepat di bawah layang-layang sejauh 9 meter, berapa meter benang yang harus ditarik agar ketinggian layang-layang tetap?
+                        <ol><li data-option="A">7 meter</li><li data-option="B">8 meter</li><li data-option="C">9 meter</li><li data-option="D">10 meter</li></ol>
                         <div class="pembahasan-detail">
-                            <b>Jawaban: C. 12</b><br>
+                            <b>Jawaban: A. 7 meter</b><br>
                             <b>Pembahasan Detail:</b><br>
-                             Dalam tripel Pythagoras, sisi terpanjang adalah sisi miring. Di sini, sisi terpanjang adalah $(x+1)$.<br>
-                             <b>Langkah 1: Susun persamaan Pythagoras.</b>
-                             $$ (x-7)^2 + x^2 = (x+1)^2 $$
-                             <b>Langkah 2: Jabarkan dan sederhanakan persamaan.</b>
-                            $$ \begin{aligned} (x^2 - 14x + 49) + x^2 &= x^2 + 2x + 1 \\ 2x^2 - 14x + 49 &= x^2 + 2x + 1 \\ x^2 - 16x + 48 &= 0 \end{aligned} $$
-                            <b>Langkah 3: Faktorkan persamaan kuadrat untuk mencari nilai $x$.</b>
-                             $$ (x-4)(x-12) = 0 $$
-                             Diperoleh $x=4$ atau $x=12$.<br>
-                             <b>Langkah 4: Periksa solusi.</b>
-                             - Jika $x=4$, sisi-sisinya adalah $(4-7), 4, (4+1)$, yaitu $-3, 4, 5$. Panjang sisi tidak bisa negatif, jadi $x=4$ tidak valid.
-                             - Jika $x=12$, sisi-sisinya adalah $(12-7), 12, (12+1)$, yaitu $5, 12, 13$. Ini adalah tripel Pythagoras yang valid.
-                             Jadi, nilai $x$ yang memenuhi adalah 12.
+                             <b>Langkah 1: Hitung jarak horizontal awal ($j_1$) anak dari titik di bawah layang-layang.</b><br>
+                             Ketinggian (8 m) sebagai sisi tegak, panjang benang (17 m) sebagai sisi miring.
+                             $$ \begin{aligned} j_1 &= \sqrt{17^2 - 8^2} \\ &= \sqrt{289 - 64} = \sqrt{225} = 15 \text{ meter} \end{aligned} $$
+                             <b>Langkah 2: Hitung jarak horizontal baru ($j_2$) setelah anak berjalan maju.</b>
+                             $$ j_2 = j_1 - 9 = 15 - 9 = 6 \text{ meter} $$
+                             <b>Langkah 3: Hitung panjang benang baru ($b_2$) dengan ketinggian tetap 8 meter dan jarak horizontal baru 6 meter.</b>
+                             $$ \begin{aligned} b_2 &= \sqrt{8^2 + 6^2} \\ &= \sqrt{64 + 36} = \sqrt{100} = 10 \text{ meter} \end{aligned} $$
+                             <b>Langkah 4: Hitung selisih panjang benang.</b>
+                             Panjang benang yang ditarik = $b_1 - b_2 = 17 - 10 = 7$ meter.
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <footer class="page-footer">
-            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
         </footer>
     </section>
 
-    <!-- HALAMAN 14: Soal 13 -->
+    <!-- HALAMAN 16: Soal 13 -->
     <section class="page">
         <header class="page-header">
              <div class="header-top-box">
-                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
                 <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
              </div>
         </header>
@@ -958,37 +1043,38 @@
             <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Teorema Pythagoras</td></tr>
-                    <tr><td>Sub Topik</td><td>Jarak Antara Dua Titik</td></tr>
-                    <tr><td>Level Kognitif</td><td>Aplikasi</td></tr>
+                    <tr><td>Sub Topik</td><td>Aplikasi pada Lingkaran</td></tr>
+                    <tr><td>Level Kognitif</td><td>Hard-HOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <div class="soal-nomor">13.</div>
                     <div class="soal-konten">
-                       Jarak antara titik P(-3, 5) dan Q(2, -7) adalah...
-                        <ol><li data-option="A">10</li><li data-option="B">12</li><li data-option="C">13</li><li data-option="D">15</li><li data-option="E">17</li></ol>
+                       Dari sebuah titik di luar lingkaran, ditarik garis singgung yang panjangnya 24 cm. Jika jarak dari titik tersebut ke pusat lingkaran adalah 25 cm, maka keliling lingkaran tersebut adalah...
+                        <ol><li data-option="A">$7\pi$ cm</li><li data-option="B">$14\pi$ cm</li><li data-option="C">$24\pi$ cm</li><li data-option="D">$49\pi$ cm</li></ol>
                         <div class="pembahasan-detail">
-                            <b>Jawaban: C. 13</b><br>
+                            <b>Jawaban: B. $14\pi$ cm</b><br>
                             <b>Pembahasan Detail:</b><br>
-                            <b>Langkah 1: Gunakan rumus jarak antara dua titik.</b><br>
-                            $$ d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2} $$
-                            <b>Langkah 2: Substitusikan koordinat P(-3, 5) dan Q(2, -7).</b>
-                            $$ \begin{aligned} d &= \sqrt{(2 - (-3))^2 + (-7 - 5)^2} \\ d &= \sqrt{(2+3)^2 + (-12)^2} \\ d &= \sqrt{5^2 + (-12)^2} \\ d &= \sqrt{25 + 144} \\ d &= \sqrt{169} \\ d &= 13 \end{aligned} $$
-                            Jadi, jarak antara titik P dan Q adalah 13 satuan.
+                             <b>Langkah 1: Pahami hubungan geometrisnya.</b><br>
+                             Garis singgung selalu tegak lurus dengan jari-jari di titik singgung. Sehingga, garis singgung (24 cm), jari-jari ($r$), dan jarak titik ke pusat (25 cm) membentuk segitiga siku-siku dengan jarak ke pusat sebagai sisi miring.<br>
+                             <b>Langkah 2: Gunakan Teorema Pythagoras untuk mencari jari-jari ($r$).</b>
+                              $$ \begin{aligned} r^2 + 24^2 &= 25^2 \\ r^2 + 576 &= 625 \\ r^2 &= 625 - 576 = 49 \\ r &= \sqrt{49} = 7 \text{ cm} \end{aligned} $$
+                             <b>Langkah 3: Hitung keliling lingkaran dengan rumus $K = 2\pi r$.</b>
+                             Keliling = $2 \times \pi \times 7 = 14\pi$ cm.
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <footer class="page-footer">
-            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
         </footer>
     </section>
 
-    <!-- HALAMAN 15: Soal 14 -->
+    <!-- HALAMAN 17: Soal 14 -->
     <section class="page">
         <header class="page-header">
              <div class="header-top-box">
-                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
                 <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
              </div>
         </header>
@@ -997,39 +1083,37 @@
             <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Teorema Pythagoras</td></tr>
-                    <tr><td>Sub Topik</td><td>Penerapan pada Bangun Ruang</td></tr>
-                    <tr><td>Level Kognitif</td><td>Penalaran</td></tr>
+                    <tr><td>Sub Topik</td><td>Aplikasi pada Trapesium</td></tr>
+                    <tr><td>Level Kognitif</td><td>Hard-HOTS</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <div class="soal-nomor">14.</div>
                     <div class="soal-konten">
-                       Sebuah kubus memiliki panjang rusuk 5 cm. Panjang diagonal ruang kubus tersebut adalah...
-                        <ol><li data-option="A">$5\sqrt{2}$ cm</li><li data-option="B">$5\sqrt{3}$ cm</li><li data-option="C">10 cm</li><li data-option="D">10√2 cm</li><li data-option="E">15 cm</li></ol>
+                       Sebuah trapesium siku-siku memiliki panjang sisi sejajar 10 cm dan 20 cm. Jika panjang sisi miringnya 26 cm, maka luas trapesium tersebut adalah...
+                        <ol><li data-option="A">360 cm$^2$</li><li data-option="B">480 cm$^2$</li><li data-option="C">520 cm$^2$</li><li data-option="D">624 cm$^2$</li></ol>
                         <div class="pembahasan-detail">
-                            <b>Jawaban: B. $5\sqrt{3}$ cm</b><br>
-                            <b>Pembahasan Detail:</b><br>
-                            <b>Langkah 1: Hitung panjang diagonal sisi ($d_s$) kubus.</b><br>
-                            Diagonal sisi membentuk segitiga siku-siku dengan dua rusuk kubus ($s$).
-                            $$ \begin{aligned} d_s^2 &= s^2 + s^2 = 5^2 + 5^2 = 25+25 = 50 \\ d_s &= \sqrt{50} = 5\sqrt{2} \text{ cm} \end{aligned} $$
-                            <b>Langkah 2: Hitung panjang diagonal ruang ($d_r$).</b><br>
-                            Diagonal ruang membentuk segitiga siku-siku dengan satu rusuk ($s$) dan satu diagonal sisi ($d_s$).
-                            $$ \begin{aligned} d_r^2 &= d_s^2 + s^2 \\ d_r^2 &= (5\sqrt{2})^2 + 5^2 = 50 + 25 = 75 \\ d_r &= \sqrt{75} = \sqrt{25 \times 3} = 5\sqrt{3} \text{ cm} \end{aligned} $$
-                            Jadi, panjang diagonal ruang kubus adalah $5\sqrt{3}$ cm.
+                            <b>Jawaban: A. 360 cm$^2$</b><br>
+                             <b>Pembahasan Detail:</b><br>
+                             <b>Langkah 1: Tentukan tinggi trapesium ($t$) dengan membuat segitiga bantu.</b><br>
+                             Jika kita tarik garis dari sudut atas yang tumpul lurus ke bawah, kita akan membentuk persegi panjang dan segitiga siku-siku. Alas segitiga ini adalah selisih sisi sejajar ($20-10 = 10$ cm). Sisi miringnya adalah 26 cm, dan tingginya ($t$) adalah sisi tegak segitiga tersebut.
+                             $$ \begin{aligned} t &= \sqrt{26^2 - 10^2} \\ &= \sqrt{676 - 100} = \sqrt{576} = 24 \text{ cm} \end{aligned} $$
+                             <b>Langkah 2: Hitung luas trapesium dengan rumus $L = \frac{1}{2} \times (a+b) \times t$.</b>
+                             $$ \begin{aligned} \text{Luas} &= \frac{1}{2} \times (10 + 20) \times 24 \\ &= \frac{1}{2} \times 30 \times 24 = 15 \times 24 = 360 \text{ cm}^2 \end{aligned} $$
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <footer class="page-footer">
-            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
         </footer>
     </section>
 
-    <!-- HALAMAN 16: Soal 15 -->
+    <!-- HALAMAN 18: Soal 15 -->
     <section class="page">
         <header class="page-header">
              <div class="header-top-box">
-                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
                 <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
              </div>
         </header>
@@ -1038,36 +1122,30 @@
             <div class="pembahasan-box">
                 <table class="soal-card">
                     <tr><td>Topik</td><td>Teorema Pythagoras</td></tr>
-                    <tr><td>Sub Topik</td><td>Konsep Dasar</td></tr>
-                    <tr><td>Level Kognitif</td><td>Pemahaman (Kategori)</td></tr>
+                    <tr><td>Sub Topik</td><td>Konsep Pembuktian</td></tr>
+                    <tr><td>Level Kognitif</td><td>Medium</td></tr>
                 </table>
                 <div class="soal-pembahasan">
                     <div class="soal-nomor">15.</div>
                     <div class="soal-konten">
-                        Tentukan kebenaran dari setiap pernyataan berikut.
-                        <table class="true-false-table">
-                            <thead><tr><th>Pernyataan</th><th>Benar</th><th>Salah</th></tr></thead>
-                            <tbody>
-                                <tr><td>Teorema Pythagoras hanya berlaku pada segitiga sama sisi.</td><td></td><td></td></tr>
-                                <tr><td>Luas persegi pada sisi miring sama dengan jumlah luas persegi pada kedua sisi siku-sikunya.</td><td></td><td></td></tr>
-                                <tr><td>Jika $a^2+c^2=b^2$ berlaku pada segitiga, maka sudut di hadapan sisi $b$ adalah 90°.</td><td></td><td></td></tr>
-                                <tr><td>Semua bilangan dalam tripel Pythagoras pasti merupakan bilangan ganjil.</td><td></td><td></td></tr>
-                            </tbody>
-                        </table>
+                       Pernyataan berikut yang paling tepat mendeskripsikan kebalikan dari Teorema Pythagoras adalah...
+                        <ol><li data-option="A">Jika sebuah segitiga memiliki sisi a, b, dan c, maka $a^2+b^2=c^2$.</li><li data-option="B">Pada segitiga siku-siku, kuadrat sisi miring sama dengan jumlah kuadrat sisi lainnya.</li><li data-option="C">Jika pada segitiga berlaku $a^2+b^2 \neq c^2$, maka segitiga itu bukan segitiga siku-siku.</li><li data-option="D">Jika kuadrat sisi terpanjang sebuah segitiga sama dengan jumlah kuadrat sisi-sisi lainnya, maka segitiga tersebut siku-siku.</li></ol>
                         <div class="pembahasan-detail">
-                            <b>Jawaban: Salah, Benar, Benar, Salah</b><br>
+                            <b>Jawaban: D. Jika kuadrat sisi terpanjang sebuah segitiga sama dengan jumlah kuadrat sisi-sisi lainnya, maka segitiga tersebut siku-siku.</b><br>
                             <b>Pembahasan Detail:</b><br>
-                            - <b>Pernyataan 1:</b> Teorema Pythagoras berlaku khusus untuk <b>segitiga siku-siku</b>, bukan sama sisi. <b>(Salah)</b>.<br>
-                            - <b>Pernyataan 2:</b> Ini adalah definisi visual dari Teorema Pythagoras ($c^2 = a^2 + b^2$), di mana $c^2$ adalah luas persegi pada sisi miring. <b>(Benar)</b>.<br>
-                            - <b>Pernyataan 3:</b> Ini adalah pernyataan kebalikan dari Teorema Pythagoras, yang juga bernilai benar. Jika hubungan kuadrat sisi terpenuhi, maka segitiga tersebut adalah siku-siku, dengan sudut siku-siku di hadapan sisi terpanjang. <b>(Benar)</b>.<br>
-                             - <b>Pernyataan 4:</b> Terdapat banyak tripel Pythagoras yang memiliki bilangan genap, contohnya (6, 8, 10). <b>(Salah)</b>.<br>
+                            Teorema Pythagoras adalah pernyataan kondisional: "<b>Jika</b> sebuah segitiga adalah siku-siku, <b>maka</b> kuadrat sisi miringnya sama dengan jumlah kuadrat sisi-sisi penyikunya." (Jika P, maka Q).<br>
+                            Kebalikan (konvers) dari sebuah pernyataan "Jika P maka Q" adalah "Jika Q maka P".<br>
+                            Maka, kebalikan dari Teorema Pythagoras adalah: "<b>Jika</b> kuadrat sisi terpanjang sebuah segitiga sama dengan jumlah kuadrat sisi-sisi lainnya, <b>maka</b> segitiga tersebut adalah segitiga siku-siku." Pernyataan ini paling akurat dijelaskan oleh opsi D.<br>
+                            - Opsi B adalah pernyataan Teorema Pythagoras itu sendiri, bukan kebalikannya.<br>
+                            - Opsi C adalah kontrapositif, bukan kebalikan.<br>
+                            - Opsi A terlalu umum atau merupakan akibat dari kebalikan, bukan definisi kebalikannya.
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <footer class="page-footer">
-            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
         </footer>
     </section>
 
