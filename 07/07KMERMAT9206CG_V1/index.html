@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Mengajar - Persamaan dan Pertidaksamaan Linear</title>
+    <script>
+        window.MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            packages: {'[+]': ['ams']}
+          },
+          svg: {
+            fontCache: 'global'
+          }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-text: #333333;
+            --secondary-text: #555555;
+            --border-color: #dddddd;
+            --header-top-bg: #E0F7FA;
+            --header-bottom-bg: #f0f0f0;
+            --header-title-color: #00838F;
+            --table-header-bg: #e9e9e9;
+	    --grey-text: #8d8e8d;
+        }
+        
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9pt;
+            line-height: 1.6;
+            color: var(--primary-text);
+            background-color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page-container {
+            counter-reset: page;
+        }
+
+        .page {
+            background: white;
+            width: 21cm;
+            min-height: 29.7cm;
+            padding: 1.8cm 2.5cm;
+            margin: 1cm auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .page-number::after {
+            counter-increment: page;
+            content: counter(page);
+        }
+
+        .page-header {
+            margin: -1.8cm -2.5cm 0 -2.5cm;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-top-box {
+            background-color: var(--header-top-bg);
+            padding: 10px 2.5cm;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2px;
+        }
+        
+        .page:not(:first-of-type) .header-bottom-box {
+            display: none;
+        }
+        .page:not(:first-of-type) .header-top-box {
+            margin-bottom: 20px;
+        }
+        
+        .header-title-main {
+            font-size: 18pt;
+            font-weight: 700;
+            color: var(--header-title-color);
+            line-height: 1.2;
+        }
+
+        .header-title-sub {
+            font-size: 12pt;
+            font-weight: 400;
+            color: var(--primary-text);
+        }
+
+        .header-bottom-box {
+            padding: 0 2.5cm 20px 2.5cm;
+            text-align: left;
+        }
+        
+        .header-bottom-text {
+            background-color: var(--header-bottom-bg);
+            padding: 8px 15px;
+            font-weight: 700;
+            font-size: 8.5pt;
+            color: var(--primary-text);
+            display: block;
+            border-radius: 4px;
+            white-space: normal;
+        }
+
+        .header-logo {
+            max-height: 60px;
+        }
+        
+        .content-wrapper { 
+            flex-grow: 1;
+        }
+
+        .section-title {
+            font-size: 14pt;
+            font-weight: 700;
+            color: var(--header-title-color);
+            border-bottom: 2px solid var(--header-top-bg);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            margin-top: 10px;
+        }
+        
+        ol.guide-list, ul.guide-list {
+            padding-left: 20px;
+        }
+        
+        ol.guide-list li, ul.guide-list li {
+            margin-bottom: 8px;
+        }
+        
+        .pembahasan-box {
+            margin-bottom: 25px;
+            page-break-inside: avoid;
+        }
+
+        .soal-card {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            border: 1px solid var(--border-color);
+        }
+        .soal-card td {
+            border: 1px solid var(--border-color);
+            padding: 6px 10px;
+            font-size: 8.5pt;
+        }
+        .soal-card td:first-child {
+            font-weight: 700;
+            background-color: var(--table-header-bg);
+            width: 120px;
+        }
+        
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+        .summary-table td {
+            border: 1px solid var(--border-color);
+            padding: 8px 12px;
+            vertical-align: top;
+        }
+        .summary-table .summary-table-header td {
+            background-color: var(--table-header-bg);
+            font-weight: 700;
+            font-size: 10pt;
+        }
+        .summary-table .summary-table-content ul {
+            padding-left: 20px;
+            margin: 5px 0 0 0;
+        }
+        
+        .soal-pembahasan {
+            display: flex;
+            align-items: flex-start;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        .soal-nomor {
+            font-weight: bold;
+            min-width: 20px;
+        }
+        .soal-konten {
+            flex-grow: 1;
+            text-align: justify;
+        }
+
+        .soal-konten ol {
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 10px;
+        }
+        .soal-konten ol li {
+            margin-bottom: 8px;
+            padding-left: 25px;
+            position: relative;
+        }
+        .soal-konten ol li::before {
+            content: attr(data-option) ". ";
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        .pembahasan-detail {
+            margin-top: 10px;
+            background-color: #f9f9f9;
+            border-left: 4px solid var(--header-title-color);
+            padding: 10px 15px;
+            border-radius: 0 4px 4px 0;
+        }
+        .pembahasan-detail ul, .pembahasan-detail ol {
+            padding-left: 20px;
+        }
+        
+        .materi-sub-title {
+            font-size: 11pt;
+            font-weight: 700;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+        
+        .materi-box p, .materi-box ul, .materi-box ol {
+            text-align: justify;
+        }
+
+        .page-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            font-size: 6pt;
+            color: var(--grey-text);
+            margin-top: auto;
+            padding-top: 2px;
+            border-top: 2.5px solid var(--grey-text);
+            flex-shrink: 0;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .true-false-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .true-false-table th, .true-false-table td {
+            border: 1px solid var(--border-color);
+            padding: 8px;
+            text-align: left;
+        }
+        .true-false-table th {
+            background-color: var(--table-header-bg);
+        }
+
+        /* --- PRINT STYLES --- */
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                background-color: white;
+                margin: 0;
+            }
+
+            .page-container {
+                margin: 0;
+            }
+
+            .page {
+                box-shadow: none;
+                margin: 0;
+                padding: 1.8cm 2.5cm;
+                width: 21cm;
+                height: 29.7cm;
+                page-break-after: always;
+                display: flex;
+                flex-direction: column;
+                position: relative;
+            }
+
+            .page:last-of-type {
+                page-break-after: auto;
+            }
+            
+            .content-wrapper {
+                flex-grow: 1;
+                overflow: hidden;
+            }
+
+            .pembahasan-box {
+                page-break-inside: avoid;
+            }
+            
+            .soal-card td:first-child, .summary-table .summary-table-header td, .pembahasan-detail, .true-false-table th, .header-top-box, .header-bottom-text {
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-container">
+
+    <!-- HALAMAN 1: TUJUAN, ALUR -->
+    <section class="page">
+        <header class="page-header">
+            <div class="header-top-box">
+                <div>
+                    <div class="header-title-main">Panduan Mengajar</div>
+                    <div class="header-title-sub"><b>Matematika</b></div>
+                </div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+            </div>
+            <div class="header-bottom-box">
+                <div class="header-bottom-text">
+                    VII SMP | Kurikulum Merdeka | Persamaan dan Pertidaksamaan Linear | Pertemuan 06
+                </div>
+            </div>
+        </header>
+
+        <div class="content-wrapper">
+            <table class="summary-table">
+                <tr class="summary-table-header">
+                    <td colspan="2">Belajar Apa Hari Ini</td>
+                </tr>
+                <tr class="summary-table-content">
+                    <td colspan="2">
+                        Mengulas kembali konsep dasar persamaan dan pertidaksamaan linear satu variabel, mulai dari memahami hubungan antar besaran, menyelesaikan persamaan dengan berbagai tingkat kesulitan (termasuk bilangan bulat, pecahan, dan desimal), hingga mampu menerapkannya untuk memecahkan masalah kontekstual dalam kehidupan sehari-hari, termasuk masalah yang berkaitan dengan rasio dan perbandingan.
+                    </td>
+                </tr>
+                <tr class="summary-table-header">
+                    <td>Topik</td>
+                    <td>Learning Objectives (LO)</td>
+                </tr>
+                <tr class="summary-table-content">
+                    <td><b>Persamaan, Pertidaksamaan dan Penerapannya</b></td>
+                    <td>
+                        <ul>
+                            <li>Mampu menyatakan hubungan antara dua besaran.</li>
+                            <li>Dapat menemukan kebenaran kalimat matematika ketika huruf disubstitusi dengan bilangan.</li>
+                            <li>Dapat menyelesaikan persamaan (1-2 langkah) yang melibatkan bilangan bulat.</li>
+                            <li>Dapat menyelesaikan persamaan (banyak langkah) yang melibatkan bilangan bulat.</li>
+                            <li>Dapat menyelesaikan persamaan (banyak langkah) yang melibatkan bilangan pecahan dan desimal.</li>
+                            <li>Dapat menyelesaikan pertidaksamaan linear.</li>
+                            <li>Menyelesaikan permasalahan sehari-hari dengan menggunakan persamaan linear.</li>
+                            <li>Menyelesaikan permasalahan rasio menggunakan persamaan linear.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="summary-table-header">
+                    <td colspan="2">⭐ Rekap Starchamps</td>
+                </tr>
+                <tr class="summary-table-content">
+                    <td colspan="2">
+                        75 ⭐ untuk 15 soal (masing - masing 5⭐ / soal)
+                    </td>
+                </tr>
+            </table>
+
+            <h2 class="section-title">Alur & Pertanyaan Pemantik</h2>
+            <ul class="guide-list">
+                <li><b>Membandingkan Nilai:</b> "Tanda apa saja yang bisa kita gunakan untuk membandingkan berat dua kantong belanjaan? Apakah hanya 'sama berat'?"</li>
+                <li><b>Menemukan Nilai Rahasia:</b> "Bayangkan sebuah timbangan yang seimbang. Di satu sisi ada 5 kelereng, di sisi lain ada 2 kelereng dan sebuah kotak rahasia. Bagaimana cara kita mencari tahu isi kotak rahasia itu?"</li>
+                <li><b>Aturan Main yang Berbeda:</b> "Apa bedanya kalimat 'kamu harus punya uang pas 10 ribu' dengan 'kamu harus punya uang lebih dari 10 ribu'? Bagaimana itu mengubah semua kemungkinan jumlah uang yang bisa kamu punya?"</li>
+                <li><b>Matematika di Dunia Nyata:</b> "Pernahkah kalian membagi pizza dengan teman? Atau menghitung diskon saat belanja? Tanpa sadar, kita sering memakai 'resep' persamaan linear lho!"</li>
+            </ul>
+        </div>
+
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 2: RINGKASAN MATERI 1 -->
+    <section class="page">
+        <header class="page-header">
+            <div class="header-top-box">
+                <div>
+                    <div class="header-title-main">Panduan Mengajar</div>
+                    <div class="header-title-sub">Matematika</div>
+                </div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+            </div>
+        </header>
+        <div class="content-wrapper materi-box">
+            <h2 class="section-title">Ringkasan Materi</h2>
+            
+            <div class="materi-sub-title">1. Memahami Kalimat Matematika: Persamaan dan Pertidaksamaan</div>
+            <p>Bayangkan kita memiliki sebuah timbangan dua lengan. Dalam matematika, kita sering membandingkan "berat" atau nilai dari dua hal. Apakah keduanya sama berat, atau salah satunya lebih berat? Hubungan ini kita tulis dalam sebuah kalimat matematika.</p>
+            <ul>
+                <li><b>Persamaan: Timbangan yang Seimbang</b><br>
+                Ketika kedua lengan timbangan seimbang sempurna, itu artinya apa yang ada di sisi kiri sama beratnya dengan apa yang ada di sisi kanan. Dalam matematika, keseimbangan ini kita sebut sebagai <b>persamaan</b>, dan kita menggunakan tanda sama dengan ($=$) untuk menunjukkannya. Contohnya, kalimat $x + 5 = 15$ adalah sebuah persamaan. Ini menyatakan bahwa "sebuah bilangan misterius ($x$) ditambah 5 memiliki nilai yang sama persis dengan 15". Bagian $x+5$ adalah <b>sisi kiri</b>, dan $15$ adalah <b>sisi kanan</b>.</li>
+                <li><b>Pertidaksamaan: Timbangan yang Berat Sebelah</b><br>
+                Terkadang, timbangan tidak seimbang. Satu sisi bisa jadi lebih berat dari sisi lainnya. Inilah yang kita sebut <b>pertidaksamaan</b>. Kita menggunakan simbol-simbol khusus untuk menggambarkannya:
+                    <ul>
+                        <li>$<$ (kurang dari): Sisi kiri lebih ringan dari sisi kanan.</li>
+                        <li>$>$ (lebih dari): Sisi kiri lebih berat dari sisi kanan.</li>
+                        <li>$\le$ (kurang dari atau sama dengan): Sisi kiri tidak lebih berat dari sisi kanan (bisa sama atau lebih ringan).</li>
+                        <li>$\ge$ (lebih dari atau sama dengan): Sisi kiri tidak lebih ringan dari sisi kanan (bisa sama atau lebih berat).</li>
+                    </ul>
+                Contoh: $2x - 1 > 5$ artinya "dua kali bilangan misterius ($x$) dikurangi 1 nilainya lebih besar dari 5".</li>
+            </ul>
+
+            <div class="materi-sub-title">2. Menjaga Keseimbangan: Sifat-Sifat Persamaan</div>
+            <p>Tujuan utama kita adalah menemukan nilai dari bilangan misterius (variabel) tadi. Untuk melakukannya, kita harus menjaga timbangan tetap seimbang sambil menyederhanakan isinya. Ada beberapa aturan main yang adil:</p>
+            <ol>
+                <li><b>Aturan Tambah dan Kurang:</b> Jika kita menambahkan atau mengambil beban yang sama dari kedua sisi timbangan, timbangan akan tetap seimbang. Artinya, kita boleh menambah atau mengurang kedua sisi persamaan dengan bilangan yang sama.</li>
+                <li><b>Aturan Kali dan Bagi:</b> Jika kita melipatgandakan (mengalikan) atau membagi beban di kedua sisi dengan jumlah yang sama, timbangan juga akan tetap seimbang. Satu-satunya pengecualian adalah kita tidak boleh membagi dengan nol.</li>
+            </ol>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 3: RINGKASAN MATERI 2 -->
+    <section class="page">
+        <header class="page-header">
+            <div class="header-top-box">
+                <div>
+                    <div class="header-title-main">Panduan Mengajar</div>
+                    <div class="header-title-sub">Matematika</div>
+                </div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+            </div>
+        </header>
+        <div class="content-wrapper materi-box">
+            <h2 class="section-title">Ringkasan Materi (Lanjutan)</h2>
+
+            <div class="materi-sub-title">3. Cara Menyelesaikan Persamaan: Menemukan Nilai si Misterius</div>
+            <p>Menyelesaikan <b>Persamaan Linear Satu Variabel (PLSV)</b> itu seperti sebuah permainan detektif. Kita hanya berhadapan dengan satu jenis variabel (misalnya hanya $x$, tidak ada $y$) dan pangkatnya selalu satu. Tujuannya adalah membuat si variabel berdiri sendirian di satu sisi, sehingga kita tahu nilainya.</p>
+            <b>Langkah-langkahnya adalah sebagai berikut:</b>
+            <ol>
+                <li><b>Buka "Bungkusan":</b> Jika ada tanda kurung, hilangkan terlebih dahulu dengan sifat distributif. Contoh: $3(x-2)$ menjadi $3x-6$.</li>
+                <li><b>Bersihkan Pecahan dan Desimal:</b> Agar lebih mudah, ubah semua bilangan menjadi bilangan bulat. Caranya, kalikan seluruh bagian persamaan dengan sebuah angka "ajaib" (KPK dari penyebut atau pangkat 10) yang bisa menghilangkan semua pecahan atau koma.</li>
+                <li><b>Kelompokkan yang Sejenis:</b> Pindahkan semua suku yang memiliki variabel ke satu sisi dan semua angka (konstanta) ke sisi lainnya. Proses ini disebut <b>transposisi</b>. Ingat, setiap suku yang "menyeberangi" tanda $=$ harus berganti tanda (dari $+$ menjadi $-$ atau sebaliknya).</li>
+                <li><b>Rapikan:</b> Setelah dikelompokkan, jumlahkan atau kurangkan suku-suku yang sejenis hingga persamaan menjadi lebih sederhana, dalam bentuk $ax = b$.</li>
+                <li><b>Langkah Terakhir:</b> Jika kita punya $3x = 12$, artinya 3 kali si misterius nilainya 12. Untuk menemukan nilai satu $x$, kita tinggal membagi kedua sisi dengan koefisiennya. Jadi, $x=4$.</li>
+            </ol>
+            
+            <div class="materi-sub-title">4. Menyelesaikan Pertidaksamaan: Aturan yang Sedikit Berbeda</div>
+            <p>Menyelesaikan pertidaksamaan hampir sama persis dengan persamaan. Kita bisa melakukan transposisi, menambah, atau mengurangi kedua sisi. Namun, ada satu aturan tambahan yang sangat penting:</p>
+            <p><b>Aturan Emas Pertidaksamaan:</b> Setiap kali kita mengalikan atau membagi kedua sisi dengan sebuah <b>bilangan negatif</b>, kita harus <b>membalik arah tanda pertidaksamaan</b>. Contohnya, $>$ menjadi $<$, dan $\le$ menjadi $\ge$. Ini terjadi karena di "dunia" bilangan negatif, semua urutannya terbalik.</p>
+            
+            <div class="materi-sub-title">5. Menggunakan Persamaan untuk Memecahkan Masalah Nyata</div>
+            <p>Keahlian ini sangat berguna untuk memecahkan teka-teki dalam kehidupan sehari-hari, mulai dari menghitung belanjaan hingga merencanakan perjalanan.</p>
+            <b>Berikut resepnya:</b>
+            <ol>
+                <li><b>Jadi Detektif:</b> Baca soal dengan teliti. Apa saja informasi (clue) yang diberikan? Apa misteri yang harus dipecahkan?</li>
+                <li><b>Jadi Penerjemah:</b> Ubah cerita tersebut ke dalam bahasa matematika. Beri nama untuk hal yang tidak diketahui (misalnya, $x$). Lalu, tuliskan hubungan antara semua informasi dalam bentuk persamaan atau pertidaksamaan.</li>
+                <li><b>Jadi Matematikawan:</b> Gunakan semua aturan yang sudah dipelajari untuk menyelesaikan kalimat matematika yang sudah dibuat.</li>
+                <li><b>Jadi Penilai:</b> Apakah jawabanmu masuk akal? Jika pertanyaannya tentang jumlah orang, apakah jawabannya bisa berupa pecahan? Periksa kembali jawabanmu dalam konteks cerita dan berikan kesimpulan yang jelas.</li>
+            </ol>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 4: Soal 1 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Soal dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Persamaan dan Pertidaksamaan Linear</td></tr>
+                    <tr><td>Sub Topik</td><td>Pengertian Ketidaksaman dan Pertidaksamaan</td></tr>
+                    <tr><td>Level Kognitif</td><td>Easy</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">1.</div>
+                    <div class="soal-konten">
+                        Sebuah toko buku menjual pensil seharga Rp2.500,00 per buah dan buku tulis seharga Rp4.000,00 per buah. Andi membeli $x$ pensil dan $y$ buku tulis. Kalimat matematika yang tepat untuk menyatakan "Total harga pembelian tidak lebih dari Rp50.000,00" adalah ....
+                        <ol>
+                            <li data-option="A">$2500x + 4000y < 50000$</li>
+                            <li data-option="B">$2500x + 4000y > 50000$</li>
+                            <li data-option="C">$2500x + 4000y = 50000$</li>
+                            <li data-option="D">$2500x + 4000y \ge 50000$</li>
+                            <li data-option="E">$2500x + 4000y \le 50000$</li>
+                        </ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: E. $2500x + 4000y \le 50000$</b><br>
+                            <b>Pembahasan:</b><br>
+                            Langkah pertama adalah menerjemahkan setiap bagian dari pernyataan menjadi bentuk aljabar.<br>
+                            <b>Langkah 1: Tentukan total harga pensil.</b><br>
+                            Harga satu pensil adalah 2.500. Jika membeli sebanyak $x$ pensil, maka total harganya adalah $2500 \times x = 2500x$.<br>
+                            <b>Langkah 2: Tentukan total harga buku.</b><br>
+                            Harga satu buku adalah 4.000. Jika membeli sebanyak $y$ buku, maka total harganya adalah $4000 \times y = 4000y$.<br>
+                            <b>Langkah 3: Tentukan total harga keseluruhan.</b><br>
+                            Total harga adalah jumlah harga pensil dan harga buku, yaitu $2500x + 4000y$.<br>
+                            <b>Langkah 4: Terjemahkan frasa "tidak lebih dari".</b><br>
+                            Frasa "tidak lebih dari Rp50.000,00" berarti total harga bisa sama dengan Rp50.000,00 atau kurang dari Rp50.000,00. Tanda ketidaksamaan yang tepat untuk ini adalah "kurang dari atau sama dengan", yaitu $\le$.<br>
+                            <b>Langkah 5: Gabungkan menjadi satu kalimat matematika.</b><br>
+                            Dengan menggabungkan semua bagian, kita mendapatkan pertidaksamaan: $2500x + 4000y \le 50000$.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 5: Soal 2 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Soal dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Persamaan dan Pertidaksamaan Linear</td></tr>
+                    <tr><td>Sub Topik</td><td>Pengertian Persamaan Linear Satu Variabel (PLSV)</td></tr>
+                    <tr><td>Level Kognitif</td><td>Easy</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">2.</div>
+                    <div class="soal-konten">
+                        Manakah di antara nilai $x$ berikut yang membuat persamaan $5x - 8 = 2x + 7$ menjadi kalimat yang benar ....
+                        <ol>
+                            <li data-option="A">$x = 3$</li>
+                            <li data-option="B">$x = 4$</li>
+                            <li data-option="C">$x = 5$</li>
+                            <li data-option="D">$x = 6$</li>
+                            <li data-option="E">$x = 7$</li>
+                        </ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: C. $x = 5$</b><br>
+                            <b>Pembahasan:</b><br>
+                            Untuk menemukan nilai $x$ yang benar, kita bisa menguji setiap pilihan dengan mensubstitusikannya ke dalam sisi kiri dan sisi kanan persamaan, atau dengan menyelesaikan persamaan secara langsung.<br>
+                            <b>Metode Substitusi:</b><br>
+                            <ul>
+                                <li><b>Jika $x = 3$:</b>
+                                <br>Sisi Kiri: $5(3) - 8 = 15 - 8 = 7$
+                                <br>Sisi Kanan: $2(3) + 7 = 6 + 7 = 13$
+                                <br>Hasil: $7 \neq 13$ (Salah)</li>
+                                <li><b>Jika $x = 4$:</b>
+                                <br>Sisi Kiri: $5(4) - 8 = 20 - 8 = 12$
+                                <br>Sisi Kanan: $2(4) + 7 = 8 + 7 = 15$
+                                <br>Hasil: $12 \neq 15$ (Salah)</li>
+                                <li><b>Jika $x = 5$:</b>
+                                <br>Sisi Kiri: $5(5) - 8 = 25 - 8 = 17$
+                                <br>Sisi Kanan: $2(5) + 7 = 10 + 7 = 17$
+                                <br>Hasil: $17 = 17$ (Benar)</li>
+                            </ul>
+                            Karena untuk $x=5$ kedua sisi sama, maka $x=5$ adalah penyelesaiannya.
+                            <br><br>
+                            <b>Metode Penyelesaian Langsung:</b><br>
+                            $$ \begin{aligned} 5x - 8 &= 2x + 7 \\ 5x - 2x &= 7 + 8 && \text{(Pindahkan suku } 2x \text{ dan } -8) \\ 3x &= 15 \\ x &= \frac{15}{3} \\ x &= 5 \end{aligned} $$
+                            Kedua metode memberikan hasil yang sama, yaitu $x=5$.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 6: Soal 3 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Soal dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Persamaan dan Pertidaksamaan Linear</td></tr>
+                    <tr><td>Sub Topik</td><td>Penyelesaian Persamaan Linear Satu Variabel (PLSV)</td></tr>
+                    <tr><td>Level Kognitif</td><td>Easy</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">3.</div>
+                    <div class="soal-konten">
+                        Penyelesaian dari persamaan $15 - 2y = 3$ adalah ....
+                        <ol>
+                            <li data-option="A">$y = -9$</li>
+                            <li data-option="B">$y = -6$</li>
+                            <li data-option="C">$y = 6$</li>
+                            <li data-option="D">$y = 9$</li>
+                            <li data-option="E">$y = 12$</li>
+                        </ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: C. $y = 6$</b><br>
+                            <b>Pembahasan:</b><br>
+                            Tujuan kita adalah mengisolasi variabel $y$ di satu sisi persamaan.<br>
+                            Diberikan persamaan: $15 - 2y = 3$.<br>
+                            <b>Langkah 1: Pindahkan suku konstanta (15) dari sisi kiri ke sisi kanan.</b><br>
+                            Ketika 15 (positif) pindah ke kanan, ia menjadi -15.
+                            $$ \begin{aligned} -2y &= 3 - 15 \\ -2y &= -12 \end{aligned} $$
+                            <b>Langkah 2: Bagi kedua sisi dengan koefisien dari $y$, yaitu -2.</b><br>
+                            $$ \begin{aligned} \frac{-2y}{-2} &= \frac{-12}{-2} \\ y &= 6 \end{aligned} $$
+                            Pembagian bilangan negatif dengan bilangan negatif menghasilkan bilangan positif.<br>
+                            Jadi, penyelesaian dari persamaan tersebut adalah $y = 6$.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 7: Soal 4 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Soal dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Persamaan dan Pertidaksamaan Linear</td></tr>
+                    <tr><td>Sub Topik</td><td>Penyelesaian Persamaan Linear Satu Variabel (PLSV)</td></tr>
+                    <tr><td>Level Kognitif</td><td>Medium</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">4.</div>
+                    <div class="soal-konten">
+                        Nilai $k$ yang memenuhi persamaan $4(k - 3) = 3(k + 2) - 10$ adalah ....
+                        <ol>
+                            <li data-option="A">$k = -8$</li>
+                            <li data-option="B">$k = -4$</li>
+                            <li data-option="C">$k = 4$</li>
+                            <li data-option="D">$k = 8$</li>
+                            <li data-option="E">$k = 10$</li>
+                        </ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: D. $k = 8$</b><br>
+                            <b>Pembahasan:</b><br>
+                            Untuk menyelesaikan persamaan ini, kita mulai dengan menghilangkan tanda kurung.<br>
+                            Diberikan persamaan: $4(k - 3) = 3(k + 2) - 10$.<br>
+                            <b>Langkah 1: Gunakan sifat distributif pada kedua sisi.</b><br>
+                            Sisi kiri: $4 \times k - 4 \times 3 = 4k - 12$.<br>
+                            Sisi kanan: $3 \times k + 3 \times 2 - 10 = 3k + 6 - 10 = 3k - 4$.<br>
+                            Persamaan menjadi: $4k - 12 = 3k - 4$.<br>
+                            <b>Langkah 2: Pindahkan semua suku yang mengandung variabel $k$ ke sisi kiri dan konstanta ke sisi kanan.</b><br>
+                            $$ \begin{aligned} 4k - 3k &= -4 + 12 \end{aligned} $$
+                            <b>Langkah 3: Sederhanakan kedua sisi.</b><br>
+                            $$ \begin{aligned} k &= 8 \end{aligned} $$
+                            Jadi, nilai $k$ yang memenuhi persamaan adalah 8.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 8: Soal 5 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Soal dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Persamaan dan Pertidaksamaan Linear</td></tr>
+                    <tr><td>Sub Topik</td><td>Penyelesaian Persamaan Linear Satu Variabel (PLSV)</td></tr>
+                    <tr><td>Level Kognitif</td><td>Medium</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">5.</div>
+                    <div class="soal-konten">
+                        Penyelesaian dari persamaan $\frac{2x - 1}{3} = \frac{x + 3}{2}$ adalah ....
+                        <ol>
+                            <li data-option="A">$x=9$</li>
+                            <li data-option="B">$x=11$</li>
+                            <li data-option="C">$x=13$</li>
+                            <li data-option="D">$x=15$</li>
+                            <li data-option="E">$x=17$</li>
+                        </ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: B. $x=11$</b><br>
+                            <b>Pembahasan:</b><br>
+                            Untuk menyelesaikan persamaan yang melibatkan pecahan, cara termudah adalah dengan menghilangkan penyebutnya.<br>
+                            Diberikan persamaan: $\frac{2x - 1}{3} = \frac{x + 3}{2}$.<br>
+                            <b>Langkah 1: Tentukan KPK dari penyebut.</b><br>
+                            Penyebutnya adalah 3 dan 2. KPK dari 3 dan 2 adalah 6.<br>
+                            <b>Langkah 2: Kalikan kedua sisi persamaan dengan KPK tersebut.</b><br>
+                            $$ \begin{aligned} 6 \times \left(\frac{2x - 1}{3}\right) &= 6 \times \left(\frac{x + 3}{2}\right) \\ 2(2x - 1) &= 3(x + 3) \end{aligned} $$
+                            <b>Langkah 3: Gunakan sifat distributif untuk menghilangkan tanda kurung.</b><br>
+                            $$ \begin{aligned} 4x - 2 &= 3x + 9 \end{aligned} $$
+                            <b>Langkah 4: Pindahkan suku-suku untuk mengisolasi $x$.</b><br>
+                            $$ \begin{aligned} 4x - 3x &= 9 + 2 \\ x &= 11 \end{aligned} $$
+                            Jadi, penyelesaian dari persamaan tersebut adalah $x = 11$.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 9: Soal 6 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Soal dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Persamaan dan Pertidaksamaan Linear</td></tr>
+                    <tr><td>Sub Topik</td><td>Penyelesaian Persamaan Linear Satu Variabel (PLSV)</td></tr>
+                    <tr><td>Level Kognitif</td><td>Medium</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">6.</div>
+                    <div class="soal-konten">
+                        Nilai $a$ dari persamaan $0,5(a - 4) = 0,3a + 1$ adalah ....
+                        <ol>
+                            <li data-option="A">$a=5$</li>
+                            <li data-option="B">$a=10$</li>
+                            <li data-option="C">$a=15$</li>
+                            <li data-option="D">$a=20$</li>
+                            <li data-option="E">$a=25$</li>
+                        </ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: C. $a=15$</b><br>
+                            <b>Pembahasan:</b><br>
+                            Untuk mempermudah perhitungan, kita dapat menghilangkan desimal dengan mengalikan persamaan dengan 10.<br>
+                            Diberikan persamaan: $0,5(a - 4) = 0,3a + 1$.<br>
+                            <b>Langkah 1: Kalikan kedua sisi dengan 10.</b><br>
+                            $$ \begin{aligned} 10 \times [0,5(a - 4)] &= 10 \times (0,3a + 1) \\ 5(a - 4) &= 3a + 10 \end{aligned} $$
+                            <b>Langkah 2: Gunakan sifat distributif.</b><br>
+                            $$ \begin{aligned} 5a - 20 &= 3a + 10 \end{aligned} $$
+                            <b>Langkah 3: Pindahkan suku-suku untuk mengisolasi $a$.</b><br>
+                            $$ \begin{aligned} 5a - 3a &= 10 + 20 \\ 2a &= 30 \end{aligned} $$
+                            <b>Langkah 4: Bagi kedua sisi dengan 2.</b><br>
+                            $$ \begin{aligned} a &= \frac{30}{2} \\ a &= 15 \end{aligned} $$
+                            Jadi, nilai $a$ yang memenuhi adalah 15.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 10: Soal 7 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Soal dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Persamaan dan Pertidaksamaan Linear</td></tr>
+                    <tr><td>Sub Topik</td><td>Penyelesaian Pertidaksamaan Linear Satu Variabel (PtLSV)</td></tr>
+                    <tr><td>Level Kognitif</td><td>Easy</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">7.</div>
+                    <div class="soal-konten">
+                        Himpunan penyelesaian dari pertidaksamaan $3x + 7 < 19$ untuk $x$ anggota bilangan cacah adalah ....
+                        <ol>
+                            <li data-option="A">$\{0, 1, 2, 3\}$</li>
+                            <li data-option="B">$\{1, 2, 3\}$</li>
+                            <li data-option="C">$\{0, 1, 2, 3, 4\}$</li>
+                            <li data-option="D">$\{1, 2, 3, 4\}$</li>
+                            <li data-option="E">$\{x \mid x < 4, x \in \mathbb{R}\}$</li>
+                        </ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: A. $\{0, 1, 2, 3\}$</b><br>
+                            <b>Pembahasan:</b><br>
+                            Diberikan pertidaksamaan: $3x + 7 < 19$.<br>
+                            <b>Langkah 1: Selesaikan pertidaksamaan untuk $x$.</b><br>
+                            $$ \begin{aligned} 3x + 7 &< 19 \\ 3x &< 19 - 7 && \text{(Pindahkan 7 ke kanan)} \\ 3x &< 12 \\ x &< \frac{12}{3} && \text{(Bagi dengan 3, tanda tidak berubah)} \\ x &< 4 \end{aligned} $$
+                            <b>Langkah 2: Tentukan himpunan penyelesaian berdasarkan domain.</b><br>
+                            Soal meminta penyelesaian untuk $x$ anggota bilangan cacah. Bilangan cacah adalah himpunan bilangan bulat yang tidak negatif, yaitu $\{0, 1, 2, 3, 4, \dots\}$.<br>
+                            Nilai-nilai bilangan cacah yang memenuhi $x < 4$ adalah 0, 1, 2, dan 3.<br>
+                            Jadi, himpunan penyelesaiannya adalah $\{0, 1, 2, 3\}$.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 11: Soal 8 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Soal dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Persamaan dan Pertidaksamaan Linear</td></tr>
+                    <tr><td>Sub Topik</td><td>Penyelesaian Pertidaksamaan Linear Satu Variabel (PtLSV)</td></tr>
+                    <tr><td>Level Kognitif</td><td>Medium</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">8.</div>
+                    <div class="soal-konten">
+                        Penyelesaian dari pertidaksamaan $10 - 4x \ge 2x - 2$ adalah ....
+                        <ol>
+                            <li data-option="A">$x \ge 2$</li>
+                            <li data-option="B">$x \le 2$</li>
+                            <li data-option="C">$x \ge -2$</li>
+                            <li data-option="D">$x \le -2$</li>
+                            <li data-option="E">$x \ge 6$</li>
+                        </ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: B. $x \le 2$</b><br>
+                            <b>Pembahasan:</b><br>
+                            Diberikan pertidaksamaan: $10 - 4x \ge 2x - 2$.<br>
+                            <b>Langkah 1: Kumpulkan semua suku dengan variabel $x$ di sisi kiri dan konstanta di sisi kanan.</b><br>
+                            $$ \begin{aligned} -4x - 2x &\ge -2 - 10 \\ -6x &\ge -12 \end{aligned} $$
+                            <b>Langkah 2: Bagi kedua sisi dengan koefisien $x$, yaitu -6.</b><br>
+                            Ini adalah langkah krusial. Karena kita membagi dengan bilangan negatif (-6), tanda pertidaksamaan harus dibalik dari $\ge$ menjadi $\le$.
+                            $$ \begin{aligned} \frac{-6x}{-6} &\le \frac{-12}{-6} \\ x &\le 2 \end{aligned} $$
+                            Jadi, penyelesaian dari pertidaksamaan tersebut adalah $x \le 2$.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 12: Soal 9 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Soal dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Persamaan dan Pertidaksamaan Linear</td></tr>
+                    <tr><td>Sub Topik</td><td>Model Matematika dan Aplikasi PLSV</td></tr>
+                    <tr><td>Level Kognitif</td><td>Medium</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">9.</div>
+                    <div class="soal-konten">
+                         Sebuah persegi panjang memiliki keliling 48 cm. Panjangnya 4 cm lebih dari lebarnya. Luas persegi panjang tersebut adalah ....
+                        <ol>
+                            <li data-option="A">$120 \text{ cm}^2$</li>
+                            <li data-option="B">$128 \text{ cm}^2$</li>
+                            <li data-option="C">$135 \text{ cm}^2$</li>
+                            <li data-option="D">$140 \text{ cm}^2$</li>
+                            <li data-option="E">$144 \text{ cm}^2$</li>
+                        </ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: D. $140 \text{ cm}^2$</b><br>
+                            <b>Pembahasan:</b><br>
+                            <b>Langkah 1: Buat model matematika untuk panjang dan lebar.</b><br>
+                            Misalkan lebar persegi panjang = $l$ cm.<br>
+                            Karena panjangnya 4 cm lebih dari lebarnya, maka panjang = $(l+4)$ cm.<br>
+                            <b>Langkah 2: Gunakan informasi keliling untuk membuat persamaan.</b><br>
+                            Rumus keliling: $K = 2 \times (p + l)$.
+                            $$ \begin{aligned} 48 &= 2 \times ((l+4) + l) \end{aligned} $$
+                            <b>Langkah 3: Selesaikan persamaan untuk menemukan lebar ($l$).</b><br>
+                             $$ \begin{aligned} 48 &= 2 \times (2l + 4) \\ 24 &= 2l + 4 && \text{(Bagi kedua sisi dengan 2)} \\ 24 - 4 &= 2l \\ 20 &= 2l \\ l &= 10 \end{aligned} $$
+                             Jadi, lebar persegi panjang adalah 10 cm.<br>
+                             <b>Langkah 4: Hitung panjang.</b><br>
+                             Panjang = $l + 4 = 10 + 4 = 14$ cm.<br>
+                             <b>Langkah 5: Hitung luas.</b><br>
+                             Luas = panjang $\times$ lebar = $14 \times 10 = 140$ cm$^2$.<br>
+                             Jadi, luas taman adalah $140 \text{ cm}^2$.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 13: Soal 10 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Soal dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Persamaan dan Pertidaksamaan Linear</td></tr>
+                    <tr><td>Sub Topik</td><td>Model Matematika dan Aplikasi PLSV</td></tr>
+                    <tr><td>Level Kognitif</td><td>Medium</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">10.</div>
+                    <div class="soal-konten">
+                        Lima tahun yang akan datang, jumlah umur seorang kakak dan adiknya adalah 38 tahun. Jika saat ini, umur kakak 4 tahun lebih tua dari adiknya, maka umur adik sekarang adalah ....
+                        <ol>
+                            <li data-option="A">10 tahun</li>
+                            <li data-option="B">12 tahun</li>
+                            <li data-option="C">14 tahun</li>
+                            <li data-option="D">16 tahun</li>
+                            <li data-option="E">18 tahun</li>
+                        </ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: B. 12 tahun</b><br>
+                            <b>Pembahasan:</b><br>
+                            <b>Langkah 1: Definisikan variabel untuk umur saat ini.</b><br>
+                            Misalkan umur adik sekarang = $a$ tahun.<br>
+                            Karena umur kakak 4 tahun lebih tua, maka umur kakak sekarang = $(a+4)$ tahun.<br>
+                            <b>Langkah 2: Tentukan umur mereka lima tahun yang akan datang.</b><br>
+                            Umur adik 5 tahun lagi = $a + 5$.<br>
+                            Umur kakak 5 tahun lagi = $(a+4) + 5 = a + 9$.<br>
+                            <b>Langkah 3: Buat persamaan dari jumlah umur mereka lima tahun lagi.</b><br>
+                            (Umur adik 5 tahun lagi) + (Umur kakak 5 tahun lagi) = 38.<br>
+                            $$ \begin{aligned} (a + 5) + (a + 9) &= 38 \end{aligned} $$
+                            <b>Langkah 4: Selesaikan persamaan untuk menemukan $a$.</b><br>
+                            $$ \begin{aligned} 2a + 14 &= 38 \\ 2a &= 38 - 14 \\ 2a &= 24 \\ a &= 12 \end{aligned} $$
+                            Variabel $a$ mewakili umur adik sekarang. Jadi, umur adik sekarang adalah 12 tahun.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 14: Soal 11 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Soal dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Persamaan dan Pertidaksamaan Linear</td></tr>
+                    <tr><td>Sub Topik</td><td>Model Matematika dan Aplikasi PLSV</td></tr>
+                    <tr><td>Level Kognitif</td><td>Medium</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">11.</div>
+                    <div class="soal-konten">
+                        Perbandingan jumlah siswa laki-laki dan perempuan di kelas 7A adalah $4:5$. Jika selisih jumlah siswa perempuan dan laki-laki adalah 4 orang, maka jumlah seluruh siswa di kelas 7A adalah ....
+                        <ol>
+                            <li data-option="A">28 orang</li>
+                            <li data-option="B">32 orang</li>
+                            <li data-option="C">36 orang</li>
+                            <li data-option="D">40 orang</li>
+                            <li data-option="E">45 orang</li>
+                        </ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: C. 36 orang</b><br>
+                            <b>Pembahasan:</b><br>
+                            <b>Langkah 1: Buat model matematika menggunakan variabel pengali.</b><br>
+                            Misalkan ada faktor pengali $x$.<br>
+                            Jumlah siswa laki-laki (L) = $4x$.<br>
+                            Jumlah siswa perempuan (P) = $5x$.<br>
+                            <b>Langkah 2: Buat persamaan dari informasi selisih.</b><br>
+                            Selisih = Jumlah perempuan - Jumlah laki-laki.<br>
+                            $$ \begin{aligned} 4 &= 5x - 4x \\ 4 &= x \end{aligned} $$
+                            Jadi, faktor pengalinya adalah 4.<br>
+                            <b>Langkah 3: Hitung jumlah seluruh siswa.</b><br>
+                            Jumlah laki-laki = $4x = 4(4) = 16$ orang.<br>
+                            Jumlah perempuan = $5x = 5(4) = 20$ orang.<br>
+                            Jumlah seluruh siswa = $16 + 20 = 36$ orang.<br>
+                            <br>
+                            <b>Metode Alternatif (Menggunakan Selisih Rasio):</b><br>
+                            Selisih bagian dalam rasio = $5 - 4 = 1$ bagian.<br>
+                            Diketahui 1 bagian ini mewakili 4 orang.<br>
+                            Jumlah bagian dalam rasio = $4 + 5 = 9$ bagian.<br>
+                            Jumlah seluruh siswa = $9 \text{ bagian} \times 4 \text{ orang/bagian} = 36$ orang.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 15: Soal 12 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Soal dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Persamaan dan Pertidaksamaan Linear</td></tr>
+                    <tr><td>Sub Topik</td><td>Model Matematika dan Aplikasi PLSV</td></tr>
+                    <tr><td>Level Kognitif</td><td>HOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">12.</div>
+                    <div class="soal-konten">
+                        Harga 3 kg apel dan 2 kg jeruk adalah Rp110.000,00. Jika harga 1 kg apel Rp5.000,00 lebih mahal dari harga 1 kg jeruk, maka harga 1 kg jeruk adalah ....
+                        <ol>
+                            <li data-option="A">Rp15.000,00</li>
+                            <li data-option="B">Rp17.000,00</li>
+                            <li data-option="C">Rp19.000,00</li>
+                            <li data-option="D">Rp20.000,00</li>
+                            <li data-option="E">Rp24.000,00</li>
+                        </ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: C. Rp19.000,00</b><br>
+                            <b>Pembahasan:</b><br>
+                            <b>Langkah 1: Definisikan variabel.</b><br>
+                            Misalkan harga 1 kg jeruk = $j$ rupiah.<br>
+                            Karena harga 1 kg apel Rp5.000,00 lebih mahal, maka harga 1 kg apel = $(j + 5000)$ rupiah.<br>
+                            <b>Langkah 2: Buat persamaan dari total harga.</b><br>
+                            (Harga 3 kg apel) + (Harga 2 kg jeruk) = 110.000<br>
+                            $$ \begin{aligned} 3(j + 5000) + 2j &= 110000 \end{aligned} $$
+                            <b>Langkah 3: Selesaikan persamaan untuk menemukan $j$.</b><br>
+                            $$ \begin{aligned} 3j + 15000 + 2j &= 110000 && \text{(Sifat distributif)} \\ 5j + 15000 &= 110000 && \text{(Gabungkan suku sejenis)} \\ 5j &= 110000 - 15000 \\ 5j &= 95000 \\ j &= \frac{95000}{5} \\ j &= 19000 \end{aligned} $$
+                             Jadi, harga 1 kg jeruk adalah Rp19.000,00.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 16: Soal 13 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Soal dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Persamaan dan Pertidaksamaan Linear</td></tr>
+                    <tr><td>Sub Topik</td><td>Aplikasi PtLSV</td></tr>
+                    <tr><td>Level Kognitif</td><td>Medium</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">13.</div>
+                    <div class="soal-konten">
+                        Sebuah bus dapat mengangkut tidak lebih dari 50 penumpang. Jika sudah ada 15 penumpang di dalam bus, dan setiap kelompok siswa yang akan naik terdiri dari 4 orang, berapa paling banyak kelompok siswa yang bisa naik ke dalam bus ....
+                        <ol>
+                            <li data-option="A">7 kelompok</li>
+                            <li data-option="B">8 kelompok</li>
+                            <li data-option="C">9 kelompok</li>
+                            <li data-option="D">10 kelompok</li>
+                            <li data-option="E">11 kelompok</li>
+                        </ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: B. 8 kelompok</b><br>
+                            <b>Pembahasan:</b><br>
+                            <b>Langkah 1: Buat model matematika.</b><br>
+                            Misalkan jumlah kelompok siswa yang bisa naik = $k$.<br>
+                            Jumlah siswa baru yang akan naik = $4 \times k = 4k$.<br>
+                            Total penumpang di bus = Penumpang awal + Siswa baru = $15 + 4k$.<br>
+                            Kapasitas bus "tidak lebih dari 50", artinya total penumpang harus $\le 50$.<br>
+                            Maka pertidaksamaannya adalah: $15 + 4k \le 50$.<br>
+                            <b>Langkah 2: Selesaikan pertidaksamaan.</b><br>
+                            $$ \begin{aligned} 15 + 4k &\le 50 \\ 4k &\le 50 - 15 \\ 4k &\le 35 \\ k &\le \frac{35}{4} \\ k &\le 8,75 \end{aligned} $$
+                            <b>Langkah 3: Tafsirkan jawaban dalam konteks soal.</b><br>
+                            Variabel $k$ mewakili jumlah kelompok, yang harus merupakan bilangan bulat. Karena $k$ harus kurang dari atau sama dengan 8,75, maka bilangan bulat terbesar yang memenuhi adalah 8.<br>
+                            Jadi, paling banyak 8 kelompok siswa yang bisa naik ke dalam bus.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 17: Soal 14 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Soal dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Persamaan dan Pertidaksamaan Linear</td></tr>
+                    <tr><td>Sub Topik</td><td>Penyelesaian Persamaan Linear Satu Variabel (PLSV)</td></tr>
+                    <tr><td>Level Kognitif</td><td>HOTS</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">14.</div>
+                    <div class="soal-konten">
+                        Persamaan $3(x+c) = 2x + 9$ memiliki penyelesaian $x=6$. Nilai $c$ yang benar adalah ....
+                        <ol>
+                            <li data-option="A">$-3$</li>
+                            <li data-option="B">$-1$</li>
+                            <li data-option="C">$1$</li>
+                            <li data-option="D">$3$</li>
+                            <li data-option="E">$5$</li>
+                        </ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: C. $1$</b><br>
+                            <b>Pembahasan:</b><br>
+                            Karena $x=6$ adalah penyelesaian, kita dapat mensubstitusikan nilai ini ke dalam persamaan untuk menemukan nilai $c$.<br>
+                            <b>Langkah 1: Substitusikan $x=6$ ke dalam persamaan.</b><br>
+                            $$ \begin{aligned} 3(6+c) &= 2(6) + 9 \end{aligned} $$
+                            <b>Langkah 2: Sederhanakan persamaan yang terbentuk.</b><br>
+                            $$ \begin{aligned} 18 + 3c &= 12 + 9 \\ 18 + 3c &= 21 \end{aligned} $$
+                            <b>Langkah 3: Selesaikan persamaan untuk menemukan $c$.</b><br>
+                            $$ \begin{aligned} 3c &= 21 - 18 \\ 3c &= 3 \\ c &= 1 \end{aligned} $$
+                             Maka, nilai $c$ yang benar adalah 1.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 18: Soal 15 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub">Matematika</div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Soal dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <table class="soal-card">
+                    <tr><td>Topik</td><td>Persamaan dan Pertidaksamaan Linear</td></tr>
+                    <tr><td>Sub Topik</td><td>Model Matematika dan Aplikasi PLSV</td></tr>
+                    <tr><td>Level Kognitif</td><td>Medium</td></tr>
+                </table>
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">15.</div>
+                    <div class="soal-konten">
+                        Sebuah peta memiliki skala $1 : 250.000$. Jika jarak dua kota pada peta adalah 12 cm, jarak sebenarnya kedua kota tersebut adalah ....
+                        <ol>
+                            <li data-option="A">3 km</li>
+                            <li data-option="B">30 km</li>
+                            <li data-option="C">300 km</li>
+                            <li data-option="D">3.000 km</li>
+                            <li data-option="E">30.000 km</li>
+                        </ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: B. 30 km</b><br>
+                            <b>Pembahasan:</b><br>
+                            <b>Langkah 1: Pahami arti skala.</b><br>
+                            Skala $1 : 250.000$ berarti setiap 1 cm pada peta mewakili 250.000 cm pada jarak sebenarnya.<br>
+                            <b>Langkah 2: Buat perbandingan untuk mencari jarak sebenarnya.</b><br>
+                            Misalkan jarak sebenarnya adalah $j$ cm.
+                            $$ \begin{aligned} \frac{\text{Jarak Peta}}{\text{Jarak Sebenarnya}} &= \frac{1}{250.000} \\ \frac{12}{j} &= \frac{1}{250.000} \end{aligned} $$
+                            <b>Langkah 3: Selesaikan persamaan.</b><br>
+                            Dengan perkalian silang:
+                            $$ \begin{aligned} 1 \times j &= 12 \times 250.000 \\ j &= 3.000.000 \text{ cm} \end{aligned} $$
+                            <b>Langkah 4: Konversi satuan dari cm ke km.</b><br>
+                            Ingat bahwa $1 \text{ km} = 100.000 \text{ cm}$.<br>
+                            Untuk mengubah cm ke km, kita bagi dengan 100.000.
+                            $$ \begin{aligned} j &= \frac{3.000.000}{100.000} \text{ km} \\ j &= 30 \text{ km} \end{aligned} $$
+                            Jadi, jarak sebenarnya kedua kota tersebut adalah 30 km.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i> Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        </footer>
+    </section>
+
+</div>
+
+</body>
+</html>
+
