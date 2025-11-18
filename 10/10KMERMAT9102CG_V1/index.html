@@ -1,0 +1,3189 @@
+
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panduan Mengajar - Latihan SAS Ganjil Matematika SMA</title>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+          packages: { "[+]": ["ams"] },
+        },
+        svg: {
+          fontCache: "global",
+        },
+      };
+    </script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-text: #333333;
+        --secondary-text: #555555;
+        --border-color: #dddddd;
+        --header-top-bg: #e0f7fa;
+        --header-bottom-bg: #f0f0f0;
+        --header-title-color: #00838f;
+        --table-header-bg: #e9e9e9;
+        --grey-text: #8d8e8d;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Nunito", sans-serif;
+        font-size: 9pt;
+        line-height: 1.6;
+        color: var(--primary-text);
+        background-color: #e0e0e0;
+        margin: 0;
+        padding: 0;
+      }
+      .page-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .page {
+        background: white;
+        width: 21cm;
+        min-height: 29.7cm;
+        padding: 1.8cm 2.5cm;
+        margin: 1cm auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+      .page-header {
+        margin: -1.8cm -2.5cm 0 -2.5cm;
+        flex-shrink: 0;
+        position: relative;
+        z-index: 10;
+      }
+      .header-top-box {
+        background-color: var(--header-top-bg);
+        padding: 10px 2.5cm;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2px;
+      }
+      .page:not(:first-of-type) .header-bottom-box {
+        display: none;
+      }
+      .page:not(:first-of-type) .header-top-box {
+        margin-bottom: 20px;
+      }
+      .header-title-main {
+        font-size: 18pt;
+        font-weight: 700;
+        color: var(--header-title-color);
+        line-height: 1.2;
+      }
+      .header-title-sub {
+        font-size: 9pt;
+        font-weight: 700;
+        color: var(--primary-text);
+      }
+      .header-bottom-box {
+        padding: 0 2.5cm 20px 2.5cm;
+        text-align: left;
+      }
+      .header-bottom-text {
+        background-color: var(--header-bottom-bg);
+        padding: 8px 15px;
+        font-weight: 700;
+        font-size: 8.5pt;
+        color: var(--primary-text);
+        display: block;
+        border-radius: 4px;
+        white-space: normal;
+      }
+      .header-logo {
+        max-height: 60px;
+      }
+      .content-wrapper {
+        flex-grow: 1;
+      }
+      .section-title {
+        font-size: 14pt;
+        font-weight: 700;
+        color: var(--header-title-color);
+        border-bottom: 2px solid var(--header-top-bg);
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+        margin-top: 10px;
+      }
+      ol.guide-list,
+      ul.guide-list {
+        padding-left: 20px;
+        font-size: 8.5pt;
+      }
+      ol.guide-list li,
+      ul.guide-list li {
+        margin-bottom: 8px;
+      }
+      .pembahasan-box {
+        margin-bottom: 25px;
+        page-break-inside: avoid;
+      }
+      .soal-card {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 10px;
+        border: 1px solid var(--border-color);
+      }
+      .soal-card td {
+        border: 1px solid var(--border-color);
+        padding: 6px 10px;
+        font-size: 8.5pt;
+        vertical-align: top;
+      }
+      .soal-card td:first-child {
+        font-weight: 700;
+        background-color: var(--table-header-bg);
+        width: 120px;
+      }
+      .summary-table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid var(--border-color);
+        margin-bottom: 15px;
+      }
+      .summary-table td {
+        border: 1px solid var(--border-color);
+        padding: 6px 10px;
+        vertical-align: top;
+        font-size: 8.5pt;
+      }
+      .summary-table .summary-table-header td {
+        background-color: var(--table-header-bg);
+        font-weight: 700;
+        font-size: 9.5pt;
+      }
+      .summary-table .summary-table-content ul {
+        padding-left: 20px;
+        margin: 4px 0 0 0;
+      }
+      .soal-pembahasan {
+        display: flex;
+        align-items: flex-start;
+        gap: 5px;
+        margin-top: 10px;
+      }
+      .soal-nomor {
+        font-weight: bold;
+        min-width: 20px;
+      }
+      .soal-konten {
+        flex-grow: 1;
+        text-align: justify;
+      }
+      .soal-gambar {
+        max-width: 100%;
+        height: auto;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      .soal-konten ol.pilihan-ganda {
+        list-style-type: none;
+        padding-left: 0;
+        margin-top: 10px;
+      }
+      .soal-konten ol.pilihan-ganda li {
+        margin-bottom: 8px;
+        padding-left: 25px;
+        position: relative;
+        text-align: left;
+      }
+      .soal-konten ol.pilihan-ganda li::before {
+        content: attr(data-option) ". ";
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+      }
+      .pembahasan-detail {
+        margin-top: 10px;
+        background-color: #f9f9f9;
+        border-left: 4px solid var(--header-title-color);
+        padding: 10px 15px;
+        border-radius: 0 4px 4px 0;
+      }
+      .pembahasan-detail ul,
+      .pembahasan-detail ol {
+        padding-left: 20px;
+      }
+      .pembahasan-detail b.jawaban {
+        background-color: var(--header-title-color);
+        color: white;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-weight: bold;
+      }
+      .soal-gambar-deskripsi {
+        padding: 10px;
+        background-color: #f5f5f5;
+        border: 1px dashed #ccc;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-style: italic;
+      }
+      .pilihan-ganda-mcma div {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 8px;
+        padding-left: 5px;
+      }
+      .pilihan-ganda-mcma input[type="checkbox"] {
+        width: 14px;
+        height: 14px;
+        margin-right: 10px;
+        flex-shrink: 0;
+        margin-top: 4px;
+      }
+      .page-footer {
+        text-align: left;
+        font-size: 6pt;
+        color: var(--grey-text);
+        margin-top: auto;
+        padding-top: 2px;
+        border-top: 2.5px solid var(--border-color);
+        flex-shrink: 0;
+        width: 100%;
+        position: relative;
+        z-index: 10;
+      }
+      table.soal-kategori {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        margin-top: 10px;
+        font-size: 8pt;
+      }
+      table.soal-kategori th,
+      table.soal-kategori td {
+        padding: 8px;
+        border: 1px solid #ccc;
+        vertical-align: middle;
+      }
+      table.soal-kategori th {
+        background-color: var(--table-header-bg);
+      }
+      table.soal-kategori th:not(:first-child) {
+        text-align: center;
+        width: 50px;
+      }
+      table.soal-kategori td:not(:first-child) {
+        text-align: center;
+      }
+      .kecukupan-data-pernyataan {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        gap: 2px 8px;
+        text-align: left;
+        margin-top: 10px !important;
+        margin-bottom: 10px;
+      }
+      .kecukupan-data-pernyataan span {
+        line-height: 1.5;
+      }
+      /* --- PRINT STYLES --- */
+      @media print {
+        @page {
+          size: A4;
+          margin: 0;
+        }
+        body {
+          background-color: white;
+          margin: 0;
+        }
+        .page-container {
+          margin: 0;
+        }
+        .page {
+          box-shadow: none;
+          margin: 0;
+          padding: 1.8cm 2.5cm;
+          width: 21cm;
+          min-height: 29.7cm;
+          page-break-after: always;
+          display: flex;
+          flex-direction: column;
+          position: relative;
+        }
+        .page:last-of-type {
+          page-break-after: auto;
+        }
+        .content-wrapper {
+          flex-grow: 1;
+          overflow: hidden;
+        }
+        .soal-card td:first-child,
+        .summary-table .summary-table-header td,
+        .pembahasan-detail,
+        table.soal-kategori th,
+        .header-top-box,
+        .header-bottom-text {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-container">
+      <!-- HALAMAN 1: TUJUAN & RINGKASAN -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+          <div class="header-bottom-box">
+            <div class="header-bottom-text">
+              X SMA | Kurikulum Merdeka | Latihan SAS&nbsp; | Subtopik: Latihan
+              SAS Ganjil | Pertemuan 09
+            </div>
+          </div>
+        </header>
+
+        <div class="content-wrapper">
+          <table class="summary-table">
+            <tr class="summary-table-header">
+              <td colspan="2">Belajar Apa Hari Ini</td>
+            </tr>
+            <tr class="summary-table-content">
+              <td colspan="2">
+                Sesi ini adalah <i>drill</i> soal komprehensif untuk
+                mempersiapkan siswa menghadapi Sumatif Akhir Semester (SAS)
+                Ganjil. Sesi ini akan menguji dan memperkuat pemahaman siswa
+                pada seluruh materi yang telah dipelajari selama satu semester,
+                yang mencakup:
+                <ul>
+                  <li>
+                    <b>Eksponen & Bentuk Akar:</b> Menyederhanakan bentuk
+                    pangkat, merasionalkan penyebut, dan menyelesaikan
+                    persamaan/pertidaksamaan eksponen.
+                  </li>
+                  <li>
+                    <b>Logaritma:</b> Menggunakan sifat-sifat logaritma untuk
+                    menyederhanakan ekspresi dan menyelesaikan persamaan
+                    logaritma.
+                  </li>
+                  <li>
+                    <b>Barisan & Deret:</b> Menganalisis dan menyelesaikan
+                    masalah terkait barisan/deret aritmetika dan geometri (suku
+                    ke-n, jumlah n suku, deret tak hingga).
+                  </li>
+                  <li>
+                    <b>Trigonometri:</b> Memahami perbandingan trigonometri dasar,
+                    nilai sudut istimewa, dan aplikasinya dalam masalah
+                    kontekstual (sudut elevasi/depresi).
+                  </li>
+                </ul>
+              </td>
+            </tr>
+            <tr class="summary-table-header">
+              <td>Topik</td>
+              <td>Learning Objectives (LO)</td>
+            </tr>
+            <tr class="summary-table-content">
+              <td>
+                <b>Latihan Soal SAS Ganjil</b>
+              </td>
+              <td>
+                <ul>
+                  <li>
+                    Mampu menyederhanakan bentuk akar dengan merasionalkan
+                    penyebut.
+                  </li>
+                  <li>Mampu menggunakan sifat-sifat eksponen dan logaritma.</li>
+                  <li>Mampu menyelesaikan persamaan eksponen dan logaritma.</li>
+                  <li>
+                    Mampu menentukan suku ke-n atau jumlah n suku dari barisan
+                    aritmetika dan geometri.
+                  </li>
+                  <li>
+                    Mampu menghitung jumlah deret geometri tak hingga.
+                  </li>
+                  <li>
+                    Mampu menghitung nilai perbandingan trigonometri dari sudut
+                    istimewa.
+                  </li>
+                  <li>
+                    Mampu menentukan perbandingan trigonometri lain jika satu
+                    nilai diketahui.
+                  </li>
+                  <li>
+                    Mampu menyelesaikan soal aplikasi sederhana terkait sudut
+                    elevasi dan depresi.
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            >
+            <i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 2: PERTANYAAN PEMANTIK -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Alur & Pertanyaan Pemantik</h2>
+          <ul class="guide-list">
+            <li>
+              <b>Review Eksponen & Akar:</b> "Untuk merasionalkan
+              $\frac{1}{\sqrt{a} - b}$, kita harus kalikan dengan apa? Kenapa?"
+            </li>
+            <li>
+              <b>Review Logaritma:</b> "Apa tiga sifat logaritma yang paling
+              sering kalian pakai? (Penjumlahan, pengurangan, pangkat)."
+            </li>
+            <li>
+              <b>Review Barisan:</b> "Bagaimana cara cepat membedakan soal ini
+              pakai rumus aritmetika atau geometri?"
+            </li>
+            <li>
+              <b>Review Trigonometri:</b> "Kalau saya tahu $\sin(A) = 5/13$,
+              langkah pertama kalian untuk mencari $\tan(A)$ itu apa?"
+            </li>
+            <li>
+              <b>Strategi:</b> "Soal-soal ini dibagi jadi 3 level: Mudah,
+              Sedang, Sulit. Strategi kalian di ujian nanti, kerjakan yang mana
+              dulu?"
+            </li>
+            <li>
+              <b>Aplikasi:</b> "Apa bedanya sudut elevasi dan sudut depresi?
+              Kalau di soal, posisi sudutnya ada di mana?"
+            </li>
+          </ul>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            >
+            <i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 3: Soal 1 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Eksponen & Bentuk Akar</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Merasionalkan Penyebut</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>LOTS (Mudah)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">1.</div>
+              <div class="soal-konten">
+                Bentuk sederhana dari $\frac{3\sqrt{2}}{\sqrt{5}-\sqrt{2}}$
+                adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$\sqrt{10}+2$</li>
+                  <li data-option="B">$\sqrt{10}-2$</li>
+                  <li data-option="C">$2\sqrt{10}+2$</li>
+                  <li data-option="D">$\sqrt{5}+2$</li>
+                  <li data-option="E">$\sqrt{10}+1$</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 4: Pembahasan Soal 1 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">1.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: A. $\sqrt{10}+2$</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  Untuk merasionalkan penyebut, kita kalikan dengan bentuk
+                  sekawannya, yaitu $\sqrt{5}+\sqrt{2}$.
+                  <br /><br />
+                  $\frac{3\sqrt{2}}{\sqrt{5}-\sqrt{2}} \times \frac{\sqrt{5}+\sqrt{2}}{\sqrt{5}+\sqrt{2}}$
+                  <br /><br />
+                  <b>Pembilang:</b><br />
+                  $3\sqrt{2}(\sqrt{5}+\sqrt{2}) = (3\sqrt{2} \times \sqrt{5}) + (3\sqrt{2} \times \sqrt{2})$
+                  <br />
+                  $= 3\sqrt{10} + 3(2) = 3\sqrt{10} + 6$
+                  <br /><br />
+                  <b>Penyebut:</b><br />
+                  (Ingat: $(a-b)(a+b) = a^2 - b^2$)
+                  <br />
+                  $(\sqrt{5}-\sqrt{2})(\sqrt{5}+\sqrt{2}) = (\sqrt{5})^2 - (\sqrt{2})^2$
+                  <br />
+                  $= 5 - 2 = 3$
+                  <br /><br />
+                  <b>Gabungkan:</b><br />
+                  $\frac{3\sqrt{10} + 6}{3} = \frac{3\sqrt{10}}{3} + \frac{6}{3}$
+                  <br />
+                  $= \sqrt{10} + 2$
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 5: Soal 2 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Logaritma</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Sifat-Sifat Logaritma</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>LOTS (Mudah)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">2.</div>
+              <div class="soal-konten">
+                Nilai dari $^2\log 48 + ^2\log 3 - ^2\log 9$ adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$2$</li>
+                  <li data-option="B">$3$</li>
+                  <li data-option="C">$4$</li>
+                  <li data-option="D">$5$</li>
+                  <li data-option="E">$6$</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 6: Pembahasan Soal 2 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">2.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: C. $4$</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  Gunakan sifat-sifat logaritma:
+                  <ul>
+                    <li>$^a\log b + ^a\log c = ^a\log(b \times c)$</li>
+                    <li>$^a\log b - ^a\log c = ^a\log(b \div c)$</li>
+                  </ul>
+                  <br />
+                  $^2\log 48 + ^2\log 3 - ^2\log 9$
+                  <br />
+                  $= ^2\log \left( \frac{48 \times 3}{9} \right)$
+                  <br />
+                  $= ^2\log \left( \frac{144}{9} \right)$
+                  <br />
+                  $= ^2\log 16$
+                  <br /><br />
+                  Untuk mencari nilai $^2\log 16$, tanyakan: "2 pangkat
+                  berapa yang hasilnya 16?"
+                  <br />
+                  $2^4 = 16$.
+                  <br />
+                  Jadi, $^2\log 16 = 4$.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 7: Soal 3 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Barisan & Deret</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Barisan Aritmetika</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>LOTS (Mudah)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">3.</div>
+              <div class="soal-konten">
+                Suku ke-4 dan suku ke-7 sebuah barisan aritmetika
+                berturut-turut adalah 17 dan 29. Suku ke-20 barisan tersebut
+                adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$77$</li>
+                  <li data-option="B">$81$</li>
+                  <li data-option="C">$85$</li>
+                  <li data-option="D">$89$</li>
+                  <li data-option="E">$93$</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 8: Pembahasan Soal 3 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">3.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: B. $81$</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  Gunakan rumus suku ke-n barisan aritmetika: $U_n = a + (n-1)b$.
+                  <br /><br />
+                  <b>Langkah 1: Buat sistem persamaan.</b>
+                  <br />
+                  $U_7 = a + (7-1)b \implies a + 6b = 29$
+                  <br />
+                  $U_4 = a + (4-1)b \implies a + 3b = 17$
+                  <br /><br />
+                  <b>Langkah 2: Eliminasi untuk mencari beda (b).</b>
+                  <br />
+                  $(a + 6b) - (a + 3b) = 29 - 17$
+                  <br />
+                  $3b = 12$
+                  <br />
+                  $b = 4$
+                  <br /><br />
+                  <b>Langkah 3: Substitusi untuk mencari suku pertama (a).</b>
+                  <br />
+                  $a + 3b = 17$
+                  <br />
+                  $a + 3(4) = 17$
+                  <br />
+                  $a + 12 = 17$
+                  <br />
+                  $a = 5$
+                  <br /><br />
+                  <b>Langkah 4: Cari suku ke-20 ($U_{20}$).</b>
+                  <br />
+                  $U_{20} = a + (20-1)b$
+                  <br />
+                  $U_{20} = 5 + 19(4)$
+                  <br />
+                  $U_{20} = 5 + 76$
+                  <br />
+                  $U_{20} = 81$
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 9: Soal 4 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Trigonometri</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Nilai Sudut Istimewa</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>LOTS (Mudah)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">4.</div>
+              <div class="soal-konten">
+                Nilai dari
+                $\frac{\sin(60^\circ) \tan(30^\circ)}{\cos(45^\circ)}$
+                adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$\frac{1}{2}$</li>
+                  <li data-option="B">$1$</li>
+                  <li data-option="C">$\frac{1}{2}\sqrt{3}$</li>
+                  <li data-option="D">$\frac{1}{2}\sqrt{2}$</li>
+                  <li data-option="E">$\sqrt{2}$</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 10: Pembahasan Soal 4 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">4.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: D. $\frac{1}{2}\sqrt{2}$</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  <b>Langkah 1: Tentukan nilai setiap sudut istimewa.</b>
+                  <ul>
+                    <li>$\sin(60^\circ) = \frac{\sqrt{3}}{2}$</li>
+                    <li>$\tan(30^\circ) = \frac{1}{\sqrt{3}}$</li>
+                    <li>$\cos(45^\circ) = \frac{\sqrt{2}}{2}$</li>
+                  </ul>
+                  <br />
+                  <b>Langkah 2: Hitung bagian pembilang.</b>
+                  <br />
+                  $\sin(60^\circ) \times \tan(30^\circ) = \frac{\sqrt{3}}{2} \times \frac{1}{\sqrt{3}}$
+                  <br />
+                  $= \frac{1}{2}$
+                  <br /><br />
+                  <b>Langkah 3: Bagi pembilang dengan penyebut.</b>
+                  <br />
+                  $\frac{\text{Pembilang}}{\cos(45^\circ)} = \frac{\frac{1}{2}}{\frac{\sqrt{2}}{2}}$
+                  <br />
+                  $= \frac{1}{2} \times \frac{2}{\sqrt{2}} = \frac{1}{\sqrt{2}}$
+                  <br /><br />
+                  <b>Langkah 4: Rasionalkan hasilnya.</b>
+                  <br />
+                  $\frac{1}{\sqrt{2}} \times \frac{\sqrt{2}}{\sqrt{2}} = \frac{\sqrt{2}}{2}$
+                  <br />
+                  Bentuk lainnya adalah $\frac{1}{2}\sqrt{2}$.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 11: Soal 5 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Trigonometri</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Aplikasi Trigonometri (Segitiga Siku-siku)</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>LOTS (Mudah)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">5.</div>
+              <div class="soal-konten">
+                Sebuah tangga yang panjangnya 8 meter bersandar pada dinding.
+                Sudut yang dibentuk tangga dengan tanah adalah $60^\circ$.
+                Tinggi dinding yang dicapai oleh tangga adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$4$ m</li>
+                  <li data-option="B">$4\sqrt{2}$ m</li>
+                  <li data-option="C">$8$ m</li>
+                  <li data-option="D">$8\sqrt{3}$ m</li>
+                  <li data-option="E">$4\sqrt{3}$ m</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 12: Pembahasan Soal 5 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">5.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: E. $4\sqrt{3}$ m</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  Masalah ini membentuk segitiga siku-siku:
+                  <ul>
+                    <li>Panjang tangga = Sisi Miring (mi) = 8 m</li>
+                    <li>
+                      Tinggi dinding = Sisi Depan (de) dari sudut $60^\circ$
+                    </li>
+                    <li>Jarak tangga ke dinding = Sisi Samping (sa)</li>
+                  </ul>
+                  <br />
+                  <b>Langkah 1: Tentukan rasio trigonometri yang tepat.</b>
+                  <br />
+                  Kita tahu sisi miring (mi) dan ingin mencari sisi depan
+                  (de). Rasio yang menghubungkan 'de' dan 'mi' adalah
+                  <b>sinus</b>.
+                  <br />
+                  $\sin(\alpha) = \frac{\text{de}}{\text{mi}}$
+                  <br /><br />
+                  <b>Langkah 2: Substitusi nilai dan selesaikan.</b>
+                  <br />
+                  $\sin(60^\circ) = \frac{\text{Tinggi Dinding}}{8}$
+                  <br />
+                  Kita tahu $\sin(60^\circ) = \frac{\sqrt{3}}{2}$.
+                  <br />
+                  $\frac{\sqrt{3}}{2} = \frac{\text{Tinggi Dinding}}{8}$
+                  <br />
+                  $\text{Tinggi Dinding} = 8 \times \frac{\sqrt{3}}{2}$
+                  <br />
+                  $\text{Tinggi Dinding} = 4\sqrt{3}$ m.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 13: Soal 6 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Eksponen & Bentuk Akar</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Sifat-Sifat Pangkat</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>MOTS (Sedang)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">6.</div>
+              <div class="soal-konten">
+                Bentuk sederhana dari $\frac{(a^3 b^{-2})^2}{a^5 b^{-5}}$
+                adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$ab$</li>
+                  <li data-option="B">$a^2b$</li>
+                  <li data-option="C">$\frac{a}{b}$</li>
+                  <li data-option="D">$a b^2$</li>
+                  <li data-option="E">$\frac{a^2}{b}$</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 14: Pembahasan Soal 6 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">6.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: A. $ab$</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  Gunakan sifat-sifat eksponen:
+                  <ul>
+                    <li>$(x^m)^n = x^{m \times n}$</li>
+                    <li>$\frac{x^m}{x^n} = x^{m-n}$</li>
+                  </ul>
+                  <br />
+                  <b>Langkah 1: Sederhanakan pembilang.</b>
+                  <br />
+                  $(a^3 b^{-2})^2 = a^{3 \times 2} b^{-2 \times 2} = a^6 b^{-4}$
+                  <br /><br />
+                  <b>Langkah 2: Bagi dengan penyebut.</b>
+                  <br />
+                  $\frac{a^6 b^{-4}}{a^5 b^{-5}}$
+                  <br /><br />
+                  <b>Langkah 3: Kelompokkan basis yang sama.</b>
+                  <br />
+                  $(a^{6-5}) (b^{-4 - (-5)})$
+                  <br />
+                  $= (a^1) (b^{-4+5})$
+                  <br />
+                  $= a^1 b^1 = ab$
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 15: Soal 7 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Barisan & Deret</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Barisan Geometri</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>MOTS (Sedang)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">7.</div>
+              <div class="soal-konten">
+                Diketahui suku ke-2 barisan geometri adalah 6 dan suku ke-5
+                adalah 48. Suku ke-7 barisan tersebut adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$64$</li>
+                  <li data-option="B">$96$</li>
+                  <li data-option="C">$128$</li>
+                  <li data-option="D">$192$</li>
+                  <li data-option="E">$384$</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 16: Pembahasan Soal 7 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">7.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: D. $192$</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  Gunakan rumus suku ke-n barisan geometri: $U_n = ar^{n-1}$.
+                  <br /><br />
+                  <b>Langkah 1: Buat sistem persamaan.</b>
+                  <br />
+                  $U_5 = ar^{5-1} \implies ar^4 = 48$
+                  <br />
+                  $U_2 = ar^{2-1} \implies ar^1 = 6$
+                  <br /><br />
+                  <b>Langkah 2: Bagi persamaan untuk mencari rasio (r).</b>
+                  <br />
+                  $\frac{ar^4}{ar} = \frac{48}{6}$
+                  <br />
+                  $r^3 = 8$
+                  <br />
+                  $r = 2$
+                  <br /><br />
+                  <b>Langkah 3: Substitusi untuk mencari suku pertama (a).</b>
+                  <br />
+                  $ar = 6$
+                  <br />
+                  $a(2) = 6$
+                  <br />
+                  $a = 3$
+                  <br /><br />
+                  <b>Langkah 4: Cari suku ke-7 ($U_7$).</b>
+                  <br />
+                  $U_7 = ar^{7-1} = ar^6$
+                  <br />
+                  $U_7 = 3 \times (2)^6$
+                  <br />
+                  $U_7 = 3 \times 64$
+                  <br />
+                  $U_7 = 192$
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 17: Soal 8 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Logaritma</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Persamaan Logaritma</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>MOTS (Sedang)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">8.</div>
+              <div class="soal-konten">
+                Nilai $x$ yang memenuhi $^2\log(x-2) + ^2\log(x-3) = 1$
+                adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$\{1, 4\}$</li>
+                  <li data-option="B">$\{1\}$</li>
+                  <li data-option="C">$\{4\}$</li>
+                  <li data-option="D">$\{-1, -4\}$</li>
+                  <li data-option="E">$\{-4\}$</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 18: Pembahasan Soal 8 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">8.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: C. $\{4\}$</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  <b>Langkah 1: Gunakan sifat logaritma.</b>
+                  <br />
+                  $^a\log b + ^a\log c = ^a\log(bc)$
+                  <br />
+                  $^2\log((x-2)(x-3)) = 1$
+                  <br /><br />
+                  <b>Langkah 2: Ubah ke bentuk eksponen.</b>
+                  <br />
+                  Ingat $^a\log b = c \iff a^c = b$.
+                  <br />
+                  $(x-2)(x-3) = 2^1$
+                  <br />
+                  $x^2 - 3x - 2x + 6 = 2$
+                  <br />
+                  $x^2 - 5x + 6 - 2 = 0$
+                  <br />
+                  $x^2 - 5x + 4 = 0$
+                  <br /><br />
+                  <b>Langkah 3: Faktorkan persamaan kuadrat.</b>
+                  <br />
+                  $(x-4)(x-1) = 0$
+                  <br />
+                  $x=4$ atau $x=1$
+                  <br /><br />
+                  <b>Langkah 4: Cek syarat numerus.</b>
+                  <br />
+                  Numerus logaritma (isi di dalam log) harus $> 0$.
+                  <br />
+                  1. $x-2 > 0 \implies x > 2$
+                  <br />
+                  2. $x-3 > 0 \implies x > 3$
+                  <br />
+                  Kedua syarat harus terpenuhi, jadi kita harus memilih $x$
+                  yang $> 3$.
+                  <br /><br />
+                  Dari solusi $x=4$ dan $x=1$:
+                  <ul>
+                    <li>$x=4$ (Memenuhi, karena $4 > 3$)</li>
+                    <li>$x=1$ (Tidak Memenuhi, karena $1 \not> 3$)</li>
+                  </ul>
+                  Jadi, satu-satunya nilai $x$ yang memenuhi adalah 4.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 19: Soal 9 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Barisan & Deret</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Deret Geometri Tak Hingga</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>MOTS (Sedang)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">9.</div>
+              <div class="soal-konten">
+                Jumlah deret geometri tak hingga $18 + 6 + 2 + ...$ adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$24$</li>
+                  <li data-option="B">$26$</li>
+                  <li data-option="C">$36$</li>
+                  <li data-option="D">$54$</li>
+                  <li data-option="E">$27$</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 20: Pembahasan Soal 9 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">9.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: E. $27$</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  Gunakan rumus jumlah deret geometri tak hingga: $S_\infty =
+                  \frac{a}{1-r}$.
+                  <br />
+                  Rumus ini hanya berlaku jika $-1 < r < 1$ (deret konvergen).
+                  <br /><br />
+                  <b>Langkah 1: Cari suku pertama (a).</b>
+                  <br />
+                  $a = 18$
+                  <br /><br />
+                  <b>Langkah 2: Cari rasio (r).</b>
+                  <br />
+                  $r = \frac{U_2}{U_1} = \frac{6}{18} = \frac{1}{3}$
+                  <br />
+                  (Karena $|1/3| < 1$, deret ini konvergen dan bisa dihitung).
+                  <br /><br />
+                  <b>Langkah 3: Hitung jumlah tak hingga ($S_\infty$).</b>
+                  <br />
+                  $S_\infty = \frac{a}{1-r} = \frac{18}{1 - \frac{1}{3}}$
+                  <br />
+                  $S_\infty = \frac{18}{\frac{2}{3}}$
+                  <br />
+                  $S_\infty = 18 \times \frac{3}{2} = 9 \times 3 = 27$
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 21: Soal 10 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Trigonometri</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Perbandingan Trigonometri (Pythagoras)</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>MOTS (Sedang)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">10.</div>
+              <div class="soal-konten">
+                Jika $\sin(\alpha) = \frac{3}{5}$ dan $\alpha$ adalah sudut
+                lancip, maka nilai $\tan(\alpha)$ adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$\frac{3}{4}$</li>
+                  <li data-option="B">$\frac{4}{5}$</li>
+                  <li data-option="C">$\frac{4}{3}$</li>
+                  <li data-option="D">$\frac{5}{4}$</li>
+                  <li data-option="E">$\frac{5}{3}$</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 22: Pembahasan Soal 10 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">10.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: A. $\frac{3}{4}$</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  <b>Langkah 1: Tentukan sisi-sisi dari $\sin(\alpha)$.</b>
+                  <br />
+                  $\sin(\alpha) = \frac{3}{5}$. Ingat SIN-DE-MI (Depan /
+                  Miring).
+                  <ul>
+                    <li>Sisi Depan (de) = 3</li>
+                    <li>Sisi Miring (mi) = 5</li>
+                  </ul>
+                  <br />
+                  <b>Langkah 2: Cari Sisi Samping (sa) dengan Pythagoras.</b>
+                  <br />
+                  Ini adalah triple Pythagoras 3-4-5.
+                  <br />
+                  $sa^2 + de^2 = mi^2$
+                  <br />
+                  $sa^2 + 3^2 = 5^2$
+                  <br />
+                  $sa^2 + 9 = 25$
+                  <br />
+                  $sa^2 = 16$
+                  <br />
+                  $sa = 4$
+                  <br /><br />
+                  <b>Langkah 3: Hitung $\tan(\alpha)$.</b>
+                  <br />
+                  Ingat TAN-DE-SA (Depan / Samping).
+                  <br />
+                  $\tan(\alpha) = \frac{de}{sa} = \frac{3}{4}$
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 23: Soal 11 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Trigonometri</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Aplikasi Trigonometri (Segitiga Siku-siku)</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>MOTS (Sedang)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">11.</div>
+              <div class="soal-konten">
+                Sebuah tangga yang panjangnya 6 meter bersandar pada dinding.
+                Sudut yang dibentuk tangga dengan tanah adalah $60^\circ$.
+                Tinggi dinding yang dicapai oleh tangga adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$3$ m</li>
+                  <li data-option="B">$3\sqrt{2}$ m</li>
+                  <li data-option="C">$3\sqrt{3}$ m</li>
+                  <li data-option="D">$6$ m</li>
+                  <li data-option="E">$6\sqrt{3}$ m</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 24: Pembahasan Soal 11 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">11.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: C. $3\sqrt{3}$ m</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  (Soal ini identik dengan soal 5, hanya beda angka. Ini
+                  adalah latihan pengulangan konsep).
+                  <br /><br />
+                  Masalah ini membentuk segitiga siku-siku:
+                  <ul>
+                    <li>Panjang tangga = Sisi Miring (mi) = 6 m</li>
+                    <li>
+                      Tinggi dinding = Sisi Depan (de) dari sudut $60^\circ$
+                    </li>
+                  </ul>
+                  <br />
+                  <b>Langkah 1: Tentukan rasio trigonometri yang tepat.</b>
+                  <br />
+                  Kita tahu 'mi' dan ingin mencari 'de'. Gunakan <b>sinus</b>.
+                  <br />
+                  $\sin(\alpha) = \frac{\text{de}}{\text{mi}}$
+                  <br /><br />
+                  <b>Langkah 2: Substitusi nilai dan selesaikan.</b>
+                  <br />
+                  $\sin(60^\circ) = \frac{\text{Tinggi Dinding}}{6}$
+                  <br />
+                  Kita tahu $\sin(60^\circ) = \frac{\sqrt{3}}{2}$.
+                  <br />
+                  $\frac{\sqrt{3}}{2} = \frac{\text{Tinggi Dinding}}{6}$
+                  <br />
+                  $\text{Tinggi Dinding} = 6 \times \frac{\sqrt{3}}{2}$
+                  <br />
+                  $\text{Tinggi Dinding} = 3\sqrt{3}$ m.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 25: Soal 12 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Eksponen & Bentuk Akar</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Pertidaksamaan Eksponen</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>MOTS (Sedang)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">12.</div>
+              <div class="soal-konten">
+                Himpunan penyelesaian dari $2^{2x-1} < 8$ adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$x > 2$</li>
+                  <li data-option="B">$x < 2$</li>
+                  <li data-option="C">$x > 1$</li>
+                  <li data-option="D">$x < 1$</li>
+                  <li data-option="E">$x < 0$</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 26: Pembahasan Soal 12 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">12.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: B. $x < 2$</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  <b>Langkah 1: Samakan basis di kedua ruas.</b>
+                  <br />
+                  Basis di kiri adalah 2. Kita ubah 8 menjadi basis 2.
+                  <br />
+                  $8 = 2^3$
+                  <br /><br />
+                  <b>Langkah 2: Tulis ulang pertidaksamaan.</b>
+                  <br />
+                  $2^{2x-1} < 2^3$
+                  <br /><br />
+                  <b>Langkah 3: Selesaikan pertidaksamaan pangkatnya.</b>
+                  <br />
+                  Karena basisnya $2$ (dimana $2 > 1$), tanda
+                  pertidaksamaan tetap (tidak berubah).
+                  <br />
+                  $2x-1 < 3$
+                  <br />
+                  $2x < 3 + 1$
+                  <br />
+                  $2x < 4$
+                  <br />
+                  $x < 2$
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 27: Soal 13 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Eksponen & Bentuk Akar</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Persamaan Eksponen (Bentuk Kuadrat)</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>HOTS (Sulit)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">13.</div>
+              <div class="soal-konten">
+                Himpunan penyelesaian dari $2^{2x} - 3 \cdot 2^x + 2 = 0$
+                adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$\{1, 2\}$</li>
+                  <li data-option="B">$\{0, 2\}$</li>
+                  <li data-option="C">$\{-1, 0\}$</li>
+                  <li data-option="D">$\{0, 1\}$</li>
+                  <li data-option="E">$\{-1, -2\}$</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 28: Pembahasan Soal 13 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">13.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: D. $\{0, 1\}$</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  Ini adalah bentuk persamaan kuadrat terselubung.
+                  <br />
+                  Perhatikan bahwa $2^{2x} = (2^x)^2$.
+                  <br /><br />
+                  <b>Langkah 1: Lakukan pemisalan.</b>
+                  <br />
+                  Misal $p = 2^x$. Maka persamaan menjadi:
+                  <br />
+                  $p^2 - 3p + 2 = 0$
+                  <br /><br />
+                  <b>Langkah 2: Faktorkan persamaan kuadrat.</b>
+                  <br />
+                  $(p-1)(p-2) = 0$
+                  <br />
+                  $p = 1$ atau $p = 2$
+                  <br /><br />
+                  <b>Langkah 3: Kembalikan pemisalan untuk mencari $x$.</b>
+                  <br />
+                  Kasus 1: $p = 1$
+                  <br />
+                  $2^x = 1$
+                  <br />
+                  Ingat bahwa $a^0 = 1$, jadi $2^x = 2^0$
+                  <br />
+                  $x = 0$
+                  <br /><br />
+                  Kasus 2: $p = 2$
+                  <br />
+                  $2^x = 2$ (atau $2^1$)
+                  <br />
+                  $x = 1$
+                  <br /><br />
+                  Jadi, himpunan penyelesaiannya adalah $\{0, 1\}$.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 29: Soal 14 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Logaritma</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Sifat Logaritma (Basis Berbeda)</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>HOTS (Sulit)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">14.</div>
+              <div class="soal-konten">
+                Jika $^2\log 3 = a$ dan $^3\log 5 = b$, maka $^2\log 5$
+                adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$a+b$</li>
+                  <li data-option="B">$ab$</li>
+                  <li data-option="C">$a-b$</li>
+                  <li data-option="D">$\frac{a}{b}$</li>
+                  <li data-option="E">$\frac{b}{a}$</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 30: Pembahasan Soal 14 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">14.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: B. $ab$</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  Gunakan sifat rantai logaritma: $^x\log y \cdot ^y\log z =
+                  ^x\log z$.
+                  <br /><br />
+                  Kita ingin mencari $^2\log 5$.
+                  <br />
+                  Kita diberi $^2\log 3$ dan $^3\log 5$.
+                  <br /><br />
+                  Perhatikan bahwa numerus di logaritma pertama (3) sama
+                  dengan basis di logaritma kedua (3). Ini adalah petunjuk
+                  untuk menggunakan sifat rantai.
+                  <br /><br />
+                  $^2\log 5 = (^2\log 3) \times (^3\log 5)$
+                  <br />
+                  $^2\log 5 = a \times b$
+                  <br />
+                  $^2\log 5 = ab$
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 31: Soal 15 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Logaritma</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Sifat Logaritma (Operasi Campuran)</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>HOTS (Sulit)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">15.</div>
+              <div class="soal-konten">
+                Nilai dari $\frac{^3\log 25 \cdot ^5\log 81}{^2\log 16}$
+                adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$1$</li>
+                  <li data-option="B">$4$</li>
+                  <li data-option="C">$8$</li>
+                  <li data-option="D">$16$</li>
+                  <li data-option="E">$2$</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 32: Pembahasan Soal 15 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">15.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: E. $2$</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  Kita selesaikan bagian pembilang dan penyebut secara
+                  terpisah.
+                  <br /><br />
+                  <b>Penyebut (lebih mudah):</b>
+                  <br />
+                  $^2\log 16$. "2 pangkat berapa hasilnya 16?" $2^4=16$.
+                  <br />
+                  Jadi, $^2\log 16 = 4$.
+                  <br /><br />
+                  <b>Pembilang:</b>
+                  <br />
+                  Gunakan sifat $^a\log b^n = n \cdot ^a\log b$ dan $^a\log b
+                  \cdot ^b\log c = ^a\log c$.
+                  <br />
+                  $^3\log 25 \cdot ^5\log 81$
+                  <br />
+                  $= ^3\log 5^2 \cdot ^5\log 3^4$
+                  <br />
+                  $= (2 \cdot ^3\log 5) \cdot (4 \cdot ^5\log 3)$
+                  <br />
+                  $= (2 \times 4) \cdot (^3\log 5 \cdot ^5\log 3)$
+                  <br />
+                  $= 8 \cdot (^3\log 3)$
+                  <br />
+                  $= 8 \cdot 1 = 8$
+                  <br /><br />
+                  <b>Gabungkan:</b><br />
+                  $\frac{\text{Pembilang}}{\text{Penyebut}} = \frac{8}{4} = 2$
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 33: Soal 16 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Barisan & Deret</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Aplikasi Deret Geometri</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>HOTS (Sulit)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">16.</div>
+              <div class="soal-konten">
+                Seutas tali dipotong menjadi 5 bagian sehingga panjangnya
+                membentuk barisan geometri. Jika potongan terpendek 2 cm dan
+                potongan terpanjang 162 cm, maka panjang tali semula
+                adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$121$ cm</li>
+                  <li data-option="B">$242$ cm</li>
+                  <li data-option="C">$324$ cm</li>
+                  <li data-option="D">$484$ cm</li>
+                  <li data-option="E">$606$ cm</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 34: Pembahasan Soal 16 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">16.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: B. $242$ cm</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  "Panjang tali semula" berarti jumlah seluruh potongan, atau
+                  $S_n$.
+                  <br /><br />
+                  <b>Langkah 1: Identifikasi data.</b>
+                  <ul>
+                    <li>Jumlah bagian: $n = 5$</li>
+                    <li>
+                      Potongan terpendek (suku pertama): $a = 2$ cm
+                    </li>
+                    <li>
+                      Potongan terpanjang (suku terakhir, $U_5$): $U_5 = 162$ cm
+                    </li>
+                  </ul>
+                  <br />
+                  <b>Langkah 2: Cari rasio (r) menggunakan $U_n$.</b>
+                  <br />
+                  $U_n = ar^{n-1}$
+                  <br />
+                  $U_5 = ar^{5-1}$
+                  <br />
+                  $162 = 2 \cdot r^4$
+                  <br />
+                  $\frac{162}{2} = r^4$
+                  <br />
+                  $81 = r^4$
+                  <br />
+                  $r = 3$ (karena $3^4 = 81$)
+                  <br /><br />
+                  <b>Langkah 3: Hitung panjang tali semula ($S_5$).</b>
+                  <br />
+                  Gunakan rumus jumlah deret geometri $S_n = \frac{a(r^n - 1)}{r-1}$ (karena $r > 1$).
+                  <br />
+                  $S_5 = \frac{2(3^5 - 1)}{3 - 1}$
+                  <br />
+                  $S_5 = \frac{2(243 - 1)}{2}$
+                  <br />
+                  $S_5 = 243 - 1$
+                  <br />
+                  $S_5 = 242$ cm.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 35: Soal 17 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Trigonometri</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Aplikasi Trigonometri (Sudut Elevasi Ganda)</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>HOTS (Sulit)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">17.</div>
+              <div class="soal-konten">
+                Seseorang di permukaan tanah melihat puncak menara dengan sudut
+                elevasi $45^\circ$. Ia berjalan mundur sejauh 20 m dan
+                melihat puncak yang sama dengan sudut elevasi $30^\circ$.
+                Tinggi menara tersebut adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$10(\sqrt{3}-1)$ m</li>
+                  <li data-option="B">$20(\sqrt{3}+1)$ m</li>
+                  <li data-option="C">$20(\sqrt{3}-1)$ m</li>
+                  <li data-option="D">$10(\sqrt{3}+1)$ m</li>
+                  <li data-option="E">$10\sqrt{3}$ m</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 36: Pembahasan Soal 17 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">17.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: D. $10(\sqrt{3}+1)$ m</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  Misal $t$ = tinggi menara dan $x$ = jarak awal orang ke
+                  menara.
+                  <br /><br />
+                  <b>Langkah 1: Buat persamaan dari Posisi 1 (sudut $45^\circ$).</b>
+                  <br />
+                  $\tan(45^\circ) = \frac{\text{de}}{\text{sa}} = \frac{t}{x}$
+                  <br />
+                  $1 = \frac{t}{x}$
+                  <br />
+                  $t = x$ (Tinggi menara = jarak awal)
+                  <br /><br />
+                  <b>Langkah 2: Buat persamaan dari Posisi 2 (sudut $30^\circ$).</b>
+                  <br />
+                  Orang berjalan mundur 20 m, jadi jarak baru = $x + 20$.
+                  <br />
+                  $\tan(30^\circ) = \frac{\text{de}}{\text{sa}} = \frac{t}{x+20}$
+                  <br />
+                  $\frac{1}{\sqrt{3}} = \frac{t}{x+20}$
+                  <br /><br />
+                  <b>Langkah 3: Substitusi $t=x$ ke persamaan kedua.</b>
+                  <br />
+                  $\frac{1}{\sqrt{3}} = \frac{x}{x+20}$
+                  <br />
+                  $x+20 = x\sqrt{3}$
+                  <br />
+                  $20 = x\sqrt{3} - x$
+                  <br />
+                  $20 = x(\sqrt{3} - 1)$
+                  <br /><br />
+                  <b>Langkah 4: Selesaikan untuk $x$.</b>
+                  <br />
+                  $x = \frac{20}{\sqrt{3}-1}$
+                  <br /><br />
+                  <b>Langkah 5: Rasionalkan penyebut.</b>
+                  <br />
+                  $x = \frac{20}{\sqrt{3}-1} \times \frac{\sqrt{3}+1}{\sqrt{3}+1}$
+                  <br />
+                  $x = \frac{20(\sqrt{3}+1)}{(\sqrt{3})^2 - 1^2} = \frac{20(\sqrt{3}+1)}{3-1}$
+                  <br />
+                  $x = \frac{20(\sqrt{3}+1)}{2}$
+                  <br />
+                  $x = 10(\sqrt{3}+1)$
+                  <br /><br />
+                  Karena $t = x$, maka tinggi menara $t = 10(\sqrt{3}+1)$ m.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 37: Soal 18 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Trigonometri</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Perbandingan Trigonometri (Pythagoras)</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>HOTS (Sulit)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">18.</div>
+              <div class="soal-konten">
+                Jika $\cos(x) = \frac{20}{29}$ dan $x$ adalah sudut lancip,
+                maka nilai $\tan(x)$ adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$\frac{20}{21}$</li>
+                  <li data-option="B">$\frac{21}{29}$</li>
+                  <li data-option="C">$\frac{29}{21}$</li>
+                  <li data-option="D">$\frac{21}{20}$</li>
+                  <li data-option="E">$\frac{29}{20}$</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 38: Pembahasan Soal 18 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">18.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: D. $\frac{21}{20}$</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  <b>Langkah 1: Tentukan sisi-sisi dari $\cos(x)$.</b>
+                  <br />
+                  $\cos(x) = \frac{20}{29}$. Ingat COS-SA-MI (Samping /
+                  Miring).
+                  <ul>
+                    <li>Sisi Samping (sa) = 20</li>
+                    <li>Sisi Miring (mi) = 29</li>
+                  </ul>
+                  <br />
+                  <b>Langkah 2: Cari Sisi Depan (de) dengan Pythagoras.</b>
+                  <br />
+                  $sa^2 + de^2 = mi^2$
+                  <br />
+                  $20^2 + de^2 = 29^2$
+                  <br />
+                  $400 + de^2 = 841$
+                  <br />
+                  $de^2 = 841 - 400 = 441$
+                  <br />
+                  $de = \sqrt{441} = 21$
+                  <br />
+                  (Ini adalah triple Pythagoras 20-21-29).
+                  <br /><br />
+                  <b>Langkah 3: Hitung $\tan(x)$.</b>
+                  <br />
+                  Ingat TAN-DE-SA (Depan / Samping).
+                  <br />
+                  $\tan(x) = \frac{de}{sa} = \frac{21}{20}$
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 39: Soal 19 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Trigonometri</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Aplikasi Trigonometri (Sudut Depresi Ganda)</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>HOTS (Sulit)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">19.</div>
+              <div class="soal-konten">
+                Seseorang di atas mercusuar setinggi 60 m mengamati dua
+                kapal, A dan B, di lautan yang segaris. Sudut depresi ke
+                kapal A (yang lebih dekat) adalah $60^\circ$ dan ke kapal B
+                (yang lebih jauh) adalah $45^\circ$. Jarak antara kapal A
+                dan B adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$60(\sqrt{3}-1)$ m</li>
+                  <li data-option="B">$60\sqrt{3}$ m</li>
+                  <li data-option="C">$60(\sqrt{3}+1)$ m</li>
+                  <li data-option="D">$20\sqrt{3}$ m</li>
+                  <li data-option="E">$60(1-\frac{1}{\sqrt{3}})$ m</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 40: Pembahasan Soal 19 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">19.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban"
+                    >Jawaban: E. $60(1-\frac{1}{\sqrt{3}})$ m</b
+                  ><br />
+                  <b>Pembahasan Detail:</b><br />
+                  Misal $t$ = tinggi mercusuar = 60 m.
+                  <br />
+                  $J_A$ = Jarak mercusuar ke kapal A.
+                  <br />
+                  $J_B$ = Jarak mercusuar ke kapal B.
+                  <br />
+                  (Ingat: Sudut depresi dari atas = sudut elevasi dari bawah).
+                  <br /><br />
+                  <b>Langkah 1: Cari jarak Kapal B (sudut $45^\circ$).</b>
+                  <br />
+                  $\tan(45^\circ) = \frac{\text{de}}{\text{sa}} = \frac{t}{J_B}$
+                  <br />
+                  $1 = \frac{60}{J_B}$
+                  <br />
+                  $J_B = 60$ m.
+                  <br /><br />
+                  <b>Langkah 2: Cari jarak Kapal A (sudut $60^\circ$).</b>
+                  <br />
+                  $\tan(60^\circ) = \frac{\text{de}}{\text{sa}} = \frac{t}{J_A}$
+                  <br />
+                  $\sqrt{3} = \frac{60}{J_A}$
+                  <br />
+                  $J_A = \frac{60}{\sqrt{3}}$
+                  <br />
+                  $J_A = \frac{60}{\sqrt{3}} \times \frac{\sqrt{3}}{\sqrt{3}} = \frac{60\sqrt{3}}{3} = 20\sqrt{3}$ m.
+                  <br /><br />
+                  <b>Langkah 3: Cari jarak antara kapal A dan B.</b>
+                  <br />
+                  Jarak = $J_B - J_A$
+                  <br />
+                  Jarak = $60 - 20\sqrt{3}$ m.
+                  <br /><br />
+                  <b>Langkah 4: Sesuaikan dengan pilihan ganda.</b>
+                  <br />
+                  Jawaban $60 - 20\sqrt{3}$ tidak ada di opsi A-D. Cek opsi E.
+                  <br />
+                  Opsi E: $60(1-\frac{1}{\sqrt{3}})$
+                  <br />
+                  $= 60(1) - 60(\frac{1}{\sqrt{3}})$
+                  <br />
+                  $= 60 - \frac{60}{\sqrt{3}}$
+                  <br />
+                  Kita tahu dari Langkah 2 bahwa $\frac{60}{\sqrt{3}} =
+                  20\sqrt{3}$.
+                  <br />
+                  Jadi, Opsi E = $60 - 20\sqrt{3}$.
+                  <br />
+                  Opsi E cocok dengan hasil perhitungan.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 41: Soal 20 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Eksponen & Bentuk Akar</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Sistem Persamaan Eksponen</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>HOTS (Sulit)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">20.</div>
+              <div class="soal-konten">
+                Diketahui $5^{x+y} = 25\sqrt{5}$ dan $3^{x-y}=\frac{1}{9}$.
+                Nilai $x \cdot y$ adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$\frac{3}{4}$</li>
+                  <li data-option="B">$1$</li>
+                  <li data-option="C">$\frac{16}{9}$</li>
+                  <li data-option="D">$2$</li>
+                  <li data-option="E">$\frac{9}{16}$</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 42: Pembahasan Soal 20 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika SMA</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">20.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: E. $\frac{9}{16}$</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  Kita harus menyelesaikan sistem persamaan linear dari dua
+                  persamaan eksponen.
+                  <br /><br />
+                  <b>Langkah 1: Selesaikan persamaan pertama (basis 5).</b>
+                  <br />
+                  $5^{x+y} = 25\sqrt{5}$
+                  <br />
+                  $5^{x+y} = 5^2 \cdot 5^{1/2}$
+                  <br />
+                  $5^{x+y} = 5^{2 + 1/2}$
+                  <br />
+                  $5^{x+y} = 5^{4/2 + 1/2} = 5^{5/2}$
+                  <br />
+                  Maka: $x+y = \frac{5}{2}$ ... (Persamaan 1)
+                  <br /><br />
+                  <b>Langkah 2: Selesaikan persamaan kedua (basis 3).</b>
+                  <br />
+                  $3^{x-y} = \frac{1}{9}$
+                  <br />
+                  $3^{x-y} = \frac{1}{3^2}$
+                  <br />
+                  $3^{x-y} = 3^{-2}$
+                  <br />
+                  Maka: $x-y = -2$ ... (Persamaan 2)
+                  <br /><br />
+                  <b>Langkah 3: Eliminasi & Substitusi.</b>
+                  <br />
+                  (1) $x+y = 5/2$
+                  <br />
+                  (2) $x-y = -2$
+                  <br />
+                  --- (Ditambah) ---
+                  <br />
+                  $2x = \frac{5}{2} - 2$
+                  <br />
+                  $2x = \frac{5}{2} - \frac{4}{2} = \frac{1}{2}$
+                  <br />
+                  $x = \frac{1}{4}$
+                  <br /><br />
+                  Substitusi $x$ ke (Persamaan 1):
+                  <br />
+                  $\frac{1}{4} + y = \frac{5}{2}$
+                  <br />
+                  $y = \frac{5}{2} - \frac{1}{4}$
+                  <br />
+                  $y = \frac{10}{4} - \frac{1}{4} = \frac{9}{4}$
+                  <br /><br />
+                  <b>Langkah 4: Hitung $x \cdot y$.</b>
+                  <br />
+                  $x \cdot y = \frac{1}{4} \times \frac{9}{4} = \frac{9}{16}$
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+    </div>
+  </body>
+</html>
