@@ -1,0 +1,2951 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panduan Mengajar - Latihan SAS (Vektor & Polinomial)</title>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+          packages: { "[+]": ["ams"] },
+        },
+        svg: {
+          fontCache: "global",
+        },
+      };
+    </script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-text: #333333;
+        --secondary-text: #555555;
+        --border-color: #dddddd;
+        --header-top-bg: #e0f7fa;
+        --header-bottom-bg: #f0f0f0;
+        --header-title-color: #00838f;
+        --table-header-bg: #e9e9e9;
+        --grey-text: #8d8e8d;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Nunito", sans-serif;
+        font-size: 9pt;
+        line-height: 1.6;
+        color: var(--primary-text);
+        background-color: #e0e0e0;
+        margin: 0;
+        padding: 0;
+      }
+
+      .page-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .page {
+        background: white;
+        width: 21cm;
+        min-height: 29.7cm;
+        padding: 1.8cm 2.5cm;
+        margin: 1cm auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .page-header {
+        margin: -1.8cm -2.5cm 0 -2.5cm;
+        flex-shrink: 0;
+        position: relative;
+        z-index: 10;
+      }
+
+      .header-top-box {
+        background-color: var(--header-top-bg);
+        padding: 10px 2.5cm;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2px;
+      }
+
+      .page:not(:first-of-type) .header-bottom-box {
+        display: none;
+      }
+      .page:not(:first-of-type) .header-top-box {
+        margin-bottom: 20px;
+      }
+
+      .header-title-main {
+        font-size: 18pt;
+        font-weight: 700;
+        color: var(--header-title-color);
+        line-height: 1.2;
+      }
+
+      .header-title-sub {
+        font-size: 9pt;
+        font-weight: 700;
+        color: var(--primary-text);
+      }
+
+      .header-bottom-box {
+        padding: 0 2.5cm 20px 2.5cm;
+        text-align: left;
+      }
+
+      .header-bottom-text {
+        background-color: var(--header-bottom-bg);
+        padding: 8px 15px;
+        font-weight: 700;
+        font-size: 8.5pt;
+        color: var(--primary-text);
+        display: block;
+        border-radius: 4px;
+        white-space: normal;
+      }
+
+      .header-logo {
+        max-height: 60px;
+      }
+
+      .content-wrapper {
+        flex-grow: 1;
+      }
+
+      .section-title {
+        font-size: 14pt;
+        font-weight: 700;
+        color: var(--header-title-color);
+        border-bottom: 2px solid var(--header-top-bg);
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+        margin-top: 10px;
+      }
+
+      ol.guide-list,
+      ul.guide-list {
+        padding-left: 20px;
+        font-size: 8.5pt;
+      }
+
+      ol.guide-list li,
+      ul.guide-list li {
+        margin-bottom: 8px;
+      }
+
+      .pembahasan-box {
+        margin-bottom: 25px;
+        page-break-inside: avoid;
+      }
+
+      .soal-card {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 10px;
+        border: 1px solid var(--border-color);
+      }
+      .soal-card td {
+        border: 1px solid var(--border-color);
+        padding: 6px 10px;
+        font-size: 8.5pt;
+        vertical-align: top;
+      }
+      .soal-card td:first-child {
+        font-weight: 700;
+        background-color: var(--table-header-bg);
+        width: 120px;
+      }
+
+      .summary-table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid var(--border-color);
+        margin-bottom: 15px;
+      }
+      .summary-table td {
+        border: 1px solid var(--border-color);
+        padding: 6px 10px;
+        vertical-align: top;
+        font-size: 8.5pt;
+      }
+      .summary-table .summary-table-header td {
+        background-color: var(--table-header-bg);
+        font-weight: 700;
+        font-size: 9.5pt;
+      }
+      .summary-table .summary-table-content ul {
+        padding-left: 20px;
+        margin: 4px 0 0 0;
+      }
+
+      .soal-pembahasan {
+        display: flex;
+        align-items: flex-start;
+        gap: 5px;
+        margin-top: 10px;
+      }
+      .soal-nomor {
+        font-weight: bold;
+        min-width: 20px;
+      }
+      .soal-konten {
+        flex-grow: 1;
+        text-align: justify;
+      }
+      .soal-gambar {
+        max-width: 100%;
+        height: auto;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      .soal-konten ol.pilihan-ganda {
+        list-style-type: none;
+        padding-left: 0;
+        margin-top: 10px;
+      }
+      .soal-konten ol.pilihan-ganda li {
+        margin-bottom: 8px;
+        padding-left: 25px;
+        position: relative;
+        text-align: left;
+      }
+      .soal-konten ol.pilihan-ganda li::before {
+        content: attr(data-option) ". ";
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+      }
+      .pembahasan-detail {
+        margin-top: 10px;
+        background-color: #f9f9f9;
+        border-left: 4px solid var(--header-title-color);
+        padding: 10px 15px;
+        border-radius: 0 4px 4px 0;
+      }
+      .pembahasan-detail ul,
+      .pembahasan-detail ol {
+        padding-left: 20px;
+      }
+      .pembahasan-detail b.jawaban {
+        background-color: var(--header-title-color);
+        color: white;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-weight: bold;
+      }
+      .soal-gambar-deskripsi {
+        padding: 10px;
+        background-color: #f5f5f5;
+        border: 1px dashed #ccc;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-style: italic;
+      }
+
+      .pilihan-ganda-mcma div {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 8px;
+        padding-left: 5px;
+      }
+      .pilihan-ganda-mcma input[type="checkbox"] {
+        width: 14px;
+        height: 14px;
+        margin-right: 10px;
+        flex-shrink: 0;
+        margin-top: 4px;
+      }
+
+      .page-footer {
+        text-align: left;
+        font-size: 6pt;
+        color: var(--grey-text);
+        margin-top: auto;
+        padding-top: 2px;
+        border-top: 2.5px solid var(--border-color);
+        flex-shrink: 0;
+        width: 100%;
+        position: relative;
+        z-index: 10;
+      }
+
+      table.soal-kategori {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        margin-top: 10px;
+        font-size: 8pt;
+      }
+      table.soal-kategori th,
+      table.soal-kategori td {
+        padding: 8px;
+        border: 1px solid #ccc;
+        vertical-align: middle;
+      }
+      table.soal-kategori th {
+        background-color: var(--table-header-bg);
+      }
+      table.soal-kategori th:not(:first-child) {
+        text-align: center;
+        width: 50px;
+      }
+      table.soal-kategori td:not(:first-child) {
+        text-align: center;
+      }
+
+      .kecukupan-data-pernyataan {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        gap: 2px 8px;
+        text-align: left;
+        margin-top: 10px !important;
+        margin-bottom: 10px;
+      }
+      .kecukupan-data-pernyataan span {
+        line-height: 1.5;
+      }
+
+      /* --- PRINT STYLES --- */
+      @media print {
+        @page {
+          size: A4;
+          margin: 0;
+        }
+
+        body {
+          background-color: white;
+          margin: 0;
+        }
+
+        .page-container {
+          margin: 0;
+        }
+
+        .page {
+          box-shadow: none;
+          margin: 0;
+          padding: 1.8cm 2.5cm;
+          width: 21cm;
+          min-height: 29.7cm;
+          page-break-after: always;
+          display: flex;
+          flex-direction: column;
+          position: relative;
+        }
+
+        .page:last-of-type {
+          page-break-after: auto;
+        }
+
+        .content-wrapper {
+          flex-grow: 1;
+          overflow: hidden;
+        }
+
+        .soal-card td:first-child,
+        .summary-table .summary-table-header td,
+        .pembahasan-detail,
+        table.soal-kategori th,
+        .header-top-box,
+        .header-bottom-text {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-container">
+      <!-- HALAMAN 1: TUJUAN & RINGKASAN -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+          <div class="header-bottom-box">
+            <div class="header-bottom-text">
+              XI SMA | Kurikulum Merdeka | Latihan SAS | Subtopik: Latihan SAS
+              Ganjil
+            </div>
+          </div>
+        </header>
+
+        <div class="content-wrapper">
+          <table class="summary-table">
+            <tr class="summary-table-header">
+              <td colspan="2">Belajar Apa Hari Ini</td>
+            </tr>
+            <tr class="summary-table-content">
+              <td colspan="2">
+                Latihan ini dirancang untuk menguji pemahaman siswa mengenai
+                konsep-konsep dasar dan lanjutan dari Vektor dan Polinomial,
+                sebagai persiapan untuk Sumatif Akhir Semester (SAS) Ganjil.
+                <ul>
+                  <li>
+                    <b>Vektor:</b> Meliputi operasi dasar (penjumlahan,
+                    pengurangan, skalar), vektor satuan, kolinearitas, perkalian
+                    skalar (dot product), dan proyeksi ortogonal (skalar dan
+                    vektor).
+                  </li>
+                  <li>
+                    <b>Polinomial:</b> Meliputi identifikasi polinomial, operasi
+                    (komposisi), Teorema Sisa, Teorema Faktor, pembagian
+                    polinomial, Teorema Vieta, dan analisis perilaku ujung
+                    grafik.
+                  </li>
+                </ul>
+              </td>
+            </tr>
+            <tr class="summary-table-header">
+              <td>Topik</td>
+              <td>Learning Objectives (LO)</td>
+            </tr>
+            <tr class="summary-table-content">
+              <td>
+                <b>Vektor (Soal 1-9, 17)</b>
+              </td>
+              <td>
+                <ul>
+                  <li>Menghitung vektor satuan dari suatu vektor.</li>
+                  <li>Melakukan operasi aljabar pada vektor.</li>
+                  <li>
+                    Menganalisis syarat kolinearitas (segaris) tiga titik.
+                  </li>
+                  <li>Menghitung panjang vektor hasil operasi.</li>
+                  <li>Menghitung hasil perkalian skalar (dot product).</li>
+                  <li>Menentukan koordinat titik dari perbandingan vektor.</li>
+                  <li>Menghitung proyeksi skalar dan proyeksi vektor.</li>
+                  <li>Menerapkan syarat tegak lurus (dot product = 0).</li>
+                </ul>
+              </td>
+            </tr>
+            <tr class="summary-table-content">
+              <td><b>Polinomial (Soal 10-16, 18-20)</b></td>
+              <td>
+                <ul>
+                  <li>
+                    Mengidentifikasi bentuk polinomial dan non-polinomial.
+                  </li>
+                  <li>Menerapkan Teorema Sisa untuk pembagi linear.</li>
+                  <li>Melakukan operasi komposisi pada polinomial.</li>
+                  <li>
+                    Menerapkan Teorema Faktor untuk mencari nilai konstanta.
+                  </li>
+                  <li>Melakukan pembagian polinomial (metode Horner/susun).</li>
+                  <li>Menentukan faktor linear lain dari suatu polinomial.</li>
+                  <li>Menerapkan Teorema Sisa untuk pembagi kuadrat.</li>
+                  <li>Menganalisis perilaku ujung (end behavior) grafik.</li>
+                  <li>Menerapkan Teorema Vieta pada akar-akar polinomial.</li>
+                </ul>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            >
+            <i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 2: PERTANYAAN PEMANTIK -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Alur & Pertanyaan Pemantik</h2>
+          <ul class="guide-list">
+            <li>
+              <b>Vektor:</b> "Apa bedanya 'vektor' dengan 'panjang vektor'?
+              Kenapa vektor $(6, -8)$ tidak sama dengan vektor $(8, -6)$,
+              padahal panjangnya sama?"
+            </li>
+            <li>
+              <b>Vektor:</b> "Jika dua vektor dikalikan (dot product) dan
+              hasilnya nol, apa makna geometrisnya? (Mengarah ke 'tegak
+              lurus')."
+            </li>
+            <li>
+              <b>Polinomial:</b> "Kenapa $\sqrt{x}$ atau $\frac{1}{x}$ tidak
+              termasuk dalam suku polinomial? (Mengarah ke syarat pangkat
+              bilangan bulat non-negatif)."
+            </li>
+            <li>
+              <b>Polinomial:</b> "Kalau saya bagi $P(x)$ dengan $(x-3)$ dan
+              sisanya 5, apa yang bisa kalian simpulkan tentang nilai $P(3)$?
+              (Mengarah ke Teorema Sisa)."
+            </li>
+            <li>
+              <b>Polinomial:</b> "Jika $(x-1)$ adalah faktor dari $P(x)$, apa
+              artinya? (Mengarah ke $P(1)=0$, 'habis dibagi')."
+            </li>
+          </ul>
+
+          <h2 class="section-title">Ringkasan Konsep Kunci</h2>
+          <ul class="guide-list">
+            <li>
+              <b>Vektor</b>
+              <ul>
+                <li>
+                  <b>Vektor Satuan:</b> $\hat{e} = \frac{\vec{v}}{|\vec{v}|}$.
+                  Vektor dibagi dengan panjangnya.
+                </li>
+                <li>
+                  <b>Kolinear (Segaris):</b> Titik A, B, C segaris jika
+                  $\vec{AB} = k \cdot \vec{AC}$ (salah satu vektor adalah
+                  kelipatan skalar dari vektor lainnya).
+                </li>
+                <li>
+                  <b>Perkalian Skalar (Dot Product):</b> $\vec{a} \cdot \vec{b}
+                  = |\vec{a}||\vec{b}|\cos\theta = a_1b_1 + a_2b_2 + a_3b_3$.
+                </li>
+                <li>
+                  <b>Syarat Tegak Lurus:</b> $\vec{a} \perp \vec{b}$ jika
+                  $\vec{a} \cdot \vec{b} = 0$.
+                </li>
+                <li>
+                  <b>Proyeksi Skalar</b> ($\vec{a}$ pada $\vec{b}$): $|\vec{c}|
+                  = \frac{\vec{a} \cdot \vec{b}}{|\vec{b}|}$.
+                </li>
+                <li>
+                  <b>Proyeksi Vektor</b> ($\vec{a}$ pada $\vec{b}$): $\vec{c} =
+                  \left( \frac{\vec{a} \cdot \vec{b}}{|\vec{b}|^2} \right)
+                  \vec{b}$.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <b>Polinomial</b>
+              <ul>
+                <li>
+                  <b>Definisi:</b> Pangkat variabel harus bilangan bulat
+                  non-negatif (contoh: $x^2, 5x, 3$). Bentuk $\sqrt{x}$
+                  ($x^{1/2}$) atau $\frac{1}{x}$ ($x^{-1}$) bukan polinomial.
+                </li>
+                <li>
+                  <b>Teorema Sisa:</b> Sisa pembagian $P(x)$ oleh $(x-k)$ adalah
+                  $P(k)$.
+                </li>
+                <li>
+                  <b>Teorema Faktor:</b> $(x-k)$ adalah faktor dari $P(x)$ jika
+                  $P(k) = 0$ (sisa pembagian 0).
+                </li>
+                <li>
+                  <b>Pembagian oleh $(x-a)(x-b)$:</b> Sisa $S(x) = mx+n$.
+                  Gunakan $P(a)=S(a)$ dan $P(b)=S(b)$.
+                </li>
+                <li>
+                  <b>Teorema Vieta (Derajat 3):</b> Untuk $Ax^3+Bx^2+Cx+D=0$,
+                  berlaku $x_1x_2x_3 = -D/A$ dan $x_1x_2 + x_1x_3 + x_2x_3 =
+                  C/A$.
+                </li>
+                <li>
+                  <b>Perilaku Ujung:</b> Ditentukan suku utama ($Ax^n$). Jika
+                  $n$ genap & $A<0$ (spt soal 19), kedua ujung ($\infty$ dan
+                  $-\infty$) menuju $-\infty$.
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            >
+            <i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 3: Soal 1 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Vektor</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Vektor Satuan</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>LOTS (Lower Order Thinking Skills)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">1.</div>
+              <div class="soal-konten">
+                Diketahui vektor $\vec{a} = 6\hat{i} - 8\hat{j}$. Vektor satuan
+                dari $\vec{a}$ adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$\frac{1}{10}(6\hat{i} - 8\hat{j})$</li>
+                  <li data-option="B">$\frac{1}{14}(6\hat{i} - 8\hat{j})$</li>
+                  <li data-option="C">$10(6\hat{i} - 8\hat{j})$</li>
+                  <li data-option="D">$\frac{1}{100}(6\hat{i} - 8\hat{j})$</li>
+                  <li data-option="E">$6\hat{i} - 8\hat{j}$</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 4: Pembahasan Soal 1 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">1.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban"
+                    >Jawaban: A. $\frac{1}{10}(6\hat{i} - 8\hat{j})$</b
+                  ><br />
+                  <b>Pembahasan Detail:</b><br />
+                  <b>Langkah 1: Hitung panjang vektor $\vec{a}$.</b><br />
+                  $|\vec{a}| = \sqrt{6^2 + (-8)^2} = \sqrt{36 + 64} = \sqrt{100}
+                  = 10$.
+                  <br /><br />
+                  <b>Langkah 2: Bagi vektor $\vec{a}$ dengan panjangnya.</b
+                  ><br />
+                  Vektor satuan $\hat{e} = \frac{\vec{a}}{|\vec{a}|} =
+                  \frac{6\hat{i} - 8\hat{j}}{10} = \frac{1}{10}(6\hat{i} -
+                  8\hat{j})$.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 5: Soal 2 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Vektor</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Operasi Vektor</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>LOTS (Lower Order Thinking Skills)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">2.</div>
+              <div class="soal-konten">
+                Diberikan $\vec{u} = 2\hat{i} - \hat{j} + 3\hat{k}$ dan $\vec{v}
+                = -\hat{i} + 4\hat{j} - \hat{k}$. Hasil dari $3\vec{u} -
+                2\vec{v}$ adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$5\hat{i} - 6\hat{j} + 8\hat{k}$</li>
+                  <li data-option="B">$8\hat{i} - 11\hat{j} + 11\hat{k}$</li>
+                  <li data-option="C">$4\hat{i} + 5\hat{j} + 5\hat{k}$</li>
+                  <li data-option="D">$8\hat{i} - 5\hat{j} + 7\hat{k}$</li>
+                  <li data-option="E">$7\hat{i} - 11\hat{j} + 11\hat{k}$</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 6: Pembahasan Soal 2 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">2.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban"
+                    >Jawaban: B. $8\hat{i} - 11\hat{j} + 11\hat{k}$</b
+                  ><br />
+                  <b>Pembahasan Detail:</b><br />
+                  <b>Langkah 1: Hitung $3\vec{u}$.</b><br />
+                  $3\vec{u} = 3(2\hat{i} - \hat{j} + 3\hat{k}) = 6\hat{i} -
+                  3\hat{j} + 9\hat{k}$.
+                  <br /><br />
+                  <b>Langkah 2: Hitung $2\vec{v}$.</b><br />
+                  $2\vec{v} = 2(-\hat{i} + 4\hat{j} - \hat{k}) = -2\hat{i} +
+                  8\hat{j} - 2\hat{k}$.
+                  <br /><br />
+                  <b>Langkah 3: Hitung $3\vec{u} - 2\vec{v}$.</b><br />
+                  $(6\hat{i} - 3\hat{j} + 9\hat{k}) - (-2\hat{i} + 8\hat{j} -
+                  2\hat{k})$<br />
+                  $= (6 - (-2))\hat{i} + (-3 - 8)\hat{j} + (9 - (-2))\hat{k}$<br />
+                  $= 8\hat{i} - 11\hat{j} + 11\hat{k}$.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 7: Soal 3 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Vektor</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Kolinearitas</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>MOTS (Middle Order Thinking Skills)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">3.</div>
+              <div class="soal-konten">
+                Diketahui titik $A(1, 2, 3)$, $B(3, 3, 1)$, dan $C(p+3, 4, q)$.
+                Jika ketiga titik tersebut segaris (kolinear), maka nilai $p
+                \cdot q$ adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">-3</li>
+                  <li data-option="B">-2</li>
+                  <li data-option="C">-1</li>
+                  <li data-option="D">1</li>
+                  <li data-option="E">2</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 8: Pembahasan Soal 3 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">3.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: B. -2</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  <b>Langkah 1: Terapkan syarat kolinear.</b><br />
+                  Jika segaris, maka $\vec{AC} = k \cdot \vec{AB}$ untuk suatu
+                  skalar $k$.<br /><br />
+                  <b>Langkah 2: Hitung vektor $\vec{AC}$ dan $\vec{AB}$.</b
+                  ><br />
+                  $\vec{AB} = B - A = (3-1, 3-2, 1-3) = (2, 1, -2)$.<br />
+                  $\vec{AC} = C - A = ((p+3)-1, 4-2, q-3) = (p+2, 2, q-3)$.<br /><br />
+                  <b>Langkah 3: Tentukan nilai $k$, $p$, dan $q$.</b><br />
+                  $(p+2, 2, q-3) = k \cdot (2, 1, -2) = (2k, k, -2k)$.<br />
+                  Dari komponen tengah (y): $2 = k$.<br />
+                  Substitusi $k=2$ ke komponen lain:<br />
+                  - Komponen x: $p+2 = 2k \implies p+2 = 2(2) \implies p+2 = 4
+                  \implies p=2$.<br />
+                  - Komponen z: $q-3 = -2k \implies q-3 = -2(2) \implies q-3 =
+                  -4 \implies q=-1$.<br /><br />
+                  <b>Langkah 4: Hitung $p \cdot q$.</b><br />
+                  $p \cdot q = (2) \cdot (-1) = -2$.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 9: Soal 4 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Vektor</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Perkalian Skalar</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>MOTS (Middle Order Thinking Skills)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">4.</div>
+              <div class="soal-konten">
+                Jika diketahui $|\vec{a}| = 4$, $|\vec{b}| = 5$, dan sudut
+                antara $\vec{a}$ dan $\vec{b}$ adalah $60^\circ$, maka panjang
+                dari vektor $\vec{a} - \vec{b}$ adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">5</li>
+                  <li data-option="B">10</li>
+                  <li data-option="C">$\sqrt{61}$</li>
+                  <li data-option="D">$\sqrt{21}$</li>
+                  <li data-option="E">9</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 10: Pembahasan Soal 4 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">4.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: D. $\sqrt{21}$</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  <b>Langkah 1: Gunakan rumus panjang selisih vektor.</b><br />
+                  $|\vec{a} - \vec{b}|^2 = |\vec{a}|^2 + |\vec{b}|^2 -
+                  2|\vec{a}||\vec{b}|\cos\theta$<br /><br />
+                  <b>Langkah 2: Substitusi nilai yang diketahui.</b><br />
+                  $|\vec{a} - \vec{b}|^2 = 4^2 + 5^2 - 2(4)(5)\cos 60^\circ$<br />
+                  $|\vec{a} - \vec{b}|^2 = 16 + 25 - 40(\frac{1}{2})$<br />
+                  $|\vec{a} - \vec{b}|^2 = 41 - 20$<br />
+                  $|\vec{a} - \vec{b}|^2 = 21$<br /><br />
+                  <b>Langkah 3: Akarkan hasilnya.</b><br />
+                  $|\vec{a} - \vec{b}| = \sqrt{21}$.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 11: Soal 5 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Vektor</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Perkalian Skalar (Dot Product)</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>LOTS (Lower Order Thinking Skills)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">5.</div>
+              <div class="soal-konten">
+                Diketahui $\vec{p} = \begin{pmatrix} 3 \\ -2 \\ 1 \end{pmatrix}$
+                dan $\vec{q} = \begin{pmatrix} 2 \\ 1 \\ -4 \end{pmatrix}$.
+                Hasil dari $\vec{p} \cdot \vec{q}$ adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">4</li>
+                  <li data-option="B">2</li>
+                  <li data-option="C">0</li>
+                  <li data-option="D">-2</li>
+                  <li data-option="E">-4</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 12: Pembahasan Soal 5 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">5.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: C. 0</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  <b>Langkah 1: Gunakan rumus dot product.</b><br />
+                  $\vec{p} \cdot \vec{q} = (p_1 \cdot q_1) + (p_2 \cdot q_2) +
+                  (p_3 \cdot q_3)$<br /><br />
+                  <b>Langkah 2: Substitusi nilai komponen.</b><br />
+                  $\vec{p} \cdot \vec{q} = (3)(2) + (-2)(1) + (1)(-4)$<br />
+                  $\vec{p} \cdot \vec{q} = 6 - 2 - 4$<br />
+                  $\vec{p} \cdot \vec{q} = 0$.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 13: Soal 6 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Vektor</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Pembagian Ruas Garis</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>HOTS (Higher Order Thinking Skills)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">6.</div>
+              <div class="soal-konten">
+                Diketahui titik $A(1, 4, -1)$ dan $B(9, -4, 7)$. Titik $P$
+                terletak pada ruas garis $AB$ sedemikian sehingga $AP : PB = 3 :
+                1$. Jika $Q$ adalah titik tengah dari $AP$, maka panjang vektor
+                $\vec{BQ}$ adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$3\sqrt{5}$</li>
+                  <li data-option="B">$5\sqrt{3}$</li>
+                  <li data-option="C">$5\sqrt{5}$</li>
+                  <li data-option="D">9</li>
+                  <li data-option="E">$3\sqrt{3}$</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 14: Pembahasan Soal 6 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">6.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: B. $5\sqrt{3}$</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  <b>Langkah 1: Tentukan koordinat titik $P$.</b><br />
+                  $AP : PB = 3 : 1$. Vektor $\vec{p} = \frac{1\vec{a} +
+                  3\vec{b}}{1+3} = \frac{1(1, 4, -1) + 3(9, -4, 7)}{4}$<br />
+                  $\vec{p} = \frac{(1, 4, -1) + (27, -12, 21)}{4} = \frac{(28,
+                  -8, 20)}{4} = (7, -2, 5)$. Jadi $P(7, -2, 5)$.<br /><br />
+                  <b>Langkah 2: Tentukan koordinat titik $Q$.</b><br />
+                  $Q$ adalah titik tengah $AP$. $A(1, 4, -1)$ dan $P(7, -2,
+                  5)$.<br />
+                  $Q = \frac{A+P}{2} = (\frac{1+7}{2}, \frac{4-2}{2},
+                  \frac{-1+5}{2}) = (\frac{8}{2}, \frac{2}{2}, \frac{4}{2}) =
+                  (4, 1, 2)$.<br /><br />
+                  <b>Langkah 3: Tentukan vektor $\vec{BQ}$.</b><br />
+                  $B(9, -4, 7)$ dan $Q(4, 1, 2)$.<br />
+                  $\vec{BQ} = Q - B = (4-9, 1-(-4), 2-7) = (-5, 5, -5)$.<br /><br />
+                  <b>Langkah 4: Hitung panjang $\vec{BQ}$.</b><br />
+                  $|\vec{BQ}| = \sqrt{(-5)^2 + 5^2 + (-5)^2} = \sqrt{25+25+25} =
+                  \sqrt{75} = \sqrt{25 \cdot 3} = 5\sqrt{3}$.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 15: Soal 7 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Vektor</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Proyeksi Vektor</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>LOTS (Lower Order Thinking Skills)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">7.</div>
+              <div class="soal-konten">
+                Proyeksi skalar ortogonal dari vektor $\vec{u} = (8, 4)$ pada
+                vektor $\vec{v} = (6, 3)$ adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$\frac{20}{\sqrt{5}}$</li>
+                  <li data-option="B">10</li>
+                  <li data-option="C">12</li>
+                  <li data-option="D">$4\sqrt{5}$</li>
+                  <li data-option="E">60</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 16: Pembahasan Soal 7 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">7.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: A. $\frac{20}{\sqrt{5}}$</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  <b>Langkah 1: Gunakan rumus proyeksi skalar.</b><br />
+                  Proyeksi $\vec{u}$ pada $\vec{v}$ adalah $|\vec{c}| =
+                  \frac{\vec{u} \cdot \vec{v}}{|\vec{v}|}$.<br /><br />
+                  <b>Langkah 2: Hitung $\vec{u} \cdot \vec{v}$.</b><br />
+                  $\vec{u} \cdot \vec{v} = (8)(6) + (4)(3) = 48 + 12 = 60$.<br /><br />
+                  <b>Langkah 3: Hitung $|\vec{v}|$.</b><br />
+                  $|\vec{v}| = \sqrt{6^2 + 3^2} = \sqrt{36 + 9} = \sqrt{45}$.<br /><br />
+                  <b>Langkah 4: Hitung proyeksi skalar.</b><br />
+                  $|\vec{c}| = \frac{60}{\sqrt{45}} = \frac{60}{\sqrt{9 \cdot
+                  5}} = \frac{60}{3\sqrt{5}} = \frac{20}{\sqrt{5}}$.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 17: Soal 8 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Vektor</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Proyeksi Vektor</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>LOTS (Lower Order Thinking Skills)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">8.</div>
+              <div class="soal-konten">
+                Diketahui $\vec{a} = \hat{i} + 2\hat{j} - \hat{k}$ dan $\vec{b}
+                = 3\hat{i} - \hat{j} + 2\hat{k}$. Proyeksi vektor ortogonal dari
+                $\vec{a}$ pada $\vec{b}$ adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">
+                    $-\frac{1}{14}(3\hat{i} - \hat{j} + 2\hat{k})$
+                  </li>
+                  <li data-option="B">
+                    $-\frac{1}{\sqrt{14}}(3\hat{i} - \hat{j} + 2\hat{k})$
+                  </li>
+                  <li data-option="C">
+                    $\frac{1}{14}(3\hat{i} - \hat{j} + 2\hat{k})$
+                  </li>
+                  <li data-option="D">
+                    $-\frac{1}{6}(\hat{i} + 2\hat{j} - \hat{k})$
+                  </li>
+                  <li data-option="E">
+                    $\frac{1}{6}(\hat{i} + 2\hat{j} - \hat{k})$
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 18: Pembahasan Soal 8 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">8.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban"
+                    >Jawaban: A. $-\frac{1}{14}(3\hat{i} - \hat{j} +
+                    2\hat{k})$</b
+                  ><br />
+                  <b>Pembahasan Detail:</b><br />
+                  <b
+                    >Langkah 1: Gunakan rumus proyeksi vektor $\vec{a}$ pada
+                    $\vec{b}$.</b
+                  ><br />
+                  $\vec{c} = \left( \frac{\vec{a} \cdot \vec{b}}{|\vec{b}|^2}
+                  \right) \vec{b}$<br /><br />
+                  <b>Langkah 2: Hitung $\vec{a} \cdot \vec{b}$.</b><br />
+                  $\vec{a} \cdot \vec{b} = (1)(3) + (2)(-1) + (-1)(2) = 3 - 2 -
+                  2 = -1$.<br /><br />
+                  <b>Langkah 3: Hitung $|\vec{b}|^2$.</b><br />
+                  $|\vec{b}|^2 = 3^2 + (-1)^2 + 2^2 = 9 + 1 + 4 = 14$.<br /><br />
+                  <b>Langkah 4: Hitung proyeksi vektor $\vec{c}$.</b><br />
+                  $\vec{c} = \left( \frac{-1}{14} \right) \vec{b} =
+                  -\frac{1}{14}(3\hat{i} - \hat{j} + 2\hat{k})$.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 19: Soal 9 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Vektor</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Perkalian Skalar (Tegak Lurus)</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>MOTS (Middle Order Thinking Skills)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">9.</div>
+              <div class="soal-konten">
+                Diketahui $\vec{p} = (x, 2, 4)$ dan $\vec{q} = (3, 4, 0)$. Jika
+                $\vec{p}$ dan $\vec{q}$ saling tegak lurus, maka nilai $x$
+                adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$8/3$</li>
+                  <li data-option="B">$-8/3$</li>
+                  <li data-option="C">$3/8$</li>
+                  <li data-option="D">$-3/8$</li>
+                  <li data-option="E">0</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 20: Pembahasan Soal 9 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">9.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: B. $-8/3$</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  <b>Langkah 1: Terapkan syarat tegak lurus.</b><br />
+                  Dua vektor saling tegak lurus jika hasil dot product-nya
+                  adalah 0. $\vec{p} \cdot \vec{q} = 0$.<br /><br />
+                  <b>Langkah 2: Hitung dot product dan selesaikan.</b><br />
+                  $(x)(3) + (2)(4) + (4)(0) = 0$<br />
+                  $3x + 8 + 0 = 0$<br />
+                  $3x = -8$<br />
+                  $x = -8/3$.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 21: Soal 10 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Polinomial</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Definisi Polinomial</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>LOTS (Lower Order Thinking Skills)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">10.</div>
+              <div class="soal-konten">
+                Bentuk $x^3 - 5x + \sqrt{x} + 2$ merupakan...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">Polinomial berderajat 3</li>
+                  <li data-option="B">Polinomial berderajat 1/2</li>
+                  <li data-option="C">Polinomial berderajat 1</li>
+                  <li data-option="D">Bukan polinomial</li>
+                  <li data-option="E">Polinomial berderajat 5</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 22: Pembahasan Soal 10 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">10.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: D. Bukan polinomial</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  <b>Langkah 1: Periksa syarat polinomial.</b><br />
+                  Suatu bentuk aljabar disebut polinomial jika pangkat (derajat)
+                  dari setiap variabelnya adalah bilangan bulat non-negatif (0,
+                  1, 2, 3, ...).<br /><br />
+                  <b>Langkah 2: Analisis bentuk yang diberikan.</b><br />
+                  Bentuk $x^3 - 5x + \sqrt{x} + 2$ dapat ditulis sebagai $x^3 -
+                  5x^1 + x^{1/2} + 2$.<br />
+                  Terdapat suku $x^{1/2}$, di mana pangkatnya ($1/2$) bukan
+                  bilangan bulat. Oleh karena itu, bentuk ini bukan polinomial.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 23: Soal 11 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Polinomial</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Teorema Sisa</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>LOTS (Lower Order Thinking Skills)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">11.</div>
+              <div class="soal-konten">
+                Sisa pembagian polinomial $P(x) = x^3 - 2x^2 + 5x - 4$ oleh $(x
+                - 2)$ adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">-2</li>
+                  <li data-option="B">0</li>
+                  <li data-option="C">4</li>
+                  <li data-option="D">6</li>
+                  <li data-option="E">8</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 24: Pembahasan Soal 11 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">11.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: D. 6</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  <b>Langkah 1: Gunakan Teorema Sisa.</b><br />
+                  Sisa pembagian $P(x)$ oleh $(x-k)$ adalah $S = P(k)$.<br />
+                  Dalam kasus ini, pembagi adalah $(x-2)$, maka $k=2$.<br /><br />
+                  <b>Langkah 2: Substitusi $x=2$ ke dalam $P(x)$.</b><br />
+                  $S = P(2) = (2)^3 - 2(2)^2 + 5(2) - 4$<br />
+                  $S = 8 - 2(4) + 10 - 4$<br />
+                  $S = 8 - 8 + 10 - 4$<br />
+                  $S = 6$.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 25: Soal 12 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Polinomial</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Operasi Polinomial (Komposisi)</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>LOTS (Lower Order Thinking Skills)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">12.</div>
+              <div class="soal-konten">
+                Diketahui polinomial $P(x) = x^2 - 3x + 2$ dan $Q(x) = x + 1$.
+                Hasil dari komposisi $(P \circ Q)(x)$ adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$-3x + 1$</li>
+                  <li data-option="B">$x^2 - x$</li>
+                  <li data-option="C">$x^2 + x$</li>
+                  <li data-option="D">$x^2 - 3x + 3$</li>
+                  <li data-option="E">$x^2 - x - 1$</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 26: Pembahasan Soal 12 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">12.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: B. $x^2 - x$</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  <b>Langkah 1: Pahami notasi komposisi.</b><br />
+                  $(P \circ Q)(x)$ artinya $P(Q(x))$. Kita substitusikan seluruh
+                  fungsi $Q(x)$ ke dalam variabel $x$ pada $P(x)$.<br /><br />
+                  <b>Langkah 2: Lakukan substitusi.</b><br />
+                  $P(x) = x^2 - 3x + 2$<br />
+                  $P(Q(x)) = P(x+1) = (x+1)^2 - 3(x+1) + 2$<br /><br />
+                  <b>Langkah 3: Sederhanakan bentuk aljabar.</b><br />
+                  $P(x+1) = (x^2 + 2x + 1) - (3x + 3) + 2$<br />
+                  $P(x+1) = x^2 + 2x + 1 - 3x - 3 + 2$<br />
+                  $P(x+1) = x^2 + (2x - 3x) + (1 - 3 + 2)$<br />
+                  $P(x+1) = x^2 - x$.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 27: Soal 13 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Polinomial</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Teorema Faktor</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>MOTS (Middle Order Thinking Skills)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">13.</div>
+              <div class="soal-konten">
+                Jika $(x + 1)$ merupakan salah satu faktor dari polinomial $f(x)
+                = 2x^3 - x^2 - px + 6$, maka nilai $p$ adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">-3</li>
+                  <li data-option="B">-1</li>
+                  <li data-option="C">1</li>
+                  <li data-option="D">3</li>
+                  <li data-option="E">5</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 28: Pembahasan Soal 13 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">13.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: A. -3</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  <b>Langkah 1: Gunakan Teorema Faktor.</b><br />
+                  Jika $(x-k)$ adalah faktor dari $f(x)$, maka $f(k) = 0$.<br />
+                  Dalam kasus ini, faktornya adalah $(x+1)$ atau $(x-(-1))$,
+                  maka $k=-1$. Syaratnya $f(-1) = 0$.<br /><br />
+                  <b>Langkah 2: Substitusi $x=-1$ dan samakan dengan 0.</b
+                  ><br />
+                  $f(-1) = 2(-1)^3 - (-1)^2 - p(-1) + 6 = 0$<br />
+                  $2(-1) - (1) + p + 6 = 0$<br />
+                  $-2 - 1 + p + 6 = 0$<br />
+                  $p + 3 = 0$<br />
+                  $p = -3$.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 29: Soal 14 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Polinomial</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Pembagian Polinomial</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>MOTS (Middle Order Thinking Skills)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">14.</div>
+              <div class="soal-konten">
+                Hasil bagi dari $2x^3 - 3x^2 + x + 6$ jika dibagi oleh $(x+1)$
+                adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$2x^2 - 5x + 6$</li>
+                  <li data-option="B">$2x^2 - x + 2$</li>
+                  <li data-option="C">$2x^2 - 3x + 1$</li>
+                  <li data-option="D">$x^2 - 5x + 6$</li>
+                  <li data-option="E">$2x^2 + 5x - 6$</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 30: Pembahasan Soal 14 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">14.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: A. $2x^2 - 5x + 6$</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  <b>Langkah 1: Gunakan metode Horner (Sintetik).</b><br />
+                  Pembagi $(x+1)$, maka $k = -1$.
+                  <pre>
+-1 |   2   -3    1    6
+   |       -2    5   -6
+   -------------------- +
+       2   -5    6    0  (Sisa)
+</pre
+                  >
+                  <b>Langkah 2: Tentukan hasil bagi.</b><br />
+                  Koefisien hasil bagi adalah 2, -5, dan 6. Karena $P(x)$
+                  berderajat 3, hasil baginya berderajat 2.<br />
+                  Hasil bagi $H(x) = 2x^2 - 5x + 6$.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 31: Soal 15 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Polinomial</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Teorema Sisa</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>HOTS (Higher Order Thinking Skills)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">15.</div>
+              <div class="soal-konten">
+                Polinomial $P(x) = x^3 - 2x^2 + ax - 4$ jika dibagi oleh $(x -
+                2)$ bersisa $6$. Sisa pembagian $P(x)$ oleh $(x+1)$ adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">6</li>
+                  <li data-option="B">-4</li>
+                  <li data-option="C">-10</li>
+                  <li data-option="D">0</li>
+                  <li data-option="E">-12</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 32: Pembahasan Soal 15 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">15.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: E. -12</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  <b>Langkah 1: Cari nilai $a$ menggunakan informasi pertama.</b
+                  ><br />
+                  Dibagi $(x-2)$ bersisa 6, artinya $P(2) = 6$.<br />
+                  $P(2) = (2)^3 - 2(2)^2 + a(2) - 4 = 6$<br />
+                  $8 - 2(4) + 2a - 4 = 6$<br />
+                  $8 - 8 + 2a - 4 = 6$<br />
+                  $2a - 4 = 6 \implies 2a = 10 \implies a = 5$.<br /><br />
+                  <b>Langkah 2: Bentuk $P(x)$ yang lengkap.</b><br />
+                  $P(x) = x^3 - 2x^2 + 5x - 4$.<br /><br />
+                  <b>Langkah 3: Cari sisa $P(x)$ oleh $(x+1)$.</b><br />
+                  Sisa $P(x)$ oleh $(x+1)$ adalah $P(-1)$.<br />
+                  $P(-1) = (-1)^3 - 2(-1)^2 + 5(-1) - 4$<br />
+                  $P(-1) = -1 - 2(1) - 5 - 4$<br />
+                  $P(-1) = -1 - 2 - 5 - 4 = -12$.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 33: Soal 16 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Polinomial</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Teorema Faktor</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>MOTS (Middle Order Thinking Skills)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">16.</div>
+              <div class="soal-konten">
+                Jika $(x + 1)$ merupakan salah satu faktor dari polinomial $f(x)
+                = x^3 + 2x^2 - x - 2$, maka salah satu faktor linear lainnya
+                adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$(x + 2)$</li>
+                  <li data-option="B">$(x - 3)$</li>
+                  <li data-option="C">$(x + 3)$</li>
+                  <li data-option="D">$(x - 5)$</li>
+                  <li data-option="E">$(x - 4)$</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 34: Pembahasan Soal 16 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">16.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: A. $(x + 2)$</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  <b
+                    >Langkah 1: Bagi $f(x)$ dengan $(x+1)$ untuk mencari faktor
+                    lain.</b
+                  ><br />
+                  Kita gunakan Horner dengan $k=-1$.
+                  <pre>
+-1 |   1    2   -1   -2
+   |       -1   -1    2
+   -------------------- +
+       1    1   -2    0  (Sisa 0, terbukti faktor)
+</pre
+                  >
+                  <b>Langkah 2: Faktorkan hasil bagi.</b><br />
+                  Hasil bagi adalah $H(x) = x^2 + x - 2$.<br />
+                  Kita faktorkan $H(x)$: $x^2 + x - 2 = (x+2)(x-1)$.<br /><br />
+                  <b>Langkah 3: Tentukan faktor linear lainnya.</b><br />
+                  Faktor-faktor linear dari $f(x)$ adalah $(x+1)$, $(x+2)$, dan
+                  $(x-1)$. Salah satu faktor linear lainnya yang ada di pilihan
+                  adalah $(x+2)$.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 35: Soal 17 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Vektor</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Perkalian Skalar</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>MOTS (Middle Order Thinking Skills)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">17.</div>
+              <div class="soal-konten">
+                Diketahui $\vec{u}$ dan $\vec{v}$ adalah vektor satuan yang
+                membentuk sudut $120^\circ$. Nilai dari $|\vec{u} + \vec{v}|$
+                adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">0</li>
+                  <li data-option="B">1</li>
+                  <li data-option="C">$\sqrt{2}$</li>
+                  <li data-option="D">$\sqrt{3}$</li>
+                  <li data-option="E">2</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 36: Pembahasan Soal 17 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">17.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: B. 1</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  <b>Langkah 1: Artikan "vektor satuan".</b><br />
+                  $\vec{u}$ dan $\vec{v}$ adalah vektor satuan, artinya
+                  panjangnya adalah 1. $|\vec{u}| = 1$ dan $|\vec{v}| = 1$.<br /><br />
+                  <b>Langkah 2: Gunakan rumus panjang jumlah vektor.</b><br />
+                  $|\vec{u} + \vec{v}|^2 = |\vec{u}|^2 + |\vec{v}|^2 +
+                  2|\vec{u}||\vec{v}|\cos\theta$<br /><br />
+                  <b>Langkah 3: Substitusi nilai.</b><br />
+                  $|\vec{u} + \vec{v}|^2 = 1^2 + 1^2 + 2(1)(1)\cos 120^\circ$<br />
+                  $|\vec{u} + \vec{v}|^2 = 1 + 1 + 2(-\frac{1}{2})$<br />
+                  $|\vec{u} + \vec{v}|^2 = 2 - 1 = 1$<br /><br />
+                  <b>Langkah 4: Akarkan hasilnya.</b><br />
+                  $|\vec{u} + \vec{v}| = \sqrt{1} = 1$.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 37: Soal 18 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Polinomial</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Teorema Sisa (Pembagi Kuadrat)</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>HOTS (Higher Order Thinking Skills)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">18.</div>
+              <div class="soal-konten">
+                Suatu polinomial $P(x)$ jika dibagi $(x-1)$ bersisa $3$ dan jika
+                dibagi $(x+2)$ bersisa $-3$. Sisa pembagian $P(x)$ oleh $(x^2 +
+                x - 2)$ adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$x - 2$</li>
+                  <li data-option="B">$x + 2$</li>
+                  <li data-option="C">$2x - 1$</li>
+                  <li data-option="D">$2x + 1$</li>
+                  <li data-option="E">$-2x + 1$</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 38: Pembahasan Soal 18 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">18.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: D. $2x + 1$</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  <b>Langkah 1: Terjemahkan informasi soal.</b><br />
+                  - Dibagi $(x-1)$ sisa 3 $\implies P(1) = 3$.<br />
+                  - Dibagi $(x+2)$ sisa -3 $\implies P(-2) = -3$.<br /><br />
+                  <b>Langkah 2: Siapkan sisa pembagian.</b><br />
+                  Pembagi $x^2 + x - 2 = (x-1)(x+2)$ adalah berderajat 2.<br />
+                  Maka, sisa $S(x)$ maksimal berderajat 1. Misal $S(x) = ax +
+                  b$.<br /><br />
+                  <b>Langkah 3: Terapkan Teorema Sisa $P(k) = S(k)$.</b><br />
+                  - $P(1) = S(1) \implies 3 = a(1) + b \implies a+b = 3$.<br />
+                  - $P(-2) = S(-2) \implies -3 = a(-2) + b \implies -2a+b =
+                  -3$.<br /><br />
+                  <b>Langkah 4: Selesaikan SPLDV.</b><br />
+                  $(a+b) - (-2a+b) = 3 - (-3)$<br />
+                  $3a = 6 \implies a = 2$.<br />
+                  Substitusi $a=2$ ke $a+b=3 \implies 2+b=3 \implies b=1$.<br />
+                  Jadi, sisa $S(x) = ax+b = 2x+1$.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 39: Soal 19 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Polinomial</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Grafik Fungsi Polinomial</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>MOTS (Middle Order Thinking Skills)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">19.</div>
+              <div class="soal-konten">
+                Diberikan fungsi polinomial $f(x) = -2x^4 + 3x^3 - x + 5$.
+                Perilaku ujung (end behavior) dari grafik fungsi tersebut
+                adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">
+                    $x \to \infty, f(x) \to \infty$ dan $x \to -\infty, f(x) \to
+                    \infty$
+                  </li>
+                  <li data-option="B">
+                    $x \to \infty, f(x) \to \infty$ dan $x \to -\infty, f(x) \to
+                    -\infty$
+                  </li>
+                  <li data-option="C">
+                    $x \to \infty, f(x) \to -\infty$ dan $x \to -\infty, f(x)
+                    \to \infty$
+                  </li>
+                  <li data-option="D">
+                    $x \to \infty, f(x) \to -\infty$ dan $x \to -\infty, f(x)
+                    \to -\infty$
+                  </li>
+                  <li data-option="E">
+                    $x \to \infty, f(x) \to 0$ dan $x \to -\infty, f(x) \to 0$
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 40: Pembahasan Soal 19 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">19.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban"
+                    >Jawaban: D. $x \to \infty, f(x) \to -\infty$ dan $x \to
+                    -\infty, f(x) \to -\infty$</b
+                  ><br />
+                  <b>Pembahasan Detail:</b><br />
+                  <b>Langkah 1: Identifikasi suku utama.</b><br />
+                  Perilaku ujung ditentukan oleh suku dengan pangkat tertinggi
+                  (suku utama), yaitu $-2x^4$.<br /><br />
+                  <b>Langkah 2: Analisis derajat (pangkat).</b><br />
+                  Derajatnya adalah 4 (Genap). Grafik dengan derajat genap
+                  memiliki kedua ujung yang mengarah ke arah yang sama (keduanya
+                  ke atas atau keduanya ke bawah).<br /><br />
+                  <b>Langkah 3: Analisis koefisien utama.</b><br />
+                  Koefisien utamanya adalah -2 (Negatif). Jika koefisien utama
+                  negatif, kedua ujung akan mengarah ke bawah (menuju
+                  $-\infty$).<br /><br />
+                  <b>Kesimpulan:</b> Saat $x$ menuju $\infty$ (kanan) dan $x$
+                  menuju $-\infty$ (kiri), nilai $f(x)$ sama-sama menuju
+                  $-\infty$ (ke bawah).
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 41: Soal 20 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+          <div class="pembahasan-box">
+            <table class="soal-card">
+              <tr>
+                <td>Topik</td>
+                <td>Polinomial</td>
+              </tr>
+              <tr>
+                <td>Sub Topik</td>
+                <td>Teorema Vieta</td>
+              </tr>
+              <tr>
+                <td>Level Kognitif</td>
+                <td>MOTS (Middle Order Thinking Skills)</td>
+              </tr>
+            </table>
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">20.</div>
+              <div class="soal-konten">
+                Diketahui $x_1, x_2, x_3$ adalah akar-akar dari persamaan $x^3 -
+                2x^2 - 5x + 6 = 0$. Nilai dari $\frac{1}{x_1} + \frac{1}{x_2} +
+                \frac{1}{x_3}$ adalah...
+                <ol class="pilihan-ganda">
+                  <li data-option="A">$6/5$</li>
+                  <li data-option="B">$-5/6$</li>
+                  <li data-option="C">$5/6$</li>
+                  <li data-option="D">$-2/5$</li>
+                  <li data-option="E">$2/3$</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+
+      <!-- HALAMAN 42: Pembahasan Soal 20 -->
+      <section class="page">
+        <header class="page-header">
+          <div class="header-top-box">
+            <div>
+              <div class="header-title-main">Panduan Mengajar</div>
+              <div class="header-title-sub">Matematika Lanjut</div>
+            </div>
+            <img
+              src="https://imgix3.ruangguru.com/assets/miscellaneous/png_63qwb1_5293.png"
+              alt="Brain Academy Logo"
+              class="header-logo"
+            />
+          </div>
+        </header>
+        <div class="content-wrapper">
+          <div class="pembahasan-box">
+            <div class="soal-pembahasan">
+              <div class="soal-nomor">20.</div>
+              <div class="soal-konten">
+                <div class="pembahasan-detail">
+                  <b class="jawaban">Jawaban: C. $5/6$</b><br />
+                  <b>Pembahasan Detail:</b><br />
+                  <b>Langkah 1: Samakan penyebut.</b><br />
+                  $\frac{1}{x_1} + \frac{1}{x_2} + \frac{1}{x_3} = \frac{x_2x_3
+                  + x_1x_3 + x_1x_2}{x_1x_2x_3}$<br /><br />
+                  <b>Langkah 2: Terapkan Teorema Vieta.</b><br />
+                  Dari $Ax^3 + Bx^2 + Cx + D = 0$: $A=1, B=-2, C=-5, D=6$.<br />
+                  - $x_1x_2 + x_1x_3 + x_2x_3 = \frac{C}{A} = \frac{-5}{1} =
+                  -5$.<br />
+                  - $x_1x_2x_3 = -\frac{D}{A} = -\frac{6}{1} = -6$.<br /><br />
+                  <b>Langkah 3: Substitusi nilai.</b><br />
+                  $\frac{x_2x_3 + x_1x_3 + x_1x_2}{x_1x_2x_3} = \frac{-5}{-6} =
+                  5/6$.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="page-footer">
+          <span
+            ><b
+              >Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights
+              Reserved.</b
+            ><i
+              >Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya
+              Indonesia.</i
+            ></span
+          >
+        </footer>
+      </section>
+    </div>
+  </body>
+</html>
