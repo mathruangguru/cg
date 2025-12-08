@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Mengajar - Matematika</title>
+    <!-- MathJax -->
+    <script>
+        window.MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            packages: {'[+]': ['ams']}
+          },
+          svg: {
+            fontCache: 'global'
+          }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- CSS Internal -->
+    <style>
+      :root {
+        /* Palet Warna Dasar */
+        --primary-text: #333333;
+        --secondary-text: #555555;
+        --border-color: #dddddd;
+        --header-top-bg: #e0f7fa; 
+        --header-bottom-bg: #f0f0f0;
+        --header-title-color: #00838f; 
+        --table-header-bg: #e9e9e9;
+        --grey-text: #8d8e8d;
+        
+        /* Warna Aksen Brain Academy */
+        --ba-teal: #00838f;       
+        --pembahasan-border-left: var(--ba-teal);
+      }
+      
+      *, *::before, *::after { box-sizing: border-box; }
+
+      body {
+        font-family: 'Montserrat', sans-serif; font-size: 9pt; line-height: 1.6;
+        color: var(--primary-text); background-color: #e0e0e0; margin: 0; padding: 0;
+      }
+
+      .page-container { counter-reset: page; }
+
+      .page {
+        background: white; width: 21cm; min-height: 29.7cm; padding: 1.8cm 2.5cm;
+        margin: 1cm auto; box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        position: relative; display: flex; flex-direction: column;
+      }
+      
+      .page-number::after { counter-increment: page; content: counter(page); }
+
+      .page-header {
+        margin: -1.8cm -2.5cm 0 -2.5cm; flex-shrink: 0; position: relative; z-index: 10;
+      }
+
+      .header-top-box {
+        background-color: var(--header-top-bg);
+        padding: 10px 2.5cm;
+        display: flex; justify-content: space-between; align-items: center; 
+        margin-bottom: 2px;
+      }
+      
+      /* Header halaman 2 dst */
+      .page:not(:first-of-type) .header-top-box {
+          background-color: var(--header-top-bg);
+          margin-bottom: 20px;
+      }
+      .page:not(:first-of-type) .header-title-main {
+          color: var(--header-title-color);
+      }
+       .page:not(:first-of-type) .header-title-sub {
+          color: var(--primary-text);
+      }
+      .page:not(:first-of-type) .header-bottom-box { 
+          display: none;
+      }
+      
+      .header-title-main {
+        font-size: 18pt; font-weight: 700; 
+        color: var(--header-title-color);
+        line-height: 1.2;
+      }
+      .header-title-sub {
+        font-size: 12pt; font-weight: 400; 
+        color: var(--primary-text);
+      }
+
+      .header-bottom-box { padding: 0 2.5cm 20px 2.5cm; text-align: left; }
+      
+      .header-bottom-text {
+        background-color: var(--header-bottom-bg); padding: 8px 15px; font-weight: 700;
+        font-size: 8.5pt; color: var(--secondary-text); display: block; border-radius: 4px; white-space: normal;
+      }
+
+      .header-logo { max-height: 60px; width: auto; }
+      
+      .content-wrapper { flex-grow: 1; padding-bottom: 50px; }
+
+      .section-title {
+        font-size: 14pt; font-weight: 700; color: var(--header-title-color);
+        border-bottom: 2px solid var(--header-top-bg);
+        padding-bottom: 5px;
+        margin-bottom: 15px; margin-top: 10px;
+      }
+      
+      ol.guide-list, ul.guide-list { padding-left: 20px; }
+      ol.guide-list li, ul.guide-list li { margin-bottom: 8px; }
+      
+      .pembahasan-box { margin-bottom: 25px; page-break-inside: avoid; }
+
+      .soal-card {
+        width: 100%; border-collapse: collapse; margin-bottom: 10px; border: 1px solid var(--border-color);
+      }
+      .soal-card td {
+        border: 1px solid var(--border-color); padding: 6px 10px; font-size: 8.5pt;
+      }
+      .soal-card td:first-child {
+        font-weight: 700; background-color: var(--table-header-bg); width: 120px;
+      }
+      
+      .summary-table {
+        width: 100%; border-collapse: collapse; border: 1px solid var(--border-color); margin-bottom: 20px;
+      }
+      .summary-table td {
+        border: 1px solid var(--border-color); padding: 8px 12px; vertical-align: top;
+      }
+      .summary-table .summary-table-header td {
+        background-color: var(--table-header-bg);
+        font-weight: 700; font-size: 10pt;
+      }
+      .summary-table .summary-table-content ul { padding-left: 20px; margin: 5px 0 0 0; }
+      
+      .soal-pembahasan { display: flex; align-items: flex-start; gap: 5px; margin-top: 10px; }
+      .soal-nomor { font-weight: bold; min-width: 20px; }
+      .soal-konten { flex-grow: 1; text-align: justify; }
+
+      .soal-konten ol { list-style-type: none; padding-left: 0; margin-top: 10px; }
+      .soal-konten ol li { margin-bottom: 8px; padding-left: 25px; position: relative; }
+      .soal-konten ol li::before {
+        content: attr(data-option) ". "; font-weight: bold; position: absolute; left: 0;
+      }
+      
+      .pembahasan-detail {
+        margin-top: 10px; background-color: #f9f9f9; 
+        border-left: 4px solid var(--header-title-color);
+        padding: 10px 15px; border-radius: 0 4px 4px 0;
+      }
+      .pembahasan-detail ul, .pembahasan-detail ol { padding-left: 20px; }
+      
+      .page-footer {
+        display: flex; justify-content: space-between; align-items: flex-end; font-size: 6pt; color: var(--grey-text);
+        margin-top: auto; padding-top: 2px; border-top: 2.5px solid var(--grey-text);
+        flex-shrink: 0; width: 100%; position: relative; z-index: 10;
+        bottom: 0;
+      }
+      
+      img.soal-img { max-width: 200px; height: auto; margin: 10px 0; border: 1px solid #eee; }
+
+      /* --- PRINT STYLES --- */
+      @media print {
+        @page { size: A4; margin: 0; }
+        body { background-color: white; margin: 0; }
+        .page-container { margin: 0; }
+        .page { 
+          box-shadow: none; margin: 0; padding: 1.8cm 2.5cm; 
+          width: 21cm; min-height: 29.7cm;
+          page-break-after: always; display: flex; flex-direction: column; position: relative; 
+        }
+        .page:last-of-type { page-break-after: auto; }
+        .content-wrapper { flex-grow: 1; overflow: hidden; padding-bottom: 50px; }
+        .pembahasan-box { page-break-inside: avoid; }
+        .soal-card td:first-child, .summary-table .summary-table-header td, .pembahasan-detail, .header-top-box, .header-bottom-text {
+          -webkit-print-color-adjust: exact; print-color-adjust: exact;
+        }
+        .header-top-box { background-color: var(--header-top-bg) !important; } 
+      }
+    </style>
+</head>
+<body>
+
+<div class="page-container">
+
+    <!-- HALAMAN 1: Metadata & Ringkasan -->
+    <section class="page">
+        <header class="page-header">
+            <div class="header-top-box">
+                <div>
+                    <div class="header-title-main">Panduan Mengajar</div>
+                    <div class="header-title-sub"><b>Matematika</b></div> 
+                </div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Brain Academy Logo" class="header-logo">
+            </div>
+            <div class="header-bottom-box">
+                <div class="header-bottom-text">
+                    X SMA | Kurikulum Merdeka | Pendalaman Materi | Subtopik: Review Sistem Persamaan dan Pertidaksamaan Linear | Pertemuan 5
+                </div>
+            </div>
+        </header>
+
+        <div class="content-wrapper">
+            <table class="summary-table">
+                <tr class="summary-table-header">
+                    <td colspan="2">Belajar Apa Hari Ini</td>
+                </tr>
+                <tr class="summary-table-content">
+                    <td colspan="2">
+                        Memperdalam pemahaman tentang Sistem Persamaan Linear (SPLDV & SPLTV) dan Sistem Pertidaksamaan Linear, termasuk metode penyelesaian (eliminasi, substitusi), interpretasi geometris solusi, dan pemodelan masalah kontekstual.
+                    </td>
+                </tr>
+                <tr class="summary-table-header">
+                    <td>Topik</td>
+                    <td>Learning Objectives (LO)</td>
+                </tr>
+                <tr class="summary-table-content">
+                    <td><b>Sistem Persamaan Linear</b></td>
+                    <td>
+                        <ul>
+                            <li>Menyelesaikan SPLDV dan SPLTV dengan berbagai metode.</li>
+                            <li>Menginterpretasikan solusi sistem persamaan secara geometris (titik, garis, bidang, rongga).</li>
+                            <li>Menganalisis jenis solusi sistem (tunggal, banyak, tidak ada).</li>
+                        </ul>
+                    </td>
+                </tr>
+                 <tr class="summary-table-content">
+                    <td><b>Pertidaksamaan & Pemodelan</b></td>
+                    <td>
+                        <ul>
+                            <li>Menentukan daerah penyelesaian dari sistem pertidaksamaan linear.</li>
+                            <li>Memodelkan masalah sehari-hari ke dalam bentuk SPL atau SPtLDV.</li>
+                            <li>Menyelesaikan masalah optimasi sederhana (program linear).</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="summary-table-header">
+                    <td colspan="2">⭐ Rekap Starchamps</td>
+                </tr>
+                <tr class="summary-table-content">
+                    <td colspan="2">
+                        100 ⭐ untuk 20 soal (masing-masing 5⭐ / soal)
+                    </td>
+                </tr>
+            </table>
+
+            <h2 class="section-title">Alur & Pertanyaan Pemantik</h2>
+            <ul class="guide-list">
+                <li><b>Visualisasi Ruang:</b> "Bayangkan tiga lembar kertas (bidang) di udara. Bagaimana caranya mereka bisa saling berpotongan tapi tidak pernah bertemu di satu titik yang sama?"</li>
+                <li><b>Logika Solusi:</b> "Jika dua garis di kertasmu sejajar seperti rel kereta api, apakah mereka akan pernah bertemu? Apa artinya ini bagi sistem persamaan kita?"</li>
+                <li><b>Optimasi Kehidupan Nyata:</b> "Jika kamu punya modal terbatas dan gerobak yang kecil, bagaimana matematika membantumu menentukan jumlah dagangan agar untung paling besar?"</li>
+            </ul>
+        </div>
+
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span class="page-number">1</span>
+        </footer>
+    </section>
+
+    <!-- HALAMAN 2: Soal & Pembahasan 1 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">1.</div>
+                    <div class="soal-konten">
+                        Diketahui sistem persamaan linear dua variabel (SPLDV) sebagai berikut:
+                        $$ \begin{cases} 2x + y = 13 \\ x - y = 5 \end{cases} $$
+                        Nilai dari $x$ dan $y$ yang memenuhi sistem tersebut adalah ...
+                        <ol><li data-option="A">$x = 6, y = 1$</li><li data-option="B">$x = 5, y = 3$</li><li data-option="C">$x = 6, y = 2$</li><li data-option="D">$x = 4, y = 5$</li><li data-option="E">$x = 8, y = -3$</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: A. $x = 6, y = 1$</b><br><br>
+                            <b>Pembahasan:</b><br>
+                            Kita gunakan metode eliminasi. Jumlahkan kedua persamaan:
+                            $$ \begin{aligned} (2x + y) + (x - y) &= 13 + 5 \\ 3x &= 18 \\ x &= 6 \end{aligned} $$
+                            Substitusikan $x=6$ ke persamaan kedua:
+                            $$ \begin{aligned} 6 - y &= 5 \\ -y &= 5 - 6 \\ y &= 1 \end{aligned} $$
+                            Jadi, solusinya adalah $x=6, y=1$.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span class="page-number">2</span> 
+        </footer>
+    </section>
+
+    <!-- HALAMAN 3: Soal & Pembahasan 2 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">2.</div>
+                    <div class="soal-konten">
+                        Perhatikan gambar grafik dua garis lurus pada bidang Kartesius berikut:
+                        <br><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_chx0vn_9033.png" alt="Grafik Garis Sejajar" class="soal-img"><br>
+                        Jika kedua garis tersebut sejajar dan tidak pernah berpotongan seperti pada gambar, maka dapat disimpulkan bahwa SPLDV tersebut ...
+                        <ol><li data-option="A">Memiliki tepat satu solusi.</li><li data-option="B">Memiliki tepat dua solusi.</li><li data-option="C">Memiliki banyak solusi tak hingga.</li><li data-option="D">Tidak memiliki solusi.</li><li data-option="E">Memiliki solusi berupa daerah arsiran.</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: D. Tidak memiliki solusi.</b><br><br>
+                            <b>Pembahasan:</b><br>
+                            Dalam sistem persamaan linear dua variabel, solusi direpresentasikan oleh titik potong antara dua garis.<br>
+                            - Garis berpotongan di satu titik = 1 solusi unik.<br>
+                            - Garis berimpit (menumpuk) = banyak solusi tak hingga.<br>
+                            - Garis sejajar (tidak pernah bertemu) = tidak ada solusi.<br>
+                            Karena gambar menunjukkan dua garis sejajar, maka sistem tidak memiliki solusi.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span class="page-number">3</span> 
+        </footer>
+    </section>
+
+    <!-- HALAMAN 4: Soal & Pembahasan 3 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">3.</div>
+                    <div class="soal-konten">
+                        Perhatikan ketidaksamaan $2x + 3y \geq 12$. Mengapa himpunan penyelesaian dari pertidaksamaan ini berupa daerah (arsiran) dan bukan hanya titik-titik tertentu?
+                        <ol><li data-option="A">Karena terdapat tanda sama dengan ($=$).</li><li data-option="B">Karena variabelnya ada dua, yaitu $x$ dan $y$.</li><li data-option="C">Karena terdapat tak hingga pasangan $(x, y)$ yang membuat ruas kiri lebih besar atau sama dengan ruas kanan.</li><li data-option="D">Karena koefisien $x$ dan $y$ positif.</li><li data-option="E">Karena grafiknya memotong sumbu $X$ dan sumbu $Y$.</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: C. Karena terdapat tak hingga pasangan $(x, y)$ yang membuat ruas kiri lebih besar atau sama dengan ruas kanan.</b><br><br>
+                            <b>Pembahasan:</b><br>
+                            Pertidaksamaan linear dua variabel tidak hanya mencari nilai yang "sama dengan", melainkan rentang nilai yang memenuhi kondisi "lebih dari" atau "kurang dari". Ada tak terhingga banyaknya kombinasi nilai $x$ dan $y$ di bidang kartesius yang memenuhi kondisi $2x + 3y \geq 12$, sehingga solusinya digambarkan sebagai daerah arsiran.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span class="page-number">4</span> 
+        </footer>
+    </section>
+
+    <!-- HALAMAN 5: Soal & Pembahasan 4 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">4.</div>
+                    <div class="soal-konten">
+                        Diberikan sistem persamaan linear tiga variabel (SPLTV):
+                        $$ \begin{cases} x + y + z = 6 \\ x + y = 4 \\ z = \dots? \end{cases} $$
+                        Jika diketahui $x=1$ dan $y=3$, maka nilai $z$ agar persamaan pertama bernilai benar adalah ...
+                        <ol><li data-option="A">1</li><li data-option="B">2</li><li data-option="C">3</li><li data-option="D">4</li><li data-option="E">5</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: B. 2</b><br><br>
+                            <b>Pembahasan:</b><br>
+                            Diketahui $x=1$ dan $y=3$. Kita diminta mencari nilai $z$ berdasarkan persamaan pertama:<br>
+                            $x + y + z = 6$<br>
+                            $1 + 3 + z = 6$<br>
+                            $4 + z = 6$<br>
+                            $z = 6 - 4 = 2$.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span class="page-number">5</span> 
+        </footer>
+    </section>
+
+    <!-- HALAMAN 6: Soal & Pembahasan 5 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">5.</div>
+                    <div class="soal-konten">
+                        Di sebuah toko buah, Andi membeli 2 kg apel dan 3 kg jeruk dengan harga Rp80.000,00. Di toko yang sama, Budi membeli 1 kg apel dan 2 kg jeruk dengan harga Rp50.000,00. Jika $x$ adalah harga 1 kg apel dan $y$ adalah harga 1 kg jeruk, model matematika yang tepat adalah ...
+                        <ol><li data-option="A">$2x + 3y = 80.000$ dan $x + 2y = 50.000$</li><li data-option="B">$2x + 3y = 50.000$ dan $x + 2y = 80.000$</li><li data-option="C">$3x + 2y = 80.000$ dan $2x + y = 50.000$</li><li data-option="D">$2x + y = 80.000$ dan $3x + 2y = 50.000$</li><li data-option="E">$x + y = 130.000$ dan $2x + 2y = 80.000$</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: A. $2x + 3y = 80.000$ dan $x + 2y = 50.000$</b><br><br>
+                            <b>Pembahasan:</b><br>
+                            - Pembelian Andi: 2 kg apel ($2x$) + 3 kg jeruk ($3y$) = Rp80.000. Persamaannya: $2x + 3y = 80.000$.<br>
+                            - Pembelian Budi: 1 kg apel ($x$) + 2 kg jeruk ($2y$) = Rp50.000. Persamaannya: $x + 2y = 50.000$.<br>
+                            Maka, sistem persamaannya sesuai dengan opsi A.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span class="page-number">6</span> 
+        </footer>
+    </section>
+
+    <!-- HALAMAN 7: Soal & Pembahasan 6 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">6.</div>
+                    <div class="soal-konten">
+                        Perhatikan SPLDV berikut:
+                        $$ \begin{cases} 2x - 3y = 6 \\ 4x - 6y = 12 \end{cases} $$
+                        Berdasarkan perbandingan koefisien-koefisiennya, sistem persamaan tersebut memiliki ...
+                        <ol><li data-option="A">Tepat satu solusi</li><li data-option="B">Tidak ada solusi</li><li data-option="C">Dua solusi yang berbeda</li><li data-option="D">Banyak solusi tak hingga (berhimpit)</li><li data-option="E">Tiga solusi</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: D. Banyak solusi tak hingga (berhimpit)</b><br><br>
+                            <b>Pembahasan:</b><br>
+                            Perhatikan persamaan kedua ($4x - 6y = 12$). Jika kita bagi persamaan ini dengan 2, kita akan mendapatkan $2x - 3y = 6$, yang persis sama dengan persamaan pertama.<br>
+                            Artinya, kedua persamaan ini merepresentasikan garis yang sama (berimpit). Oleh karena itu, semua titik pada garis tersebut adalah solusi, sehingga solusinya tak terhingga.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span class="page-number">7</span> 
+        </footer>
+    </section>
+
+    <!-- HALAMAN 8: Soal & Pembahasan 7 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">7.</div>
+                    <div class="soal-konten">
+                        Sebuah pabrik memproduksi tiga jenis barang: A, B, dan C.
+                        <ul style="padding-left: 20px; margin: 5px 0;">
+                            <li>Jumlah produksi ketiga barang tersebut adalah 150 unit.</li>
+                            <li>Barang B diproduksi 10 unit lebih sedikit dari barang A.</li>
+                            <li>Barang C diproduksi dua kali lipat dari barang B.</li>
+                        </ul>
+                        Model SPLTV yang sesuai adalah ...
+                        <ol><li data-option="A">$\begin{cases} A+B+C=150 \\ B - A = 10 \\ C = 2B \end{cases}$</li><li data-option="B">$\begin{cases} A+B+C=150 \\ A - B = 10 \\ C = 2B \end{cases}$</li><li data-option="C">$\begin{cases} A+B+C=150 \\ B = A + 10 \\ B = 2C \end{cases}$</li><li data-option="D">$\begin{cases} A+B+C=150 \\ A = B - 10 \\ C = 2A \end{cases}$</li><li data-option="E">$\begin{cases} A+B+C=150 \\ A - B = 10 \\ B = 2C \end{cases}$</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: B. $\begin{cases} A+B+C=150 \\ A - B = 10 \\ C = 2B \end{cases}$</b><br><br>
+                            <b>Pembahasan:</b><br>
+                            1. Jumlah produksi: $A + B + C = 150$.<br>
+                            2. Barang B 10 unit lebih sedikit dari A: $B = A - 10 \rightarrow A - B = 10$.<br>
+                            3. Barang C dua kali lipat B: $C = 2B$.<br>
+                            Sistem persamaan yang memenuhi ketiga kondisi ini adalah opsi B.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span class="page-number">8</span> 
+        </footer>
+    </section>
+
+    <!-- HALAMAN 9: Soal & Pembahasan 8 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">8.</div>
+                    <div class="soal-konten">
+                        Himpunan penyelesaian dari sistem persamaan:
+                        $$ \begin{cases} x + y - z = -3 \\ x + 2y + z = 7 \\ 2x + y + z = 4 \end{cases} $$
+                        adalah $\{ (x, y, z) \}$. Nilai dari $x + y + z$ adalah ...
+                        <ol><li data-option="A">3</li><li data-option="B">4</li><li data-option="C">5</li><li data-option="D">6</li><li data-option="E">8</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: C. 5</b><br><br>
+                            <b>Pembahasan:</b><br>
+                            (1) $x + y - z = -3$<br>
+                            (2) $x + 2y + z = 7$<br>
+                            (3) $2x + y + z = 4$<br><br>
+                            Jumlahkan (1) & (2): $2x + 3y = 4$ ... (4)<br>
+                            Jumlahkan (1) & (3): $3x + 2y = 1$ ... (5)<br><br>
+                            Eliminasi dari (4) dan (5):<br>
+                            $2(2x+3y=4) \rightarrow 4x+6y=8$<br>
+                            $3(3x+2y=1) \rightarrow 9x+6y=3$<br>
+                            Kurangkan: $-5x = 5 \rightarrow x = -1$.<br>
+                            Substitusi ke (5): $3(-1) + 2y = 1 \rightarrow 2y = 4 \rightarrow y = 2$.<br>
+                            Substitusi ke (2): $-1 + 4 + z = 7 \rightarrow 3 + z = 7 \rightarrow z = 4$.<br>
+                            Nilai $x+y+z = -1+2+4 = 5$.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span class="page-number">9</span> 
+        </footer>
+    </section>
+
+    <!-- HALAMAN 10: Soal & Pembahasan 9 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">9.</div>
+                    <div class="soal-konten">
+                        Perhatikan gambar daerah penyelesaian (daerah yang diarsir biru) berikut:
+                        <br><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_nlypyb_9599.png" alt="Grafik Daerah Penyelesaian" class="soal-img"><br>
+                        Sistem pertidaksamaan yang memenuhi daerah arsiran tersebut adalah ...
+                        <ol><li data-option="A">$x+y \leq 4; 2x+y \geq 2; x \geq 0; y \geq 0$</li><li data-option="B">$x+y \geq 4; 2x+y \leq 2; x \geq 0; y \geq 0$</li><li data-option="C">$x+y \leq 4; 2x+y \leq 2; x \geq 0; y \geq 0$</li><li data-option="D">$x+y \geq 4; 2x+y \geq 2; x \geq 0; y \geq 0$</li><li data-option="E">$x-y \leq 4; 2x-y \geq 2; x \geq 0; y \geq 0$</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: A. $x+y \leq 4; 2x+y \geq 2; x \geq 0; y \geq 0$</b><br><br>
+                            <b>Pembahasan:</b><br>
+                            1. Garis yang melalui (0,4) dan (4,0) adalah $x+y=4$. Daerah arsiran ada di bawah garis, jadi $x+y \leq 4$.<br>
+                            2. Garis yang melalui (0,2) dan (1,0) adalah $2x+y=2$. Daerah arsiran ada di kanan/atas garis, jadi $2x+y \geq 2$.<br>
+                            3. Daerah berada di kuadran I, jadi $x \geq 0, y \geq 0$.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span class="page-number">10</span> 
+        </footer>
+    </section>
+
+    <!-- HALAMAN 11: Soal & Pembahasan 10 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">10.</div>
+                    <div class="soal-konten">
+                        Bu Ani ingin membuat roti jenis A dan roti jenis B. Roti A memerlukan 200g tepung dan 50g gula. Roti B memerlukan 100g tepung dan 75g gula. Persediaan tepung hanya 4 kg (4000g) dan gula 2 kg (2000g). Jika $x$ adalah banyak roti A dan $y$ adalah banyak roti B, pertidaksamaan untuk penggunaan tepung adalah ...
+                        <ol><li data-option="A">$200x + 100y \geq 4000$</li><li data-option="B">$2x + y \leq 40$</li><li data-option="C">$50x + 75y \leq 4000$</li><li data-option="D">$x + 2y \leq 40$</li><li data-option="E">$2x + y \geq 40$</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: B. $2x + y \leq 40$</b><br><br>
+                            <b>Pembahasan:</b><br>
+                            Fokus pada tepung:<br>
+                            - Tepung untuk A: $200x$<br>
+                            - Tepung untuk B: $100y$<br>
+                            - Ketersediaan: 4000g<br>
+                            Maka pertidaksamaannya: $200x + 100y \leq 4000$.<br>
+                            Sederhanakan dengan membagi kedua ruas dengan 100:<br>
+                            $2x + y \leq 40$.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span class="page-number">11</span> 
+        </footer>
+    </section>
+
+    <!-- HALAMAN 12: Soal & Pembahasan 11 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">11.</div>
+                    <div class="soal-konten">
+                        Perhatikan ilustrasi visualisasi 3 bidang dalam ruang berikut. Jika pada layar terlihat ketiga bidang tersebut saling berpotongan namun membentuk sebuah rongga (prisma segitiga) di tengahnya, maka kesimpulannya adalah ...
+                        <br>
+                        <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_9tt7of_2366.png" alt="Ilustrasi Soal 11" style="max-width: 220px; height: auto; margin: 10px 0;">
+                        <br>
+                        <ol><li data-option="A">Sistem memiliki satu solusi tunggal (titik).</li><li data-option="B">Sistem memiliki banyak solusi (garis).</li><li data-option="C">Sistem tidak memiliki solusi.</li><li data-option="D">Sistem memiliki solusi berupa bidang.</li><li data-option="E">Sistem salah input.</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: C. Sistem tidak memiliki solusi.</b><br><br>
+                            <b>Pembahasan:</b><br>
+                            Agar SPLTV memiliki solusi, ketiga bidang harus bertemu di minimal satu titik yang sama. Jika ketiga bidang membentuk sebuah rongga (prisma segitiga), berarti setiap pasang bidang berpotongan membentuk garis, tetapi ketiga garis perpotongan tersebut sejajar dan tidak pernah bertemu di satu titik. Akibatnya, tidak ada koordinat $(x, y, z)$ yang memenuhi ketiga persamaan sekaligus.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span class="page-number">12</span> 
+        </footer>
+    </section>
+
+    <!-- HALAMAN 13: Soal & Pembahasan 12 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">12.</div>
+                    <div class="soal-konten">
+                        Diberikan SPLTV berikut:
+                        $$ \begin{cases} x + 2y - 3z = 4 \\ 2x + 4y - 6z = 8 \\ 3x + 6y - 9z = 12 \end{cases} $$
+                        Tanpa melakukan eliminasi panjang, tentukan jenis solusi dari sistem tersebut dengan melihat hubungan antar koefisiennya.
+                        <ol><li data-option="A">Memiliki solusi tunggal karena ada 3 variabel.</li><li data-option="B">Tidak memiliki solusi karena koefisien $z$ negatif.</li><li data-option="C">Memiliki banyak solusi tak hingga karena ketiga persamaan tersebut ekuivalen.</li><li data-option="D">Memiliki solusi tunggal berupa $(0,0,0)$.</li><li data-option="E">Tidak dapat ditentukan tanpa matriks.</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: C. Memiliki banyak solusi tak hingga karena ketiga persamaan tersebut ekuivalen.</b><br><br>
+                            <b>Pembahasan:</b><br>
+                            Perhatikan bahwa:<br>
+                            - Persamaan 2 adalah $2 \times$ Persamaan 1 ($2(x+2y-3z) = 2(4)$).<br>
+                            - Persamaan 3 adalah $3 \times$ Persamaan 1 ($3(x+2y-3z) = 3(4)$).<br>
+                            Ketiga persamaan ini sebenarnya merepresentasikan satu bidang yang sama (berimpit). Oleh karena itu, solusinya tak hingga (semua titik pada bidang tersebut adalah solusi).
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span class="page-number">13</span> 
+        </footer>
+    </section>
+
+    <!-- HALAMAN 14: Soal & Pembahasan 13 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">13.</div>
+                    <div class="soal-konten">
+                        Agar sistem persamaan linear:
+                        $$ \begin{cases} (p-2)x + y = 0 \\ x + (p-2)y = 0 \end{cases} $$
+                        memiliki solusi selain solusi trivial $(0,0)$, maka nilai $p$ yang memenuhi adalah ...
+                        <ol><li data-option="A">$p = 2$</li><li data-option="B">$p = 3$ atau $p = 1$</li><li data-option="C">$p = 4$ atau $p = 0$</li><li data-option="D">$p = 3$ saja</li><li data-option="E">$p = 1$ saja</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: B. $p = 3$ atau $p = 1$</b><br><br>
+                            <b>Pembahasan:</b><br>
+                            Sistem persamaan linear homogen memiliki solusi non-trivial jika determinan matriks koefisiennya bernilai nol.<br>
+                            $D = (p-2)(p-2) - (1)(1) = 0$<br>
+                            $(p-2)^2 - 1 = 0$<br>
+                            $(p-2)^2 = 1$<br>
+                            $p-2 = 1 \Rightarrow p=3$<br>
+                            $p-2 = -1 \Rightarrow p=1$<br>
+                            Jadi, nilai $p$ adalah 3 atau 1.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span class="page-number">14</span> 
+        </footer>
+    </section>
+
+    <!-- HALAMAN 15: Soal & Pembahasan 14 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">14.</div>
+                    <div class="soal-konten">
+                        Lima tahun yang lalu, umur Ayah adalah 4 kali umur Budi. Lima belas tahun yang akan datang, umur Ayah menjadi 2 kali umur Budi. Berapakah jumlah umur Ayah dan Budi saat ini?
+                        <ol><li data-option="A">45 tahun</li><li data-option="B">50 tahun</li><li data-option="C">55 tahun</li><li data-option="D">60 tahun</li><li data-option="E">65 tahun</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: D. 60 tahun</b><br><br>
+                            <b>Pembahasan:</b><br>
+                            Misal $A$ = umur Ayah, $B$ = umur Budi.<br>
+                            1. $(A-5) = 4(B-5) \Rightarrow A = 4B - 15$.<br>
+                            2. $(A+15) = 2(B+15) \Rightarrow A = 2B + 15$.<br>
+                            Samakan kedua persamaan untuk $A$:<br>
+                            $4B - 15 = 2B + 15 \Rightarrow 2B = 30 \Rightarrow B = 15$.<br>
+                            Substitusi nilai $B$: $A = 2(15) + 15 = 45$.<br>
+                            Jumlah umur = $A + B = 45 + 15 = 60$ tahun.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span class="page-number">15</span> 
+        </footer>
+    </section>
+
+    <!-- HALAMAN 16: Soal & Pembahasan 15 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">15.</div>
+                    <div class="soal-konten">
+                        Tiga pompa air A, B, dan C bekerja bersama-sama mengisi kolam.
+                        <ul style="padding-left: 20px; margin: 5px 0;">
+                            <li>Jika A dan B bekerja, kolam penuh dalam 4 jam.</li>
+                            <li>Jika B dan C bekerja, kolam penuh dalam 3 jam.</li>
+                            <li>Jika A dan C bekerja, kolam penuh dalam 2,4 jam.</li>
+                        </ul>
+                        Berapa lama waktu yang dibutuhkan jika pompa C bekerja sendirian?
+                        <ol><li data-option="A">4 jam</li><li data-option="B">5 jam</li><li data-option="C">6 jam</li><li data-option="D">8 jam</li><li data-option="E">10 jam</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: A. 4 jam</b><br><br>
+                            <b>Pembahasan:</b><br>
+                            Gunakan kecepatan kerja (1/jam).<br>
+                            $1/A + 1/B = 1/4$<br>
+                            $1/B + 1/C = 1/3$<br>
+                            $1/A + 1/C = 1/2.4 = 10/24 = 5/12$<br>
+                            Jumlahkan ketiganya: $2(1/A + 1/B + 1/C) = 1/4 + 1/3 + 5/12 = 12/12 = 1$.<br>
+                            $1/A + 1/B + 1/C = 1/2$.<br>
+                            Karena $1/A + 1/B = 1/4$, maka:<br>
+                            $1/4 + 1/C = 1/2 \Rightarrow 1/C = 1/4$.<br>
+                            Jadi, pompa C butuh 4 jam sendirian.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span class="page-number">16</span> 
+        </footer>
+    </section>
+
+    <!-- HALAMAN 17: Soal & Pembahasan 16 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">16.</div>
+                    <div class="soal-konten">
+                        Diketahui sistem persamaan:
+                        $$ \begin{cases} x + y + z = 2 \\ 2x - y + 3z = 9 \\ 3x + 4z = k \end{cases} $$
+                        Agar sistem persamaan linear di atas memiliki banyak solusi, nilai $k$ haruslah ...
+                        <ol><li data-option="A">9</li><li data-option="B">10</li><li data-option="C">11</li><li data-option="D">12</li><li data-option="E">13</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: C. 11</b><br><br>
+                            <b>Pembahasan:</b><br>
+                            Agar memiliki banyak solusi (bergantung linier), persamaan ketiga harus bisa dibentuk dari kombinasi persamaan 1 dan 2.<br>
+                            Jumlahkan Persamaan 1 dan 2:<br>
+                            $(x + y + z) + (2x - y + 3z) = 2 + 9$<br>
+                            $3x + 4z = 11$<br>
+                            Bandingkan dengan Persamaan 3: $3x + 4z = k$.<br>
+                            Agar konsisten dan memiliki banyak solusi, maka haruslah $k = 11$.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span class="page-number">17</span> 
+        </footer>
+    </section>
+
+    <!-- HALAMAN 18: Soal & Pembahasan 17 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">17.</div>
+                    <div class="soal-konten">
+                        Himpunan penyelesaian dari sistem persamaan:
+                        $$ \begin{cases} \frac{2}{x} + \frac{1}{y} = 2 \\ \frac{4}{x} - \frac{3}{y} = -1 \end{cases} $$
+                        adalah $(x_0, y_0)$. Nilai dari $x_0 \cdot y_0$ adalah ...
+                        <ol><li data-option="A">1</li><li data-option="B">2</li><li data-option="C">4</li><li data-option="D">6</li><li data-option="E">8</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: B. 2</b><br><br>
+                            <b>Pembahasan:</b><br>
+                            Misal $a = 1/x, b = 1/y$.<br>
+                            $2a + b = 2$ ... (1)<br>
+                            $4a - 3b = -1$ ... (2)<br>
+                            Eliminasi $b$: Kalikan (1) dengan 3 $\rightarrow 6a + 3b = 6$. Jumlahkan dengan (2) $\rightarrow 10a = 5 \rightarrow a = 1/2$.<br>
+                            Substitusi $a=1/2$ ke (1): $2(1/2) + b = 2 \rightarrow 1 + b = 2 \rightarrow b = 1$.<br>
+                            $x = 1/a = 2$, $y = 1/b = 1$.<br>
+                            $x_0 \cdot y_0 = 2 \cdot 1 = 2$.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span class="page-number">18</span> 
+        </footer>
+    </section>
+
+    <!-- HALAMAN 19: Soal & Pembahasan 18 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">18.</div>
+                    <div class="soal-konten">
+                        Perhatikan gambar poligon daerah penyelesaian berikut:
+                        <br><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_fkc4tq_8505.png" alt="Grafik Poligon" class="soal-img"><br>
+                        Sistem pertidaksamaan yang menghasilkan daerah segi empat tersebut adalah ...
+                        <ol><li data-option="A">$x \geq 0, y \geq 0, 2x+y \leq 12, x+4y \leq 20$</li><li data-option="B">$x \geq 0, y \geq 0, x+y \leq 8, 5x+4y \leq 20$</li><li data-option="C">$x \geq 0, y \geq 0, 2x+y \geq 12, x+4y \geq 20$</li><li data-option="D">$x \geq 0, y \geq 0, 2x+y \leq 12, x+4y \leq 20, x \leq 6$</li><li data-option="E">$x \geq 0, y \geq 0, x+2y \leq 12, 4x+y \leq 20$</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: A. $x \geq 0, y \geq 0, 2x+y \leq 12, x+4y \leq 20$</b><br><br>
+                            <b>Pembahasan:</b><br>
+                            1. Garis melalui (0, 12) dan (6, 0): $12x + 6y = 72 \Rightarrow 2x + y = 12$. Arsiran ke bawah/kiri: $2x + y \leq 12$.<br>
+                            2. Garis melalui (0, 5) dan (20, 0): $5x + 20y = 100 \Rightarrow x + 4y = 20$. Arsiran ke bawah/kiri: $x + 4y \leq 20$.<br>
+                            3. Berada di kuadran I: $x \geq 0, y \geq 0$.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span class="page-number">19</span> 
+        </footer>
+    </section>
+
+    <!-- HALAMAN 20: Soal & Pembahasan 19 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">19.</div>
+                    <div class="soal-konten">
+                        Seorang pedagang memiliki gerobak yang hanya muat 500 buah. Ia membeli jeruk dengan harga Rp2.000,00 dan mangga Rp3.000,00 per buah. Modal yang ia miliki Rp1.200.000,00. Jika ia ingin menjual kembali dengan keuntungan jeruk Rp500,00 dan mangga Rp1.000,00, model pertidaksamaan untuk menentukan keuntungan maksimum, dengan $x$ jeruk dan $y$ mangga adalah ...
+                        <ol><li data-option="A">Max $Z = 500x + 1000y$ dengan kendala $x+y \leq 500$ dan $2x+3y \leq 1200$</li><li data-option="B">Max $Z = 2000x + 3000y$ dengan kendala $x+y \geq 500$ dan $2x+3y \geq 1200$</li><li data-option="C">Max $Z = 500x + 1000y$ dengan kendala $x+y \leq 500$ dan $2000x+3000y \leq 1.200$</li><li data-option="D">Max $Z = 500x + 1000y$ dengan kendala $x+y \leq 500$ dan $2x+3y \leq 120$</li><li data-option="E">Max $Z = 1000x + 500y$ dengan kendala $x+y \leq 500$ dan $2x+3y \leq 1200$</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: A. Max $Z = 500x + 1000y$ dengan kendala $x+y \leq 500$ dan $2x+3y \leq 1200$</b><br><br>
+                            <b>Pembahasan:</b><br>
+                            - Fungsi Objektif (Keuntungan): $Z = 500x + 1000y$.<br>
+                            - Kendala Kapasitas: $x + y \leq 500$.<br>
+                            - Kendala Modal: $2000x + 3000y \leq 1.200.000$. Sederhanakan (bagi 1000): $2x + 3y \leq 1200$.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span class="page-number">20</span> 
+        </footer>
+    </section>
+
+    <!-- HALAMAN 21: Soal & Pembahasan 20 -->
+    <section class="page">
+        <header class="page-header">
+             <div class="header-top-box">
+                <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Brain Academy Logo" class="header-logo">
+             </div>
+        </header>
+        <div class="content-wrapper">
+            <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+            <div class="pembahasan-box">
+                <div class="soal-pembahasan">
+                    <div class="soal-nomor">20.</div>
+                    <div class="soal-konten">
+                        Jika suatu SPLTV memiliki solusi tunggal, pernyataan geometris yang paling tepat menggambarkan kondisi ketiga bidang tersebut dalam ruang dimensi tiga adalah ...
+                        <ol><li data-option="A">Ketiga bidang saling sejajar.</li><li data-option="B">Ketiga bidang berimpit menjadi satu bidang.</li><li data-option="C">Dua bidang sejajar dipotong oleh bidang ketiga.</li><li data-option="D">Ketiga bidang berpotongan tepat di satu titik.</li><li data-option="E">Ketiga bidang membentuk sebuah prisma segitiga.</li></ol>
+                        <div class="pembahasan-detail">
+                            <b>Jawaban: D. Ketiga bidang berpotongan tepat di satu titik.</b><br><br>
+                            <b>Pembahasan:</b><br>
+                            Dalam sistem persamaan linear tiga variabel, setiap persamaan merepresentasikan sebuah bidang datar di ruang dimensi tiga. Solusi dari sistem tersebut adalah titik persekutuan dari ketiga bidang.<br>
+                            - Jika sistem memiliki **solusi tunggal (unik)**, artinya ketiga bidang tersebut saling berpotongan di **tepat satu titik**.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="page-footer">
+            <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+            <span class="page-number">21</span> 
+        </footer>
+    </section>
+
+</div>
+
+</body>
+</html>
