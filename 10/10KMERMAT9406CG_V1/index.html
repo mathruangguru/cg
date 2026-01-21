@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Mengajar - Matematika (Fungsi Kuadrat)</title>
+    <!-- MathJax untuk render matematika -->
+    <script>
+        window.MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            packages: {'[+]': ['ams']}
+          },
+          svg: {
+            fontCache: 'global'
+          }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    
+    <!-- Font Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+      :root {
+        --primary-text: #333333;
+        --secondary-text: #555555;
+        --header-top-bg: #E0F7FA; 
+        --header-bottom-bg: #f0f0f0;
+        --header-title-color: #00838f; 
+        --table-header-bg: #e9e9e9;
+        --grey-text: #8d8e8d;
+        --ba-teal: #00838f;
+        --border-color: #dddddd;
+      }
+      
+      *, *::before, *::after { box-sizing: border-box; }
+
+      body {
+        font-family: 'Montserrat', sans-serif; font-size: 9pt; line-height: 1.6;
+        color: var(--primary-text); background-color: #e0e0e0; margin: 0; padding: 0;
+      }
+
+      body { counter-reset: page; }
+
+      .page {
+        background: white; width: 21cm; min-height: 29.7cm; padding: 1.8cm 2.5cm;
+        margin: 1cm auto; box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        position: relative; display: flex; flex-direction: column;
+        overflow: hidden;
+        counter-increment: page;
+        page-break-after: always;
+      }
+      
+      .page:last-child { page-break-after: auto; }
+
+      .page-number::after { content: counter(page); }
+
+      /* Header Style */
+      .page-header {
+        margin: -1.8cm -2.5cm 0 -2.5cm; flex-shrink: 0; position: relative; z-index: 10;
+      }
+
+      .header-top-box {
+        background-color: var(--header-top-bg);
+        padding: 15px 2.5cm;
+        display: flex; justify-content: space-between; align-items: center; 
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+      }
+      
+      .header-title-main { font-size: 18pt; font-weight: 700; color: var(--header-title-color); line-height: 1.2; }
+      .header-title-sub { font-size: 12pt; font-weight: 400; color: var(--primary-text); }
+      .header-logo { max-height: 50px; width: auto; }
+
+      /* Grey Header Box (Only for Page 1) */
+      .header-bottom-box { padding: 0 2.5cm 20px 2.5cm; text-align: left; background-color: white; }
+      .header-bottom-text {
+        background-color: var(--header-bottom-bg); padding: 8px 15px; font-weight: 700;
+        font-size: 8.5pt; color: var(--secondary-text); display: block; border-radius: 4px; 
+        margin-top: 10px;
+      }
+
+      .page:not(:first-child) .header-bottom-box { display: none; }
+      .page:not(:first-child) .header-top-box { margin-bottom: 20px; }
+
+      .content-wrapper { flex-grow: 1; padding-bottom: 20px; }
+
+      /* Titles & Lists */
+      .section-title {
+        font-size: 14pt; font-weight: 700; color: var(--header-title-color);
+        border-bottom: 2px solid var(--header-top-bg); padding-bottom: 5px; margin: 15px 0 10px 0;
+      }
+      ul.guide-list { padding-left: 20px; margin-top: 5px; }
+      ul.guide-list li { margin-bottom: 6px; }
+
+      /* Tables */
+      .summary-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+      .summary-table td { border: 1px solid var(--border-color); padding: 8px 12px; vertical-align: top; }
+      .summary-table .summary-table-header td { background-color: var(--table-header-bg); font-weight: 700; }
+      
+      /* Soal Card Metadata */
+      .soal-card { width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 1px solid var(--border-color); }
+      .soal-card td { border: 1px solid var(--border-color); padding: 6px 10px; font-size: 8.5pt; }
+      .soal-card td:first-child { font-weight: 700; background-color: var(--table-header-bg); width: 140px; color: var(--primary-text); }
+
+      /* Soal Layout */
+      .soal-pembahasan { display: flex; align-items: flex-start; gap: 8px; margin-top: 10px; }
+      .soal-nomor { font-weight: 900; min-width: 25px; font-size: 11pt; color: var(--ba-teal); }
+      .soal-konten { flex-grow: 1; text-align: justify; }
+      
+      .soal-konten ol { list-style-type: none; padding-left: 0; margin-top: 10px; }
+      .soal-konten ol li { margin-bottom: 8px; padding-left: 25px; position: relative; }
+      .soal-konten ol li::before {
+        content: attr(data-option) ". "; font-weight: bold; position: absolute; left: 0;
+      }
+
+      /* Pembahasan Box */
+      .pembahasan-detail {
+        margin-top: 15px; background-color: #f9f9f9; 
+        border-left: 4px solid var(--ba-teal);
+        padding: 15px; border-radius: 0 4px 4px 0;
+      }
+      .pembahasan-detail b { color: var(--ba-teal); }
+
+      /* Footer */
+      .page-footer {
+        display: flex; justify-content: space-between; align-items: center;
+        font-size: 5.5pt; color: var(--grey-text);
+        margin-top: auto; padding-top: 5px; 
+        border-top: 1px solid var(--grey-text);
+        width: 100%;
+        white-space: nowrap;
+      }
+
+      @media print {
+        @page { size: A4; margin: 0; }
+        body { background-color: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .page { box-shadow: none; margin: 0; width: 100%; height: 100%; page-break-after: always; }
+      }
+    </style>
+</head>
+<body>
+
+<!-- HALAMAN 1: COVER & OVERVIEW -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div>
+                <div class="header-title-main">Panduan Mengajar</div>
+                <div class="header-title-sub"><b>Matematika</b></div> 
+            </div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Brain Academy Logo" class="header-logo">
+        </div>
+        <div class="header-bottom-box">
+            <div class="header-bottom-text">
+                X SMA | Kurikulum Merdeka | Pendalaman Materi | Subtopik: Review Fungsi Kuadrat | Pertemuan 3
+            </div>
+        </div>
+    </header>
+
+    <div class="content-wrapper">
+        <table class="summary-table">
+            <tr class="summary-table-header"><td colspan="2">Belajar Apa Hari Ini</td></tr>
+            <tr><td colspan="2">Siswa akan mendalami karakteristik grafik fungsi kuadrat, teknik mengonstruksi fungsi dari data titik, serta menyelesaikan masalah optimalisasi nyata menggunakan konsep fungsi kuadrat.</td></tr>
+            
+            <tr class="summary-table-header"><td>Topik</td><td>Learning Objectives (LO)</td></tr>
+            <tr>
+                <td><b>Karakterisik Fungsi Kuadrat</b></td>
+                <td>
+                    <ul style="padding-left:15px; margin:0;">
+                        <li>Menentukan pengaruh koefisien $a$ (kecekungan), $b$ (sumbu simetri), dan $c$ (potong sumbu Y).</li>
+                        <li>Menyelidiki hubungan Diskriminan ($D$) dengan posisi kurva terhadap sumbu X.</li>
+                        <li>Menentukan titik puncak (maksimum/minimum) dan sumbu simetri.</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Mengonstruksi & Aplikasi</b></td>
+                <td>
+                    <ul style="padding-left:15px; margin:0;">
+                        <li>Menyusun fungsi kuadrat dari 3 titik, titik puncak, atau titik potong sumbu X.</li>
+                        <li>Menyelesaikan masalah kontekstual (luas maksimum, lintasan, dll).</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr class="summary-table-header"><td colspan="2">⭐ Rekap Starchamps</td></tr>
+            <tr><td colspan="2">100 ⭐ untuk 20 soal (5⭐ / soal)</td></tr>
+        </table>
+
+        <h2 class="section-title">Alur & Pertanyaan Pemantik</h2>
+        <ul class="guide-list">
+            <li><b>Visualisasi:</b> "Bayangkan melempar bola. Lintasan naiknya cepat, lalu melambat, berhenti sejenak di puncak, dan turun. Bagaimana kita menuliskan 'cerita' gerakan ini dalam matematika?"</li>
+            <li><b>Detektif Grafik:</b> "Tanpa menggambar, bisakah kamu menebak apakah sebuah grafik 'tersenyum' atau 'cemberut' hanya dari persamaannya?"</li>
+            <li><b>Strategi Dagang:</b> "Jika menaikkan harga tiket membuat penonton berkurang, di harga berapakah kita mendapatkan pemasukan paling banyak?"</li>
+        </ul>
+    </div>
+
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- ======================= SOAL & PEMBAHASAN LOOP ======================= -->
+
+<!-- SOAL 1 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card">
+            <tr><td>Topik</td><td>Fungsi Kuadrat</td></tr>
+            <tr><td>Sub Topik</td><td>Karakteristik Grafik</td></tr>
+            <tr><td>Level Kognitif</td><td>Analysis (L3)</td></tr>
+        </table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">1.</div>
+            <div class="soal-konten">
+                Perhatikan grafik fungsi kuadrat $f(x) = ax^2 + bx + c$ berikut ini.
+                <br>
+                <svg width="300" height="250" viewBox="0 0 300 250" style="border:1px solid #ddd; display:block; margin:10px auto; background-color: #fff;">
+                    <!-- Grid Lines & Axis -->
+                    <!-- Sumbu X (y=0 -> svg y=50) -->
+                    <line x1="20" y1="50" x2="280" y2="50" stroke="black" stroke-width="1.5"/>
+                    <text x="285" y="55" font-family="Montserrat" font-size="12">x</text>
+                    
+                    <!-- Sumbu Y (x=0 -> svg x=200) -->
+                    <line x1="200" y1="10" x2="200" y2="240" stroke="black" stroke-width="1.5"/>
+                    <text x="205" y="20" font-family="Montserrat" font-size="12">y</text>
+                    
+                    <!-- Origin -->
+                    <text x="205" y="45" font-family="Montserrat" font-size="10">0</text>
+
+                    <!-- Titik-titik Grid penting -->
+                    <!-- (-2, 0) -> x=140 -->
+                    <line x1="140" y1="45" x2="140" y2="55" stroke="black" stroke-width="1"/>
+                    <text x="135" y="40" font-family="Montserrat" font-size="10" text-anchor="middle">-2</text>
+                    
+                    <!-- (0, -1) -> y=80 -->
+                    <line x1="195" y1="80" x2="205" y2="80" stroke="black" stroke-width="1"/>
+                    <text x="215" y="85" font-family="Montserrat" font-size="10">-1</text>
+
+                    <!-- Kurva Parabola Biru -->
+                    <!-- M 80 200 (titik -4,-5) Q 140 -40 (control) 200 200 (titik 0,-5) -->
+                    <path d="M 80 200 Q 140 -40 200 200" fill="none" stroke="#00838f" stroke-width="2.5"/>
+                    
+                    <!-- Titik Puncak -->
+                    <circle cx="140" cy="80" r="3" fill="red"/>
+                    <text x="130" y="80" font-family="Montserrat" font-size="10" text-anchor="end" fill="red">P(-2, -1)</text>
+                </svg>
+                Pernyataan yang paling tepat mengenai nilai koefisien $a$, $b$, dan $c$ serta diskriminan $D$ dari grafik di atas adalah ...
+                <ol>
+                    <li data-option="A">$a < 0, b < 0, c < 0, D < 0$</li>
+                    <li data-option="B">$a < 0, b > 0, c < 0, D < 0$</li>
+                    <li data-option="C">$a < 0, b < 0, c > 0, D > 0$</li>
+                    <li data-option="D">$a > 0, b < 0, c < 0, D > 0$</li>
+                    <li data-option="E">$a < 0, b > 0, c < 0, D = 0$</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 1 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: A</b><br><br>
+            Mari kita bedah grafik tersebut satu per satu:
+            <ol>
+                <li><b>Arah Kurva ($a$):</b> Kurva terbuka ke bawah (seperti huruf 'n'). Ini menunjukkan bahwa koefisien $x^2$ bernilai negatif. Jadi, $a < 0$.</li>
+                <li><b>Titik Potong Sumbu Y ($c$):</b> Kurva memotong sumbu Y di bagian bawah sumbu X (nilai negatif). Dalam fungsi kuadrat, titik potong sumbu Y adalah $(0, c)$. Maka, $c < 0$.</li>
+                <li><b>Posisi Puncak ($b$):</b> Puncak berada di Kuadran III (kiri bawah). Artinya absis puncak ($x_p$) bernilai negatif.
+                    $$x_p = -\frac{b}{2a} < 0$$
+                    Karena kita sudah tahu $a$ negatif ($a<0$), maka penyebut ($2a$) negatif.
+                    Agar hasil pembagiannya negatif, maka pembilang ($b$) juga harus negatif (karena $-\frac{\text{negatif}}{\text{negatif}} = \text{negatif}$).
+                    Jadi, $b < 0$.
+                </li>
+                <li><b>Titik Potong Sumbu X ($D$):</b> Kurva sepenuhnya berada di bawah sumbu X dan tidak menyentuhnya sama sekali. Artinya, tidak ada akar real. Kondisi ini terjadi jika Diskriminan negatif ($D < 0$).</li>
+            </ol>
+            Kesimpulan: $a < 0, b < 0, c < 0, D < 0$.
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 2 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card">
+            <tr><td>Topik</td><td>Fungsi Kuadrat</td></tr>
+            <tr><td>Sub Topik</td><td>Hubungan Koefisien & Grafik</td></tr>
+            <tr><td>Level Kognitif</td><td>Evaluation (L3)</td></tr>
+        </table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">2.</div>
+            <div class="soal-konten">
+                Diketahui fungsi kuadrat $f(x) = x^2 - kx + 9$. Agar grafik fungsi tersebut menyinggung sumbu X dan berada sepenuhnya di atas sumbu X (kecuali titik singgung), nilai $k$ yang memenuhi adalah ...
+                <ol>
+                    <li data-option="A">$k = 6$</li>
+                    <li data-option="B">$k = -6$</li>
+                    <li data-option="C">$k = 3$ atau $k = -3$</li>
+                    <li data-option="D">$k = 6$ atau $k = -6$</li>
+                    <li data-option="E">Tidak ada nilai $k$ yang memenuhi</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 2 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: D</b><br><br>
+            Soal ini memberikan dua petunjuk visual:
+            <ol>
+                <li><b>Menyinggung Sumbu X:</b> Artinya grafik hanya "mencium" sumbu X di satu titik. Secara matematis, ini terjadi jika Diskriminan ($D$) sama dengan nol.
+                $$ D = b^2 - 4ac = 0 $$
+                Diketahui: $a=1, b=-k, c=9$.
+                $$ (-k)^2 - 4(1)(9) = 0 $$
+                $$ k^2 - 36 = 0 $$
+                $$ k^2 = 36 \Rightarrow k = 6 \text{ atau } k = -6 $$
+                </li>
+                <li><b>Berada di Atas Sumbu X:</b> Ini berarti grafik harus terbuka ke atas (seperti huruf U). Hal ini ditentukan oleh koefisien $a$. Pada soal, $a=1$ (positif), yang berarti syarat ini sudah otomatis terpenuhi.</li>
+            </ol>
+            Karena kedua nilai $k$ (baik 6 maupun -6) memenuhi syarat diskriminan nol dan grafiknya memang terbuka ke atas, maka kedua nilai tersebut benar.
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 3 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card">
+            <tr><td>Topik</td><td>Fungsi Kuadrat</td></tr>
+            <tr><td>Sub Topik</td><td>Definit Positif</td></tr>
+            <tr><td>Level Kognitif</td><td>Analysis (L3)</td></tr>
+        </table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">3.</div>
+            <div class="soal-konten">
+                Grafik fungsi kuadrat $y = (m-1)x^2 + 2mx + (m+2)$ akan selalu berada di atas sumbu X untuk rentang nilai $m$ ...
+                <ol>
+                    <li data-option="A">$m > \frac{2}{3}$</li>
+                    <li data-option="B">$m > 1$</li>
+                    <li data-option="C">$\frac{2}{3} < m < 1$</li>
+                    <li data-option="D">$m < -2$</li>
+                    <li data-option="E">$m > 2$</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 3 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: E</b><br><br>
+            Kondisi "selalu berada di atas sumbu X" dikenal dengan istilah <b>Definit Positif</b>. Bayangkan kurva yang melayang di angkasa. Agar ini terjadi, dua syarat wajib dipenuhi:
+            <ol>
+                <li><b>Kurva Terbuka ke Atas ($a > 0$):</b>
+                Koefisien $x^2$ harus positif.
+                $$ m - 1 > 0 \Rightarrow m > 1 \quad \dots(1) $$
+                </li>
+                <li><b>Tidak Menyentuh Sumbu X ($D < 0$):</b>
+                Diskriminan harus negatif agar tidak ada akar real.
+                $$ D = b^2 - 4ac < 0 $$
+                $$ (2m)^2 - 4(m-1)(m+2) < 0 $$
+                $$ 4m^2 - 4(m^2 + m - 2) < 0 $$
+                Bagi kedua ruas dengan 4:
+                $$ m^2 - (m^2 + m - 2) < 0 $$
+                $$ m^2 - m^2 - m + 2 < 0 $$
+                $$ -m + 2 < 0 $$
+                $$ 2 < m \Rightarrow m > 2 \quad \dots(2) $$
+                </li>
+            </ol>
+            Irisan dari syarat (1) $m>1$ dan syarat (2) $m>2$ adalah $m>2$.
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 4 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card">
+            <tr><td>Topik</td><td>Fungsi Kuadrat</td></tr>
+            <tr><td>Sub Topik</td><td>Konstruksi Fungsi (Puncak)</td></tr>
+            <tr><td>Level Kognitif</td><td>Application (L2)</td></tr>
+        </table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">4.</div>
+            <div class="soal-konten">
+                Sebuah parabola memiliki titik puncak $(2, -1)$ dan melalui titik $(0, 3)$. Persamaan parabola tersebut adalah ...
+                <ol>
+                    <li data-option="A">$y = x^2 - 4x + 3$</li>
+                    <li data-option="B">$y = x^2 + 4x + 3$</li>
+                    <li data-option="C">$y = 2x^2 - 8x + 3$</li>
+                    <li data-option="D">$y = x^2 - 2x + 3$</li>
+                    <li data-option="E">$y = -x^2 + 4x + 3$</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 4 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: A</b><br><br>
+            Jika diketahui titik puncak $(x_p, y_p)$, rumus tercepat adalah:
+            $$ y = a(x - x_p)^2 + y_p $$
+            <ol>
+                <li><b>Substitusi Puncak:</b> Puncak di $(2, -1)$, maka $x_p=2, y_p=-1$.
+                $$ y = a(x - 2)^2 - 1 $$
+                </li>
+                <li><b>Cari Nilai $a$:</b> Gunakan titik bantu $(0, 3)$. Ganti $x=0$ dan $y=3$.
+                $$ 3 = a(0 - 2)^2 - 1 $$
+                $$ 3 = 4a - 1 $$
+                $$ 4 = 4a \Rightarrow a = 1 $$
+                </li>
+                <li><b>Bentuk Persamaan Akhir:</b>
+                $$ y = 1(x - 2)^2 - 1 $$
+                $$ y = (x^2 - 4x + 4) - 1 $$
+                $$ y = x^2 - 4x + 3 $$
+                </li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 5 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card">
+            <tr><td>Topik</td><td>Fungsi Kuadrat</td></tr>
+            <tr><td>Sub Topik</td><td>Masalah Kontekstual</td></tr>
+            <tr><td>Level Kognitif</td><td>Analysis (L3)</td></tr>
+        </table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">5.</div>
+            <div class="soal-konten">
+                Seorang pemain basket melempar bola ke ring. Lintasan bola membentuk parabola dengan fungsi ketinggian $h(t) = -5t^2 + 10t + 2$ (dalam meter), di mana $t$ adalah waktu dalam detik. Tinggi maksimum yang dicapai bola adalah ...
+                <ol>
+                    <li data-option="A">5 meter</li>
+                    <li data-option="B">6 meter</li>
+                    <li data-option="C">7 meter</li>
+                    <li data-option="D">8 meter</li>
+                    <li data-option="E">10 meter</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 5 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: C</b><br><br>
+            Soal "tinggi maksimum" identik dengan mencari nilai $y$ pada titik puncak parabola.
+            Fungsi: $h(t) = -5t^2 + 10t + 2$. ($a=-5, b=10, c=2$).
+            <ol>
+                <li><b>Waktu mencapai puncak ($t_{puncak}$):</b>
+                Gunakan rumus sumbu simetri.
+                $$ t = -\frac{b}{2a} = -\frac{10}{2(-5)} = -\frac{10}{-10} = 1 \text{ detik} $$
+                </li>
+                <li><b>Tinggi Maksimum ($h_{maks}$):</b>
+                Substitusi $t=1$ ke persamaan fungsi.
+                $$ h(1) = -5(1)^2 + 10(1) + 2 $$
+                $$ h(1) = -5 + 10 + 2 = 7 \text{ meter} $$
+                </li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 6 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card">
+            <tr><td>Topik</td><td>Fungsi Kuadrat</td></tr>
+            <tr><td>Sub Topik</td><td>Konstruksi Fungsi (Potong X)</td></tr>
+            <tr><td>Level Kognitif</td><td>Application (L2)</td></tr>
+        </table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">6.</div>
+            <div class="soal-konten">
+                Fungsi kuadrat yang memotong sumbu X di titik $(-3, 0)$ dan $(5, 0)$ serta memotong sumbu Y di titik $(0, -30)$ adalah ...
+                <ol>
+                    <li data-option="A">$y = 2x^2 - 4x - 30$</li>
+                    <li data-option="B">$y = 2x^2 + 4x - 30$</li>
+                    <li data-option="C">$y = x^2 - 2x - 15$</li>
+                    <li data-option="D">$y = 2x^2 - 2x - 30$</li>
+                    <li data-option="E">$y = -2x^2 + 4x + 30$</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 6 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: A</b><br><br>
+            Jika diketahui titik potong sumbu X ($x_1$ dan $x_2$), gunakan rumus:
+            $$ y = a(x - x_1)(x - x_2) $$
+            <ol>
+                <li><b>Masukkan Akar-akarnya:</b> $x_1 = -3, x_2 = 5$.
+                $$ y = a(x + 3)(x - 5) $$
+                </li>
+                <li><b>Cari Nilai $a$:</b> Gunakan titik potong Y $(0, -30)$.
+                $$ -30 = a(0 + 3)(0 - 5) $$
+                $$ -30 = a(3)(-5) $$
+                $$ -30 = -15a \Rightarrow a = 2 $$
+                </li>
+                <li><b>Susun Persamaan:</b>
+                $$ y = 2(x + 3)(x - 5) $$
+                $$ y = 2(x^2 - 5x + 3x - 15) $$
+                $$ y = 2(x^2 - 2x - 15) $$
+                $$ y = 2x^2 - 4x - 30 $$
+                </li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 7 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card">
+            <tr><td>Topik</td><td>Fungsi Kuadrat</td></tr>
+            <tr><td>Sub Topik</td><td>Optimasi Geometri</td></tr>
+            <tr><td>Level Kognitif</td><td>HOTS (L3)</td></tr>
+        </table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">7.</div>
+            <div class="soal-konten">
+                Pak Budi memiliki kawat sepanjang 100 meter. Ia ingin memagar kebunnya yang berbentuk persegi panjang. Salah satu sisi kebun tersebut berbatasan dengan tembok rumah, sehingga sisi tersebut tidak perlu dipagar. Luas maksimum kebun yang dapat dipagar oleh Pak Budi adalah ...
+                <ol>
+                    <li data-option="A">625 m$^2$</li>
+                    <li data-option="B">1.250 m$^2$</li>
+                    <li data-option="C">2.500 m$^2$</li>
+                    <li data-option="D">1.000 m$^2$</li>
+                    <li data-option="E">500 m$^2$</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 7 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: B</b><br><br>
+            <ol>
+                <li><b>Modelkan Keliling Kawat:</b>
+                Kebun menempel tembok, jadi pagar hanya 3 sisi: 2 lebar ($l$) dan 1 panjang ($p$).
+                $$ 2l + p = 100 \Rightarrow p = 100 - 2l $$
+                </li>
+                <li><b>Fungsi Luas:</b>
+                $$ L = p \times l $$
+                $$ L(l) = (100 - 2l) \cdot l = 100l - 2l^2 $$
+                </li>
+                <li><b>Optimasi (Cari Puncak):</b>
+                Fungsi kuadrat terbuka ke bawah, maksimum ada di sumbu simetri.
+                $$ l = -\frac{b}{2a} = -\frac{100}{2(-2)} = 25 \text{ meter} $$
+                </li>
+                <li><b>Hitung Luas:</b>
+                $$ L = 100(25) - 2(25)^2 = 2500 - 1250 = 1250 \text{ m}^2 $$
+                </li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 8 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card">
+            <tr><td>Topik</td><td>Fungsi Kuadrat</td></tr>
+            <tr><td>Sub Topik</td><td>Hubungan Garis dan Parabola</td></tr>
+            <tr><td>Level Kognitif</td><td>Analysis (L3)</td></tr>
+        </table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">8.</div>
+            <div class="soal-konten">
+                Agar garis $y = 2x + n$ memotong parabola $y = x^2 - 4x + 3$ di dua titik yang berbeda, maka batasan nilai $n$ adalah ...
+                <ol>
+                    <li data-option="A">$n > -6$</li>
+                    <li data-option="B">$n < -6$</li>
+                    <li data-option="C">$n > 6$</li>
+                    <li data-option="D">$n < 6$</li>
+                    <li data-option="E">$n > -4$</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 8 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: A</b><br><br>
+            <ol>
+                <li><b>Samakan Kedua Persamaan:</b>
+                $$ x^2 - 4x + 3 = 2x + n $$
+                Pindahkan ke satu ruas:
+                $$ x^2 - 6x + (3 - n) = 0 $$
+                Ini adalah persamaan kuadrat gabungan dengan $a=1, b=-6, c=(3-n)$.
+                </li>
+                <li><b>Syarat Dua Titik Potong ($D > 0$):</b>
+                Agar memotong di dua titik, persamaan harus punya dua solusi real.
+                $$ b^2 - 4ac > 0 $$
+                $$ (-6)^2 - 4(1)(3 - n) > 0 $$
+                $$ 36 - 12 + 4n > 0 $$
+                $$ 24 + 4n > 0 $$
+                $$ 4n > -24 \Rightarrow n > -6 $$
+                </li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 9 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card">
+            <tr><td>Topik</td><td>Fungsi Kuadrat</td></tr>
+            <tr><td>Sub Topik</td><td>Konstruksi Fungsi (3 Titik)</td></tr>
+            <tr><td>Level Kognitif</td><td>Application (L2)</td></tr>
+        </table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">9.</div>
+            <div class="soal-konten">
+                Fungsi kuadrat yang grafiknya melalui titik $(-1, 0)$, $(1, -6)$, dan $(2, -6)$ adalah ...
+                <ol>
+                    <li data-option="A">$y = x^2 - 3x - 4$</li>
+                    <li data-option="B">$y = 2x^2 - 6x - 4$</li>
+                    <li data-option="C">$y = 2x^2 - 3x - 5$</li>
+                    <li data-option="D">$y = x^2 - 6x + 1$</li>
+                    <li data-option="E">$y = 2x^2 + 3x - 1$</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 9 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: A</b><br><br>
+            Gunakan SPLTV dengan bentuk umum $y = ax^2 + bx + c$.
+            <ol>
+                <li>Melalui $(-1, 0) \rightarrow a - b + c = 0$ (Pers 1)</li>
+                <li>Melalui $(1, -6) \rightarrow a + b + c = -6$ (Pers 2)</li>
+                <li>Melalui $(2, -6) \rightarrow 4a + 2b + c = -6$ (Pers 3)</li>
+            </ol>
+            Kurangkan (Pers 2) dan (Pers 1):
+            $(a+b+c) - (a-b+c) = -6 - 0 \Rightarrow 2b = -6 \Rightarrow b = -3$.
+            <br>
+            Substitusi $b=-3$ ke Pers 1: $a - (-3) + c = 0 \Rightarrow a + c = -3$.<br>
+            Substitusi $b=-3$ ke Pers 3: $4a - 6 + c = -6 \Rightarrow 4a + c = 0$.<br>
+            Eliminasi $(a+c=-3)$ dan $(4a+c=0)$ menghasilkan $3a=3 \Rightarrow a=1$.<br>
+            Cari $c$: $1 + c = -3 \Rightarrow c = -4$.<br>
+            Jadi: $y = x^2 - 3x - 4$.
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 10 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card">
+            <tr><td>Topik</td><td>Fungsi Kuadrat</td></tr>
+            <tr><td>Sub Topik</td><td>Pergeseran Grafik</td></tr>
+            <tr><td>Level Kognitif</td><td>Analysis (L3)</td></tr>
+        </table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">10.</div>
+            <div class="soal-konten">
+                Grafik fungsi $y = x^2$ digeser ke kanan sejauh 3 satuan dan ke bawah sejauh 2 satuan. Persamaan grafik yang baru adalah ...
+                <ol>
+                    <li data-option="A">$y = x^2 - 6x + 7$</li>
+                    <li data-option="B">$y = x^2 + 6x + 7$</li>
+                    <li data-option="C">$y = x^2 - 6x - 11$</li>
+                    <li data-option="D">$y = x^2 - 3x - 2$</li>
+                    <li data-option="E">$y = x^2 + 3x + 2$</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 10 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: A</b><br><br>
+            Konsep transformasi grafik:
+            <ol>
+                <li><b>Geser Horizontal (Kanan):</b> Mengganti $x$ dengan $(x - h)$. Geser kanan 3 satuan berarti $x \to (x-3)$.
+                Rumus jadi $y = (x-3)^2$.
+                </li>
+                <li><b>Geser Vertikal (Bawah):</b> Mengurangi hasil fungsi dengan $k$. Geser bawah 2 satuan berarti dikurangi 2.
+                Rumus jadi $y = (x-3)^2 - 2$.
+                </li>
+            </ol>
+            Uraikan:
+            $$ y = (x^2 - 6x + 9) - 2 $$
+            $$ y = x^2 - 6x + 7 $$
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 11 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card">
+            <tr><td>Topik</td><td>Fungsi Kuadrat</td></tr>
+            <tr><td>Sub Topik</td><td>Analisis Grafik</td></tr>
+            <tr><td>Level Kognitif</td><td>Analysis (L3)</td></tr>
+        </table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">11.</div>
+            <div class="soal-konten">
+                Jika fungsi $f(x) = ax^2 + bx + c$ memiliki titik puncak $(2, 5)$ dan $a > 0$, pernyataan manakah yang <b>salah</b>?
+                <ol>
+                    <li data-option="A">Nilai minimum fungsi adalah 5.</li>
+                    <li data-option="B">Grafik terbuka ke atas.</li>
+                    <li data-option="C">Sumbu simetri adalah $x = 2$.</li>
+                    <li data-option="D">Grafik memotong sumbu X di dua titik.</li>
+                    <li data-option="E">Grafik memotong sumbu Y di titik dengan ordinat positif.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 11 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: D</b><br><br>
+            Mari bayangkan grafiknya:
+            <ul>
+                <li>Karena $a > 0$, grafik <b>terbuka ke atas</b> (seperti mangkuk). Artinya titik puncak adalah titik <b>minimum</b>.</li>
+                <li>Puncak ada di $(2, 5)$. Artinya nilai terendah $y$ adalah 5.</li>
+                <li>Karena nilai terendah adalah 5 (di atas sumbu X) dan kurva naik ke atas, maka kurva <b>tidak mungkin</b> turun menyentuh sumbu X ($y=0$).</li>
+                <li>Jadi, pernyataan "Grafik memotong sumbu X di dua titik" adalah <b>SALAH</b>.</li>
+            </ul>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 12 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card">
+            <tr><td>Topik</td><td>Fungsi Kuadrat</td></tr>
+            <tr><td>Sub Topik</td><td>Optimasi Ekonomi</td></tr>
+            <tr><td>Level Kognitif</td><td>HOTS (L3)</td></tr>
+        </table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">12.</div>
+            <div class="soal-konten">
+                Sebuah perusahaan taksi menetapkan tarif berdasarkan fungsi kuadrat tertentu terhadap kecepatan rata-rata. Namun, dalam kasus sederhana, diketahui pendapatan total $R$ adalah hasil kali harga $p$ dan jumlah penumpang $x$. Jika hubungan antara harga dan jumlah penumpang adalah $p = 100 - 2x$, pendapatan maksimum yang bisa diperoleh adalah ...
+                <ol>
+                    <li data-option="A">1.250</li>
+                    <li data-option="B">2.500</li>
+                    <li data-option="C">1.000</li>
+                    <li data-option="D">500</li>
+                    <li data-option="E">2.000</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 12 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: A</b><br><br>
+            <ol>
+                <li><b>Fungsi Pendapatan ($R$):</b>
+                Pendapatan = Harga $\times$ Jumlah.
+                $$ R(x) = (100 - 2x) \cdot x = 100x - 2x^2 $$
+                </li>
+                <li><b>Cari Maksimum:</b>
+                Fungsi kuadrat ini terbuka ke bawah. Maksimum ada di sumbu simetri:
+                $$ x = -\frac{b}{2a} = -\frac{100}{2(-2)} = 25 $$
+                </li>
+                <li><b>Hitung Nilai:</b>
+                $$ R(25) = 100(25) - 2(25)^2 = 2500 - 1250 = 1250 $$
+                </li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 13 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card">
+            <tr><td>Topik</td><td>Fungsi Kuadrat</td></tr>
+            <tr><td>Sub Topik</td><td>Akar-akar dan Grafik</td></tr>
+            <tr><td>Level Kognitif</td><td>Understanding (L1)</td></tr>
+        </table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">13.</div>
+            <div class="soal-konten">
+                Jika grafik fungsi $y = x^2 - (a+3)x + (2a+2)$ menyinggung sumbu X, maka nilai $a$ yang mungkin adalah ...
+                <ol>
+                    <li data-option="A">$a=1$ atau $a=3$</li>
+                    <li data-option="B">$a=-1$ atau $a=3$</li>
+                    <li data-option="C">$a=1$ atau $a=-5$</li>
+                    <li data-option="D">$a=5$ atau $a=-1$</li>
+                    <li data-option="E">$a=1$</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 13 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: E</b><br><br>
+            Syarat menyinggung sumbu X adalah Diskriminan $D = 0$.
+            $$ b^2 - 4ac = 0 $$
+            $$ (-(a+3))^2 - 4(1)(2a+2) = 0 $$
+            $$ (a^2 + 6a + 9) - (8a + 8) = 0 $$
+            $$ a^2 - 2a + 1 = 0 $$
+            Faktorkan:
+            $$ (a - 1)^2 = 0 \Rightarrow a = 1 $$
+            Hanya ada satu solusi tunggal yaitu $a=1$.
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 14 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card">
+            <tr><td>Topik</td><td>Fungsi Kuadrat</td></tr>
+            <tr><td>Sub Topik</td><td>Jembatan Parabolik</td></tr>
+            <tr><td>Level Kognitif</td><td>HOTS (L3)</td></tr>
+        </table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">14.</div>
+            <div class="soal-konten">
+                Sebuah jembatan gantung memiliki kabel penahan berbentuk parabola. Jarak antar tiang penyangga adalah 100 meter. Titik terendah kabel berada 10 meter di atas permukaan jalan, sedangkan titik tertinggi kabel pada tiang penyangga berada 60 meter di atas permukaan jalan. Persamaan parabola yang mewakili kabel tersebut jika titik terendah adalah sumbu simetri di $x=0$ adalah ...
+                <ol>
+                    <li data-option="A">$y = \frac{1}{50}x^2 + 10$</li>
+                    <li data-option="B">$y = \frac{1}{20}x^2 + 10$</li>
+                    <li data-option="C">$y = 50x^2 + 10$</li>
+                    <li data-option="D">$y = \frac{1}{100}x^2 + 60$</li>
+                    <li data-option="E">$y = 0,05x^2 + 10$</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 14 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: A</b><br><br>
+            <ol>
+                <li><b>Titik Puncak:</b> Titik terendah ada di $x=0$ dengan tinggi 10m. Maka puncak $(0, 10)$. Rumus: $y = ax^2 + 10$.</li>
+                <li><b>Titik Tiang:</b> Jarak antar tiang 100m, berarti posisi tiang di $x=-50$ dan $x=50$. Tinggi tiang 60m. Maka kurva melalui $(50, 60)$.</li>
+                <li><b>Cari $a$:</b>
+                $$ 60 = a(50)^2 + 10 $$
+                $$ 50 = 2500a $$
+                $$ a = \frac{50}{2500} = \frac{1}{50} $$
+                </li>
+            </ol>
+            Jadi $y = \frac{1}{50}x^2 + 10$.
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 15 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card">
+            <tr><td>Topik</td><td>Fungsi Kuadrat</td></tr>
+            <tr><td>Sub Topik</td><td>Definit Negatif</td></tr>
+            <tr><td>Level Kognitif</td><td>Analysis (L3)</td></tr>
+        </table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">15.</div>
+            <div class="soal-konten">
+                Agar fungsi $f(x) = -x^2 + (p-2)x - 4$ bernilai selalu negatif untuk setiap $x \in \mathbb{R}$, maka nilai $p$ harus memenuhi ...
+                <ol>
+                    <li data-option="A">$-6 < p < 2$</li>
+                    <li data-option="B">$-2 < p < 6$</li>
+                    <li data-option="C">$p < -2$ atau $p > 6$</li>
+                    <li data-option="D">$p < -6$ atau $p > 2$</li>
+                    <li data-option="E">$p = 2$</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 15 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: B</b><br><br>
+            Syarat <b>Definit Negatif</b>:
+            <ol>
+                <li>$a < 0$: Sudah terpenuhi karena $a=-1$.</li>
+                <li>$D < 0$: Diskriminan harus negatif.
+                $$ (p-2)^2 - 4(-1)(-4) < 0 $$
+                $$ (p-2)^2 - 16 < 0 $$
+                $$ p^2 - 4p + 4 - 16 < 0 $$
+                $$ p^2 - 4p - 12 < 0 $$
+                Faktorkan: $(p-6)(p+2) < 0$.
+                Pembuat nol di $p=6$ dan $p=-2$.
+                Area negatif berada di antara kedua nilai tersebut: $-2 < p < 6$.
+                </li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 16 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card">
+            <tr><td>Topik</td><td>Fungsi Kuadrat</td></tr>
+            <tr><td>Sub Topik</td><td>Titik Balik</td></tr>
+            <tr><td>Level Kognitif</td><td>Understanding (L1)</td></tr>
+        </table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">16.</div>
+            <div class="soal-konten">
+                Koordinat titik balik dari grafik fungsi $y = 2x^2 - 8x + 11$ adalah ...
+                <ol>
+                    <li data-option="A">$(2, 3)$</li>
+                    <li data-option="B">$(2, 5)$</li>
+                    <li data-option="C">$(-2, 3)$</li>
+                    <li data-option="D">$(-2, 35)$</li>
+                    <li data-option="E">$(4, 11)$</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 16 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: A</b><br><br>
+            <ol>
+                <li>Sumbu Simetri ($x$): $x = -\frac{b}{2a} = -\frac{-8}{2(2)} = 2$.</li>
+                <li>Nilai Optimum ($y$): Substitusi $x=2$.
+                $$ y = 2(2)^2 - 8(2) + 11 $$
+                $$ y = 8 - 16 + 11 = 3 $$
+                </li>
+            </ol>
+            Titik balik: $(2, 3)$.
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 17 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card">
+            <tr><td>Topik</td><td>Fungsi Kuadrat</td></tr>
+            <tr><td>Sub Topik</td><td>Luas Segitiga di Bawah Kurva</td></tr>
+            <tr><td>Level Kognitif</td><td>HOTS (L3)</td></tr>
+        </table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">17.</div>
+            <div class="soal-konten">
+                Diketahui fungsi $y = 9 - x^2$. Sebuah segitiga dibuat dengan titik sudut di puncak parabola tersebut dan dua titik lainnya merupakan titik potong parabola dengan sumbu X. Luas segitiga tersebut adalah ...
+                <ol>
+                    <li data-option="A">9 satuan luas</li>
+                    <li data-option="B">18 satuan luas</li>
+                    <li data-option="C">27 satuan luas</li>
+                    <li data-option="D">36 satuan luas</li>
+                    <li data-option="E">54 satuan luas</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 17 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: C</b><br><br>
+            <ol>
+                <li><b>Titik Puncak (Tinggi):</b>
+                Fungsi $y = -x^2 + 9$. Puncak di $(0, 9)$. Jadi tinggi segitiga $= 9$.
+                </li>
+                <li><b>Titik Potong X (Alas):</b>
+                $9 - x^2 = 0 \Rightarrow x^2 = 9 \Rightarrow x = 3 \text{ dan } x = -3$.
+                Jarak antara -3 dan 3 adalah $6$ satuan. Jadi alas $= 6$.
+                </li>
+                <li><b>Hitung Luas:</b>
+                Luas $= \frac{1}{2} \cdot \text{alas} \cdot \text{tinggi} = \frac{1}{2} \cdot 6 \cdot 9 = 27$.
+                </li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 18 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card">
+            <tr><td>Topik</td><td>Fungsi Kuadrat</td></tr>
+            <tr><td>Sub Topik</td><td>Invers Masalah Puncak</td></tr>
+            <tr><td>Level Kognitif</td><td>Application (L2)</td></tr>
+        </table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">18.</div>
+            <div class="soal-konten">
+                Jika fungsi kuadrat $y = ax^2 + 6x + (a+1)$ mempunyai sumbu simetri $x = 3$, maka nilai maksimum fungsi tersebut adalah ...
+                <ol>
+                    <li data-option="A">1</li>
+                    <li data-option="B">3</li>
+                    <li data-option="C">5</li>
+                    <li data-option="D">9</li>
+                    <li data-option="E">18</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 18 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: D</b><br><br>
+            <ol>
+                <li><b>Cari $a$ dari sumbu simetri:</b>
+                $$ x = -\frac{b}{2a} \Rightarrow 3 = -\frac{6}{2a} $$
+                $$ 6a = -6 \Rightarrow a = -1 $$
+                </li>
+                <li><b>Susun Fungsi:</b>
+                Substitusi $a=-1$ ke fungsi: $y = -x^2 + 6x + (-1+1) \Rightarrow y = -x^2 + 6x$.
+                </li>
+                <li><b>Cari Nilai Maksimum:</b>
+                Terjadi di sumbu simetri $x=3$.
+                $$ y = -(3)^2 + 6(3) = -9 + 18 = 9 $$
+                </li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 19 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card">
+            <tr><td>Topik</td><td>Fungsi Kuadrat</td></tr>
+            <tr><td>Sub Topik</td><td>Analisis Koefisien C</td></tr>
+            <tr><td>Level Kognitif</td><td>Understanding (L1)</td></tr>
+        </table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">19.</div>
+            <div class="soal-konten">
+                Grafik fungsi $f(x) = 2x^2 + x - c$ memotong sumbu Y di titik $(0, -5)$. Nilai diskriminan fungsi tersebut adalah ...
+                <ol>
+                    <li data-option="A">1</li>
+                    <li data-option="B">21</li>
+                    <li data-option="C">40</li>
+                    <li data-option="D">41</li>
+                    <li data-option="E">25</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 19 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: D</b><br><br>
+            <ol>
+                <li><b>Identifikasi Konstanta:</b>
+                Titik potong sumbu Y adalah $(0, -5)$. Artinya konstanta fungsi tersebut adalah $-5$.
+                Fungsi di soal: $f(x) = 2x^2 + x - c$. Konstanta $= -c$.
+                Jadi $-c = -5 \Rightarrow c = 5$.
+                </li>
+                <li><b>Hitung Diskriminan:</b>
+                Fungsi utuh: $f(x) = 2x^2 + x - 5$. ($a=2, b=1, c=-5$).
+                $$ D = b^2 - 4ac = 1^2 - 4(2)(-5) = 1 + 40 = 41 $$
+                </li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 20 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card">
+            <tr><td>Topik</td><td>Fungsi Kuadrat</td></tr>
+            <tr><td>Sub Topik</td><td>Aplikasi Luas (Kandang)</td></tr>
+            <tr><td>Level Kognitif</td><td>HOTS (L3)</td></tr>
+        </table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">20.</div>
+            <div class="soal-konten">
+                Seorang peternak ingin membuat kandang ayam berbentuk persegi panjang di tepi sungai. Sisi yang berbatasan dengan sungai tidak perlu dipagar. Ia memiliki kawat sepanjang 24 meter. Luas maksimum kandang tersebut adalah ...
+                <ol>
+                    <li data-option="A">36 m$^2$</li>
+                    <li data-option="B">48 m$^2$</li>
+                    <li data-option="C">72 m$^2$</li>
+                    <li data-option="D">64 m$^2$</li>
+                    <li data-option="E">144 m$^2$</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 20 -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo">
+        </div>
+    </header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: C</b><br><br>
+            <ol>
+                <li><b>Model Matematika:</b>
+                Keliling pagar (3 sisi) $= 2l + p = 24$. Maka $p = 24 - 2l$.
+                </li>
+                <li><b>Fungsi Luas:</b>
+                $$ L = p \cdot l = (24 - 2l)l = 24l - 2l^2 $$
+                </li>
+                <li><b>Optimasi:</b>
+                Lebar optimal ($l$) ada di sumbu simetri:
+                $$ l = -\frac{24}{2(-2)} = -\frac{24}{-4} = 6 \text{ meter} $$
+                </li>
+                <li><b>Hitung Luas Maks:</b>
+                $$ p = 24 - 2(6) = 12 $$
+                $$ L = 12 \times 6 = 72 \text{ m}^2 $$
+                </li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span>
+    </footer>
+</section>
+
+</div>
+</body>
+</html>
