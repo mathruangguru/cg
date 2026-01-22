@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Mengajar - Matematika (Lingkaran)</title>
+    <!-- MathJax untuk render matematika -->
+    <script>
+        window.MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            packages: {'[+]': ['ams']}
+          },
+          svg: {
+            fontCache: 'global'
+          }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    
+    <!-- Font Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+      :root {
+        --primary-text: #333333;
+        --secondary-text: #555555;
+        --header-top-bg: #E0F7FA; 
+        --header-bottom-bg: #f0f0f0;
+        --header-title-color: #00838f; 
+        --table-header-bg: #e9e9e9;
+        --grey-text: #8d8e8d;
+        --ba-teal: #00838f;
+        --border-color: #dddddd;
+      }
+      
+      *, *::before, *::after { box-sizing: border-box; }
+
+      body {
+        font-family: 'Montserrat', sans-serif; font-size: 9pt; line-height: 1.6;
+        color: var(--primary-text); background-color: #e0e0e0; margin: 0; padding: 0;
+      }
+
+      body { counter-reset: page; }
+
+      .page {
+        background: white; width: 21cm; min-height: 29.7cm; padding: 1.8cm 2.5cm;
+        margin: 1cm auto; box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        position: relative; display: flex; flex-direction: column;
+        overflow: hidden;
+        counter-increment: page;
+        page-break-after: always;
+      }
+      
+      .page:last-child { page-break-after: auto; }
+
+      .page-number::after { content: counter(page); }
+
+      /* Header Style */
+      .page-header {
+        margin: -1.8cm -2.5cm 0 -2.5cm; flex-shrink: 0; position: relative; z-index: 10;
+      }
+
+      .header-top-box {
+        background-color: var(--header-top-bg);
+        padding: 15px 2.5cm;
+        display: flex; justify-content: space-between; align-items: center; 
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+      }
+      
+      .header-title-main { font-size: 18pt; font-weight: 700; color: var(--header-title-color); line-height: 1.2; }
+      .header-title-sub { font-size: 12pt; font-weight: 400; color: var(--primary-text); }
+      .header-logo { max-height: 50px; width: auto; }
+
+      /* Grey Header Box (Only for Page 1) */
+      .header-bottom-box { padding: 0 2.5cm 20px 2.5cm; text-align: left; background-color: white; }
+      .header-bottom-text {
+        background-color: var(--header-bottom-bg); padding: 8px 15px; font-weight: 700;
+        font-size: 8.5pt; color: var(--secondary-text); display: block; border-radius: 4px; 
+        margin-top: 10px;
+      }
+
+      .page:not(:first-child) .header-bottom-box { display: none; }
+      .page:not(:first-child) .header-top-box { margin-bottom: 20px; }
+
+      .content-wrapper { flex-grow: 1; padding-bottom: 20px; }
+
+      /* Titles & Lists */
+      .section-title {
+        font-size: 14pt; font-weight: 700; color: var(--header-title-color);
+        border-bottom: 2px solid var(--header-top-bg); padding-bottom: 5px; margin: 15px 0 10px 0;
+      }
+      ul.guide-list { padding-left: 20px; margin-top: 5px; }
+      ul.guide-list li { margin-bottom: 6px; }
+
+      /* Tables */
+      .summary-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+      .summary-table td { border: 1px solid var(--border-color); padding: 8px 12px; vertical-align: top; }
+      .summary-table .summary-table-header td { background-color: var(--table-header-bg); font-weight: 700; }
+      
+      /* Soal Card Metadata */
+      .soal-card { width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 1px solid var(--border-color); }
+      .soal-card td { border: 1px solid var(--border-color); padding: 6px 10px; font-size: 8.5pt; }
+      .soal-card td:first-child { font-weight: 700; background-color: var(--table-header-bg); width: 140px; color: var(--primary-text); }
+
+      /* Soal Layout */
+      .soal-pembahasan { display: flex; align-items: flex-start; gap: 8px; margin-top: 10px; }
+      .soal-nomor { font-weight: 900; min-width: 25px; font-size: 11pt; color: var(--ba-teal); }
+      .soal-konten { flex-grow: 1; text-align: justify; }
+      
+      .soal-konten ol { list-style-type: none; padding-left: 0; margin-top: 10px; }
+      .soal-konten ol li { margin-bottom: 8px; padding-left: 25px; position: relative; }
+      .soal-konten ol li::before {
+        content: attr(data-option) ". "; font-weight: bold; position: absolute; left: 0;
+      }
+
+      /* Pembahasan Box */
+      .pembahasan-detail {
+        margin-top: 15px; background-color: #f9f9f9; 
+        border-left: 4px solid var(--ba-teal);
+        padding: 15px; border-radius: 0 4px 4px 0;
+      }
+      .pembahasan-detail b { color: var(--ba-teal); }
+
+      /* SVG Styles */
+      .svg-container {
+        display: block;
+        margin: 10px auto;
+        border: 1px solid #eee;
+        background-color: #fff;
+      }
+      
+      /* Image Styles */
+      .question-image {
+        display: block;
+        margin: 15px auto;
+        max-width: 100%;
+        max-height: 250px;
+        height: auto;
+      }
+      
+      text { font-family: 'Montserrat', sans-serif; font-size: 10px; }
+
+      /* Footer */
+      .page-footer {
+        display: flex; justify-content: space-between; align-items: center;
+        font-size: 5.5pt; color: var(--grey-text);
+        margin-top: auto; padding-top: 5px; 
+        border-top: 1px solid var(--grey-text);
+        width: 100%;
+        white-space: nowrap;
+      }
+
+      @media print {
+        @page { size: A4; margin: 0; }
+        body { background-color: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .page { box-shadow: none; margin: 0; width: 100%; height: 100%; page-break-after: always; }
+      }
+    </style>
+</head>
+<body>
+
+<!-- HALAMAN 1: COVER & OVERVIEW -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div>
+                <div class="header-title-main">Panduan Mengajar</div>
+                <div class="header-title-sub"><b>Matematika</b></div> 
+            </div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Brain Academy Logo" class="header-logo">
+        </div>
+        <div class="header-bottom-box">
+            <div class="header-bottom-text">
+                X SMA | Kurikulum Merdeka | Bank Soal | Subtopik: Review Materi Lingkaran (HOTS)
+            </div>
+        </div>
+    </header>
+
+    <div class="content-wrapper">
+        <table class="summary-table">
+            <tr class="summary-table-header"><td colspan="2">Cakupan Materi</td></tr>
+            <tr><td colspan="2">Siswa akan mereview dan memperdalam pemahaman mengenai geometri lingkaran, mulai dari unsur dasar hingga penerapan teorema kompleks.</td></tr>
+            
+            <tr class="summary-table-header"><td>Topik</td><td>Detail Materi</td></tr>
+            <tr>
+                <td><b>Unsur & Sudut</b></td>
+                <td>
+                    <ul style="padding-left:15px; margin:0;">
+                        <li>Unsur-unsur Lingkaran (Busur, Tali Busur, Apotema, Juring, Tembereng)</li>
+                        <li>Hubungan Sudut Pusat dan Sudut Keliling</li>
+                        <li>Segiempat Tali Busur</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Garis Singgung & Luas</b></td>
+                <td>
+                    <ul style="padding-left:15px; margin:0;">
+                        <li>Sifat Garis Singgung, GSPL, GSPD</li>
+                        <li>Panjang Busur, Luas Juring, dan Tembereng</li>
+                        <li>Penerapan Teorema Lingkaran dalam Pemecahan Masalah (HOTS)</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr class="summary-table-header"><td colspan="2">⭐ Rekap Starchamps</td></tr>
+            <tr><td colspan="2">100 ⭐ untuk 20 soal (5⭐ / soal)</td></tr>
+        </table>
+
+        <h2 class="section-title">Alur & Pertanyaan Pemantik</h2>
+        <ul class="guide-list">
+            <li><b>Identifikasi:</b> "Jika tali busur digeser mendekati pusat, apa yang terjadi dengan panjangnya? Bagaimana jika tegak lurus dengan jari-jari?"</li>
+            <li><b>Relasi Sudut:</b> "Bayangkan posisi penendang bola di tepi lapangan melengkung. Apakah sudut tembakannya sama jika ia bergeser di sepanjang garis lengkung tersebut?"</li>
+            <li><b>Aplikasi Nyata:</b> "Bagaimana menghitung panjang rantai sepeda yang menghubungkan dua gir dengan ukuran berbeda?"</li>
+        </ul>
+    </div>
+
+    <footer class="page-footer">
+        <span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- ======================= PAKET 1: SOAL 1 & PEMBAHASAN 1 ======================= -->
+<!-- SOAL 1 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Lingkaran</td></tr><tr><td>Sub Topik</td><td>Unsur-unsur Lingkaran</td></tr><tr><td>Level Kognitif</td><td>Understanding (L1)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">1.</div>
+            <div class="soal-konten">
+                Perhatikan gambar lingkaran berikut dengan pusat di titik $O$.
+                <svg width="200" height="200" viewBox="0 0 200 200" class="svg-container">
+                    <circle cx="100" cy="100" r="80" stroke="black" stroke-width="2" fill="none"/>
+                    <circle cx="100" cy="100" r="2" fill="black"/>
+                    <text x="100" y="115" text-anchor="middle">O</text>
+                    <line x1="30.72" y1="60" x2="169.28" y2="60" stroke="black" stroke-width="2"/>
+                    <line x1="100" y1="100" x2="100" y2="60" stroke="black" stroke-width="2"/>
+                    <line x1="100" y1="100" x2="169.28" y2="60" stroke="black" stroke-width="2"/>
+                    <text x="175" y="60">A</text>
+                    <text x="20" y="60">B</text>
+                    <text x="90" y="55">C</text>
+                    <polyline points="100,70 110,70 110,60" fill="none" stroke="black"/>
+                </svg>
+                Ruas garis $OC$ tegak lurus terhadap ruas garis $AB$. Dalam geometri lingkaran, ruas garis $OC$ disebut sebagai ...
+                <ol><li data-option="A">Tali busur</li><li data-option="B">Jari-jari</li><li data-option="C">Apotema</li><li data-option="D">Diameter</li><li data-option="E">Busur</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<!-- PEMBAHASAN 1 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan (Soal 1)</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: C</b><br><br>
+            Identifikasi unsur-unsur pada gambar adalah sebagai berikut:
+            <ol>
+                <li>Titik $O$ adalah <b>pusat lingkaran</b>.</li>
+                <li>Ruas garis $AB$ yang menghubungkan dua titik pada keliling lingkaran disebut <b>tali busur</b>.</li>
+                <li>Ruas garis $OC$ ditarik dari pusat lingkaran tegak lurus ke tali busur. Ruas garis terpendek yang menghubungkan pusat dengan tali busur ini disebut <b>Apotema</b>.</li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= PAKET 2: SOAL 2 & PEMBAHASAN 2 ======================= -->
+<!-- SOAL 2 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Lingkaran</td></tr><tr><td>Sub Topik</td><td>Sudut Pusat dan Keliling</td></tr><tr><td>Level Kognitif</td><td>Application (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">2.</div>
+            <div class="soal-konten">
+                Diketahui titik $O$ adalah pusat lingkaran. Titik $A, B,$ dan $C$ terletak pada keliling lingkaran sedemikian sehingga besar sudut pusat $\angle AOC = (3x - 15)^\circ$ dan sudut keliling $\angle ABC = (x + 10)^\circ$.
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_zlczky_8640.png" alt="Soal 2" class="question-image">
+                Jika kedua sudut tersebut menghadap busur yang sama (busur minor AC), maka nilai $x$ adalah ...
+                <ol><li data-option="A">35</li><li data-option="B">45</li><li data-option="C">65</li><li data-option="D">70</li><li data-option="E">75</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<!-- PEMBAHASAN 2 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan (Soal 2)</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: A</b><br><br>
+            Berdasarkan teorema lingkaran, besar sudut pusat adalah dua kali besar sudut keliling jika keduanya menghadap busur yang sama.
+            \begin{align*}
+                \angle AOC &= 2 \times \angle ABC \\
+                3x - 15 &= 2(x + 10) \\
+                3x - 15 &= 2x + 20 \\
+                3x - 2x &= 20 + 15 \\
+                x &= 35
+            \end{align*}
+            Jadi, nilai $x$ adalah 35.
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= PAKET 3: SOAL 3 & PEMBAHASAN 3 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Lingkaran</td></tr><tr><td>Sub Topik</td><td>Segiempat Tali Busur</td></tr><tr><td>Level Kognitif</td><td>Analysis (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">3.</div>
+            <div class="soal-konten">
+                Perhatikan gambar segiempat tali busur $PQRS$ di bawah ini.
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_hthted_7448.png" alt="Soal 3" class="question-image">
+                Diketahui besar sudut $\angle SPQ = 2x^\circ$, $\angle QRS = 110^\circ$, $\angle PQR = y^\circ$, dan $\angle PSR = 85^\circ$. Nilai $x + y$ adalah ...
+                <ol><li data-option="A">120</li><li data-option="B">130</li><li data-option="C">135</li><li data-option="D">140</li><li data-option="E">145</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan (Soal 3)</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: B</b><br><br>
+            Sifat utama segiempat tali busur adalah jumlah sudut yang saling berhadapan sama dengan $180^\circ$.<br>
+            1) $\angle SPQ$ berhadapan dengan $\angle QRS$:
+            $$2x + 110 = 180 \Rightarrow 2x = 70 \Rightarrow x = 35$$
+            2) $\angle PQR$ berhadapan dengan $\angle PSR$:
+            $$y + 85 = 180 \Rightarrow y = 95$$
+            3) Nilai $x + y$:
+            $$x + y = 35 + 95 = 130$$
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= PAKET 4: SOAL 4 & PEMBAHASAN 4 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Lingkaran</td></tr><tr><td>Sub Topik</td><td>Sudut Antara Tali Busur</td></tr><tr><td>Level Kognitif</td><td>HOTS (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">4.</div>
+            <div class="soal-konten">
+                Dua tali busur $AC$ dan $BD$ berpotongan di dalam lingkaran pada titik $P$. Jika besar $\angle ABD = 40^\circ$ dan $\angle BAC = 30^\circ$, berapakah besar $\angle APD$?
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_nj9yvh_2680.png" alt="Soal 4" class="question-image">
+                <ol><li data-option="A">$70^\circ$</li><li data-option="B">$90^\circ$</li><li data-option="C">$100^\circ$</li><li data-option="D">$110^\circ$</li><li data-option="E">$120^\circ$</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan (Soal 4)</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: A</b><br><br>
+            Kita dapat menggunakan sifat sudut luar segitiga untuk menyelesaikan soal ini.
+            <ol>
+                <li>Perhatikan segitiga $ABP$. Sudut-sudut dalamnya adalah $\angle ABP = 40^\circ$ dan $\angle BAP = 30^\circ$.</li>
+                <li>Sudut $\angle APD$ adalah sudut luar dari segitiga $ABP$ di titik $P$.</li>
+                <li>Besar sudut luar segitiga sama dengan jumlah dua sudut dalam yang tidak bersisian dengannya.</li>
+            </ol>
+            $$\angle APD = \angle ABP + \angle BAP = 40^\circ + 30^\circ = 70^\circ$$
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= PAKET 5: SOAL 5 & PEMBAHASAN 5 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Lingkaran</td></tr><tr><td>Sub Topik</td><td>Garis Singgung Lingkaran (Sifat)</td></tr><tr><td>Level Kognitif</td><td>Understanding (L1)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">5.</div>
+            <div class="soal-konten">
+                Titik $P$ berada di luar lingkaran yang berpusat di $O$. Garis $PA$ menyinggung lingkaran di titik $A$. Jika panjang jari-jari lingkaran 7 cm dan panjang garis singgung $PA$ adalah 24 cm, maka jarak dari titik $P$ ke pusat lingkaran $O$ adalah ...
+                <ol><li data-option="A">20 cm</li><li data-option="B">25 cm</li><li data-option="C">30 cm</li><li data-option="D">31 cm</li><li data-option="E">49 cm</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan (Soal 5)</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: B</b><br><br>
+            Berdasarkan sifat garis singgung, garis singgung selalu tegak lurus dengan jari-jari di titik singgung. Maka terbentuk segitiga siku-siku $OAP$.
+            <ul>
+                <li>$OA = 7$ cm (sisi siku-siku/jari-jari)</li>
+                <li>$PA = 24$ cm (sisi siku-siku/garis singgung)</li>
+                <li>$OP = ?$ (sisi miring)</li>
+            </ul>
+            Menggunakan Pythagoras:
+            $$OP = \sqrt{OA^2 + PA^2} = \sqrt{7^2 + 24^2} = \sqrt{49 + 576} = \sqrt{625} = 25 \text{ cm}$$
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= PAKET 6: SOAL 6 & PEMBAHASAN 6 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Lingkaran</td></tr><tr><td>Sub Topik</td><td>Layang-layang Garis Singgung</td></tr><tr><td>Level Kognitif</td><td>HOTS (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">6.</div>
+            <div class="soal-konten">
+                Dari titik $T$ di luar lingkaran, ditarik dua garis singgung $TA$ dan $TB$ dengan $A$ dan $B$ adalah titik singgung pada lingkaran yang berpusat di $O$.
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_mzg5cf_1190.png" alt="Soal 6" class="question-image">
+                Jika sudut $\angle ATB = 60^\circ$ dan panjang jari-jari lingkaran 10 cm, maka luas layang-layang $OATB$ adalah ...
+                <ol><li data-option="A">$50\sqrt{3}$</li><li data-option="B">$100\sqrt{3}$</li><li data-option="C">$150$</li><li data-option="D">$200$</li><li data-option="E">$100$</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan (Soal 6)</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: B</b><br><br>
+            Segiempat $OATB$ merupakan layang-layang garis singgung.<br>
+            1) Garis $OT$ membagi sudut $\angle ATB$ menjadi dua sama besar, jadi $\angle OTA = 30^\circ$.<br>
+            2) Pada $\Delta OAT$ (siku-siku di A):
+            $$\tan(30^\circ) = \frac{OA}{AT} \Rightarrow \frac{1}{\sqrt{3}} = \frac{10}{AT} \Rightarrow AT = 10\sqrt{3}$$
+            3) Luas Layang-layang = $2 \times \text{Luas } \Delta OAT$:
+            $$2 \times (\frac{1}{2} \times 10 \times 10\sqrt{3}) = 100\sqrt{3} \text{ cm}^2$$
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= PAKET 7: SOAL 7 & PEMBAHASAN 7 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Lingkaran</td></tr><tr><td>Sub Topik</td><td>Tali Busur dan Apotema</td></tr><tr><td>Level Kognitif</td><td>Application (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">7.</div>
+            <div class="soal-konten">
+                Sebuah lingkaran memiliki diameter 40 cm. Sebuah tali busur panjangnya 32 cm. Panjang apotema (jarak pusat ke tali busur) lingkaran tersebut adalah ...
+                <ol><li data-option="A">10 cm</li><li data-option="B">12 cm</li><li data-option="C">15 cm</li><li data-option="D">16 cm</li><li data-option="E">20 cm</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan (Soal 7)</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: B</b><br><br>
+            Apotema membentuk segitiga siku-siku bersama jari-jari dan setengah panjang tali busur.
+            <ul>
+                <li>Jari-jari ($r$) = $20$ cm.</li>
+                <li>Setengah tali busur = $16$ cm.</li>
+            </ul>
+            $$a = \sqrt{r^2 - (\text{setengah tali})^2} = \sqrt{20^2 - 16^2} = \sqrt{400 - 256} = \sqrt{144} = 12 \text{ cm}$$
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= PAKET 8: SOAL 8 & PEMBAHASAN 8 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Lingkaran</td></tr><tr><td>Sub Topik</td><td>Garis Singgung Persekutuan Luar (GSPL)</td></tr><tr><td>Level Kognitif</td><td>Application (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">8.</div>
+            <div class="soal-konten">
+                Dua buah lingkaran memiliki jari-jari masing-masing 14 cm dan 4 cm. Jika jarak kedua titik pusat lingkaran tersebut adalah 26 cm, panjang garis singgung persekutuan luar (GSPL) kedua lingkaran adalah ...
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_v4cmrg_65.png" alt="Soal 8" class="question-image">
+                <ol><li data-option="A">22 cm</li><li data-option="B">24 cm</li><li data-option="C">25 cm</li><li data-option="D">26 cm</li><li data-option="E">28 cm</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan (Soal 8)</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: B</b><br><br>
+            Rumus GSPL: $l = \sqrt{p^2 - (R - r)^2}$.<br>
+            Diketahui: $p = 26$, $R = 14$, $r = 4$.
+            $$l = \sqrt{26^2 - (14 - 4)^2} = \sqrt{26^2 - 10^2} = \sqrt{676 - 100} = \sqrt{576} = 24 \text{ cm}$$
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= PAKET 9: SOAL 9 & PEMBAHASAN 9 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Lingkaran</td></tr><tr><td>Sub Topik</td><td>Soal Cerita (Rantai)</td></tr><tr><td>Level Kognitif</td><td>HOTS (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">9.</div>
+            <div class="soal-konten">
+                Dua buah roda dililit oleh sebuah rantai seperti pada sistem katrol. Jari-jari roda pertama 15 cm dan roda kedua 5 cm. Jarak antara kedua pusat roda adalah 40 cm. Berapakah panjang rantai lurus yang menyinggung kedua roda tersebut (salah satu sisi saja)?
+                <ol><li data-option="A">$20\sqrt{3}$</li><li data-option="B">$10\sqrt{15}$</li><li data-option="C">$40$</li><li data-option="D">$30$</li><li data-option="E">$20$</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan (Soal 9)</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: B</b><br><br>
+            Bagian rantai lurus pada sistem katrol identik dengan Garis Singgung Persekutuan Luar (GSPL).<br>
+            $R=15, r=5, p=40$.
+            $$l = \sqrt{40^2 - (15-5)^2} = \sqrt{1600 - 100} = \sqrt{1500} = 10\sqrt{15} \text{ cm}$$
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= PAKET 10: SOAL 10 & PEMBAHASAN 10 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Lingkaran</td></tr><tr><td>Sub Topik</td><td>Garis Singgung Persekutuan Dalam (GSPD)</td></tr><tr><td>Level Kognitif</td><td>Application (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">10.</div>
+            <div class="soal-konten">
+                Panjang garis singgung persekutuan dalam dua lingkaran adalah 24 cm. Jika panjang jari-jari salah satu lingkaran 6 cm dan jarak kedua pusat lingkaran 26 cm, maka panjang jari-jari lingkaran lainnya adalah ...
+                <ol><li data-option="A">2 cm</li><li data-option="B">3 cm</li><li data-option="C">4 cm</li><li data-option="D">5 cm</li><li data-option="E">8 cm</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan (Soal 10)</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: C</b><br><br>
+            Rumus GSPD: $d = \sqrt{p^2 - (R + r)^2}$.<br>
+            Diketahui $d=24, p=26, R=6$.
+            $$24^2 = 26^2 - (6+r)^2$$
+            $$576 = 676 - (6+r)^2$$
+            $$(6+r)^2 = 100 \Rightarrow 6+r = 10 \Rightarrow r = 4 \text{ cm}$$
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= PAKET 11: SOAL 11 & PEMBAHASAN 11 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Lingkaran</td></tr><tr><td>Sub Topik</td><td>Hubungan Sudut dan Luas Juring</td></tr><tr><td>Level Kognitif</td><td>Understanding (L1)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">11.</div>
+            <div class="soal-konten">
+                Pada sebuah lingkaran, terdapat dua juring, yaitu juring AOB dan juring COD. Jika luas juring AOB adalah 50 cm$^2$ dengan sudut pusat $40^\circ$, dan sudut pusat juring COD adalah $120^\circ$, maka luas juring COD adalah ...
+                <ol><li data-option="A">100 cm$^2$</li><li data-option="B">120 cm$^2$</li><li data-option="C">150 cm$^2$</li><li data-option="D">200 cm$^2$</li><li data-option="E">300 cm$^2$</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan (Soal 11)</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: C</b><br><br>
+            Perbandingan luas juring sebanding dengan perbandingan sudut pusatnya.
+            $$\frac{L_{COD}}{L_{AOB}} = \frac{120^\circ}{40^\circ} = 3$$
+            $$L_{COD} = 3 \times 50 = 150 \text{ cm}^2$$
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= PAKET 12: SOAL 12 & PEMBAHASAN 12 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Lingkaran</td></tr><tr><td>Sub Topik</td><td>Panjang Busur</td></tr><tr><td>Level Kognitif</td><td>Application (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">12.</div>
+            <div class="soal-konten">
+                Sebuah lingkaran memiliki jari-jari 21 cm. Panjang busur di hadapan sudut pusat $60^\circ$ adalah ... (Gunakan $\pi = \frac{22}{7}$)
+                <ol><li data-option="A">11 cm</li><li data-option="B">22 cm</li><li data-option="C">33 cm</li><li data-option="D">44 cm</li><li data-option="E">66 cm</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan (Soal 12)</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: B</b><br><br>
+            $$PB = \frac{60}{360} \times 2 \pi r$$
+            $$PB = \frac{1}{6} \times 2 \times \frac{22}{7} \times 21 = \frac{1}{6} \times 132 = 22 \text{ cm}$$
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= PAKET 13: SOAL 13 & PEMBAHASAN 13 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Lingkaran</td></tr><tr><td>Sub Topik</td><td>Segi-n Garis Singgung</td></tr><tr><td>Level Kognitif</td><td>HOTS (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">13.</div>
+            <div class="soal-konten">
+                Sebuah segitiga $ABC$ memiliki lingkaran dalam yang menyinggung sisi $AB, BC,$ dan $AC$ masing-masing di titik $D, E,$ dan $F$. Jika panjang $AD = 6$ cm, $BE = 8$ cm, dan $CF = 10$ cm, maka keliling segitiga $ABC$ adalah ...
+                <ol><li data-option="A">24 cm</li><li data-option="B">36 cm</li><li data-option="C">48 cm</li><li data-option="D">54 cm</li><li data-option="E">60 cm</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan (Soal 13)</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: C</b><br><br>
+            Garis singgung yang ditarik dari satu titik di luar lingkaran ke titik singgung memiliki panjang yang sama.
+            <ul>
+                <li>Dari A: $AF = AD = 6$</li>
+                <li>Dari B: $BD = BE = 8$</li>
+                <li>Dari C: $CE = CF = 10$</li>
+            </ul>
+            Keliling = $2 \times (6 + 8 + 10) = 48 \text{ cm}$.
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= PAKET 14: SOAL 14 & PEMBAHASAN 14 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Lingkaran</td></tr><tr><td>Sub Topik</td><td>Tiga Lingkaran Bersinggungan</td></tr><tr><td>Level Kognitif</td><td>HOTS (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">14.</div>
+            <div class="soal-konten">
+                Tiga buah lingkaran dengan pusat $A, B,$ dan $C$ saling bersinggungan di luar. Jari-jari lingkaran $A$ adalah 5 cm, lingkaran $B$ adalah 7 cm, dan lingkaran $C$ adalah 10 cm. Keliling segitiga yang dibentuk oleh ketiga titik pusat $A, B,$ dan $C$ adalah ...
+                <ol><li data-option="A">22 cm</li><li data-option="B">33 cm</li><li data-option="C">44 cm</li><li data-option="D">50 cm</li><li data-option="E">66 cm</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan (Soal 14)</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: C</b><br><br>
+            Sisi segitiga dibentuk oleh penjumlahan jari-jari.
+            <ul>
+                <li>$AB = 5 + 7 = 12$</li>
+                <li>$BC = 7 + 10 = 17$</li>
+                <li>$AC = 5 + 10 = 15$</li>
+            </ul>
+            Keliling = $12 + 17 + 15 = 44 \text{ cm}$.
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= PAKET 15: SOAL 15 & PEMBAHASAN 15 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Lingkaran</td></tr><tr><td>Sub Topik</td><td>Wacana - Sabuk Lilitan</td></tr><tr><td>Level Kognitif</td><td>HOTS (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">15.</div>
+            <div class="soal-konten">
+                Tiga buah pipa paralon berbentuk tabung dengan diameter masing-masing 14 cm diikat erat menjadi satu bundel (seperti bentuk segitiga).
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_iv1agc_6669.png" alt="Soal 15" class="question-image">
+                Panjang tali minimal yang dibutuhkan untuk mengikat ketiga pipa tersebut satu kali putaran adalah ...
+                <ol><li data-option="A">$42 + 14\pi$</li><li data-option="B">$42 + 28\pi$</li><li data-option="C">$28 + 14\pi$</li><li data-option="D">$14 + 14\pi$</li><li data-option="E">$42\pi$</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan (Soal 15)</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: A</b><br><br>
+            Untuk menghitung panjang tali minimal pengikat $n$ lingkaran yang identik:
+            <ol>
+                <li><b>Bagian Lurus:</b> 3 sisi lurus, panjangnya sama dengan diameter ($D$).
+                Total lurus = $3 \times 14 = 42$ cm.</li>
+                <li><b>Bagian Melengkung:</b> Total lengkungan selalu membentuk 1 keliling lingkaran penuh.
+                Keliling = $\pi \times 14 = 14\pi$.</li>
+            </ol>
+            Total = $42 + 14\pi$.
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= PAKET 16: SOAL 16 & PEMBAHASAN 16 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Lingkaran</td></tr><tr><td>Sub Topik</td><td>Luas Tembereng</td></tr><tr><td>Level Kognitif</td><td>HOTS (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">16.</div>
+            <div class="soal-konten">
+                Pada lingkaran dengan pusat $O$ dan jari-jari 10 cm, terdapat tali busur $AB$ yang panjangnya $10\sqrt{2}$ cm. 
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_rpyajj_2020.png" alt="Soal 16" class="question-image">
+                Luas tembereng minor yang dibatasi oleh busur $AB$ dan tali busur $AB$ adalah ... (Gunakan $\pi = 3,14$)
+                <ol><li data-option="A">28,5 cm$^2$</li><li data-option="B">39,25 cm$^2$</li><li data-option="C">50 cm$^2$</li><li data-option="D">78,5 cm$^2$</li><li data-option="E">100 cm$^2$</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan (Soal 16)</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: A</b><br><br>
+            1) Cek Pythagoras: $10^2 + 10^2 = 100 + 100 = 200$. $(10\sqrt{2})^2 = 200$. Karena sama, maka segitiga siku-siku di pusat ($90^\circ$).<br>
+            2) Luas Juring = $\frac{1}{4} \times 3,14 \times 10^2 = 78,5$.<br>
+            3) Luas Segitiga = $\frac{1}{2} \times 10 \times 10 = 50$.<br>
+            4) Luas Tembereng = $78,5 - 50 = 28,5 \text{ cm}^2$.
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= PAKET 17: SOAL 17 & PEMBAHASAN 17 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Lingkaran</td></tr><tr><td>Sub Topik</td><td>Geometri Analitik Dasar</td></tr><tr><td>Level Kognitif</td><td>Application (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">17.</div>
+            <div class="soal-konten">
+                Persamaan lingkaran dengan pusat $(0,0)$ dan menyinggung garis $3x + 4y - 20 = 0$ adalah ...
+                <ol><li data-option="A">$x^2 + y^2 = 4$</li><li data-option="B">$x^2 + y^2 = 9$</li><li data-option="C">$x^2 + y^2 = 16$</li><li data-option="D">$x^2 + y^2 = 20$</li><li data-option="E">$x^2 + y^2 = 25$</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan (Soal 17)</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: C</b><br><br>
+            Jari-jari lingkaran adalah jarak titik $(0,0)$ ke garis $3x+4y-20=0$.
+            $$r = \left| \frac{3(0) + 4(0) - 20}{\sqrt{3^2 + 4^2}} \right| = \left| \frac{-20}{5} \right| = |-4| = 4$$
+            Persamaan: $x^2 + y^2 = r^2 \Rightarrow x^2 + y^2 = 16$.
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= PAKET 18: SOAL 18 & PEMBAHASAN 18 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Lingkaran</td></tr><tr><td>Sub Topik</td><td>Kuasa Titik (Intersecting Chords)</td></tr><tr><td>Level Kognitif</td><td>Application (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">18.</div>
+            <div class="soal-konten">
+                Tali busur $AB$ dan $CD$ berpotongan di titik $P$ di dalam lingkaran. Jika $AP = 4$ cm, $PB = 3$ cm, dan $CP = 2$ cm, maka panjang $PD$ adalah ...
+                <ol><li data-option="A">4 cm</li><li data-option="B">5 cm</li><li data-option="C">6 cm</li><li data-option="D">8 cm</li><li data-option="E">12 cm</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan (Soal 18)</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: C</b><br><br>
+            Sifat perpotongan tali busur: hasil kali segmennya sama.
+            $$AP \times PB = CP \times PD$$
+            $$4 \times 3 = 2 \times PD$$
+            $$12 = 2 \times PD \Rightarrow PD = 6 \text{ cm}$$
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= PAKET 19: SOAL 19 & PEMBAHASAN 19 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Lingkaran</td></tr><tr><td>Sub Topik</td><td>Keliling Bangun Datar</td></tr><tr><td>Level Kognitif</td><td>HOTS (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">19.</div>
+            <div class="soal-konten">
+                Sebuah juring lingkaran dengan sudut pusat $90^\circ$ dipotong dari sebuah lingkaran berjari-jari 10 cm. Keliling juring tersebut adalah ...
+                <ol><li data-option="A">$5\pi$ cm</li><li data-option="B">$5\pi + 10$ cm</li><li data-option="C">$5\pi + 20$ cm</li><li data-option="D">$10\pi$ cm</li><li data-option="E">$10\pi + 20$ cm</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan (Soal 19)</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: C</b><br><br>
+            Keliling juring = Panjang Busur + 2 Jari-jari.
+            1) Busur: $\frac{90}{360} \times 2\pi(10) = \frac{1}{4} \times 20\pi = 5\pi$.<br>
+            2) Total: $5\pi + 10 + 10 = 5\pi + 20$.
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= PAKET 20: SOAL 20 & PEMBAHASAN 20 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Lingkaran</td></tr><tr><td>Sub Topik</td><td>Wacana Kompleks - Taman</td></tr><tr><td>Level Kognitif</td><td>HOTS (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">20.</div>
+            <div class="soal-konten">
+                Seorang arsitek taman merancang sebuah kolam berbentuk lingkaran dengan diameter 20 meter. Di tengah kolam terdapat pulau kecil berbentuk lingkaran konsentris (pusat sama) dengan diameter 10 meter. Area di antara pulau dan tepian kolam akan ditanami teratai.
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_mkx2xl_2440.png" alt="Soal 20" class="question-image">
+                Luas area tanaman teratai tersebut adalah ...
+                <ol><li data-option="A">$25\pi$ m$^2$</li><li data-option="B">$50\pi$ m$^2$</li><li data-option="C">$75\pi$ m$^2$</li><li data-option="D">$100\pi$ m$^2$</li><li data-option="E">$300\pi$ m$^2$</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan (Soal 20)</h2>
+        <div class="pembahasan-detail">
+            <b>Jawaban: C</b><br><br>
+            Area cincin = Luas Besar - Luas Kecil.
+            1) $R = 20/2 = 10 \Rightarrow L_B = 100\pi$.<br>
+            2) $r = 10/2 = 5 \Rightarrow L_K = 25\pi$.<br>
+            3) Area = $100\pi - 25\pi = 75\pi$.
+        </div>
+    </div>
+    <footer class="page-footer"><span><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i></span><span class="page-number"></span></footer>
+</section>
+
+</body>
+</html>
