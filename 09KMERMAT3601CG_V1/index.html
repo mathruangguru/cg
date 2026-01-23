@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Mengajar - Matematika (Barisan & Transformasi)</title>
+    <!-- MathJax untuk render matematika -->
+    <script>
+        window.MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            packages: {'[+]': ['ams']}
+          },
+          svg: {
+            fontCache: 'global'
+          }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    
+    <!-- Font Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+      :root {
+        --primary-text: #333333;
+        --secondary-text: #555555;
+        --header-top-bg: #E0F7FA; 
+        --header-bottom-bg: #f0f0f0;
+        --header-title-color: #00838f; 
+        --table-header-bg: #e9e9e9;
+        --grey-text: #8d8e8d;
+        --ba-teal: #00838f;
+        --border-color: #dddddd;
+        --correct-color: #2e7d32; /* Green for correct answers */
+      }
+      
+      *, *::before, *::after { box-sizing: border-box; }
+
+      body {
+        font-family: 'Montserrat', sans-serif; font-size: 9pt; line-height: 1.6;
+        color: var(--primary-text); background-color: #e0e0e0; margin: 0; padding: 0;
+      }
+
+      body { counter-reset: page; }
+
+      .page {
+        background: white; width: 21cm; min-height: 29.7cm; padding: 1.8cm 2.5cm;
+        margin: 1cm auto; box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        position: relative; display: flex; flex-direction: column;
+        overflow: hidden;
+        counter-increment: page;
+        page-break-after: always;
+      }
+      
+      .page:last-child { page-break-after: auto; }
+
+      .page-number::after { content: counter(page); }
+
+      /* Header Style */
+      .page-header {
+        margin: -1.8cm -2.5cm 0 -2.5cm; flex-shrink: 0; position: relative; z-index: 10;
+      }
+
+      .header-top-box {
+        background-color: var(--header-top-bg);
+        padding: 15px 2.5cm;
+        display: flex; justify-content: space-between; align-items: center; 
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+      }
+      
+      .header-title-main { font-size: 18pt; font-weight: 700; color: var(--header-title-color); line-height: 1.2; }
+      .header-title-sub { font-size: 12pt; font-weight: 400; color: var(--primary-text); }
+      .header-logo { max-height: 50px; width: auto; }
+
+      /* Grey Header Box (Only for Page 1) */
+      .header-bottom-box { padding: 0 2.5cm 20px 2.5cm; text-align: left; background-color: white; }
+      .header-bottom-text {
+        background-color: var(--header-bottom-bg); padding: 8px 15px; font-weight: 700;
+        font-size: 8.5pt; color: var(--secondary-text); display: block; border-radius: 4px; 
+        margin-top: 10px;
+      }
+
+      .page:not(:first-child) .header-bottom-box { display: none; }
+      .page:not(:first-child) .header-top-box { margin-bottom: 20px; }
+
+      .content-wrapper { flex-grow: 1; padding-bottom: 20px; }
+
+      /* Titles & Lists */
+      .section-title {
+        font-size: 14pt; font-weight: 700; color: var(--header-title-color);
+        border-bottom: 2px solid var(--header-top-bg); padding-bottom: 5px; margin: 15px 0 10px 0;
+      }
+      ul.guide-list { padding-left: 20px; margin-top: 5px; }
+      ul.guide-list li { margin-bottom: 6px; }
+
+      /* Tables */
+      .summary-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+      .summary-table td { border: 1px solid var(--border-color); padding: 8px 12px; vertical-align: top; }
+      .summary-table .summary-table-header td { background-color: var(--table-header-bg); font-weight: 700; }
+      
+      /* Soal Card Metadata */
+      .soal-card { width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 1px solid var(--border-color); }
+      .soal-card td { border: 1px solid var(--border-color); padding: 6px 10px; font-size: 8.5pt; }
+      .soal-card td:first-child { font-weight: 700; background-color: var(--table-header-bg); width: 140px; color: var(--primary-text); }
+
+      /* Soal Layout */
+      .soal-pembahasan { display: flex; align-items: flex-start; gap: 8px; margin-top: 10px; }
+      .soal-nomor { font-weight: 900; min-width: 25px; font-size: 11pt; color: var(--ba-teal); }
+      .soal-konten { flex-grow: 1; text-align: justify; }
+      
+      .soal-konten ol { list-style-type: none; padding-left: 0; margin-top: 10px; }
+      .soal-konten ol li { margin-bottom: 8px; padding-left: 25px; position: relative; }
+      .soal-konten ol li::before {
+        content: attr(data-option) ". "; font-weight: bold; position: absolute; left: 0;
+      }
+      
+      /* Checkboxes Style for Complex MCQ */
+      .checkbox-item { margin-bottom: 5px; display: flex; gap: 8px; align-items: center; }
+      .checkbox-box { width: 16px; height: 16px; border: 1px solid #333; display: inline-block; flex-shrink: 0; background: #fff; text-align: center; line-height: 14px; font-weight: bold; color: var(--correct-color); }
+      
+      /* Styles for Answer Key Visuals */
+      .checkbox-item.correct .checkbox-box { border-color: var(--correct-color); background-color: #e8f5e9; }
+      .checkbox-item.correct .checkbox-box::after { content: "✓"; }
+      .checkbox-item.correct { color: var(--correct-color); font-weight: 600; }
+      
+      /* Table in Question */
+      .question-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 9pt; }
+      .question-table th, .question-table td { border: 1px solid #ccc; padding: 5px; text-align: center; }
+      .question-table th { background-color: #f0f0f0; }
+      .question-table td.left-align { text-align: left; }
+      
+      /* Table Answer Key Visuals */
+      .question-table td.correct-mark { color: var(--correct-color); font-weight: bold; background-color: #e8f5e9; }
+
+      /* Pembahasan Box (Narrative Style) */
+      .pembahasan-detail {
+        margin-top: 15px; background-color: #f0f8ff; 
+        border-left: 4px solid var(--ba-teal);
+        padding: 20px; border-radius: 0 4px 4px 0;
+      }
+      .pembahasan-detail h4 { margin-top: 0; margin-bottom: 10px; color: var(--ba-teal); font-size: 11pt; }
+      .pembahasan-detail b { color: #333; }
+      .pembahasan-detail p { margin-bottom: 10px; text-align: justify; }
+
+      /* SVG Styles */
+      .svg-container {
+        display: block;
+        margin: 15px auto;
+        border: 1px solid #eee;
+        background-color: #fff;
+        max-width: 100%;
+      }
+      
+      /* Question Image Style */
+      .question-image {
+        display: block;
+        margin: 15px 0;
+        max-width: 100%;
+        max-height: 200px;
+        height: auto;
+        border: 1px solid #eee;
+      }
+
+      text { font-family: 'Montserrat', sans-serif; font-size: 10px; }
+
+      /* Footer */
+      .page-footer {
+        display: flex; justify-content: space-between; align-items: center;
+        font-size: 5.5pt; color: var(--grey-text);
+        margin-top: auto; padding-top: 5px; 
+        border-top: 1px solid var(--grey-text);
+        width: 100%;
+        white-space: nowrap;
+      }
+
+      @media print {
+        @page { size: A4; margin: 0; }
+        body { background-color: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .page { box-shadow: none; margin: 0; width: 100%; height: 100%; page-break-after: always; }
+      }
+    </style>
+</head>
+<body>
+
+<!-- HALAMAN 1: COVER & OVERVIEW -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div>
+                <div class="header-title-main">Panduan Mengajar</div>
+                <div class="header-title-sub"><b>Matematika</b></div> 
+            </div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Brain Academy Logo" class="header-logo">
+        </div>
+        <div class="header-bottom-box">
+            <div class="header-bottom-text">
+                IX SMP | Kurikulum Merdeka | Bank Soal | Subtopik: Barisan, Deret, dan Transformasi Geometri
+            </div>
+        </div>
+    </header>
+
+    <div class="content-wrapper">
+        <table class="summary-table">
+            <tr class="summary-table-header"><td colspan="2">Cakupan Materi</td></tr>
+            <tr><td colspan="2">Siswa akan mengerjakan soal-soal latihan yang mencakup pola bilangan, barisan aritmetika & geometri, serta berbagai jenis transformasi geometri (translasi, refleksi, rotasi, dilatasi).</td></tr>
+            
+            <tr class="summary-table-header"><td>Topik</td><td>Detail Materi</td></tr>
+            <tr>
+                <td><b>Barisan & Deret</b></td>
+                <td>
+                    <ul style="padding-left:15px; margin:0;">
+                        <li>Pola Bilangan (Aritmetika Tingkat Dua)</li>
+                        <li>Barisan & Deret Aritmetika Kontekstual</li>
+                        <li>Barisan Geometri & Pertumbuhan Eksponensial</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Transformasi Geometri</b></td>
+                <td>
+                    <ul style="padding-left:15px; margin:0;">
+                        <li>Translasi (Pergeseran) Titik dan Garis</li>
+                        <li>Refleksi (Pencerminan) Terhadap Sumbu dan Garis</li>
+                        <li>Rotasi (Perputaran) dan Dilatasi (Perkalian)</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr class="summary-table-header"><td colspan="2">⭐ Rekap Starchamps</td></tr>
+            <tr><td colspan="2">100 ⭐ untuk 20 soal (5⭐ / soal)</td></tr>
+        </table>
+
+        <h2 class="section-title">Alur & Pertanyaan Pemantik</h2>
+        <ul class="guide-list">
+            <li><b>Pola Bilangan:</b> "Jika kamu menyusun batu bata dengan pola tertentu, bisakah kamu menebak jumlah batu bata di lapisan ke-100 tanpa menghitung satu per satu?"</li>
+            <li><b>Transformasi:</b> "Apa yang berubah dan apa yang tetap ketika kamu melihat wajahmu di cermin datar? Bagaimana jika cerminnya ada di lantai?"</li>
+            <li><b>Aplikasi:</b> "Bagaimana bakteri berkembang biak? Pola matematika apa yang bisa memprediksi jumlah bakteri setelah beberapa jam?"</li>
+        </ul>
+    </div>
+
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- ======================= PAKET 1: SOAL 1 & PEMBAHASAN 1 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Barisan & Deret</td></tr><tr><td>Sub Topik</td><td>Pola Bilangan</td></tr><tr><td>Level Kognitif</td><td>Application (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">1.</div>
+            <div class="soal-konten">
+                Seorang arsitek sedang merancang susunan keramik lantai dengan pola warna tertentu. Barisan jumlah keramik berwarna hitam pada setiap baris mengikuti pola: $3, 8, 15, 24, \dots$. Jika pola tersebut berlanjut, berapakah banyaknya keramik hitam pada baris ke-10?
+                <ol><li data-option="A">99</li><li data-option="B">120</li><li data-option="C">143</li><li data-option="D">168</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: B (120)</h4>
+            <p><b>Konsep Dasar:</b> Soal ini meminta kita menemukan pola dari urutan angka. Pola bisa berupa penjumlahan tetap (aritmetika), perkalian tetap (geometri), atau hubungan khusus dengan urutannya (pola persegi panjang).</p>
+            <p><b>Analisis Langkah demi Langkah:</b><br>
+            Mari kita tuliskan barisannya: $3, 8, 15, 24, \dots$</p>
+            <p>Coba kita periksa hubungan antara <i>urutan suku</i> ($n$) dengan <i>nilainya</i>:</p>
+            <ul>
+                <li>Suku ke-1 ($n=1$): Nilainya 3. Kita bisa melihat $3 = 1 \times 3$.</li>
+                <li>Suku ke-2 ($n=2$): Nilainya 8. Kita bisa melihat $8 = 2 \times 4$.</li>
+                <li>Suku ke-3 ($n=3$): Nilainya 15. Kita bisa melihat $15 = 3 \times 5$.</li>
+                <li>Suku ke-4 ($n=4$): Nilainya 24. Kita bisa melihat $24 = 4 \times 6$.</li>
+            </ul>
+            <p>Apakah Anda melihat polanya? Angka pengalinya selalu 2 lebih besar dari urutannya ($n$). Jika urutannya $n$, maka pengalinya adalah $(n+2)$.<br>
+            Jadi, rumus umumnya adalah: <b>$U_n = n \times (n + 2)$</b>.</p>
+            <p><b>Perhitungan Akhir:</b><br>
+            Kita diminta mencari banyak keramik pada baris ke-10. Artinya, kita ganti $n$ dengan 10.<br>
+            $U_{10} = 10 \times (10 + 2)$<br>
+            $U_{10} = 10 \times 12 = 120$.<br>
+            Jadi, terdapat 120 keramik pada baris ke-10.</p>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= SOAL 2 & PEMBAHASAN 2 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Barisan & Deret</td></tr><tr><td>Sub Topik</td><td>Barisan Aritmetika</td></tr><tr><td>Level Kognitif</td><td>Analysis (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">2.</div>
+            <div class="soal-konten">
+                Di sebuah gedung pertunjukan, susunan kursi diatur sedemikian rupa. Baris paling depan terdiri dari 12 kursi, baris kedua 15 kursi, baris ketiga 18 kursi, dan seterusnya selalu bertambah 3 kursi. Diketahui gedung tersebut memuat 15 baris kursi.<br>
+                Manakah pernyataan berikut yang <b>benar</b>? (Jawaban bisa lebih dari satu)
+                <div class="checkbox-item"><span class="checkbox-box"></span> Banyak kursi pada baris ke-10 adalah 40 kursi.</div>
+                <div class="checkbox-item"><span class="checkbox-box"></span> Banyak kursi pada baris terakhir (baris ke-15) adalah 54 kursi.</div>
+                <div class="checkbox-item"><span class="checkbox-box"></span> Selisih jumlah kursi baris ke-15 dan baris ke-1 adalah 42 kursi.</div>
+                <div class="checkbox-item"><span class="checkbox-box"></span> Kapasitas total gedung tersebut adalah 495 kursi.</div>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban Benar:</h4>
+            <div class="checkbox-item"><span class="checkbox-box"></span> Banyak kursi pada baris ke-10 adalah 40 kursi. (SALAH)</div>
+            <div class="checkbox-item correct"><span class="checkbox-box"></span> Banyak kursi pada baris terakhir (baris ke-15) adalah 54 kursi.</div>
+            <div class="checkbox-item correct"><span class="checkbox-box"></span> Selisih jumlah kursi baris ke-15 dan baris ke-1 adalah 42 kursi.</div>
+            <div class="checkbox-item correct"><span class="checkbox-box"></span> Kapasitas total gedung tersebut adalah 495 kursi.</div>
+            <br>
+            <p><b>Konsep Dasar:</b><br>
+            Karena jumlah kursi bertambah dengan jumlah yang <i>tetap</i> (selalu tambah 3), ini adalah masalah <b>Barisan Aritmetika</b>.<br>
+            Suku pertama ($a$) = 12, Beda ($b$) = 3, Total baris ($n$) = 15.</p>
+            <p><b>Analisis Pernyataan:</b></p>
+            <ol>
+                <li><i>Cek jumlah kursi baris ke-10 ($U_{10}$):</i><br>
+                Rumus: $U_n = a + (n-1)b$.<br>
+                $U_{10} = 12 + (9 \times 3) = 12 + 27 = 39$. Pernyataan "40 kursi" <b>Salah</b>.</li>
+                <li><i>Cek jumlah kursi baris terakhir ($U_{15}$):</i><br>
+                $U_{15} = 12 + (14 \times 3) = 12 + 42 = 54$. Pernyataan <b>Benar</b>.</li>
+                <li><i>Cek selisih baris terakhir dan pertama:</i><br>
+                $54 - 12 = 42$. Pernyataan <b>Benar</b>.</li>
+                <li><i>Cek kapasitas total gedung ($S_{15}$):</i><br>
+                Ini berarti menjumlahkan seluruh kursi. Pakai rumus deret: $S_n = \frac{n}{2}(a + U_n)$.<br>
+                $S_{15} = \frac{15}{2}(12 + 54) = \frac{15}{2}(66) = 15 \times 33 = 495$. Pernyataan <b>Benar</b>.</li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= SOAL 3 & PEMBAHASAN 3 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Barisan & Deret</td></tr><tr><td>Sub Topik</td><td>Barisan Geometri</td></tr><tr><td>Level Kognitif</td><td>Evaluation (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">3.</div>
+            <div class="soal-konten">
+                Selembar kertas dipotong menjadi 2 bagian sama besar. Kemudian setiap bagian dipotong lagi menjadi 2 bagian sama besar, dan seterusnya.<br>
+                Tentukan kebenaran pernyataan berikut.
+                <table class="question-table">
+                    <tr><th>No</th><th>Pernyataan</th><th>Benar</th><th>Salah</th></tr>
+                    <tr><td>1</td><td class="left-align">Banyak potongan kertas setelah pemotongan ke-5 adalah 32 potong.</td><td>O</td><td>O</td></tr>
+                    <tr><td>2</td><td class="left-align">Situasi ini merupakan penerapan barisan aritmetika dengan beda 2.</td><td>O</td><td>O</td></tr>
+                    <tr><td>3</td><td class="left-align">Jika kertas mula-mula memiliki luas 1 m$^2$, luas satu potongan kecil setelah pemotongan ke-4 adalah $\frac{1}{16}$ m$^2$.</td><td>O</td><td>O</td></tr>
+                    <tr><td>4</td><td class="left-align">Pola pertambahan jumlah potongan kertas membentuk barisan geometri dengan rasio 2.</td><td>O</td><td>O</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Kunci Jawaban:</h4>
+            <table class="question-table">
+                <tr><th>No</th><th>Pernyataan</th><th>Benar</th><th>Salah</th></tr>
+                <tr><td>1</td><td class="left-align">Banyak potongan kertas setelah pemotongan ke-5 adalah 32 potong.</td><td class="correct-mark">✔</td><td></td></tr>
+                <tr><td>2</td><td class="left-align">Situasi ini merupakan penerapan barisan aritmetika dengan beda 2.</td><td></td><td class="correct-mark">✔</td></tr>
+                <tr><td>3</td><td class="left-align">Jika kertas mula-mula memiliki luas 1 m$^2$, luas satu potongan kecil setelah pemotongan ke-4 adalah $\frac{1}{16}$ m$^2$.</td><td class="correct-mark">✔</td><td></td></tr>
+                <tr><td>4</td><td class="left-align">Pola pertambahan jumlah potongan kertas membentuk barisan geometri dengan rasio 2.</td><td class="correct-mark">✔</td><td></td></tr>
+            </table>
+            <br>
+            
+            <p><b>Konsep Dasar:</b><br>
+            Bayangkan selembar kertas. Saat dipotong 1 kali, kertas jadi 2 bagian. Saat setiap bagian dipotong lagi, jumlahnya jadi 4. Lalu 8. Polanya adalah $2, 4, 8, \dots$. Ini adalah perkalian berulang dengan angka 2 (Barisan Geometri).</p>
+            
+            <p><b>Analisis Pernyataan:</b></p>
+            <ol>
+                <li><i>Banyak potongan setelah pemotongan ke-5.</i><br>
+                Polanya perpangkatan 2. Potongan ke-5 adalah $2^5 = 32$. (Benar).</li>
+                <li><i>Ini adalah barisan aritmetika.</i><br>
+                Salah. Barisan aritmetika cirinya adalah penjumlahan tetap. Di sini polanya perkalian. (Salah).</li>
+                <li><i>Luas satu potongan kecil setelah pemotongan ke-4.</i><br>
+                Setelah 4 kali potong, jumlah kertasnya menjadi $2^4 = 16$ potong. 1 kertas besar dibagi rata menjadi 16 potongan kecil. Maka luas satu potongannya adalah $\frac{1}{16}$ bagian. (Benar).</li>
+                <li><i>Membentuk barisan geometri dengan rasio 2.</i><br>
+                Karena setiap langkah jumlah kertasnya menjadi "dua kali lipat", maka rasio pengalinya adalah 2. (Benar).</li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= SOAL 4 & PEMBAHASAN 4 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Barisan & Deret</td></tr><tr><td>Sub Topik</td><td>Deret Aritmetika</td></tr><tr><td>Level Kognitif</td><td>Understanding (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">4.</div>
+            <div class="soal-konten">
+                Diketahui jumlah $n$ suku pertama suatu deret aritmetika dirumuskan dengan $S_n = 2n^2 + 3n$. Nilai dari suku ke-10 ($U_{10}$) deret tersebut adalah ...
+                <ol><li data-option="A">41</li><li data-option="B">43</li><li data-option="C">230</li><li data-option="D">253</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: A (41)</h4>
+            <p><b>Konsep Dasar:</b><br>
+            Soal ini memberikan rumus "Jumlah total" ($S_n$), tapi menanyakan nilai "Suku tertentu" ($U_{10}$), bukan jumlahnya. Logikanya: Jika kita ingin tahu nilai suku ke-10 saja, kita bisa menghitung jumlah total 10 suku, lalu mengurangi jumlah 9 suku sebelumnya.<br>
+            Rumus: $U_{10} = S_{10} - S_{9}$.</p>
+            <p><b>Perhitungan Langkah demi Langkah:</b></p>
+            <ol>
+                <li>Hitung jumlah 10 suku pertama ($S_{10}$):<br>
+                $S_{10} = 2(10)^2 + 3(10) = 200 + 30 = 230$.</li>
+                <li>Hitung jumlah 9 suku pertama ($S_{9}$):<br>
+                $S_{9} = 2(9)^2 + 3(9) = 162 + 27 = 189$.</li>
+                <li>Kurangkan untuk dapat suku ke-10:<br>
+                $U_{10} = 230 - 189 = 41$.</li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= SOAL 5 & PEMBAHASAN 5 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Barisan & Deret</td></tr><tr><td>Sub Topik</td><td>Barisan Geometri (Fisika)</td></tr><tr><td>Level Kognitif</td><td>Application (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">5.</div>
+            <div class="soal-konten">
+                Sebuah bola dijatuhkan dari ketinggian 4 meter. Setiap kali memantul menyentuh lantai, bola tersebut mencapai ketinggian $\frac{3}{4}$ dari ketinggian sebelumnya. Berapakah ketinggian bola pada pantulan ke-3?
+                <ol><li data-option="A">$\frac{27}{16}$ meter</li><li data-option="B">$\frac{27}{64}$ meter</li><li data-option="C">$\frac{81}{64}$ meter</li><li data-option="D">$\frac{9}{4}$ meter</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: A ($\frac{27}{16}$ meter)</h4>
+            <p><b>Konsep Dasar:</b><br>
+            Bola memantul dengan ketinggian yang terus berkurang mengikuti rasio perkalian $\frac{3}{4}$. Ini adalah masalah barisan geometri. Ketinggian awal ($h_0$) = 4 meter.</p>
+            <p><b>Simulasi Langkah demi Langkah:</b><br>
+            Mari kita ikuti perjalanan bola tersebut.</p>
+            <ul>
+                <li><b>Awal:</b> Bola dijatuhkan dari 4 meter.</li>
+                <li><b>Pantulan ke-1:</b> Bola naik setinggi $\frac{3}{4}$ dari posisi awal.<br>
+                $h_1 = 4 \times \frac{3}{4} = 3$ meter.</li>
+                <li><b>Pantulan ke-2:</b> Bola naik lagi setinggi $\frac{3}{4}$ dari posisi sebelumnya (3 meter).<br>
+                $h_2 = 3 \times \frac{3}{4} = \frac{9}{4}$ meter.</li>
+                <li><b>Pantulan ke-3:</b> Bola naik lagi setinggi $\frac{3}{4}$ dari posisi terakhir.<br>
+                $h_3 = \frac{9}{4} \times \frac{3}{4} = \frac{27}{16}$ meter.</li>
+            </ul>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= SOAL 6 & PEMBAHASAN 6 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Transformasi Geometri</td></tr><tr><td>Sub Topik</td><td>Translasi (Pergeseran)</td></tr><tr><td>Level Kognitif</td><td>Application (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">6.</div>
+            <div class="soal-konten">
+                Titik $A(2, -5)$ digeser oleh translasi $T = \binom{a}{b}$ sehingga bayangannya adalah $A'(-1, 3)$. Jika titik $B(-4, 1)$  digeser dengan translasi yang sama, maka koordinat bayangan $B'$ adalah ...
+                <ol><li data-option="A">$(-7, 9)$</li><li data-option="B">$(-1, -7)$</li><li data-option="C">$(7, -9)$</li><li data-option="D">$(-7, -9)$</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: A $(-7, 9)$</h4>
+            <p><b>Konsep Dasar:</b><br>
+            Translasi itu sederhananya adalah "pergeseran". Kita harus mencari tahu dulu "resep" pergeserannya berdasarkan contoh yang diberikan (Titik A ke A'), lalu menerapkan resep yang sama ke Titik B.</p>
+            <p><b>Langkah Penyelesaian:</b></p>
+            <ol>
+                <li><b>Cari Aturan Gesernya:</b><br>
+                Titik A mula-mula di $(2, -5)$, berpindah ke $A'(-1, 3)$.<br>
+                - Perubahan sumbu $x$ (kiri-kanan): Dari 2 menjadi -1. (Kurang 3).<br>
+                - Perubahan sumbu $y$ (atas-bawah): Dari -5 menjadi 3. (Tambah 8).<br>
+                Jadi, translasinya adalah $T = \binom{-3}{8}$.</li>
+                <li><b>Terapkan ke Titik B:</b><br>
+                Titik B ada di $(-4, 1)$. Kita terapkan geseran yang sama.<br>
+                - Sumbu $x$: $-4$ ditambah $-3$ menjadi $-7$.<br>
+                - Sumbu $y$: $1$ ditambah $8$ menjadi $9$.<br>
+                Maka, bayangan B' adalah $(-7, 9)$.</li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= SOAL 7 & PEMBAHASAN 7 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Transformasi Geometri</td></tr><tr><td>Sub Topik</td><td>Refleksi (Pencerminan)</td></tr><tr><td>Level Kognitif</td><td>Analysis (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">7.</div>
+            <div class="soal-konten">
+                Sebuah titik $P(3, 4)$ dicerminkan terhadap berbagai garis. Analisislah bayangan yang terbentuk.<br>
+                Manakah pernyataan yang <b>benar</b>? (Jawaban bisa lebih dari satu)
+                <div class="checkbox-item"><span class="checkbox-box"></span> Jika dicerminkan terhadap sumbu-X, bayangannya adalah $P'(3, -4)$.</div>
+                <div class="checkbox-item"><span class="checkbox-box"></span> Jika dicerminkan terhadap garis $y = x$, bayangannya adalah $P'(-3, -4)$.</div>
+                <div class="checkbox-item"><span class="checkbox-box"></span> Jika dicerminkan terhadap garis $x = 2$, bayangannya adalah $P'(1, 4)$.</div>
+                <div class="checkbox-item"><span class="checkbox-box"></span> Jika dicerminkan terhadap titik asal $O(0,0)$, bayangannya adalah $P'(-3, -4)$.</div>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban Benar:</h4>
+            <div class="checkbox-item correct"><span class="checkbox-box"></span> Jika dicerminkan terhadap sumbu-X, bayangannya adalah $P'(3, -4)$.</div>
+            <div class="checkbox-item"><span class="checkbox-box"></span> Jika dicerminkan terhadap garis $y = x$, bayangannya adalah $P'(-3, -4)$. (SALAH)</div>
+            <div class="checkbox-item correct"><span class="checkbox-box"></span> Jika dicerminkan terhadap garis $x = 2$, bayangannya adalah $P'(1, 4)$.</div>
+            <div class="checkbox-item correct"><span class="checkbox-box"></span> Jika dicerminkan terhadap titik asal $O(0,0)$, bayangannya adalah $P'(-3, -4)$.</div>
+            <br>
+            <p><b>Analisis Satu per Satu:</b><br>
+            Titik awal kita adalah $P(3, 4)$.</p>
+            <ol>
+                <li><b>Cermin Sumbu-X (Cermin Datar):</b><br>
+                Posisi kiri-kanan ($x$) tidak berubah, tapi posisi atas ($y$) jadi ke bawah (negatif). $P(3, 4) \rightarrow P'(3, -4)$. (Benar).</li>
+                <li><b>Cermin Garis $y=x$ (Cermin Miring):</b><br>
+                Sifat cermin ini menukar posisi koordinat. $P(3, 4)$ seharusnya menjadi $(4, 3)$. Pernyataan di soal salah.</li>
+                <li><b>Cermin Garis $x=2$ (Cermin Tegak di angka 2):</b><br>
+                Jarak titik $P$ ($x=3$) ke cermin ($x=2$) adalah 1 satuan. Maka bayangannya ada 1 satuan di sebelah kiri cermin ($x=1$). $y$ tetap. Jadi $(1, 4)$. (Benar).</li>
+                <li><b>Cermin Titik Pusat $(0,0)$:</b><br>
+                Pencerminan terhadap pusat akan membalik tanda kedua koordinat (seperti menyeberang diagonal). $P(3, 4) \rightarrow P'(-3, -4)$. (Benar).</li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= SOAL 8 & PEMBAHASAN 8 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Transformasi Geometri</td></tr><tr><td>Sub Topik</td><td>Sifat Refleksi</td></tr><tr><td>Level Kognitif</td><td>Evaluation (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">8.</div>
+            <div class="soal-konten">
+                Perhatikan gambar segitiga $ABC$ pada bidang kartesius berikut.
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_vgjmts_9862.png" alt="Soal 8" class="question-image">
+                Segitiga tersebut akan dicerminkan terhadap sumbu-Y. Tentukan apakah pernyataan berikut Benar atau Salah.
+                <table class="question-table">
+                    <tr><th>No</th><th>Pernyataan</th><th>Benar</th><th>Salah</th></tr>
+                    <tr><td>1</td><td class="left-align">Ukuran segitiga bayangan akan lebih besar dari segitiga asli.</td><td>O</td><td>O</td></tr>
+                    <tr><td>2</td><td class="left-align">Jarak titik sudut asli ke cermin sama dengan jarak titik bayangan ke cermin.</td><td>O</td><td>O</td></tr>
+                    <tr><td>3</td><td class="left-align">Orientasi segitiga bayangan berlawanan dengan segitiga asli.</td><td>O</td><td>O</td></tr>
+                    <tr><td>4</td><td class="left-align">Jika koordinat titik $A$ adalah $(2, 3)$, maka koordinat bayangannya adalah $(-2, 3)$.</td><td>O</td><td>O</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Kunci Jawaban:</h4>
+            <table class="question-table">
+                <tr><th>No</th><th>Pernyataan</th><th>Benar</th><th>Salah</th></tr>
+                <tr><td>1</td><td class="left-align">Ukuran segitiga bayangan akan lebih besar dari segitiga asli.</td><td></td><td class="correct-mark">✔</td></tr>
+                <tr><td>2</td><td class="left-align">Jarak titik sudut asli ke cermin sama dengan jarak titik bayangan ke cermin.</td><td class="correct-mark">✔</td><td></td></tr>
+                <tr><td>3</td><td class="left-align">Orientasi segitiga bayangan berlawanan dengan segitiga asli.</td><td class="correct-mark">✔</td><td></td></tr>
+                <tr><td>4</td><td class="left-align">Jika koordinat titik $A$ adalah $(2, 3)$, maka koordinat bayangannya adalah $(-2, 3)$.</td><td class="correct-mark">✔</td><td></td></tr>
+            </table>
+            <br>
+            
+            <p><b>Konsep Dasar:</b><br>
+            Refleksi adalah transformasi yang bersifat <i>kaku</i> (rigid). Bayangkan Anda bercermin. Wajah Anda di cermin tidak akan bertambah besar atau kecil, tetapi posisi tangan kanan akan terlihat seperti tangan kiri (orientasi terbalik).</p>
+            <p><b>Analisis Pernyataan:</b></p>
+            <ol>
+                <li><i>Ukuran segitiga membesar.</i> Salah. Refleksi tidak mengubah ukuran (tidak mendilatasi).</li>
+                <li><i>Jarak titik ke cermin sama.</i> Benar. Ini sifat dasar cermin.</li>
+                <li><i>Orientasi berlawanan.</i> Benar. Kiri jadi kanan.</li>
+                <li><i>Koordinat A(2,3) dicerminkan sumbu-Y menjadi (-2,3).</i> Benar. Cermin sumbu-Y mengubah $x$ menjadi negatif.</li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= SOAL 9 & PEMBAHASAN 9 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Transformasi Geometri</td></tr><tr><td>Sub Topik</td><td>Translasi Garis</td></tr><tr><td>Level Kognitif</td><td>Application (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">9.</div>
+            <div class="soal-konten">
+                Garis dengan persamaan $2x - 3y + 6 = 0$ ditranslasikan oleh $T = \binom{3}{-2}$. Persamaan bayangan garis tersebut adalah ...
+                <ol><li data-option="A">$2x - 3y + 6 = 0$</li><li data-option="B">$2x - 3y - 6 = 0$</li><li data-option="C">$2x - 3y - 12 = 0$</li><li data-option="D">$2x - 3y + 1 = 0$</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: B ($2x - 3y - 6 = 0$)</h4>
+            <p><b>Konsep Dasar:</b><br>
+            Jika garis digeser, bentuknya tetap, posisinya pindah. Translasi $T = \binom{3}{-2}$ berarti $x$ digeser kanan 3 dan $y$ digeser bawah 2.</p>
+            <p><b>Langkah Penyelesaian:</b><br>
+            Kita nyatakan $x_{lama}$ dalam $x_{baru}$:<br>
+            - $x_{lama} = x_{baru} - 3$<br>
+            - $y_{lama} = y_{baru} + 2$ (karena minus dipindah jadi plus)<br><br>
+            Substitusi ke persamaan awal ($2x - 3y + 6 = 0$):<br>
+            $2(x - 3) - 3(y + 2) + 6 = 0$<br>
+            $2x - 6 - 3y - 6 + 6 = 0$<br>
+            $2x - 3y - 6 = 0$.</p>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= SOAL 10 & PEMBAHASAN 10 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Transformasi Geometri</td></tr><tr><td>Sub Topik</td><td>Refleksi Kurva</td></tr><tr><td>Level Kognitif</td><td>Application (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">10.</div>
+            <div class="soal-konten">
+                Kurva parabola $y = x^2 - 2x + 3$ dicerminkan terhadap garis $y = 2$. Koordinat titik puncak bayangan parabola tersebut adalah ...
+                <ol><li data-option="A">$(1, 2)$</li><li data-option="B">$(1, 0)$</li><li data-option="C">$(1, -2)$</li><li data-option="D">$(1, 4)$</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: A $(1, 2)$</h4>
+            <p><b>Konsep Dasar:</b><br>
+            Trik untuk mencerminkan parabola adalah dengan cukup mencerminkan <b>titik puncaknya</b> saja.</p>
+            <p><b>Langkah Penyelesaian:</b><br>
+            1. <b>Cari Puncak Parabola:</b><br>
+            Sumbu simetri $x = -\frac{b}{2a} = -\frac{-2}{2} = 1$.<br>
+            Nilai $y$ saat $x=1$ adalah $1^2 - 2(1) + 3 = 1 - 2 + 3 = 2$.<br>
+            Jadi puncaknya di $(1, 2)$.<br><br>
+            2. <b>Cerminkan:</b><br>
+            Titik $(1, 2)$ dicerminkan terhadap garis $y = 2$.<br>
+            Perhatikan bahwa titik ini <b>menempel</b> tepat pada garis cermin ($y=2$). Benda yang menempel di cermin, bayangannya ada di tempat yang sama.<br>
+            Jadi, bayangannya tetap $(1, 2)$.</p>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= SOAL 11 & PEMBAHASAN 11 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Transformasi Geometri</td></tr><tr><td>Sub Topik</td><td>Rotasi</td></tr><tr><td>Level Kognitif</td><td>Application (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">11.</div>
+            <div class="soal-konten">
+                Titik $K(6, -2)$ dirotasikan sebesar $90^\circ$ berlawanan arah jarum jam dengan pusat rotasi di titik $O(0,0)$. Koordinat bayangan titik $K$ adalah ...
+                <ol><li data-option="A">$(-2, 6)$</li><li data-option="B">$(2, 6)$</li><li data-option="C">$(-6, 2)$</li><li data-option="D">$(2, -6)$</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: B $(2, 6)$</h4>
+            <p><b>Konsep Dasar:</b><br>
+            Rotasi positif berarti berputar <b>berlawanan arah jarum jam</b>.<br>
+            Bayangkan titik $K(6, -2)$ di Kuadran IV (kanan bawah). Jika diputar 90 derajat naik, dia masuk Kuadran I (kanan atas) di mana semua positif.</p>
+            <p><b>Aturan Rotasi 90 Derajat:</b><br>
+            Tukar posisi $x$ dan $y$, lalu ubah tanda bagian depannya.<br>
+            Rumus: $(x, y) \to (-y, x)$.<br><br>
+            <b>Penerapan:</b><br>
+            Titik $(6, -2) \to (-(-2), 6) \to (2, 6)$.</p>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= SOAL 12 & PEMBAHASAN 12 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Transformasi Geometri</td></tr><tr><td>Sub Topik</td><td>Dilatasi</td></tr><tr><td>Level Kognitif</td><td>Analysis (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">12.</div>
+            <div class="soal-konten">
+                Diketahui sebuah persegi panjang $ABCD$ seperti gambar berikut.
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_froz5h_3086.png" alt="Soal 12" class="question-image">
+                Persegi panjang tersebut didilatasi dengan pusat $O(0,0)$ dan faktor skala $k = 2$.<br>
+                Pilihlah pernyataan-pernyataan yang <b>benar</b>.
+                <div class="checkbox-item"><span class="checkbox-box"></span> Luas persegi panjang bayangan adalah 2 kali luas persegi panjang awal.</div>
+                <div class="checkbox-item"><span class="checkbox-box"></span> Koordinat bayangan titik $C$ adalah $C'(8, 6)$.</div>
+                <div class="checkbox-item"><span class="checkbox-box"></span> Keliling persegi panjang bayangan adalah 2 kali keliling persegi panjang awal.</div>
+                <div class="checkbox-item"><span class="checkbox-box"></span> Bayangan titik $A$ berimpit dengan titik asalnya.</div>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban Benar:</h4>
+            <div class="checkbox-item"><span class="checkbox-box"></span> Luas persegi panjang bayangan adalah 2 kali luas persegi panjang awal. (SALAH)</div>
+            <div class="checkbox-item correct"><span class="checkbox-box"></span> Koordinat bayangan titik $C$ adalah $C'(8, 6)$.</div>
+            <div class="checkbox-item correct"><span class="checkbox-box"></span> Keliling persegi panjang bayangan adalah 2 kali keliling persegi panjang awal.</div>
+            <div class="checkbox-item"><span class="checkbox-box"></span> Bayangan titik $A$ berimpit dengan titik asalnya. (SALAH)</div>
+            <br>
+            <p><b>Konsep Dasar:</b><br>
+            Dilatasi pusat $(0,0)$ faktor skala $k=2$ berarti semua koordinat dikalikan 2.</p>
+            <p><b>Analisis Pernyataan:</b></p>
+            <ol>
+                <li><i>Luas:</i> Jika panjang dan lebar dikali 2, maka Luas ($p \times l$) akan menjadi $2 \times 2 = 4$ kali lipat. (Salah).</li>
+                <li><i>Titik C:</i> Awalnya $C(4,3)$. Dikali 2 menjadi $(8, 6)$. (Benar).</li>
+                <li><i>Keliling:</i> Keliling adalah besaran panjang (1 dimensi). Jika sisi memanjang 2 kali, keliling juga 2 kali. (Benar).</li>
+                <li><i>Titik A:</i> Awalnya $A(1,1)$. Dikali 2 menjadi $(2,2)$. Bergeser, tidak berimpit. (Salah).</li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= SOAL 13 & PEMBAHASAN 13 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Transformasi Geometri</td></tr><tr><td>Sub Topik</td><td>Rotasi Kontekstual</td></tr><tr><td>Level Kognitif</td><td>Evaluation (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">13.</div>
+            <div class="soal-konten">
+                Sebuah jarum jam menunjuk angka 12. Jarum tersebut berputar.
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_c75yq8_4280.png" alt="Soal 13" class="question-image">
+                Tentukan kebenaran pernyataan berikut.
+                <table class="question-table">
+                    <tr><th>No</th><th>Pernyataan</th><th>Benar</th><th>Salah</th></tr>
+                    <tr><td>1</td><td class="left-align">Jika berputar $90^\circ$ searah jarum jam, jarum menunjuk angka 3.</td><td>O</td><td>O</td></tr>
+                    <tr><td>2</td><td class="left-align">Jika berputar $180^\circ$, posisi jarum akan berlawanan arah dari posisi awal (menunjuk angka 6).</td><td>O</td><td>O</td></tr>
+                    <tr><td>3</td><td class="left-align">Rotasi $-90^\circ$ (negatif) berarti berputar berlawanan arah jarum jam.</td><td>O</td><td>O</td></tr>
+                    <tr><td>4</td><td class="left-align">Perputaran dari angka 12 ke angka 5 merupakan rotasi sebesar $150^\circ$ searah jarum jam.</td><td>O</td><td>O</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Kunci Jawaban:</h4>
+            <table class="question-table">
+                <tr><th>No</th><th>Pernyataan</th><th>Benar</th><th>Salah</th></tr>
+                <tr><td>1</td><td class="left-align">Jika berputar $90^\circ$ searah jarum jam, jarum menunjuk angka 3.</td><td class="correct-mark">✔</td><td></td></tr>
+                <tr><td>2</td><td class="left-align">Jika berputar $180^\circ$, posisi jarum akan berlawanan arah dari posisi awal (menunjuk angka 6).</td><td class="correct-mark">✔</td><td></td></tr>
+                <tr><td>3</td><td class="left-align">Rotasi $-90^\circ$ (negatif) berarti berputar berlawanan arah jarum jam.</td><td></td><td class="correct-mark">✔</td></tr>
+                <tr><td>4</td><td class="left-align">Perputaran dari angka 12 ke angka 5 merupakan rotasi sebesar $150^\circ$ searah jarum jam.</td><td class="correct-mark">✔</td><td></td></tr>
+            </table>
+            <br>
+            <p><b>Analisis Logika:</b></p>
+            <ol>
+                <li><i>Putar 90 derajat searah jarum jam.</i><br>
+                Satu putaran 360 derajat. 90 derajat adalah seperempatnya. Seperempat dari 12 jam adalah 3 jam. Jadi jarum menunjuk angka 3. (Benar).</li>
+                <li><i>Putar 180 derajat.</i><br>
+                180 derajat adalah setengah lingkaran. Lawan dari 12 (atas) adalah 6 (bawah). (Benar).</li>
+                <li><i>Rotasi negatif.</i><br>
+                Dalam matematika, sudut negatif itu <b>searah jarum jam</b>. Pernyataan soal mengatakan sebaliknya. (Salah).</li>
+                <li><i>Dari 12 ke 5 adalah 150 derajat.</i><br>
+                Setiap langkah angka bernilai $360^\circ : 12 = 30^\circ$. Dari 12 ke 5 ada 5 langkah. $5 \times 30^\circ = 150^\circ$. Arahnya ke kanan (searah jarum jam). (Benar).</li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= SOAL 14 & PEMBAHASAN 14 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Transformasi Geometri</td></tr><tr><td>Sub Topik</td><td>Dilatasi Pusat P(a,b)</td></tr><tr><td>Level Kognitif</td><td>Application (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">14.</div>
+            <div class="soal-konten">
+                Titik $M(-2, 4)$ didilatasi dengan pusat $P(1, 2)$ dan faktor skala $k = 3$. Bayangan titik $M$ adalah ...
+                <ol><li data-option="A">$(-8, 8)$</li><li data-option="B">$(-9, 6)$</li><li data-option="C">$(-6, 12)$</li><li data-option="D">$(4, 8)$</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: A (-8, 8)</h4>
+            <p><b>Konsep Dasar:</b><br>
+            Jika pusat dilatasi bukan di nol, kita tidak bisa langsung mengalikan koordinatnya. Kita harus menghitung jarak dari pusat ke titik benda, kalikan jarak itu dengan skala, lalu hitung posisi akhirnya.</p>
+            <p><b>Langkah Penyelesaian:</b><br>
+            Pusat $P(1, 2)$, Titik $M(-2, 4)$, Skala $k=3$.</p>
+            <ol>
+                <li><b>Hitung Jarak Mula-mula (dari Pusat ke M):</b><br>
+                Jarak mendatar ($x$): $-2 - 1 = -3$ (M ada 3 langkah di kiri P).<br>
+                Jarak tegak ($y$): $4 - 2 = 2$ (M ada 2 langkah di atas P).</li>
+                <li><b>Perbesar Jaraknya (Kali 3):</b><br>
+                Jarak baru $x$: $-3 \times 3 = -9$.<br>
+                Jarak baru $y$: $2 \times 3 = 6$.</li>
+                <li><b>Tentukan Posisi Akhir:</b><br>
+                Tambahkan jarak baru ke titik Pusat $P(1, 2)$.<br>
+                $x_{baru} = 1 + (-9) = -8$.<br>
+                $y_{baru} = 2 + 6 = 8$.<br>
+                Hasilnya $(-8, 8)$.</li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= SOAL 15 & PEMBAHASAN 15 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Transformasi Geometri</td></tr><tr><td>Sub Topik</td><td>Rotasi Garis</td></tr><tr><td>Level Kognitif</td><td>HOTS (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">15.</div>
+            <div class="soal-konten">
+                Persamaan garis $x + y = 2$ dirotasikan sebesar $270^\circ$ searah jarum jam dengan pusat $O(0,0)$. Persamaan garis bayangannya adalah ...
+                <ol><li data-option="A">$x - y = 2$</li><li data-option="B">$y - x = 2$</li><li data-option="C">$x + y = -2$</li><li data-option="D">$-x - y = 2$</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: B ($y - x = 2$)</h4>
+            <p><b>Konsep Dasar:</b><br>
+            Rotasi $270^\circ$ searah jarum jam itu sama saja dengan berputar $90^\circ$ berlawanan arah jarum jam. Jadi, aturannya: $(x, y) \to (-y, x)$.</p>
+            <p><b>Langkah Penyelesaian:</b><br>
+            Titik lama $(x,y)$ berubah menjadi titik baru $(x', y')$ dengan aturan:<br>
+            - $x' = -y$  (artinya $y = -x'$)<br>
+            - $y' = x$   (artinya $x = y'$)</p>
+            <p>Sekarang kita substitusikan $x$ dan $y$ ini ke persamaan garis asli $x + y = 2$:<br>
+            Ganti $x$ dengan $y'$.<br>
+            Ganti $y$ dengan $-x'$.<br>
+            $$ (y') + (-x') = 2 $$
+            $$ y' - x' = 2 $$
+            Hilangkan tanda aksen untuk jawaban akhir: $y - x = 2$.</p>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= SOAL 16 & PEMBAHASAN 16 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Campuran</td></tr><tr><td>Sub Topik</td><td>HOTS Barisan</td></tr><tr><td>Level Kognitif</td><td>Analysis (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">16.</div>
+            <div class="soal-konten">
+                Diketahui tiga bilangan membentuk barisan aritmetika. Jumlah ketiga bilangan tersebut adalah 30. Jika bilangan kedua dikurangi 2, maka ketiga bilangan tersebut akan membentuk barisan geometri.<br>
+                Manakah pernyataan berikut yang <b>benar</b>? (Jawaban bisa lebih dari satu)
+                <div class="checkbox-item"><span class="checkbox-box"></span> Suku tengah (suku ke-2) barisan aritmetika tersebut adalah 10.</div>
+                <div class="checkbox-item"><span class="checkbox-box"></span> Beda barisan aritmetika tersebut bisa bernilai 4.</div>
+                <div class="checkbox-item"><span class="checkbox-box"></span> Rasio barisan geometri yang terbentuk adalah 2 atau $\frac{1}{2}$.</div>
+                <div class="checkbox-item"><span class="checkbox-box"></span> Salah satu susunan barisan aritmetikanya adalah $6, 10, 14$.</div>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban Benar:</h4>
+            <div class="checkbox-item correct"><span class="checkbox-box"></span> Suku tengah (suku ke-2) barisan aritmetika tersebut adalah 10.</div>
+            <div class="checkbox-item"><span class="checkbox-box"></span> Beda barisan aritmetika tersebut bisa bernilai 4. (SALAH)</div>
+            <div class="checkbox-item correct"><span class="checkbox-box"></span> Rasio barisan geometri yang terbentuk adalah 2 atau $\frac{1}{2}$.</div>
+            <div class="checkbox-item"><span class="checkbox-box"></span> Salah satu susunan barisan aritmetikanya adalah $6, 10, 14$. (SALAH)</div>
+            <br>
+            <p><b>Analisis Langkah demi Langkah:</b></p>
+            <ol>
+                <li><b>Barisan Aritmetika:</b><br>
+                Misalkan tiga bilangan itu: $(a-b), a, (a+b)$. Jumlahnya 30:<br>
+                $(a-b) + a + (a+b) = 30 \Rightarrow 3a = 30 \Rightarrow a = 10$.<br>
+                Jadi suku tengahnya pasti 10. (Pernyataan 1 Benar).</li>
+                <li><b>Menjadi Barisan Geometri:</b><br>
+                Suku tengah dikurangi 2, jadi $10 - 2 = 8$.<br>
+                Barisan baru: $10-b, 8, 10+b$.<br>
+                Syarat geometri: $(Tengah)^2 = Kiri \times Kanan$.<br>
+                $8^2 = (10-b) \times (10+b) \Rightarrow 64 = 100 - b^2 \Rightarrow b^2 = 36$.<br>
+                Maka, beda ($b$) bisa 6 atau -6.</li>
+                <li><b>Cek Rasio:</b><br>
+                Jika $b=6$, barisannya: $4, 8, 16$. Rasionya $8/4 = 2$.<br>
+                Jika $b=-6$, barisannya: $16, 8, 4$. Rasionya $8/16 = 1/2$.<br>
+                Jadi rasionya 2 atau $1/2$. (Pernyataan 3 Benar).</li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= SOAL 17 & PEMBAHASAN 17 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Barisan & Deret</td></tr><tr><td>Sub Topik</td><td>Geometri (Soal Cerita)</td></tr><tr><td>Level Kognitif</td><td>Application (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">17.</div>
+            <div class="soal-konten">
+                Suatu koloni bakteri membelah diri menjadi dua setiap 20 menit. Jika pada pukul 08.00 terdapat 15 bakteri, berapa banyak bakteri pada pukul 10.00 di hari yang sama?
+                <ol><li data-option="A">480</li><li data-option="B">960</li><li data-option="C">1.920</li><li data-option="D">3.840</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: B (960)</h4>
+            <p><b>Konsep Dasar:</b> Bakteri membelah diri adalah contoh pertumbuhan geometri (rasio = 2).</p>
+            <p><b>Perhitungan:</b><br>
+            1. Hitung durasi waktu: 08.00 s.d 10.00 = 2 jam = 120 menit.<br>
+            2. Hitung berapa kali membelah: 120 menit dibagi 20 menit per siklus = 6 kali siklus.<br>
+            3. Hitung total bakteri:<br>
+            Awal = 15.<br>
+            Setiap siklus dikali 2. Karena ada 6 siklus, maka dikali $2^6$.<br>
+            Total = $15 \times 2^6 = 15 \times 64 = 960$ bakteri.</p>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= SOAL 18 & PEMBAHASAN 18 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Transformasi</td></tr><tr><td>Sub Topik</td><td>Dilatasi Luas</td></tr><tr><td>Level Kognitif</td><td>Analysis (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">18.</div>
+            <div class="soal-konten">
+                Diketahui segitiga $ABC$ dengan luas 24 satuan luas. Segitiga tersebut mengalami dilatasi dengan faktor skala $k = -3$.
+                <table class="question-table">
+                    <tr><th>No</th><th>Pernyataan</th><th>Ya</th><th>Tidak</th></tr>
+                    <tr><td>1</td><td class="left-align">Luas segitiga bayangan menjadi 72 satuan luas.</td><td>O</td><td>O</td></tr>
+                    <tr><td>2</td><td class="left-align">Luas segitiga bayangan menjadi 216 satuan luas.</td><td>O</td><td>O</td></tr>
+                    <tr><td>3</td><td class="left-align">Orientasi segitiga bayangan terbalik dibandingkan segitiga asli.</td><td>O</td><td>O</td></tr>
+                    <tr><td>4</td><td class="left-align">Perbandingan keliling segitiga bayangan dengan segitiga asli adalah $9:1$.</td><td>O</td><td>O</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Kunci Jawaban:</h4>
+            <table class="question-table">
+                <tr><th>No</th><th>Pernyataan</th><th>Ya</th><th>Tidak</th></tr>
+                <tr><td>1</td><td class="left-align">Luas segitiga bayangan menjadi 72 satuan luas.</td><td></td><td class="correct-mark">✔</td></tr>
+                <tr><td>2</td><td class="left-align">Luas segitiga bayangan menjadi 216 satuan luas.</td><td class="correct-mark">✔</td><td></td></tr>
+                <tr><td>3</td><td class="left-align">Orientasi segitiga bayangan terbalik dibandingkan segitiga asli.</td><td class="correct-mark">✔</td><td></td></tr>
+                <tr><td>4</td><td class="left-align">Perbandingan keliling segitiga bayangan dengan segitiga asli adalah $9:1$.</td><td></td><td class="correct-mark">✔</td></tr>
+            </table>
+            <br>
+            <p><b>Konsep Dasar:</b><br>
+            - <b>Luas</b> benda yang didilatasi dengan faktor $k$ akan berubah sebesar kuadrat faktornya ($k^2$).<br>
+            - <b>Keliling</b> (panjang) hanya berubah sebesar faktor skalanya ($|k|$).<br>
+            - Tanda negatif pada $k$ menunjukkan pembalikan posisi/orientasi.</p>
+            <p><b>Analisis:</b><br>
+            1. Faktor $k = -3$. Maka luas berubah sebsar $(-3)^2 = 9$ kali lipat. Luas baru = $24 \times 9 = 216$. (Pernyataan 2 Benar).<br>
+            2. Karena $k$ bernilai negatif, bayangan akan berada di seberang pusat dilatasi dan terbalik. (Pernyataan 3 Benar).<br>
+            3. Keliling berubah sebanding dengan $|k| = 3$ kali lipat. Bukan 9 kali lipat. (Pernyataan 4 Salah).</p>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= SOAL 19 & PEMBAHASAN 19 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Barisan & Deret</td></tr><tr><td>Sub Topik</td><td>Pola Geometri (Fraktal)</td></tr><tr><td>Level Kognitif</td><td>Analysis (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">19.</div>
+            <div class="soal-konten">
+                Perhatikan pola segitiga berikut (asumsikan panjang sisi berlipat ganda setiap pola):
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_alvun2_2870.png" alt="Soal 19" class="question-image">
+                Berapa banyak segitiga pada pola ke-6?
+                <ol><li data-option="A">256</li><li data-option="B">512</li><li data-option="C">1.024</li><li data-option="D">4.096</li></ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: C (1.024)</h4>
+            <p><b>Analisis Pola:</b><br>
+            Mari kita hitung jumlah segitiga kecil pada setiap pola:<br>
+            - Pola 1: 1 segitiga ($4^0$)<br>
+            - Pola 2: 4 segitiga ($4^1$)<br>
+            - Pola 3: 16 segitiga ($4^2$)<br><br>
+            Ternyata ini adalah barisan geometri dengan rasio 4. Pangkatnya selalu (urutan pola - 1).<br>
+            Pola ke-6: $4^{(6-1)} = 4^5$.</p>
+            <p><b>Perhitungan:</b><br>
+            $4^1 = 4$<br>
+            $4^2 = 16$<br>
+            $4^3 = 64$<br>
+            $4^4 = 256$<br>
+            $4^5 = 1024$.<br>
+            Jadi, banyak segitiga pada pola ke-6 adalah 1.024.</p>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<!-- ======================= SOAL 20 & PEMBAHASAN 20 ======================= -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Transformasi Geometri</td></tr><tr><td>Sub Topik</td><td>Komposisi Transformasi</td></tr><tr><td>Level Kognitif</td><td>Analysis (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">20.</div>
+            <div class="soal-konten">
+                Titik $A(2, 1)$ direfleksikan terhadap sumbu-Y, kemudian hasilnya didilatasi dengan pusat $O(0,0)$ faktor skala 3.<br>
+                Tentukan pernyataan yang <b>benar</b>.
+                <div class="checkbox-item"><span class="checkbox-box"></span> Bayangan setelah refleksi adalah $A'(-2, 1)$.</div>
+                <div class="checkbox-item"><span class="checkbox-box"></span> Bayangan setelah refleksi adalah $A'(2, -1)$.</div>
+                <div class="checkbox-item"><span class="checkbox-box"></span> Bayangan akhir ($A''$) adalah $(-6, 3)$.</div>
+                <div class="checkbox-item"><span class="checkbox-box"></span> Bayangan akhir ($A''$) berada di Kuadran II.</div>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban Benar:</h4>
+            <div class="checkbox-item correct"><span class="checkbox-box"></span> Bayangan setelah refleksi adalah $A'(-2, 1)$.</div>
+            <div class="checkbox-item"><span class="checkbox-box"></span> Bayangan setelah refleksi adalah $A'(2, -1)$. (SALAH)</div>
+            <div class="checkbox-item correct"><span class="checkbox-box"></span> Bayangan akhir ($A''$) adalah $(-6, 3)$.</div>
+            <div class="checkbox-item correct"><span class="checkbox-box"></span> Bayangan akhir ($A''$) berada di Kuadran II.</div>
+            <br>
+            <p><b>Langkah Penyelesaian:</b><br>
+            Titik awal $A(2, 1)$.<br>
+            1. <b>Langkah 1: Refleksi Sumbu-Y</b><br>
+            Cermin tegak membalik kiri-kanan ($x$ jadi negatif).<br>
+            $A(2, 1) \to A'(-2, 1)$.<br>
+            2. <b>Langkah 2: Dilatasi Pusat O faktor 3</b><br>
+            Kalikan semua koordinat $A'$ dengan 3.<br>
+            $x'' = -2 \times 3 = -6$.<br>
+            $y'' = 1 \times 3 = 3$.<br>
+            Jadi $A''(-6, 3)$.<br>
+            3. <b>Langkah 3: Cek Posisi Kuadran</b><br>
+            Titik $(-6, 3)$ memiliki $x$ negatif (kiri) dan $y$ positif (atas). Daerah kiri-atas pada grafik kartesius disebut Kuadran II.</p>
+        </div>
+    </div>
+    <footer class="page-footer"><b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i><span class="page-number"></span></footer>
+</section>
+
+</body>
+</html>
