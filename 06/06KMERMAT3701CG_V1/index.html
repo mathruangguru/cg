@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Mengajar - TKA Matematika SD (Pengukuran)</title>
+    
+    <!-- MathJax untuk render matematika -->
+    <script>
+        window.MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            packages: {'[+]': ['ams']}
+          },
+          svg: {
+            fontCache: 'global'
+          }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    
+    <!-- Font Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+      :root {
+        --primary-text: #333333;
+        --secondary-text: #555555;
+        --header-top-bg: #E0F7FA; 
+        --header-bottom-bg: #f0f0f0;
+        --header-title-color: #00838f; 
+        --table-header-bg: #e9e9e9;
+        --grey-text: #8d8e8d;
+        --ba-teal: #00838f;
+        --border-color: #dddddd;
+        --correct-color: #2e7d32;
+      }
+      
+      *, *::before, *::after { box-sizing: border-box; }
+
+      body {
+        font-family: 'Montserrat', sans-serif; 
+        font-size: 10pt; 
+        line-height: 1.6;
+        color: var(--primary-text); 
+        background-color: #e0e0e0; 
+        margin: 0; 
+        padding: 0;
+      }
+
+      body { counter-reset: page; }
+
+      .page {
+        background: white; 
+        width: 21cm; 
+        min-height: 29.7cm; 
+        padding: 1.8cm 2.5cm;
+        margin: 1cm auto; 
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        position: relative; 
+        display: flex; 
+        flex-direction: column;
+        overflow: hidden;
+        counter-increment: page;
+        page-break-after: always;
+      }
+      
+      .page:last-child { page-break-after: auto; }
+
+      .page-number::after { content: counter(page); }
+
+      /* Header Style */
+      .page-header {
+        margin: -1.8cm -2.5cm 0 -2.5cm; 
+        flex-shrink: 0; 
+        position: relative; 
+        z-index: 10;
+      }
+
+      .header-top-box {
+        background-color: var(--header-top-bg);
+        padding: 15px 2.5cm;
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+      }
+      
+      .header-title-main { font-size: 18pt; font-weight: 700; color: var(--header-title-color); line-height: 1.2; }
+      .header-title-sub { font-size: 12pt; font-weight: 400; color: var(--primary-text); }
+      .header-logo { max-height: 50px; width: auto; }
+
+      /* Grey Header Box (Only for Page 1) */
+      .header-bottom-box { padding: 0 2.5cm 20px 2.5cm; text-align: left; background-color: white; }
+      .header-bottom-text {
+        background-color: var(--header-bottom-bg); 
+        padding: 8px 15px; 
+        font-weight: 700;
+        font-size: 8.5pt; 
+        color: var(--secondary-text); 
+        display: block; 
+        border-radius: 4px; 
+        margin-top: 10px;
+      }
+
+      .page:not(:first-child) .header-bottom-box { display: none; }
+      .page:not(:first-child) .header-top-box { margin-bottom: 20px; }
+
+      .content-wrapper { flex-grow: 1; padding-bottom: 20px; }
+
+      /* Titles & Lists */
+      .section-title {
+        font-size: 14pt; font-weight: 700; color: var(--header-title-color);
+        border-bottom: 2px solid var(--header-top-bg); padding-bottom: 5px; margin: 15px 0 10px 0;
+      }
+      ul.guide-list { padding-left: 20px; margin-top: 5px; }
+      ul.guide-list li { margin-bottom: 6px; }
+
+      /* Tables */
+      .summary-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+      .summary-table td { border: 1px solid var(--border-color); padding: 8px 12px; vertical-align: top; }
+      .summary-table .summary-table-header td { background-color: var(--table-header-bg); font-weight: 700; }
+      
+      /* Soal Card Metadata */
+      .soal-card { width: 100%; border-collapse: collapse; margin-bottom: 15px; border: 1px solid var(--border-color); }
+      .soal-card td { border: 1px solid var(--border-color); padding: 6px 10px; font-size: 8.5pt; }
+      .soal-card td:first-child { font-weight: 700; background-color: var(--table-header-bg); width: 140px; color: var(--primary-text); }
+
+      /* Soal Layout */
+      .soal-pembahasan { display: flex; align-items: flex-start; gap: 10px; margin-top: 10px; }
+      .soal-nomor { font-weight: 900; min-width: 30px; font-size: 12pt; color: var(--ba-teal); }
+      .soal-konten { flex-grow: 1; text-align: justify; }
+      
+      .soal-konten ol { list-style-type: none; padding-left: 0; margin-top: 10px; }
+      .soal-konten ol li { margin-bottom: 8px; padding-left: 25px; position: relative; }
+      .soal-konten ol li::before {
+        content: attr(data-option) ". "; font-weight: bold; position: absolute; left: 0;
+      }
+      
+      /* Pembahasan Box (Narrative Style) */
+      .pembahasan-detail {
+        margin-top: 15px; 
+        background-color: #f0f8ff; 
+        border-left: 4px solid var(--ba-teal);
+        padding: 20px; 
+        border-radius: 0 4px 4px 0;
+      }
+      .pembahasan-detail h4 { margin-top: 0; margin-bottom: 10px; color: var(--ba-teal); font-size: 11pt; }
+      .pembahasan-detail b { color: #333; }
+      .pembahasan-detail p { margin-bottom: 10px; text-align: justify; }
+
+      /* SVG Styles */
+      .svg-container {
+        display: block;
+        margin: 15px auto;
+        max-width: 100%;
+        text-align: center;
+      }
+      
+      /* Question Image Style */
+      .question-image {
+        display: block;
+        margin: 15px auto;
+        max-width: 80%;
+        height: auto;
+        border: 1px solid #eee;
+      }
+
+      /* Footer */
+      .page-footer {
+        display: flex; justify-content: space-between; align-items: center;
+        font-size: 6pt; color: var(--grey-text);
+        margin-top: auto; padding-top: 5px; 
+        border-top: 1px solid var(--grey-text);
+        width: 100%;
+        white-space: nowrap;
+      }
+
+      @media print {
+        @page { size: A4; margin: 0; }
+        body { background-color: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .page { box-shadow: none; margin: 0; width: 100%; height: 100%; page-break-after: always; }
+      }
+    </style>
+</head>
+<body>
+
+<!-- HALAMAN 1: COVER & OVERVIEW -->
+<section class="page">
+    <header class="page-header">
+        <div class="header-top-box">
+            <div>
+                <div class="header-title-main">Panduan Mengajar</div>
+                <div class="header-title-sub"><b>Matematika</b></div> 
+            </div>
+            <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Brain Academy Logo" class="header-logo">
+        </div>
+        <div class="header-bottom-box">
+            <div class="header-bottom-text">
+                VI SD | Kurikulum Merdeka | [TKA] Pengukuran Panjang, Luas, dan Berat Benda | Subtopik: Pengukuran Panjang, Luas, dan Berat Benda | Pertemuan 3
+            </div>
+        </div>
+    </header>
+
+    <div class="content-wrapper">
+        <table class="summary-table">
+            <tr class="summary-table-header"><td colspan="2">Cakupan Materi</td></tr>
+            <tr><td colspan="2">Siswa akan mengerjakan soal-soal latihan TKA Matematika (HOTS) yang mencakup pengukuran panjang, luas, berat, dan volume, serta hubungan antar satuan baku.</td></tr>
+            
+            <tr class="summary-table-header"><td>Topik</td><td>Detail Materi</td></tr>
+            <tr>
+                <td><b>Pengukuran Panjang</b></td>
+                <td>
+                    <ul style="padding-left:15px; margin:0;">
+                        <li>Konversi satuan panjang (km, hm, dam, m, dm, cm, mm).</li>
+                        <li>Operasi hitung panjang benda dengan satuan berbeda.</li>
+                        <li>Analisis keliling bangun datar dan gabungannya.</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Luas & Volume</b></td>
+                <td>
+                    <ul style="padding-left:15px; margin:0;">
+                        <li>Luas bangun datar (persegi, persegi panjang, segitiga, lingkaran).</li>
+                        <li>Luas bangun gabungan atau daerah yang diarsir.</li>
+                        <li>Volume bangun ruang (kubus, balok) dan gabungannya.</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Berat</b></td>
+                <td>
+                    <ul style="padding-left:15px; margin:0;">
+                        <li>Konversi satuan berat (ton, kuintal, kg, hg/ons, dag, g, dg, cg, mg).</li>
+                        <li>Pemecahan masalah kontekstual terkait berat benda.</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr class="summary-table-header"><td colspan="2">⭐ Rekap Starchamps</td></tr>
+            <tr><td colspan="2">100 ⭐ untuk 20 soal (5⭐ / soal)</td></tr>
+        </table>
+
+        <h2 class="section-title">Alur & Pertanyaan Pemantik</h2>
+        <ul class="guide-list">
+            <li><b>Panjang:</b> "Jika kita menyambung dua tali, apakah panjang totalnya sama dengan jumlah panjang kedua tali? Bagaimana dengan simpulnya?"</li>
+            <li><b>Luas:</b> "Bagaimana cara menghitung luas jalan setapak yang mengelilingi taman tanpa mengukur jalan itu sendiri?"</li>
+            <li><b>Volume:</b> "Apa yang terjadi pada ketinggian air di dalam gelas jika kita memasukkan sebuah batu ke dalamnya?"</li>
+        </ul>
+    </div>
+
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- ======================= LOOP SOAL & PEMBAHASAN (Q1 - Q20) ======================= -->
+
+<!-- SOAL 1 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Pengukuran Panjang</td></tr><tr><td>Sub Topik</td><td>Konversi Satuan</td></tr><tr><td>Level Kognitif</td><td>Application (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">1.</div>
+            <div class="soal-konten">
+                Seorang tukang kayu menyambung tiga papan kayu. Papan pertama memiliki panjang 2,4 meter, papan kedua 18 dm, dan papan ketiga 150 cm. Karena terlalu panjang, sambungan papan tersebut dipotong sebesar 0,05 hm. Berapa cm panjang papan yang tersisa?
+                <ol>
+                    <li data-option="A">70 cm</li>
+                    <li data-option="B">120 cm</li>
+                    <li data-option="C">420 cm</li>
+                    <li data-option="D">520 cm</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 1 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: A (70 cm)</h4>
+            <p><b>Konsep Dasar:</b><br>
+            Soal ini mengajak kita untuk bermain dengan konversi satuan panjang. Kunci utamanya adalah <b>menyamakan satuan</b> terlebih dahulu. Karena jawaban diminta dalam cm, mari kita ubah semuanya ke sentimeter.</p>
+            <p><b>Langkah Pengerjaan:</b></p>
+            <ul>
+                <li>Papan pertama 2,4 meter. Karena 1 meter = 100 cm, maka $2,4 \times 100 = 240$ cm.</li>
+                <li>Papan kedua 18 dm. Karena 1 dm = 10 cm, maka $18 \times 10 = 180$ cm.</li>
+                <li>Papan ketiga sudah dalam cm, yaitu 150 cm.</li>
+            </ul>
+            <p>Jika ketiga papan ini dijajarkan, total panjangnya adalah penjumlahan ketiganya: $240 + 180 + 150 = 570$ cm.</p>
+            <p>Namun, ceritanya belum selesai. Tukang kayu memotong sambungan itu sebesar 0,05 hm. Hektometer (hm) ke cm itu turun 4 tangga, jadi dikali 10.000. Artinya, potongan itu sebesar $0,05 \times 10.000 = 500$ cm.</p>
+            <p>Akhirnya, panjang papan yang tersisa hanyalah total panjang awal dikurangi potongan: $570 \text{ cm} - 500 \text{ cm} = 70$ cm.</p>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 2 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Pengukuran Panjang</td></tr><tr><td>Sub Topik</td><td>Keliling (HOTS)</td></tr><tr><td>Level Kognitif</td><td>Analysis (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">2.</div>
+            <div class="soal-konten">
+                Perhatikan gambar persegi panjang di bawah ini.
+                <div class="svg-container">
+                    <svg width="400" height="250" viewBox="0 0 400 250">
+                        <!-- Rect -->
+                        <rect x="50" y="30" width="300" height="180" fill="#e8f5e9" stroke="black" stroke-width="2"/>
+                        <text x="200" y="120" text-anchor="middle" font-weight="bold" font-size="14">Kebun Pak Budi</text>
+                        <!-- Dots -->
+                        <circle cx="50" cy="30" r="4" fill="red"/>
+                        <circle cx="125" cy="30" r="4" fill="red"/>
+                        <circle cx="200" cy="30" r="4" fill="red"/>
+                        <circle cx="275" cy="30" r="4" fill="red"/>
+                        <circle cx="350" cy="30" r="4" fill="red"/>
+                        <circle cx="50" cy="210" r="4" fill="red"/>
+                        <circle cx="125" cy="210" r="4" fill="red"/>
+                        <circle cx="200" cy="210" r="4" fill="red"/>
+                        <circle cx="275" cy="210" r="4" fill="red"/>
+                        <circle cx="350" cy="210" r="4" fill="red"/>
+                        <!-- Side Dots -->
+                        <circle cx="50" cy="75" r="4" fill="red"/>
+                        <circle cx="50" cy="120" r="4" fill="red"/>
+                        <circle cx="50" cy="165" r="4" fill="red"/>
+                        <circle cx="350" cy="75" r="4" fill="red"/>
+                        <circle cx="350" cy="120" r="4" fill="red"/>
+                        <circle cx="350" cy="165" r="4" fill="red"/>
+                        <!-- Labels -->
+                        <line x1="50" y1="225" x2="350" y2="225" stroke="black" marker-end="url(#arrow)" marker-start="url(#arrow)" />
+                        <text x="200" y="240" text-anchor="middle">Panjang = 45 m</text>
+                        <line x1="35" y1="30" x2="35" y2="210" stroke="black" />
+                        <text x="25" y="120" text-anchor="middle" transform="rotate(-90 25,120)">Lebar = 30 m</text>
+                    </svg>
+                </div>
+                Pak Budi ingin memasang tiang lampu di sekeliling kebunnya yang berbentuk persegi panjang. Jarak antar tiang lampu dibuat sama, yaitu 5 meter. Jika di setiap pojok kebun harus ada tiang, berapa banyak tiang lampu yang dibutuhkan?
+                <ol>
+                    <li data-option="A">30 tiang</li>
+                    <li data-option="B">32 tiang</li>
+                    <li data-option="C">34 tiang</li>
+                    <li data-option="D">150 tiang</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 2 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: A (30 tiang)</h4>
+            <p><b>Analisis Soal:</b> Mencari banyaknya tiang berdasarkan keliling bangun datar.</p>
+            <p><b>Langkah Pengerjaan:</b></p>
+            <ol>
+                <li><b>Hitung Keliling Kebun:</b><br>
+                Rumus: $K = 2 \times (p + l)$.<br>
+                $K = 2 \times (45 + 30) = 2 \times 75 = 150$ meter.</li>
+                <li><b>Hitung Banyak Tiang:</b><br>
+                Jarak antar tiang = 5 m.<br>
+                Karena lintasannya tertutup (berputar kembali ke titik awal), kita cukup membagi keliling total dengan jarak antar tiang. Tidak perlu ditambah 1.<br>
+                Banyak tiang = $150 \div 5 = 30$ tiang.</li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 3 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Pengukuran Luas</td></tr><tr><td>Sub Topik</td><td>Luas Bangun Gabungan</td></tr><tr><td>Level Kognitif</td><td>Analysis (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">3.</div>
+            <div class="soal-konten">
+                Sebuah kertas karton berbentuk persegi dengan panjang sisi 40 cm. Di keempat pojok karton tersebut, Andi memotong bentuk persegi kecil dengan sisi 10 cm.
+                <div class="svg-container">
+                    <svg width="250" height="250" viewBox="0 0 250 250">
+                        <defs>
+                            <pattern id="diagonalHatch" patternUnits="userSpaceOnUse" width="4" height="4">
+                                <path d="M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2" stroke="#e0e0e0" stroke-width="1"/>
+                            </pattern>
+                        </defs>
+                        <!-- Dashed Full Square -->
+                        <rect x="25" y="25" width="200" height="200" fill="none" stroke="gray" stroke-dasharray="5,5"/>
+                        <!-- Cut Shape -->
+                        <path d="M75 25 H175 V75 H225 V175 H175 V225 H75 V175 H25 V75 H75 V25 Z" fill="url(#diagonalHatch)" stroke="black" stroke-width="2"/>
+                        <text x="125" y="125" text-anchor="middle" font-size="12">Sisa Karton</text>
+                        <!-- Dimensions -->
+                        <text x="15" y="125" text-anchor="middle" transform="rotate(-90 15,125)" font-size="10">40 cm</text>
+                        <text x="125" y="15" text-anchor="middle" font-size="10">40 cm</text>
+                        <!-- Cutout label -->
+                        <line x1="25" y1="235" x2="75" y2="235" stroke="black"/>
+                        <text x="50" y="248" text-anchor="middle" font-size="9">10 cm</text>
+                        <text x="50" y="50" text-anchor="middle" font-size="8">Potongan</text>
+                    </svg>
+                </div>
+                Berapakah luas karton yang tersisa (daerah yang diarsir)?
+                <ol>
+                    <li data-option="A">1.200 cm$^2$</li>
+                    <li data-option="B">1.400 cm$^2$</li>
+                    <li data-option="C">1.500 cm$^2$</li>
+                    <li data-option="D">1.600 cm$^2$</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 3 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: A (1.200 cm$^2$)</h4>
+            <p><b>Analisis Soal:</b> Menghitung luas daerah yang diarsir dengan cara pengurangan luas.</p>
+            <p><b>Langkah Pengerjaan:</b></p>
+            <ul>
+                <li><b>Hitung Luas Karton Utuh (Persegi Besar):</b><br>
+                Sisi = 40 cm. Luas = $s \times s = 40 \times 40 = 1.600$ cm$^2$.</li>
+                <li><b>Hitung Luas Potongan (4 Persegi Kecil):</b><br>
+                Satu persegi kecil sisinya 10 cm. Luas 1 persegi kecil = $10 \times 10 = 100$ cm$^2$.<br>
+                Ada 4 pojok, jadi total potongan = $4 \times 100 = 400$ cm$^2$.</li>
+                <li><b>Hitung Sisa:</b><br>
+                Luas Sisa = Luas Awal - Luas Potongan.<br>
+                Luas Sisa = $1.600 - 400 = 1.200$ cm$^2$.</li>
+            </ul>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 4 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Pengukuran Berat</td></tr><tr><td>Sub Topik</td><td>Satuan Berat</td></tr><tr><td>Level Kognitif</td><td>Application (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">4.</div>
+            <div class="soal-konten">
+                Sebuah truk memiliki daya angkut maksimum 2,5 ton. Truk tersebut sudah memuat:
+                <ul>
+                    <li>15 karung beras, masing-masing beratnya 50 kg.</li>
+                    <li>20 peti telur, masing-masing beratnya 250 hg.</li>
+                </ul>
+                Berapa kuintal lagi muatan yang dapat ditambahkan agar truk mencapai muatan maksimum?
+                <ol>
+                    <li data-option="A">12,5 kuintal</li>
+                    <li data-option="B">17,0 kuintal</li>
+                    <li data-option="C">125 kuintal</li>
+                    <li data-option="D">170 kuintal</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 4 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: A (12,5 kuintal)</h4>
+            <p><b>Konsep Dasar:</b> Operasi hitung berat dengan konversi satuan (ton, kg, hg, kuintal).</p>
+            <p><b>Langkah Pengerjaan:</b></p>
+            <ul>
+                <li><b>Tentukan Target Maksimum dalam kg:</b><br>
+                2,5 ton = $2,5 \times 1.000 = 2.500$ kg.</li>
+                <li><b>Hitung Muatan Beras:</b><br>
+                $15 \times 50 \text{ kg} = 750$ kg.</li>
+                <li><b>Hitung Muatan Telur:</b><br>
+                250 hg = $250 \div 10 = 25$ kg (karena 1 kg = 10 hg).<br>
+                Total telur = $20 \text{ peti} \times 25 \text{ kg} = 500$ kg.</li>
+                <li><b>Hitung Total Muatan Saat Ini:</b><br>
+                $750 + 500 = 1.250$ kg.</li>
+                <li><b>Hitung Kekurangan Muatan:</b><br>
+                $2.500 - 1.250 = 1.250$ kg.</li>
+                <li><b>Konversi ke Kuintal:</b><br>
+                1 kuintal = 100 kg. $1.250 \text{ kg} \div 100 = 12,5$ kuintal.</li>
+            </ul>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 5 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Pengukuran Luas</td></tr><tr><td>Sub Topik</td><td>Aplikasi Luas Segitiga</td></tr><tr><td>Level Kognitif</td><td>Application (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">5.</div>
+            <div class="soal-konten">
+                Ayah ingin menanam rumput di taman berbentuk segitiga siku-siku. Panjang sisi alas taman adalah 12 m dan sisi tingginya 16 m. Jika biaya penanaman rumput adalah Rp25.000,00 per meter persegi, total biaya yang harus dikeluarkan Ayah adalah...
+                <ol>
+                    <li data-option="A">Rp2.400.000,00</li>
+                    <li data-option="B">Rp3.600.000,00</li>
+                    <li data-option="C">Rp4.800.000,00</li>
+                    <li data-option="D">Rp9.600.000,00</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 5 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: A (Rp2.400.000,00)</h4>
+            <p><b>Konsep Dasar:</b> Aplikasi luas segitiga dikalikan harga satuan.</p>
+            <p><b>Langkah Pengerjaan:</b></p>
+            <ul>
+                <li><b>Hitung Luas Taman:</b><br>
+                Rumus: $L = \frac{1}{2} \times \text{alas} \times \text{tinggi}$.<br>
+                $L = \frac{1}{2} \times 12 \times 16 = 6 \times 16 = 96$ m$^2$.</li>
+                <li><b>Hitung Biaya:</b><br>
+                Biaya = Luas $\times$ Harga per m$^2$.<br>
+                Biaya = $96 \times 25.000 = 2.400.000$.</li>
+            </ul>
+            <p>Jadi total biayanya adalah Rp2.400.000,00.</p>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 6 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Pengukuran Volume</td></tr><tr><td>Sub Topik</td><td>Kubus Satuan</td></tr><tr><td>Level Kognitif</td><td>Analysis (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">6.</div>
+            <div class="soal-konten">
+                Perhatikan gambar tumpukan kubus satuan berikut.
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_kw1ks0_3735.png" alt="Soal 6" class="question-image">
+                Gambar di atas adalah tumpukan balok mainan. Jika volume satu kubus satuan adalah 8 cm$^3$, berapakah volume total bangun tersebut? (Asumsikan tumpukan padat di bawahnya).
+                <ul>
+                    <li>Lapisan bawah: 3 x 3 kubus</li>
+                    <li>Lapisan tengah: 2 x 2 kubus</li>
+                    <li>Lapisan atas: 1 kubus</li>
+                </ul>
+                <ol>
+                    <li data-option="A">108 cm$^3$</li>
+                    <li data-option="B">112 cm$^3$</li>
+                    <li data-option="C">144 cm$^3$</li>
+                    <li data-option="D">216 cm$^3$</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 6 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: B (112 cm$^3$)</h4>
+            <p><b>Konsep Dasar:</b> Menghitung volume total dari tumpukan kubus satuan.</p>
+            <p><b>Langkah Pengerjaan:</b></p>
+            <ol>
+                <li><b>Hitung Jumlah Kubus Satuan:</b><br>
+                Lapisan Bawah (3x3) = 9 kubus.<br>
+                Lapisan Tengah (2x2) = 4 kubus.<br>
+                Lapisan Atas = 1 kubus.<br>
+                Total kubus = $9 + 4 + 1 = 14$ kubus satuan.</li>
+                <li><b>Hitung Volume Total:</b><br>
+                Volume 1 kubus = 8 cm$^3$.<br>
+                Volume Total = $14 \times 8 = 112$ cm$^3$.</li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 7 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Pengukuran Panjang</td></tr><tr><td>Sub Topik</td><td>Skala & Jarak</td></tr><tr><td>Level Kognitif</td><td>Application (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">7.</div>
+            <div class="soal-konten">
+                Jarak kota A ke kota B pada peta adalah 5 cm. Jarak kota B ke kota C pada peta adalah 3 cm. Jika skala peta tersebut adalah 1 : 200.000, selisih jarak sebenarnya antara (Kota A ke B) dengan (Kota B ke C) adalah...
+                <ol>
+                    <li data-option="A">4 km</li>
+                    <li data-option="B">6 km</li>
+                    <li data-option="C">10 km</li>
+                    <li data-option="D">16 km</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 7 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: A (4 km)</h4>
+            <p><b>Konsep Dasar:</b> Perbandingan skala dan selisih jarak sebenarnya.</p>
+            <p><b>Langkah Pengerjaan:</b></p>
+            <ol>
+                <li><b>Cari Selisih Jarak di Peta:</b><br>
+                Jarak A-B = 5 cm. Jarak B-C = 3 cm.<br>
+                Selisih di peta = $5 - 3 = 2$ cm.</li>
+                <li><b>Hitung Selisih Jarak Sebenarnya:</b><br>
+                Jarak Sebenarnya = Jarak Peta $\times$ Skala.<br>
+                Jarak Sebenarnya = $2 \text{ cm} \times 200.000 = 400.000$ cm.</li>
+                <li><b>Konversi ke km:</b><br>
+                cm ke km naik 5 tangga (bagi 100.000).<br>
+                $400.000 \div 100.000 = 4$ km.</li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 8 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Pengukuran Panjang</td></tr><tr><td>Sub Topik</td><td>Keliling Bangun Gabungan</td></tr><tr><td>Level Kognitif</td><td>Analysis (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">8.</div>
+            <div class="soal-konten">
+                Pak Deni memiliki tanah berbentuk gabungan dua persegi panjang seperti huruf "L".
+                <div class="svg-container">
+                    <svg width="300" height="200" viewBox="0 0 300 200">
+                        <path d="M50 150 L250 150 L250 100 L100 100 L100 20 L50 20 Z" fill="#fff9c4" stroke="black" stroke-width="2"/>
+                        <!-- Dimensions -->
+                        <text x="150" y="170" text-anchor="middle">12 m</text>
+                        <text x="35" y="85" text-anchor="middle" transform="rotate(-90 35,85)">10 m</text>
+                        <text x="265" y="130" text-anchor="middle">4 m</text>
+                        
+                        <!-- Dashed lines -->
+                        <line x1="50" y1="20" x2="100" y2="20" stroke="red" stroke-dasharray="4"/>
+                        <text x="75" y="15" text-anchor="middle" fill="red">?</text>
+                    </svg>
+                </div>
+                Berapakah keliling tanah Pak Deni tersebut?
+                <ol>
+                    <li data-option="A">32 m</li>
+                    <li data-option="B">44 m</li>
+                    <li data-option="C">48 m</li>
+                    <li data-option="D">52 m</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 8 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: B (44 m)</h4>
+            <p><b>Konsep Dasar:</b> Mencari keliling bangun gabungan (Huruf L).</p>
+            <p><b>Tips Mengajar:</b> Untuk bangun L siku-siku, jika Anda "mendorong" sisi-sisi yang menjorok ke dalam keluar, maka bangun tersebut akan memiliki keliling yang sama persis dengan persegi panjang pembungkusnya.</p>
+            <p><b>Analisis:</b></p>
+            <ul>
+                <li>Sisi Tegak Total (Kiri + Kanan) = Sisi terpanjang kiri = 10 m. (Sisi kanan bawah + Sisi kanan atas = Sisi kiri).</li>
+                <li>Sisi Mendatar Total (Bawah + Atas) = Sisi terpanjang bawah = 12 m.</li>
+                <li>Keliling = $2 \times (10 + 12) = 2 \times 22 = 44$ m.</li>
+            </ul>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 9 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Pengukuran Berat</td></tr><tr><td>Sub Topik</td><td>Operasi Satuan Berat</td></tr><tr><td>Level Kognitif</td><td>Application (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">9.</div>
+            <div class="soal-konten">
+                Seorang apoteker sedang meracik obat. Satu kapsul obat harus mengandung:
+                <ul>
+                    <li>0,3 gram Zat A</li>
+                    <li>150 miligram Zat B</li>
+                    <li>5 centigram Zat C</li>
+                </ul>
+                Berapa miligram berat total campuran ketiga zat tersebut untuk membuat <b>satu</b> kapsul?
+                <ol>
+                    <li data-option="A">455 mg</li>
+                    <li data-option="B">500 mg</li>
+                    <li data-option="C">4.550 mg</li>
+                    <li data-option="D">5.000 mg</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 9 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: B (500 mg)</h4>
+            <p><b>Analisis:</b> Penjumlahan berat dengan konversi ke miligram (mg).</p>
+            <p><b>Langkah Pengerjaan:</b></p>
+            <ul>
+                <li>Zat A: 0,3 gram. (gram ke mg $\times 1.000$) $\rightarrow 0,3 \times 1.000 = 300$ mg.</li>
+                <li>Zat B: 150 mg. (Sudah mg) $\rightarrow 150$ mg.</li>
+                <li>Zat C: 5 cg. (cg ke mg $\times 10$) $\rightarrow 5 \times 10 = 50$ mg.</li>
+            </ul>
+            <p>Total = $300 + 150 + 50 = 500$ mg.</p>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 10 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Pengukuran Volume</td></tr><tr><td>Sub Topik</td><td>Volume Balok</td></tr><tr><td>Level Kognitif</td><td>Application (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">10.</div>
+            <div class="soal-konten">
+                Sebuah akuarium berbentuk balok dengan ukuran panjang 80 cm, lebar 40 cm, dan tinggi 50 cm. Akuarium tersebut baru diisi air setengah bagian. Berapa liter air lagi yang harus ditambahkan agar akuarium tersebut terisi penuh?
+                <ol>
+                    <li data-option="A">80 liter</li>
+                    <li data-option="B">160 liter</li>
+                    <li data-option="C">80.000 liter</li>
+                    <li data-option="D">160.000 liter</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 10 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: A (80 liter)</h4>
+            <p><b>Konsep Dasar:</b> Volume balok, konsep "setengah penuh", dan konversi ke liter.</p>
+            <p><b>Langkah Pengerjaan:</b></p>
+            <ol>
+                <li><b>Hitung Volume Penuh Akuarium:</b><br>
+                $V = p \times l \times t = 80 \times 40 \times 50 = 160.000$ cm$^3$.</li>
+                <li><b>Konversi ke Liter:</b><br>
+                1 liter = 1 dm$^3$ = 1.000 cm$^3$.<br>
+                $160.000 \div 1.000 = 160$ liter.</li>
+                <li><b>Analisis Kondisi Air:</b><br>
+                Sudah terisi setengah (1/2). Berarti kurang setengah lagi.<br>
+                Air yang perlu ditambah = $\frac{1}{2} \times 160 = 80$ liter.</li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 11 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Pengukuran Panjang</td></tr><tr><td>Sub Topik</td><td>Pemecahan Masalah</td></tr><tr><td>Level Kognitif</td><td>Analysis (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">11.</div>
+            <div class="soal-konten">
+                Perhatikan ilustrasi penyambungan tiga utas tali berikut.
+                <div class="svg-container">
+                    <svg width="400" height="150" viewBox="0 0 400 150">
+                        <!-- Tali 1 (Blue) -->
+                        <line x1="20" y1="50" x2="120" y2="50" stroke="#42a5f5" stroke-width="4"/>
+                        <text x="70" y="40" text-anchor="middle" fill="#42a5f5" font-weight="bold">Tali 1 (275 cm)</text>
+                        <!-- Knot 1 -->
+                        <text x="120" y="55" text-anchor="middle" font-weight="bold">X</text>
+                        <text x="120" y="75" text-anchor="middle" font-size="10">Sambungan 1</text>
+                        
+                        <!-- Tali 2 (Red) -->
+                        <line x1="125" y1="50" x2="225" y2="50" stroke="#ef5350" stroke-width="4"/>
+                        <text x="175" y="40" text-anchor="middle" fill="#ef5350" font-weight="bold">Tali 2 (3,5 m)</text>
+                        <!-- Knot 2 -->
+                        <text x="225" y="55" text-anchor="middle" font-weight="bold">X</text>
+                        <text x="225" y="75" text-anchor="middle" font-size="10">Sambungan 2</text>
+                        
+                        <!-- Tali 3 (Green) -->
+                        <line x1="230" y1="50" x2="330" y2="50" stroke="#66bb6a" stroke-width="4"/>
+                        <text x="280" y="40" text-anchor="middle" fill="#66bb6a" font-weight="bold">Tali 3 (40 dm)</text>
+                        
+                        <!-- Note -->
+                        <rect x="100" y="100" width="200" height="40" rx="5" fill="#fff9c4" stroke="#fbc02d"/>
+                        <text x="200" y="115" text-anchor="middle" font-size="10" font-weight="bold">Aturan Sambungan:</text>
+                        <text x="200" y="130" text-anchor="middle" font-size="10">Memakan 10 cm kiri & 10 cm kanan</text>
+                    </svg>
+                </div>
+                Tiga utas tali tersebut disambung menjadi satu rangkaian panjang. Karena hanya ada 2 sambungan, berapakah panjang total tali setelah disambung?
+                <ol>
+                    <li data-option="A">985 cm</li>
+                    <li data-option="B">995 cm</li>
+                    <li data-option="C">1.005 cm</li>
+                    <li data-option="D">1.025 cm</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 11 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: A (985 cm)</h4>
+            <p><b>Analisis Soal:</b> Panjang tali sambungan. Konsep "ujung yang berkurang".</p>
+            <p><b>Langkah Pengerjaan:</b></p>
+            <ul>
+                <li><b>Samakan Satuan ke cm:</b><br>
+                Tali 1 = 275 cm.<br>
+                Tali 2 = 3,5 m = 350 cm.<br>
+                Tali 3 = 40 dm = 400 cm.<br>
+                Total panjang dasar = $275 + 350 + 400 = 1.025$ cm.</li>
+                <li><b>Hitung Pengurangan Sambungan:</b><br>
+                Ada 3 tali, berarti ada 2 titik sambungan.<br>
+                Setiap sambungan memakan ujung dari tali kiri (10 cm) dan ujung dari tali kanan (10 cm). Jadi, setiap satu sambungan, panjang total tali berkurang $10 + 10 = 20$ cm.<br>
+                Total berkurang = $2 \text{ sambungan} \times 20 \text{ cm} = 40$ cm.</li>
+                <li><b>Panjang Akhir:</b><br>
+                $1.025 - 40 = 985$ cm.</li>
+            </ul>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 12 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Pengukuran Luas</td></tr><tr><td>Sub Topik</td><td>Ubin</td></tr><tr><td>Level Kognitif</td><td>Application (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">12.</div>
+            <div class="soal-konten">
+                Lantai sebuah ruangan berbentuk persegi panjang berukuran 8 m x 6 m akan dipasangi ubin keramik berbentuk persegi dengan sisi 40 cm. Berapa banyak dus keramik yang harus dibeli jika 1 dus berisi 5 keping keramik?
+                <ol>
+                    <li data-option="A">60 dus</li>
+                    <li data-option="B">75 dus</li>
+                    <li data-option="C">120 dus</li>
+                    <li data-option="D">300 dus</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 12 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: A (60 dus)</h4>
+            <p><b>Langkah Pengerjaan:</b></p>
+            <ol>
+                <li><b>Luas Lantai:</b><br>
+                $8 \text{ m} \times 6 \text{ m} = 48 \text{ m}^2$.<br>
+                Konversi ke cm$^2$: $48 \times 10.000 = 480.000$ cm$^2$.</li>
+                <li><b>Luas 1 Keramik:</b><br>
+                $40 \text{ cm} \times 40 \text{ cm} = 1.600$ cm$^2$.</li>
+                <li><b>Jumlah Keping Keramik:</b><br>
+                $480.000 \div 1.600 = 300$ keping.</li>
+                <li><b>Jumlah Dus:</b><br>
+                1 dus = 5 keping. $300 \div 5 = 60$ dus.</li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 13 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Pengukuran Volume</td></tr><tr><td>Sub Topik</td><td>Selisih Volume</td></tr><tr><td>Level Kognitif</td><td>Application (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">13.</div>
+            <div class="soal-konten">
+                Budi memiliki kotak mainan berbentuk kubus dengan rusuk 20 cm. Doni memiliki kotak mainan berbentuk balok dengan ukuran 25 cm x 15 cm x 20 cm. Selisih volume kotak mainan Budi dan Doni adalah...
+                <ol>
+                    <li data-option="A">500 cm$^3$</li>
+                    <li data-option="B">1.000 cm$^3$</li>
+                    <li data-option="C">2.500 cm$^3$</li>
+                    <li data-option="D">7.500 cm$^3$</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 13 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: A (500 cm$^3$)</h4>
+            <p><b>Langkah Pengerjaan:</b></p>
+            <ul>
+                <li><b>Volume Kotak Budi (Kubus):</b><br>
+                $V = s^3 = 20 \times 20 \times 20 = 8.000$ cm$^3$.</li>
+                <li><b>Volume Kotak Doni (Balok):</b><br>
+                $V = p \times l \times t = 25 \times 15 \times 20 = 7.500$ cm$^3$.</li>
+                <li><b>Selisih:</b><br>
+                $8.000 - 7.500 = 500$ cm$^3$.</li>
+            </ul>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 14 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Pengukuran Berat</td></tr><tr><td>Sub Topik</td><td>Belanjaan</td></tr><tr><td>Level Kognitif</td><td>Application (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">14.</div>
+            <div class="soal-konten">
+                Ibu pergi ke pasar membeli 2 kantong gula pasir yang masing-masing beratnya 1,5 kg, 3 bungkus tepung terigu yang masing-masing 500 gram, dan 4 ons mentega (catatan: 1 ons = 100 gram). Total berat belanjaan Ibu dalam satuan kilogram adalah...
+                <ol>
+                    <li data-option="A">4,5 kg</li>
+                    <li data-option="B">4,9 kg</li>
+                    <li data-option="C">5,4 kg</li>
+                    <li data-option="D">6,5 kg</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 14 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: B (4,9 kg)</h4>
+            <p><b>Langkah Pengerjaan:</b></p>
+            <ul>
+                <li>Gula: $2 \times 1,5$ kg = 3 kg.</li>
+                <li>Tepung: $3 \times 500$ gram = 1.500 gram = 1,5 kg.</li>
+                <li>Mentega: 4 ons. (1 ons = 100 gram = 0,1 kg). Jadi 4 ons = 0,4 kg.</li>
+                <li>Total = $3 + 1,5 + 0,4 = 4,9$ kg.</li>
+            </ul>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 15 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Pengukuran Panjang</td></tr><tr><td>Sub Topik</td><td>Keliling Segitiga</td></tr><tr><td>Level Kognitif</td><td>Application (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">15.</div>
+            <div class="soal-konten">
+                Sebuah segitiga sama kaki memiliki keliling 50 cm. Jika panjang sisi alasnya adalah 16 cm, berapakah panjang salah satu sisi kakinya?
+                <ol>
+                    <li data-option="A">17 cm</li>
+                    <li data-option="B">24 cm</li>
+                    <li data-option="C">34 cm</li>
+                    <li data-option="D">68 cm</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 15 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: A (17 cm)</h4>
+            <p><b>Langkah Pengerjaan:</b></p>
+            <ul>
+                <li>Keliling = Sisi Alas + Sisi Kaki + Sisi Kaki.</li>
+                <li>$50 = 16 + (2 \times \text{Sisi Kaki})$.</li>
+                <li>$2 \times \text{Sisi Kaki} = 50 - 16 = 34$ cm.</li>
+                <li>Sisi Kaki = $34 \div 2 = 17$ cm.</li>
+            </ul>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 16 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Pengukuran Luas</td></tr><tr><td>Sub Topik</td><td>Luas Arsiran</td></tr><tr><td>Level Kognitif</td><td>Analysis (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">16.</div>
+            <div class="soal-konten">
+                Pak RT berencana memasang paving block di jalan setapak. Jalan setapak tersebut berbentuk persegi panjang dengan panjang 50 m dan lebar 4 m. Di tengah jalan tersebut terdapat taman kecil berbentuk lingkaran dengan diameter 14 m yang tidak boleh dipasangi paving. Berapa luas area yang akan dipasangi paving? (Gunakan $\pi = \frac{22}{7}$)
+                <ol>
+                    <li data-option="A">46 m$^2$</li>
+                    <li data-option="B">84 m$^2$</li>
+                    <li data-option="C">100 m$^2$</li>
+                    <li data-option="D">154 m$^2$</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 16 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: A (46 m$^2$)</h4>
+            <p><b>Konsep Dasar:</b> Luas daerah yang diarsir = Luas Besar - Luas Lubang.</p>
+            <p><b>Langkah Pengerjaan:</b></p>
+            <ol>
+                <li><b>Luas Jalan (Persegi Panjang):</b><br>
+                $L = p \times l = 50 \text{ m} \times 4 \text{ m} = 200$ m$^2$.</li>
+                <li><b>Luas Taman (Lingkaran):</b><br>
+                Diameter = 14 m, jari-jari ($r$) = 7 m.<br>
+                $L = \pi \times r \times r = \frac{22}{7} \times 7 \times 7 = 154$ m$^2$.</li>
+                <li><b>Luas Paving:</b><br>
+                $200 - 154 = 46$ m$^2$.</li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 17 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Pengukuran Volume</td></tr><tr><td>Sub Topik</td><td>Kenaikan Air</td></tr><tr><td>Level Kognitif</td><td>Analysis (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">17.</div>
+            <div class="soal-konten">
+                Sebuah wadah berbentuk balok dengan alas persegi (sisi alas = 10 cm) berisi air setinggi 15 cm. Kemudian, sebuah batu dimasukkan ke dalam wadah tersebut sehingga tenggelam sepenuhnya. Ketinggian air naik menjadi 17 cm. Berapakah volume batu tersebut?
+                <ol>
+                    <li data-option="A">20 cm$^3$</li>
+                    <li data-option="B">100 cm$^3$</li>
+                    <li data-option="C">200 cm$^3$</li>
+                    <li data-option="D">1.700 cm$^3$</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 17 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: C (200 cm$^3$)</h4>
+            <p><b>Konsep Dasar:</b> Hukum Archimedes sederhana (Volume benda = Volume air yang dipindahkan/naik).</p>
+            <p><b>Langkah Pengerjaan:</b></p>
+            <ol>
+                <li><b>Hitung Kenaikan Air:</b><br>
+                Kenaikan = $17 \text{ cm} - 15 \text{ cm} = 2$ cm.</li>
+                <li><b>Hitung Volume Batu:</b><br>
+                Volume Batu = Luas Alas $\times$ Kenaikan Tinggi.<br>
+                Alas persegi sisi 10 cm $\to$ Luas Alas = $10 \times 10 = 100$ cm$^2$.<br>
+                Volume = $100 \text{ cm}^2 \times 2 \text{ cm} = 200$ cm$^3$.</li>
+            </ol>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 18 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Pengukuran Luas</td></tr><tr><td>Sub Topik</td><td>Konversi Agraria</td></tr><tr><td>Level Kognitif</td><td>Application (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">18.</div>
+            <div class="soal-konten">
+                Petani A memiliki lahan seluas 1,5 hektare. Petani B memiliki lahan seluas 12.500 m$^2$. Petani C memiliki lahan seluas 250 are. Urutan petani dari yang memiliki lahan terluas adalah...
+                <ol>
+                    <li data-option="A">Petani C, Petani A, Petani B</li>
+                    <li data-option="B">Petani A, Petani C, Petani B</li>
+                    <li data-option="C">Petani C, Petani B, Petani A</li>
+                    <li data-option="D">Petani B, Petani A, Petani C</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 18 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: A (Petani C, A, B)</h4>
+            <p><b>Analisis:</b> Mengurutkan luas dengan satuan berbeda (hektare, m$^2$, are). Kita samakan ke <b>are</b>.</p>
+            <p><b>Langkah Pengerjaan:</b></p>
+            <ul>
+                <li>Petani A: 1,5 hektare (ha). 1 ha = 100 are. $\to 1,5 \times 100 = 150$ are.</li>
+                <li>Petani B: 12.500 m$^2$. 1 are = 100 m$^2$. $\to 12.500 \div 100 = 125$ are.</li>
+                <li>Petani C: 250 are.</li>
+            </ul>
+            <p><b>Urutan Terluas:</b> 250 (C) > 150 (A) > 125 (B).</p>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 19 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Pengukuran Panjang</td></tr><tr><td>Sub Topik</td><td>Pemecahan Masalah</td></tr><tr><td>Level Kognitif</td><td>Application (L2)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">19.</div>
+            <div class="soal-konten">
+                Sebuah tiang bendera terdiri dari 3 pipa besi yang disambung. Pipa bawah panjangnya 2,5 m tertanam di tanah sedalam 50 cm. Pipa tengah panjangnya 20 dm. Pipa atas panjangnya 150 cm. Berapa meter tinggi tiang bendera yang <b>terlihat</b> di atas permukaan tanah? (Abaikan panjang sambungan).
+                <ol>
+                    <li data-option="A">5,5 m</li>
+                    <li data-option="B">6,0 m</li>
+                    <li data-option="C">6,5 m</li>
+                    <li data-option="D">11,0 m</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 19 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: A (5,5 m)</h4>
+            <p><b>Langkah Pengerjaan:</b></p>
+            <ul>
+                <li><b>Konversi semua ke meter:</b><br>
+                Pipa Bawah: 2,5 m.<br>
+                Pipa Tengah: 20 dm = 2 m.<br>
+                Pipa Atas: 150 cm = 1,5 m.</li>
+                <li><b>Total Panjang Pipa:</b><br>
+                $2,5 + 2 + 1,5 = 6,0$ m.</li>
+                <li><b>Kurangi bagian tertanam:</b><br>
+                Tertanam 50 cm = 0,5 m.<br>
+                Tinggi Terlihat = $6,0 - 0,5 = 5,5$ m.</li>
+            </ul>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- SOAL 20 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Soal Latihan</h2>
+        <table class="soal-card"><tr><td>Topik</td><td>Pengukuran Volume</td></tr><tr><td>Sub Topik</td><td>Volume Gabungan</td></tr><tr><td>Level Kognitif</td><td>Analysis (L3)</td></tr></table>
+        <div class="soal-pembahasan">
+            <div class="soal-nomor">20.</div>
+            <div class="soal-konten">
+                Perhatikan gambar bangun gabungan berikut (Balok di bawah dan Kubus di atasnya).
+                <img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_ire4qj_6094.png" alt="Soal 20" class="question-image">
+                Hitunglah volume gabungan bangun ruang di atas!
+                <ol>
+                    <li data-option="A">1.600 cm$^3$</li>
+                    <li data-option="B">1.725 cm$^3$</li>
+                    <li data-option="C">1.850 cm$^3$</li>
+                    <li data-option="D">2.100 cm$^3$</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+<!-- PEMBAHASAN 20 -->
+<section class="page">
+    <header class="page-header"><div class="header-top-box"><div><div class="header-title-main">Panduan Mengajar</div><div class="header-title-sub"><b>Matematika</b></div></div><img src="https://imgix3.ruangguru.com/assets/miscellaneous/png_imib4n_1531.png" alt="Logo" class="header-logo"></div></header>
+    <div class="content-wrapper">
+        <h2 class="section-title">Kunci Jawaban dan Pembahasan</h2>
+        <div class="pembahasan-detail">
+            <h4>Jawaban: B (1.725 cm$^3$)</h4>
+            <p><b>Langkah Pengerjaan:</b></p>
+            <ul>
+                <li><b>Volume Balok Bawah:</b><br>
+                Panjang 20 cm, Lebar 10 cm, Tinggi 8 cm.<br>
+                $V_{balok} = 20 \times 10 \times 8 = 1.600$ cm$^3$.</li>
+                <li><b>Volume Kubus Atas:</b><br>
+                Rusuk = 5 cm.<br>
+                $V_{kubus} = 5 \times 5 \times 5 = 125$ cm$^3$.</li>
+                <li><b>Total Volume:</b><br>
+                $V_{total} = 1.600 + 125 = 1.725$ cm$^3$.</li>
+            </ul>
+        </div>
+    </div>
+    <footer class="page-footer">
+        <b>Copyright Ⓒ 2025 - PT Ruang Raya Indonesia - All Rights Reserved.</b> <i>Dilarang menyebarluaskan dokumen ini tanpa seizin PT Ruang Raya Indonesia.</i>
+        <span class="page-number"></span>
+    </footer>
+</section>
+
+</body>
+</html>
